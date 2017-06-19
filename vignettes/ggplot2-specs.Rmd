@@ -1,7 +1,5 @@
 ---
 title: "Aesthetic specifications"
-author: "Hadley Wickham"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Aesthetic specifications}
@@ -23,7 +21,8 @@ Colours can be specified with:
 *   A __name__, e.g., `"red"`. R has `r length(colours())` built-in named
     colours, which can be listed with `colours()`. The Stowers Institute 
     provides a nice printable pdf that lists all colours: 
-    <http://research.stowers-institute.org/efg/R/Color/Chart/>.
+    <http://research.stowers.org/mcm/efg/R/Color/Chart/>.
+    
 
 *   An __rgb specification__, with a string of the form `"#RRGGBB"` where each of 
     the pairs `RR`, `GG`, `BB` consists of two hexadecimal digits giving a value 
@@ -67,7 +66,7 @@ Line types can be specified with:
     three off followed by one on and finally three off. 
     
     The five standard dash-dot line types described above correspond to 44, 13, 
-    134, 73, and 2262.
+    1343, 73, and 2262.
 
 The `size` of a line is its width in mm.
 

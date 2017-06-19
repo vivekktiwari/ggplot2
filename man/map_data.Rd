@@ -2,28 +2,29 @@
 % Please edit documentation in R/fortify-map.r
 \name{map_data}
 \alias{map_data}
-\title{Create a data frame of map data.}
+\title{Create a data frame of map data}
 \usage{
 map_data(map, region = ".", exact = FALSE, ...)
 }
 \arguments{
 \item{map}{name of map provided by the \pkg{maps} package.  These
-include \code{\link[maps]{county}}, \code{\link[maps]{france}},
-\code{\link[maps]{italy}}, \code{\link[maps]{nz}},
-\code{\link[maps]{state}}, \code{\link[maps]{usa}},
-\code{\link[maps]{world}}, \code{\link[maps]{world2}}.}
+include \code{\link[maps:county]{maps::county()}}, \code{\link[maps:france]{maps::france()}},
+\code{\link[maps:italy]{maps::italy()}}, \code{\link[maps:nz]{maps::nz()}},
+\code{\link[maps:state]{maps::state()}}, \code{\link[maps:usa]{maps::usa()}},
+\code{\link[maps:world]{maps::world()}}, \code{\link[maps:world2]{maps::world2()}}.}
 
 \item{region}{name of subregions to include.  Defaults to \code{.} which
-includes all subregion.  See documentation for \code{\link[maps]{map}}
+includes all subregion.  See documentation for \code{\link[maps:map]{maps::map()}}
 for more details.}
 
 \item{exact}{should the \code{region} be treated as a regular expression
 (\code{FALSE}) or as a fixed string (\code{TRUE}).}
 
-\item{...}{all other arguments passed on to \code{\link[maps]{map}}}
+\item{...}{all other arguments passed on to \code{\link[maps:map]{maps::map()}}}
 }
 \description{
-Create a data frame of map data.
+Easily turn data from the \pkg{maps} package in to a data frame suitable
+for plotting with ggplot2.
 }
 \examples{
 if (require("maps")) {
@@ -43,4 +44,4 @@ ggplot(choro, aes(long, lat)) +
   coord_map("albers",  at0 = 45.5, lat1 = 29.5)
 }
 }
-
+\keyword{internal}

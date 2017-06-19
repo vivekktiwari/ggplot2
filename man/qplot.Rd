@@ -21,8 +21,8 @@ quickplot(x, y = NULL, ..., data, facets = NULL, margins = FALSE,
 \item{data}{Data frame to use (optional).  If not specified, will create
 one, extracting vectors from the current environment.}
 
-\item{facets}{faceting formula to use. Picks \code{\link{facet_wrap}} or
-\code{\link{facet_grid}} depending on whether the formula is one-
+\item{facets}{faceting formula to use. Picks \code{\link[=facet_wrap]{facet_wrap()}} or
+\code{\link[=facet_grid]{facet_grid()}} depending on whether the formula is one-
 or two-sided}
 
 \item{margins}{See \code{facet_grid}: display marginal facets?}
@@ -42,10 +42,12 @@ x axis label, and y axis label respectively.}
 \item{stat, position}{DEPRECATED.}
 }
 \description{
-\code{qplot} is the basic plotting function in the ggplot2 package,
-designed to be familiar if you're used to base \code{\link{plot}()}.
-It's a convenient wrapper for creating a number of different types of plots
-using a consistent calling scheme.
+\code{qplot} is a shortcut designed to be familiar if you're used to base
+\code{\link[=plot]{plot()}}. It's a convenient wrapper for creating a number of
+different types of plots using a consistent calling scheme. It's great
+for allowing you to produce plots quickly, but I highly recommend
+learning \code{\link[=ggplot]{ggplot()}} as it makes it easier to create
+complex graphics.
 }
 \examples{
 # Use data from data.frame
@@ -84,4 +86,3 @@ qplot(factor(cyl), wt, data = mtcars, geom = c("boxplot", "jitter"))
 qplot(mpg, data = mtcars, geom = "dotplot")
 }
 }
-

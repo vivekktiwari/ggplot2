@@ -1,11 +1,16 @@
-#' Polygon, a filled path.
+#' Polygons
+#'
+#' Polygons are very similar to paths (as drawn by [geom_path()])
+#' except that the start and end points are connected and the inside is
+#' coloured by `fill`. The `group` aesthetic determines which cases
+#' are connected together into a polygon.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2:::rd_aesthetics("geom", "polygon")}
+#' \aesthetics{geom}{polygon}
 #'
 #' @seealso
-#'  \code{\link{geom_path}} for an unfilled polygon,
-#'  \code{\link{geom_ribbon}} for a polygon anchored on the x-axis
+#'  [geom_path()] for an unfilled polygon,
+#'  [geom_ribbon()] for a polygon anchored on the x-axis
 #' @export
 #' @inheritParams layer
 #' @inheritParams geom_point
@@ -33,7 +38,9 @@
 #' # Currently we need to manually merge the two together
 #' datapoly <- merge(values, positions, by = c("id"))
 #'
-#' (p <- ggplot(datapoly, aes(x = x, y = y)) + geom_polygon(aes(fill = value, group = id)))
+#' p <- ggplot(datapoly, aes(x = x, y = y)) +
+#'   geom_polygon(aes(fill = value, group = id))
+#' p
 #'
 #' # Which seems like a lot of work, but then it's easy to add on
 #' # other features in this coordinate system, e.g.:
@@ -73,11 +80,11 @@ geom_polygon <- function(mapping = NULL, data = NULL,
 #' @usage NULL
 #' @export
 GeomPolygon <- ggproto("GeomPolygon", Geom,
-  draw_panel = function(data, panel_scales, coord) {
+  draw_panel = function(data, panel_params, coord) {
     n <- nrow(data)
     if (n == 1) return(zeroGrob())
 
-    munched <- coord_munch(coord, data, panel_scales)
+    munched <- coord_munch(coord, data, panel_params)
     # Sort by group to make sure that colors, fill, etc. come in same order
     munched <- munched[order(munched$group), ]
 

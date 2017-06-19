@@ -15,13 +15,13 @@
 }
 \value{
 The original data with extra columns:
-  \item{.hat}{Diagonal of the hat matrix}
-  \item{.sigma}{Estimate of residual standard deviation when
-    corresponding observation is dropped from model}
-  \item{.cooksd}{Cooks distance, \code{\link{cooks.distance}}}
-  \item{.fitted}{Fitted values of model}
-  \item{.resid}{Residuals}
-  \item{.stdresid}{Standardised residuals}
+\item{.hat}{Diagonal of the hat matrix}
+\item{.sigma}{Estimate of residual standard deviation when
+corresponding observation is dropped from model}
+\item{.cooksd}{Cooks distance, \code{\link[=cooks.distance]{cooks.distance()}}}
+\item{.fitted}{Fitted values of model}
+\item{.resid}{Residuals}
+\item{.stdresid}{Standardised residuals}
 }
 \description{
 If you have missing values in your model data, you may need to refit
@@ -62,7 +62,7 @@ ggplot(mod, aes(.fitted, sqrt(abs(.stdresid)))) +
 
 plot(mod, which = 4)
 ggplot(mod, aes(seq_along(.cooksd), .cooksd)) +
-  geom_bar(stat = "identity")
+  geom_col()
 
 plot(mod, which = 5)
 ggplot(mod, aes(.hat, .stdresid)) +
@@ -85,4 +85,4 @@ ggplot(mod, aes(.hat, .cooksd)) +
   geom_point(aes(size = .cooksd / .hat)) +
   scale_size_area()
 }
-
+\keyword{internal}

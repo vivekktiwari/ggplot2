@@ -1,7 +1,7 @@
-#' Textual annotations.
+#' Text
 #'
-#' \code{geom_text} adds text directly to the plot. \code{geom_label} draws
-#' a rectangle underneath the text, making it easier to read.
+#' `geom_text` adds text directly to the plot. `geom_label` draws
+#' a rectangle behind the text, making it easier to read.
 #'
 #' Note the the "width" and "height" of a text element are 0, so stacking
 #' and dodging text will not work by default, and axis limits are not
@@ -11,15 +11,15 @@
 #' resize a plot, labels stay the same size, but the size of the axes changes.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2:::rd_aesthetics("geom", "text")}
+#' \aesthetics{geom}{text}
 #'
-#' @section \code{geom_label}:
-#' Currently \code{geom_label} does not support the \code{rot} parameter and
-#' is considerably slower than \code{geom_text}. The \code{fill} aesthetic
+#' @section `geom_label`:
+#' Currently `geom_label` does not support the `rot` parameter and
+#' is considerably slower than `geom_text`. The `fill` aesthetic
 #' controls the background colour of the label.
 #'
 #' @section Alignment:
-#' You can modify text alignment with the \code{vjust} and \code{hjust}
+#' You can modify text alignment with the `vjust` and `hjust`
 #' aesthetics. These can either be a number between 0 (right/bottom) and
 #' 1 (top/left) or a character ("left", "middle", "right", "bottom", "center",
 #' "top"). There are two special alignments: "inward" and "outward".
@@ -32,8 +32,8 @@
 #'   displayed as described in ?plotmath
 #' @param nudge_x,nudge_y Horizontal and vertical adjustment to nudge labels by.
 #'   Useful for offsetting text from points, particularly on discrete scales.
-#' @param check_overlap If \code{TRUE}, text that overlaps previous text in the
-#'   same layer will not be plotted. A quick and dirty way
+#' @param check_overlap If `TRUE`, text that overlaps previous text in the
+#'   same layer will not be plotted.
 #' @export
 #' @examples
 #' p <- ggplot(mtcars, aes(wt, mpg, label = rownames(mtcars)))
@@ -86,25 +86,27 @@
 #'
 #' # ggplot2 doesn't know you want to give the labels the same virtual width
 #' # as the bars:
-#' ggplot(data = df, aes(x, y, fill = grp, label = y)) +
-#'   geom_bar(stat = "identity", position = "dodge") +
-#'   geom_text(position = "dodge")
+#' ggplot(data = df, aes(x, y, group = grp)) +
+#'   geom_col(aes(fill = grp), position = "dodge") +
+#'   geom_text(aes(label = y), position = "dodge")
 #' # So tell it:
-#' ggplot(data = df, aes(x, y, fill = grp, label = y)) +
-#'   geom_bar(stat = "identity", position = "dodge") +
-#'   geom_text(position = position_dodge(0.9))
+#' ggplot(data = df, aes(x, y, group = grp)) +
+#'   geom_col(aes(fill = grp), position = "dodge") +
+#'   geom_text(aes(label = y), position = position_dodge(0.9))
 #' # Use you can't nudge and dodge text, so instead adjust the y postion
-#' ggplot(data = df, aes(x, y, fill = grp, label = y)) +
-#'   geom_bar(stat = "identity", position = "dodge") +
-#'   geom_text(aes(y = y + 0.05), position = position_dodge(0.9), vjust = 0)
+#' ggplot(data = df, aes(x, y, group = grp)) +
+#'   geom_col(aes(fill = grp), position = "dodge") +
+#'   geom_text(
+#'     aes(label = y, y = y + 0.05),
+#'     position = position_dodge(0.9),
+#'     vjust = 0
+#'   )
 #'
 #' # To place text in the middle of each bar in a stacked barplot, you
-#' # need to do the computation yourself
-#' df <- transform(df, mid_y = ave(df$y, df$x, FUN = function(val) cumsum(val) - (0.5 * val)))
-#'
-#' ggplot(data = df, aes(x, y, fill = grp, label = y)) +
-#'  geom_bar(stat = "identity") +
-#'  geom_text(aes(y = mid_y))
+#' # need to set the vjust parameter of position_stack()
+#' ggplot(data = df, aes(x, y, group = grp)) +
+#'  geom_col(aes(fill = grp)) +
+#'  geom_text(aes(label = y), position = position_stack(vjust = 0.5))
 #'
 #' # Justification -------------------------------------------------------------
 #' df <- data.frame(
@@ -166,14 +168,14 @@ GeomText <- ggproto("GeomText", Geom,
     vjust = 0.5, alpha = NA, family = "", fontface = 1, lineheight = 1.2
   ),
 
-  draw_panel = function(data, panel_scales, coord, parse = FALSE,
+  draw_panel = function(data, panel_params, coord, parse = FALSE,
                         na.rm = FALSE, check_overlap = FALSE) {
     lab <- data$label
     if (parse) {
       lab <- parse(text = as.character(lab))
     }
 
-    data <- coord$transform(data, panel_scales)
+    data <- coord$transform(data, panel_params)
     if (is.character(data$vjust)) {
       data$vjust <- compute_just(data$vjust, data$y)
     }

@@ -2,13 +2,13 @@
 % Please edit documentation in R/fortify-map.r
 \name{borders}
 \alias{borders}
-\title{Create a layer of map borders.}
+\title{Create a layer of map borders}
 \usage{
 borders(database = "world", regions = ".", fill = NA, colour = "grey50",
   xlim = NULL, ylim = NULL, ...)
 }
 \arguments{
-\item{database}{map data, see \code{\link[maps]{map}} for details}
+\item{database}{map data, see \code{\link[maps:map]{maps::map()}} for details}
 
 \item{regions}{map region}
 
@@ -17,12 +17,15 @@ borders(database = "world", regions = ".", fill = NA, colour = "grey50",
 \item{colour}{border colour}
 
 \item{xlim, ylim}{latitudinal and logitudinal range for extracting map
-polygons, see \code{\link[maps]{map}} for details.}
+polygons, see \code{\link[maps:map]{maps::map()}} for details.}
 
-\item{...}{other arguments passed onto \code{\link{geom_polygon}}}
+\item{...}{other arguments passed onto \code{\link[=geom_polygon]{geom_polygon()}}}
 }
 \description{
-Create a layer of map borders.
+This is a quick and dirty way to get map data (from the maps package)
+on to your plot. This is a good place to start if you need some crude
+reference lines, but you'll typically want something more sophisticated
+for communication graphics.
 }
 \examples{
 if (require("maps")) {
@@ -50,4 +53,3 @@ ggplot(capitals, aes(long, lat)) +
   coord_quickmap()
 }
 }
-

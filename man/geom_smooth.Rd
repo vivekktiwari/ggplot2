@@ -3,7 +3,7 @@
 \name{geom_smooth}
 \alias{geom_smooth}
 \alias{stat_smooth}
-\title{Add a smoothed conditional mean.}
+\title{Smoothed conditional means}
 \usage{
 geom_smooth(mapping = NULL, data = NULL, stat = "smooth",
   position = "identity", ..., method = "auto", formula = y ~ x,
@@ -16,37 +16,42 @@ stat_smooth(mapping = NULL, data = NULL, geom = "smooth",
   inherit.aes = TRUE)
 }
 \arguments{
-\item{mapping}{Set of aesthetic mappings created by \code{\link{aes}} or
-\code{\link{aes_}}. If specified and \code{inherit.aes = TRUE} (the
+\item{mapping}{Set of aesthetic mappings created by \code{\link[=aes]{aes()}} or
+\code{\link[=aes_]{aes_()}}. If specified and \code{inherit.aes = TRUE} (the
 default), it is combined with the default mapping at the top level of the
 plot. You must supply \code{mapping} if there is no plot mapping.}
 
 \item{data}{The data to be displayed in this layer. There are three
-   options:
+options:
 
-   If \code{NULL}, the default, the data is inherited from the plot
-   data as specified in the call to \code{\link{ggplot}}.
+If \code{NULL}, the default, the data is inherited from the plot
+data as specified in the call to \code{\link[=ggplot]{ggplot()}}.
 
-   A \code{data.frame}, or other object, will override the plot
-   data. All objects will be fortified to produce a data frame. See
-   \code{\link{fortify}} for which variables will be created.
+A \code{data.frame}, or other object, will override the plot
+data. All objects will be fortified to produce a data frame. See
+\code{\link[=fortify]{fortify()}} for which variables will be created.
 
-   A \code{function} will be called with a single argument,
-   the plot data. The return value must be a \code{data.frame.}, and
-   will be used as the layer data.}
+A \code{function} will be called with a single argument,
+the plot data. The return value must be a \code{data.frame.}, and
+will be used as the layer data.}
 
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
 
-\item{...}{other arguments passed on to \code{\link{layer}}. These are
+\item{...}{other arguments passed on to \code{\link[=layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
 \code{color = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
 
-\item{method}{smoothing method (function) to use, eg. lm, glm, gam, loess,
-rlm. For datasets with n < 1000 default is \code{\link{loess}}. For datasets
-with 1000 or more observations defaults to gam, see \code{\link[mgcv]{gam}}
-for more details.}
+\item{method}{smoothing method (function) to use, eg. "lm", "glm",
+"gam", "loess", "rlm".
+
+For \code{method = "auto"} the smoothing method is chosen based on the
+size of the largest group (across all panels). \code{\link[=loess]{loess()}} is
+used for less than 1,000 observations; otherwise \code{\link[mgcv:gam]{mgcv::gam()}} is
+used with \code{formula = y ~ s(x, bs = "cs")}. Somewhat anecdotally,
+\code{loess} gives a better appearance, but is O(n^2) in memory, so does
+not work for larger datasets.}
 
 \item{formula}{formula to use in smoothing function, eg. \code{y ~ x},
 \code{y ~ poly(x, 2)}, \code{y ~ log(x)}}
@@ -54,8 +59,8 @@ for more details.}
 \item{se}{display confidence interval around smooth? (TRUE by default, see
 level to control}
 
-\item{na.rm}{If \code{FALSE} (the default), removes missing values with
-a warning.  If \code{TRUE} silently removes missing values.}
+\item{na.rm}{If \code{FALSE}, the default, missing values are removed with
+a warning. If \code{TRUE}, missing values are silently removed.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
@@ -64,7 +69,7 @@ a warning.  If \code{TRUE} silently removes missing values.}
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
-the default plot specification, e.g. \code{\link{borders}}.}
+the default plot specification, e.g. \code{\link[=borders]{borders()}}.}
 
 \item{geom, stat}{Use to override the default connection between
 \code{geom_smooth} and \code{stat_smooth}.}
@@ -92,25 +97,26 @@ display the results with a non-standard geom.
 \details{
 Calculation is performed by the (currently undocumented)
 \code{predictdf} generic and its methods.  For most methods the standard
-error bounds are computed using the \code{\link{predict}} method - the
+error bounds are computed using the \code{\link[=predict]{predict()}} method - the
 exceptions are \code{loess} which uses a t-based approximation, and
 \code{glm} where the normal confidence interval is constructed on the link
 scale, and then back-transformed to the response scale.
 }
 \section{Aesthetics}{
 
-\Sexpr[results=rd,stage=build]{ggplot2:::rd_aesthetics("geom", "smooth")}
+\aesthetics{geom}{smooth}
 }
 
 \section{Computed variables}{
 
 \describe{
-  \item{y}{predicted value}
-  \item{ymin}{lower pointwise confidence interval around the mean}
-  \item{ymax}{upper pointwise confidence interval around the mean}
-  \item{se}{standard error}
+\item{y}{predicted value}
+\item{ymin}{lower pointwise confidence interval around the mean}
+\item{ymax}{upper pointwise confidence interval around the mean}
+\item{se}{standard error}
 }
 }
+
 \examples{
 ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
@@ -167,8 +173,7 @@ ggplot(rpart::kyphosis, aes(Age, as.numeric(Kyphosis) - 1)) +
 }
 \seealso{
 See individual modelling functions for more details:
-  \code{\link{lm}} for linear smooths,
-  \code{\link{glm}} for generalised linear smooths,
-  \code{\link{loess}} for local smooths
+\code{\link[=lm]{lm()}} for linear smooths,
+\code{\link[=glm]{glm()}} for generalised linear smooths,
+\code{\link[=loess]{loess()}} for local smooths
 }
-

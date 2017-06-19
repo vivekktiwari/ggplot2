@@ -1,15 +1,17 @@
-#' Contours from a 2d density estimate.
+#' Contours of a 2d density estimate
 #'
-#' Perform a 2D kernel density estimation using kde2d and display the
-#' results with contours. This can be useful for dealing with overplotting.
+#' Perform a 2D kernel density estimation using [MASS::kde2d()] and
+#' display the results with contours. This can be useful for dealing with
+#' overplotting. This is a 2d version of [geom_density()].
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2:::rd_aesthetics("geom", "density_2d")}
+#' \aesthetics{geom}{density_2d}
 #'
-#' @seealso \code{\link{geom_contour}} for contour drawing geom,
-#'  \code{\link{stat_sum}} for another way of dealing with overplotting
+#' @seealso [geom_contour()] for information about how contours
+#'  are drawn; [geom_bin2d()] for another way of dealing with
+#'  overplotting.
 #' @param geom,stat Use to override the default connection between
-#'   \code{geom_density_2d} and \code{stat_density_2d}.
+#'   `geom_density_2d` and `stat_density_2d`.
 #' @inheritParams layer
 #' @inheritParams geom_point
 #' @inheritParams geom_path

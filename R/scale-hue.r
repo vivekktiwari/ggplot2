@@ -1,15 +1,16 @@
-#' Qualitative colour scale with evenly spaced hues.
+#' Evenly spaced colours for discrete data
+#'
+#' This is the default colour scale for categorical variables. It maps each
+#' level to an evenly spaced hue on the colour wheel. It does not generate
+#' colour-blind safe palettes.
 #'
 #' @param na.value Colour to use for missing values
-#' @param ... Other arguments passed on to \code{\link{discrete_scale}}
+#' @param ... Other arguments passed on to [discrete_scale()]
 #'   to control name, limits, breaks, labels and so forth.
 #' @inheritParams scales::hue_pal
 #' @rdname scale_hue
 #' @export
-#' @seealso Other colour scales:
-#'   \code{\link{scale_colour_brewer}},
-#'   \code{\link{scale_colour_gradient}},
-#'   \code{\link{scale_colour_grey}}
+#' @family colour scales
 #' @examples
 #' \donttest{
 #' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]

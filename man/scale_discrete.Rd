@@ -3,20 +3,23 @@
 \name{scale_x_discrete}
 \alias{scale_x_discrete}
 \alias{scale_y_discrete}
-\title{Discrete position.}
+\title{Position scales for discrete data}
 \usage{
-scale_x_discrete(..., expand = waiver())
+scale_x_discrete(..., expand = waiver(), position = "bottom")
 
-scale_y_discrete(..., expand = waiver())
+scale_y_discrete(..., expand = waiver(), position = "left")
 }
 \arguments{
 \item{...}{common discrete scale parameters: \code{name}, \code{breaks},
 \code{labels}, \code{na.value}, \code{limits} and \code{guide}.  See
-\code{\link{discrete_scale}} for more details}
+\code{\link[=discrete_scale]{discrete_scale()}} for more details}
 
 \item{expand}{a numeric vector of length two giving multiplicative and
 additive expansion constants. These constants ensure that the data is
 placed some distance away from the axes.}
+
+\item{position}{The position of the axis. \code{left} or \code{right} for y
+axes, \code{top} or \code{bottom} for x axes}
 }
 \description{
 You can use continuous positions even with a discrete position scale -
@@ -58,4 +61,7 @@ ggplot(mpg, aes(reorder(manufacturer, displ), cty)) +
   scale_x_discrete(labels = abbreviate)
 }
 }
-
+\seealso{
+Other position scales: \code{\link{scale_x_continuous}},
+  \code{\link{scale_x_date}}
+}

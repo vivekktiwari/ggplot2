@@ -1,7 +1,7 @@
-#' Adjust position by simultaneously dodging and jittering
+#' Simultaneously dodge and jitter
 #'
 #' This is primarily used for aligning points generated through
-#' \code{geom_point()} with dodged boxplots (e.g., a \code{geom_boxplot()} with
+#' `geom_point()` with dodged boxplots (e.g., a `geom_boxplot()` with
 #' a fill aesthetic supplied).
 #'
 #' @family position adjustments
@@ -9,7 +9,7 @@
 #'   resolution of the data.
 #' @param jitter.height degree of jitter in y direction. Defaults to 0.
 #' @param dodge.width the amount to dodge in the x direction. Defaults to 0.75,
-#'   the default \code{position_dodge()} width.
+#'   the default `position_dodge()` width.
 #' @export
 #' @examples
 #' dsub <- diamonds[ sample(nrow(diamonds), 1000), ]
@@ -38,15 +38,15 @@ PositionJitterdodge <- ggproto("PositionJitterdodge", Position,
   required_aes = c("x", "y"),
 
   setup_params = function(self, data) {
-    width <- self$jitter.width %||% resolution(data$x, zero = FALSE) * 0.4
+    width <- self$jitter.width %||% (resolution(data$x, zero = FALSE) * 0.4)
     # Adjust the x transformation based on the number of 'dodge' variables
-    dodgecols <- intersect(c("fill", "colour", "linetype", "shape", "size", "alpha"), colnames(data))  
+    dodgecols <- intersect(c("fill", "colour", "linetype", "shape", "size", "alpha"), colnames(data))
     if (length(dodgecols) == 0) {
       stop("`position_jitterdodge()` requires at least one aesthetic to dodge by", call. = FALSE)
     }
     ndodge    <- lapply(data[dodgecols], levels)  # returns NULL for numeric, i.e. non-dodge layers
     ndodge    <- length(unique(unlist(ndodge)))
-    
+
     list(
       dodge.width = self$dodge.width,
       jitter.height = self$jitter.height,

@@ -1,20 +1,20 @@
-#' Summarise y values at unique/binned x x.
+#' Summarise y values at unique/binned x
 #'
-#' \code{stat_summary} operates on unique \code{x}; \code{stat_summary_bin}
-#' operators on binned \code{x}. They are more flexible versions of
-#' \code{\link{stat_bin}}: instead of just counting, they can compute any
+#' `stat_summary` operates on unique `x`; `stat_summary_bin`
+#' operators on binned `x`. They are more flexible versions of
+#' [stat_bin()]: instead of just counting, they can compute any
 #' aggregate.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2:::rd_aesthetics("stat", "summary")}
+#' \aesthetics{stat}{summary}
 #'
-#' @seealso \code{\link{geom_errorbar}}, \code{\link{geom_pointrange}},
-#'  \code{\link{geom_linerange}}, \code{\link{geom_crossbar}} for geoms to
+#' @seealso [geom_errorbar()], [geom_pointrange()],
+#'  [geom_linerange()], [geom_crossbar()] for geoms to
 #'  display summarised data
 #' @inheritParams stat_identity
 #' @section Summary functions:
-#' You can either supply summary functions individually (\code{fun.y},
-#' \code{fun.ymax}, \code{fun.ymin}), or as a single function (\code{fun.data}):
+#' You can either supply summary functions individually (`fun.y`,
+#' `fun.ymax`, `fun.ymin`), or as a single function (`fun.data`):
 #'
 #' \describe{
 #'   \item{fun.data}{Complete summary function. Should take numeric vector as
@@ -29,13 +29,13 @@
 #'
 #' A simple vector function is easiest to work with as you can return a single
 #' number, but is somewhat less flexible. If your summary function computes
-#' multiple values at once (e.g. ymin and ymax), use \code{fun.data}.
+#' multiple values at once (e.g. ymin and ymax), use `fun.data`.
 #'
 #' If no aggregation functions are suppled, will default to
-#' \code{\link{mean_se}}.
+#' [mean_se()].
 #'
 #' @param fun.data A function that is given the complete data and should
-#'   return a data frame with variables \code{ymin}, \code{y}, and \code{ymax}.
+#'   return a data frame with variables `ymin`, `y`, and `ymax`.
 #' @param fun.ymin,fun.y,fun.ymax Alternatively, supply three individual
 #'   functions that are each passed a vector of x's and should return a
 #'   single number.
@@ -153,11 +153,11 @@ StatSummary <- ggproto("StatSummary", Stat,
 # Summarise a data.frame by parts
 # Summarise a data frame by unique value of x
 #
-# This function is used by \code{\link{stat_summary}} to break a
+# This function is used by [stat_summary()] to break a
 # data.frame into pieces, summarise each piece, and join the pieces
 # back together, retaining original columns unaffected by the summary.
 #
-# @param \code{\link{data.frame}} to summarise
+# @param [data.frame()] to summarise
 # @param vector to summarise by
 # @param summary function (must take and return a data.frame)
 # @param other arguments passed on to summary function
@@ -170,17 +170,28 @@ summarise_by_x <- function(data, summary, ...) {
   merge(summary, unique, by = c("x", "group"), sort = FALSE)
 }
 
-#' Wrap up a selection of summary functions from Hmisc to make it easy to use
-#' with \code{\link{stat_summary}}.
+#' A selection of summary functions from Hmisc
 #'
-#' See the Hmisc documentation for details of their options.
+#' @description
+#' These are wrappers around functions from \pkg{Hmisc} designed to make them
+#' easier to use with [stat_summary()]. See the Hmisc documentation
+#' for more details:
 #'
+#'  - [Hmisc::smean.cl.boot()]
+#'  - [Hmisc::smean.cl.normal()]
+#'  - [Hmisc::smean.sdl()]
+#'  - [Hmisc::smedian.hilow()]
+#' 
 #' @param x a numeric vector
 #' @param ... other arguments passed on to the respective Hmisc function.
-#' @seealso \code{\link[Hmisc]{smean.cl.boot}},
-#'   \code{\link[Hmisc]{smean.cl.normal}}, \code{\link[Hmisc]{smean.sdl}},
-#'    \code{\link[Hmisc]{smedian.hilow}}
+#' @return A data frame with columns `y`, `ymin`, and `ymax`.
 #' @name hmisc
+#' @examples
+#' x <- rnorm(100)
+#' mean_cl_boot(x)
+#' mean_cl_normal(x)
+#' mean_sdl(x)
+#' median_hilow(x)
 NULL
 
 wrap_hmisc <- function(fun) {
@@ -212,12 +223,17 @@ mean_sdl <- wrap_hmisc("smean.sdl")
 #' @rdname hmisc
 median_hilow <- wrap_hmisc("smedian.hilow")
 
-#' Calculate mean and standard errors on either side.
+#' Calculate mean and standard error
+#'
+#' For use with [stat_summary()]
 #'
 #' @param x numeric vector
 #' @param mult number of multiples of standard error
-#' @seealso for use with \code{\link{stat_summary}}
+#' @return A data frame with columns `y`, `ymin`, and `ymax`.
 #' @export
+#' @examples
+#' x <- rnorm(100)
+#' mean_se(x)
 mean_se <- function(x, mult = 1) {
   x <- stats::na.omit(x)
   se <- mult * sqrt(stats::var(x) / length(x))

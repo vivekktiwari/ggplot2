@@ -1,12 +1,20 @@
-#' Display contours of a 3d surface in 2d.
+#' 2d contours of a 3d surface
+#'
+#' ggplot2 can not draw true 3d surfaces, but you can use `geom_contour`
+#' and [geom_tile()] to visualise 3d surfaces in 2d. To be a valid
+#' surface, the data must contain only a single row for each unique combination
+#' of the variables mapped to the `x` and `y` aesthetics. Contouring
+#' tends to work best when `x` and `y` form a (roughly) evenly
+#' spaced grid. If your data is not evenly spaced, you may want to interpolate
+#' to a grid before visualising.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2:::rd_aesthetics("geom", "contour")}
+#' \aesthetics{geom}{contour}
 #'
 #' @inheritParams layer
 #' @inheritParams geom_point
 #' @inheritParams geom_path
-#' @seealso \code{\link{geom_density_2d}}: 2d density contours
+#' @seealso [geom_density_2d()]: 2d density contours
 #' @export
 #' @export
 #' @examples

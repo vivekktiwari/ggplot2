@@ -4,7 +4,7 @@ test_that("Modifying theme element properties with + operator", {
 
   # Changing a "leaf node" works
   t <- theme_grey() + theme(axis.title.x = element_text(colour = 'red', margin = margin()))
-  expect_identical(t$axis.title.x, element_text(colour = 'red', margin = margin()))
+  expect_identical(t$axis.title.x, element_text(colour = 'red', margin = margin(), vjust = 1))
   # Make sure the theme class didn't change or get dropped
   expect_true(is.theme(t))
   # Make sure the element class didn't change or get dropped
@@ -51,6 +51,8 @@ test_that("Adding theme object to ggplot object with + operator", {
   expect_true(p$theme$text$colour == 'red')
   tt <- theme_grey()$text
   tt$colour <- 'red'
+  expect_true(tt$inherit.blank)
+  tt$inherit.blank <- FALSE
   expect_identical(p$theme$text, tt)
 
 })
@@ -161,15 +163,6 @@ test_that("Complete and non-complete themes interact correctly with ggplot objec
   expect_false(attr(p$plot$theme, "complete"))
   expect_equal(p$plot$theme$text$colour, "red")
   expect_equal(p$plot$theme$text$face, "italic")
-
-
-  # Only gets red property; because of the way lists are processed in R, the
-  # the second item doesn't get used properly. But I think that's OK.
-  p <- ggplot_build(qplot(1:3, 1:3) +
-    theme(text = element_text(colour = 'red'), text = element_text(face = 'italic')))
-  expect_false(attr(p$plot$theme, "complete"))
-  expect_equal(p$plot$theme$text$colour, "red")
-  expect_equal(p$plot$theme$text$face, "plain")
 })
 
 test_that("theme(validate=FALSE) means do not validate_element", {
@@ -188,3 +181,74 @@ test_that("theme(validate=FALSE) means do not validate_element", {
   red.before <- p + red.text + theme(animint.width = 500, validate = FALSE)
   expect_equal(red.before$theme$animint.width, 500)
 })
+
+test_that("All elements in complete themes have inherit.blank=TRUE", {
+  inherit_blanks <- function(theme) {
+    all(vapply(theme, function(el) {
+      if (inherits(el, "element") && !inherits(el, "element_blank")) {
+        el$inherit.blank
+      } else {
+        TRUE
+      }
+    }, logical(1)))
+  }
+  expect_true(inherit_blanks(theme_grey()))
+  expect_true(inherit_blanks(theme_bw()))
+  expect_true(inherit_blanks(theme_classic()))
+  expect_true(inherit_blanks(theme_dark()))
+  expect_true(inherit_blanks(theme_light()))
+  expect_true(inherit_blanks(theme_linedraw()))
+  expect_true(inherit_blanks(theme_minimal()))
+  expect_true(inherit_blanks(theme_void()))
+})
+
+
+# Visual tests ------------------------------------------------------------
+
+test_that("aspect ratio is honored", {
+  df <- data.frame(x = 1:8, y = 1:8, f = gl(2,4), expand.grid(f1 = 1:2, f2 = 1:2, rep = 1:2))
+  p <- ggplot(df, aes(x, y)) +
+    geom_point() +
+    theme_test() +
+    labs(x = NULL, y = NULL)
+
+  p_a <- p + theme(aspect.ratio = 3)
+  p_b <- p + theme(aspect.ratio = 1 / 3)
+
+  vdiffr::expect_doppelganger("height is 3 times width",
+    p_a
+  )
+  vdiffr::expect_doppelganger("width is 3 times height",
+    p_b
+  )
+
+  vdiffr::expect_doppelganger("height is 3 times width, 2 wrap facets",
+    p_a + facet_wrap(~f)
+  )
+  vdiffr::expect_doppelganger("height is 3 times width, 2 column facets",
+    p_a + facet_grid(.~f)
+  )
+  vdiffr::expect_doppelganger("height is 3 times width, 2 row facets",
+    p_a + facet_grid(f~.)
+  )
+  vdiffr::expect_doppelganger("height is 3 times width, 2x2 facets",
+    p_a + facet_grid(f1~f2)
+  )
+
+})
+
+test_that("themes don't change without acknowledgement", {
+  df <- data.frame(x = 1:3, y = 1:3, z = c("a", "b", "a"), a = 1)
+  plot <- ggplot(df, aes(x, y, colour = z)) +
+    geom_point() +
+    facet_wrap(~ a)
+
+  vdiffr::expect_doppelganger("theme_bw", plot + theme_bw())
+  vdiffr::expect_doppelganger("theme_classic", plot + theme_classic())
+  vdiffr::expect_doppelganger("theme_dark", plot + theme_dark())
+  vdiffr::expect_doppelganger("theme_minimal", plot + theme_minimal())
+  vdiffr::expect_doppelganger("theme_gray", plot + theme_gray())
+  vdiffr::expect_doppelganger("theme_light", plot + theme_light())
+  vdiffr::expect_doppelganger("theme_void", plot + theme_void())
+})
+

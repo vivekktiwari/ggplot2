@@ -2,9 +2,9 @@
 % Please edit documentation in R/geom-bin2d.r, R/stat-bin2d.r
 \name{geom_bin2d}
 \alias{geom_bin2d}
-\alias{stat_bin2d}
 \alias{stat_bin_2d}
-\title{Add heatmap of 2d bin counts.}
+\alias{stat_bin2d}
+\title{Heatmap of 2d bin counts}
 \usage{
 geom_bin2d(mapping = NULL, data = NULL, stat = "bin2d",
   position = "identity", ..., na.rm = FALSE, show.legend = NA,
@@ -15,35 +15,35 @@ stat_bin_2d(mapping = NULL, data = NULL, geom = "tile",
   na.rm = FALSE, show.legend = NA, inherit.aes = TRUE)
 }
 \arguments{
-\item{mapping}{Set of aesthetic mappings created by \code{\link{aes}} or
-\code{\link{aes_}}. If specified and \code{inherit.aes = TRUE} (the
+\item{mapping}{Set of aesthetic mappings created by \code{\link[=aes]{aes()}} or
+\code{\link[=aes_]{aes_()}}. If specified and \code{inherit.aes = TRUE} (the
 default), it is combined with the default mapping at the top level of the
 plot. You must supply \code{mapping} if there is no plot mapping.}
 
 \item{data}{The data to be displayed in this layer. There are three
-   options:
+options:
 
-   If \code{NULL}, the default, the data is inherited from the plot
-   data as specified in the call to \code{\link{ggplot}}.
+If \code{NULL}, the default, the data is inherited from the plot
+data as specified in the call to \code{\link[=ggplot]{ggplot()}}.
 
-   A \code{data.frame}, or other object, will override the plot
-   data. All objects will be fortified to produce a data frame. See
-   \code{\link{fortify}} for which variables will be created.
+A \code{data.frame}, or other object, will override the plot
+data. All objects will be fortified to produce a data frame. See
+\code{\link[=fortify]{fortify()}} for which variables will be created.
 
-   A \code{function} will be called with a single argument,
-   the plot data. The return value must be a \code{data.frame.}, and
-   will be used as the layer data.}
+A \code{function} will be called with a single argument,
+the plot data. The return value must be a \code{data.frame.}, and
+will be used as the layer data.}
 
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
 
-\item{...}{other arguments passed on to \code{\link{layer}}. These are
+\item{...}{other arguments passed on to \code{\link[=layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
 \code{color = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
 
-\item{na.rm}{If \code{FALSE} (the default), removes missing values with
-a warning.  If \code{TRUE} silently removes missing values.}
+\item{na.rm}{If \code{FALSE}, the default, missing values are removed with
+a warning. If \code{TRUE}, missing values are silently removed.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
@@ -52,7 +52,7 @@ a warning.  If \code{TRUE} silently removes missing values.}
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
-the default plot specification, e.g. \code{\link{borders}}.}
+the default plot specification, e.g. \code{\link[=borders]{borders()}}.}
 
 \item{geom, stat}{Use to override the default connection between
 \code{geom_bin2d} and \code{stat_bin2d}.}
@@ -66,12 +66,16 @@ horizontal directions. Overrides \code{bins} if both set.}
 \item{drop}{if \code{TRUE} removes all cells with 0 counts.}
 }
 \description{
-Add heatmap of 2d bin counts.
+Divides the plane into rectangles, counts the number of cases in
+each rectangle, and then (by default) maps the number of cases to the
+rectangle's fill. This is a useful alternative to \code{\link[=geom_point]{geom_point()}}
+in the presence of overplotting.
 }
 \section{Aesthetics}{
 
-\Sexpr[results=rd,stage=build]{ggplot2:::rd_aesthetics("stat", "bin2d")}
+\aesthetics{stat}{bin2d}
 }
+
 \examples{
 d <- ggplot(diamonds, aes(x, y)) + xlim(4, 10) + ylim(4, 10)
 d + geom_bin2d()
@@ -85,6 +89,5 @@ d + geom_bin2d(bins = 30)
 d + geom_bin2d(binwidth = c(0.1, 0.1))
 }
 \seealso{
-\code{\link{stat_binhex}} for hexagonal binning
+\code{\link[=stat_binhex]{stat_binhex()}} for hexagonal binning
 }
-

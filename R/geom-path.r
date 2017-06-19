@@ -1,22 +1,26 @@
-#' Connect observations.
+#' Connect observations
 #'
-#' \code{geom_path()} connects the observations in the order in which they appear
-#' in the data. \code{geom_line()} connects them in order of the variable on the
-#' x axis. \code{geom_step()} creates a stairstep plot, highlighting exactly
-#' when changes occur.
+#' `geom_path()` connects the observations in the order in which they appear
+#' in the data. `geom_line()` connects them in order of the variable on the
+#' x axis. `geom_step()` creates a stairstep plot, highlighting exactly
+#' when changes occur. The `group` aesthetic determines which cases are
+#' connected together.
+#'
+#' An alternative parameterisation is [geom_segment()]: each line
+#' corresponds to a single case which provides the start and end coordinates.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2:::rd_aesthetics("geom", "path")}
+#' \aesthetics{geom}{path}
 #'
 #' @inheritParams layer
 #' @inheritParams geom_point
 #' @param lineend Line end style (round, butt, square)
 #' @param linejoin Line join style (round, mitre, bevel)
 #' @param linemitre Line mitre limit (number greater than 1)
-#' @param arrow Arrow specification, as created by \code{\link[grid]{arrow}}
+#' @param arrow Arrow specification, as created by [grid::arrow()]
 #' @seealso
-#'  \code{\link{geom_polygon}}: Filled paths (polygons);
-#'  \code{\link{geom_segment}}: Line segments
+#'  [geom_polygon()]: Filled paths (polygons);
+#'  [geom_segment()]: Line segments
 #' @export
 #' @examples
 #' # geom_line() is suitable for time series
@@ -149,7 +153,7 @@ GeomPath <- ggproto("GeomPath", Geom,
     data
   },
 
-  draw_panel = function(data, panel_scales, coord, arrow = NULL,
+  draw_panel = function(data, panel_params, coord, arrow = NULL,
                         lineend = "butt", linejoin = "round", linemitre = 1,
                         na.rm = FALSE) {
     if (!anyDuplicated(data$group)) {
@@ -159,7 +163,7 @@ GeomPath <- ggproto("GeomPath", Geom,
 
     # must be sorted on group
     data <- data[order(data$group), , drop = FALSE]
-    munched <- coord_munch(coord, data, panel_scales)
+    munched <- coord_munch(coord, data, panel_params)
 
     # Silently drop lines with less than two points, preserving order
     rows <- stats::ave(seq_len(nrow(munched)), munched$group, FUN = length)
@@ -283,20 +287,25 @@ geom_step <- function(mapping = NULL, data = NULL, stat = "identity",
 #' @export
 #' @include geom-path.r
 GeomStep <- ggproto("GeomStep", GeomPath,
-  draw_panel = function(data, panel_scales, coord, direction = "hv") {
+  draw_panel = function(data, panel_params, coord, direction = "hv") {
     data <- plyr::ddply(data, "group", stairstep, direction = direction)
-    GeomPath$draw_panel(data, panel_scales, coord)
+    GeomPath$draw_panel(data, panel_params, coord)
   }
 )
 
 # Calculate stairsteps
-# Used by \code{\link{geom_step}}
+# Used by [geom_step()]
 #
 # @keyword internal
 stairstep <- function(data, direction="hv") {
   direction <- match.arg(direction, c("hv", "vh"))
   data <- as.data.frame(data)[order(data$x), ]
   n <- nrow(data)
+
+  if (n <= 1) {
+    # Need at least one observation
+    return(data[0, , drop = FALSE])
+  }
 
   if (direction == "vh") {
     xs <- rep(1:n, each = 2)[-2*n]

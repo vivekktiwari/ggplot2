@@ -2,18 +2,18 @@
 % Please edit documentation in R/annotation-map.r
 \name{annotation_map}
 \alias{annotation_map}
-\title{Annotation: maps.}
+\title{Annotation: a maps}
 \usage{
 annotation_map(map, ...)
 }
 \arguments{
 \item{map}{data frame representing a map.  Most map objects can be
-converted into the right format by using \code{\link{fortify}}}
+converted into the right format by using \code{\link[=fortify]{fortify()}}}
 
 \item{...}{other arguments used to modify aesthetics}
 }
 \description{
-Annotation: maps.
+Display a fixed map on a plot.
 }
 \examples{
 if (require("maps")) {
@@ -34,4 +34,3 @@ ggplot(seal2,  aes(x = long, y = lat)) +
   facet_grid(latr ~ longr, scales = "free", space = "free")
 }
 }
-

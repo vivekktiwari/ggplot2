@@ -1,39 +1,41 @@
-#' Bars, rectangles with bases on x-axis
+#' Bar charts
 #'
-#' There are two types of bar charts, determined by what is mapped to bar
-#' height. By default, \code{geom_bar} uses \code{stat="count"} which makes the
-#' height of the bar proportion to the number of cases in each group (or if the
-#' \code{weight} aethetic is supplied, the sum of the weights). If you want the
+#' There are two types of bar charts: `geom_bar` makes the height of the
+#' bar proportional to the number of cases in each group (or if the
+#' `weight` aesthetic is supplied, the sum of the weights). If you want the
 #' heights of the bars to represent values in the data, use
-#' \code{stat="identity"} and map a variable to the \code{y} aesthetic.
+#' \link{geom_col} instead. `geom_bar` uses `stat_count` by
+#' default: it counts the  number of cases at each x position. `geom_col`
+#' uses `stat_identity`: it leaves the data as is.
 #'
-#' A bar chart maps the height of the bar to a variable, and so the base of the
+#' A bar chart uses height to represent a value, and so the base of the
 #' bar must always be shown to produce a valid visual comparison. Naomi Robbins
 #' has a nice
 #' \href{http://www.b-eye-network.com/view/index.php?cid=2468}{article on this
 #' topic}. This is why it doesn't make sense to use a log-scaled y axis with a
 #' bar chart.
 #'
-#' By default, multiple x's occurring in the same place will be stacked atop one
-#' another by \code{\link{position_stack}}. If you want them to be dodged
-#' side-to-side, see \code{\link{position_dodge}}. Finally,
-#' \code{\link{position_fill}} shows relative proportions at each x by stacking
-#' the bars and then stretching or squashing to the same height.
+#' By default, multiple bar occupying the same `x` position will be
+#' stacked atop one another by [position_stack()]. If you want them
+#' to be dodged side-to-side, use [position_dodge()]. Finally,
+#' [position_fill()] shows relative proportions at each `x` by
+#' stacking the bars and then standardising each bar to have the same height.
 #'
 #' @section Aesthetics:
-#'   \Sexpr[results=rd,stage=build]{ggplot2:::rd_aesthetics("geom", "bar")}
+#' \aesthetics{geom}{bar}
 #'
-#' @seealso \code{\link{geom_histogram}} for continuous data,
-#'   \code{\link{position_dodge}} for creating side-by-side barcharts.
+#' @seealso
+#'   [geom_histogram()] for continuous data,
+#'   [position_dodge()] for creating side-by-side barcharts.
 #' @export
 #' @inheritParams layer
 #' @inheritParams geom_point
 #' @param width Bar width. By default, set to 90\% of the resolution of the data.
-#' @param binwidth \code{geom_bar} no longer has a binwidth argument - if
+#' @param binwidth `geom_bar` no longer has a binwidth argument - if
 #'   you use it you'll get an warning telling to you use
-#'   \code{\link{geom_histogram}} instead.
-#' @param geom,stat Override the default connection between \code{geom_bar} and
-#'   \code{stat_count}.
+#'   [geom_histogram()] instead.
+#' @param geom,stat Override the default connection between `geom_bar` and
+#'   `stat_count`.
 #' @examples
 #' # geom_bar is designed to make it easy to create bar charts that show
 #' # counts (or sums of weights)
@@ -43,11 +45,23 @@
 #' # Total engine displacement of each class
 #' g + geom_bar(aes(weight = displ))
 #'
-#' # To show (e.g.) means, you need stat = "identity"
+#' # Bar charts are automatically stacked when multiple bars are placed
+#' # at the same location. The order of the fill is designed to match
+#' # the legend
+#' g + geom_bar(aes(fill = drv))
+#'
+#' # If you need to flip the order (because you've flipped the plot)
+#' # call position_stack() explicitly:
+#' g +
+#'  geom_bar(aes(fill = drv), position = position_stack(reverse = TRUE)) +
+#'  coord_flip() +
+#'  theme(legend.position = "top")
+#'
+#' # To show (e.g.) means, you need geom_col()
 #' df <- data.frame(trt = c("a", "b", "c"), outcome = c(2.3, 1.9, 3.2))
 #' ggplot(df, aes(trt, outcome)) +
-#'   geom_bar(stat = "identity")
-#' # But geom_point() display exactly the same information and doesn't
+#'   geom_col()
+#' # But geom_point() displays exactly the same information and doesn't
 #' # require the y-axis to touch zero.
 #' ggplot(df, aes(trt, outcome)) +
 #'   geom_point()
@@ -58,22 +72,6 @@
 #' ggplot(df, aes(x)) + geom_bar()
 #' # cf. a histogram of the same data
 #' ggplot(df, aes(x)) + geom_histogram(binwidth = 0.5)
-#'
-#' \donttest{
-#' # Bar charts are automatically stacked when multiple bars are placed
-#' # at the same location
-#' g + geom_bar(aes(fill = drv))
-#'
-#' # You can instead dodge, or fill them
-#' g + geom_bar(aes(fill = drv), position = "dodge")
-#' g + geom_bar(aes(fill = drv), position = "fill")
-#'
-#' # To change plot order of bars, change levels in underlying factor
-#' reorder_size <- function(x) {
-#'   factor(x, levels = names(sort(table(x))))
-#' }
-#' ggplot(mpg, aes(reorder_size(class))) + geom_bar()
-#' }
 geom_bar <- function(mapping = NULL, data = NULL,
                      stat = "count", position = "stack",
                      ...,
@@ -113,7 +111,7 @@ geom_bar <- function(mapping = NULL, data = NULL,
 #' @export
 #' @include geom-rect.r
 GeomBar <- ggproto("GeomBar", GeomRect,
-  required_aes = "x",
+  required_aes = c("x", "y"),
 
   setup_data = function(data, params) {
     data$width <- data$width %||%
@@ -124,8 +122,8 @@ GeomBar <- ggproto("GeomBar", GeomRect,
     )
   },
 
-  draw_panel = function(self, data, panel_scales, coord, width = NULL) {
+  draw_panel = function(self, data, panel_params, coord, width = NULL) {
     # Hack to ensure that width is detected as a parameter
-    ggproto_parent(GeomRect, self)$draw_panel(data, panel_scales, coord)
+    ggproto_parent(GeomRect, self)$draw_panel(data, panel_params, coord)
   }
 )

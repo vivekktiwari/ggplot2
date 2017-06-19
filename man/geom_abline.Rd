@@ -4,7 +4,7 @@
 \alias{geom_abline}
 \alias{geom_hline}
 \alias{geom_vline}
-\title{Lines: horizontal, vertical, and specified by slope and intercept.}
+\title{Reference lines: horizontal, vertical, and diagonal}
 \usage{
 geom_abline(mapping = NULL, data = NULL, ..., slope, intercept,
   na.rm = FALSE, show.legend = NA)
@@ -16,32 +16,32 @@ geom_vline(mapping = NULL, data = NULL, ..., xintercept, na.rm = FALSE,
   show.legend = NA)
 }
 \arguments{
-\item{mapping}{Set of aesthetic mappings created by \code{\link{aes}} or
-\code{\link{aes_}}. If specified and \code{inherit.aes = TRUE} (the
+\item{mapping}{Set of aesthetic mappings created by \code{\link[=aes]{aes()}} or
+\code{\link[=aes_]{aes_()}}. If specified and \code{inherit.aes = TRUE} (the
 default), it is combined with the default mapping at the top level of the
 plot. You must supply \code{mapping} if there is no plot mapping.}
 
 \item{data}{The data to be displayed in this layer. There are three
-   options:
+options:
 
-   If \code{NULL}, the default, the data is inherited from the plot
-   data as specified in the call to \code{\link{ggplot}}.
+If \code{NULL}, the default, the data is inherited from the plot
+data as specified in the call to \code{\link[=ggplot]{ggplot()}}.
 
-   A \code{data.frame}, or other object, will override the plot
-   data. All objects will be fortified to produce a data frame. See
-   \code{\link{fortify}} for which variables will be created.
+A \code{data.frame}, or other object, will override the plot
+data. All objects will be fortified to produce a data frame. See
+\code{\link[=fortify]{fortify()}} for which variables will be created.
 
-   A \code{function} will be called with a single argument,
-   the plot data. The return value must be a \code{data.frame.}, and
-   will be used as the layer data.}
+A \code{function} will be called with a single argument,
+the plot data. The return value must be a \code{data.frame.}, and
+will be used as the layer data.}
 
-\item{...}{other arguments passed on to \code{\link{layer}}. These are
+\item{...}{other arguments passed on to \code{\link[=layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
 \code{color = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
 
-\item{na.rm}{If \code{FALSE} (the default), removes missing values with
-a warning.  If \code{TRUE} silently removes missing values.}
+\item{na.rm}{If \code{FALSE}, the default, missing values are removed with
+a warning. If \code{TRUE}, missing values are silently removed.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
@@ -52,9 +52,9 @@ position of the line. If these are set, \code{data}, \code{mapping} and
 \code{show.legend} are overridden}
 }
 \description{
-These paired geoms and stats add straight lines to a plot, either
-horizontal, vertical or specified by slope and intercept. These are useful
-for annotating plots.
+These geoms add reference lines (sometimes called rules) to a plot, either
+horizontal, vertical, or diagonal (specified by slope and intercept).
+These are useful for annotating plots.
 }
 \details{
 These geoms act slightly different to other geoms. You can supply the
@@ -71,16 +71,17 @@ commonly set in the plot. They also do not affect the x and y scales.
 }
 \section{Aesthetics}{
 
-These geoms are drawn using with \code{\link{geom_line}} so support the
-same aesthetics: alpha, colour, linetype and size. They also each have
-aesthetics that control the position of the line:
-
+These geoms are drawn using with \code{\link[=geom_line]{geom_line()}} so support the
+same aesthetics: \code{alpha}, \code{colour}, \code{linetype} and
+\code{size}. They also each have aesthetics that control the position of
+the line:
 \itemize{
-  \item \code{geom_vline}: \code{xintercept}
-  \item \code{geom_hline}: \code{yintercept}
-  \item \code{geom_abline}: \code{slope} and \code{intercept}
+\item \code{geom_vline}: \code{xintercept}
+\item \code{geom_hline}: \code{yintercept}
+\item \code{geom_abline}: \code{slope} and \code{intercept}
 }
 }
+
 \examples{
 p <- ggplot(mtcars, aes(wt, mpg)) + geom_point()
 
@@ -113,7 +114,6 @@ ggplot(mtcars, aes(mpg, wt, colour = wt)) +
   facet_wrap(~ cyl)
 }
 \seealso{
-See \code{\link{geom_segment}} for a more general approach to
-  adding straight line segments to a plot.
+See \code{\link[=geom_segment]{geom_segment()}} for a more general approach to
+adding straight line segments to a plot.
 }
-

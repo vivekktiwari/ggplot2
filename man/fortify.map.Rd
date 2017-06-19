@@ -2,7 +2,7 @@
 % Please edit documentation in R/fortify-map.r
 \name{fortify.map}
 \alias{fortify.map}
-\title{Fortify method for map objects.}
+\title{Fortify method for map objects}
 \usage{
 \method{fortify}{map}(model, data, ...)
 }
@@ -31,6 +31,6 @@ ggplot(tx, aes(long, lat)) +
 }
 }
 \seealso{
-\code{\link{map_data}} and \code{\link{borders}}
+\code{\link[=map_data]{map_data()}} and \code{\link[=borders]{borders()}}
 }
-
+\keyword{internal}

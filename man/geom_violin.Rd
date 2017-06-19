@@ -3,7 +3,7 @@
 \name{geom_violin}
 \alias{geom_violin}
 \alias{stat_ydensity}
-\title{Violin plot.}
+\title{Violin plot}
 \usage{
 geom_violin(mapping = NULL, data = NULL, stat = "ydensity",
   position = "dodge", ..., draw_quantiles = NULL, trim = TRUE,
@@ -15,29 +15,29 @@ stat_ydensity(mapping = NULL, data = NULL, geom = "violin",
   inherit.aes = TRUE)
 }
 \arguments{
-\item{mapping}{Set of aesthetic mappings created by \code{\link{aes}} or
-\code{\link{aes_}}. If specified and \code{inherit.aes = TRUE} (the
+\item{mapping}{Set of aesthetic mappings created by \code{\link[=aes]{aes()}} or
+\code{\link[=aes_]{aes_()}}. If specified and \code{inherit.aes = TRUE} (the
 default), it is combined with the default mapping at the top level of the
 plot. You must supply \code{mapping} if there is no plot mapping.}
 
 \item{data}{The data to be displayed in this layer. There are three
-   options:
+options:
 
-   If \code{NULL}, the default, the data is inherited from the plot
-   data as specified in the call to \code{\link{ggplot}}.
+If \code{NULL}, the default, the data is inherited from the plot
+data as specified in the call to \code{\link[=ggplot]{ggplot()}}.
 
-   A \code{data.frame}, or other object, will override the plot
-   data. All objects will be fortified to produce a data frame. See
-   \code{\link{fortify}} for which variables will be created.
+A \code{data.frame}, or other object, will override the plot
+data. All objects will be fortified to produce a data frame. See
+\code{\link[=fortify]{fortify()}} for which variables will be created.
 
-   A \code{function} will be called with a single argument,
-   the plot data. The return value must be a \code{data.frame.}, and
-   will be used as the layer data.}
+A \code{function} will be called with a single argument,
+the plot data. The return value must be a \code{data.frame.}, and
+will be used as the layer data.}
 
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
 
-\item{...}{other arguments passed on to \code{\link{layer}}. These are
+\item{...}{other arguments passed on to \code{\link[=layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
 \code{color = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
@@ -52,8 +52,8 @@ to the range of the data. If \code{FALSE}, don't trim the tails.}
 the tails). If "count", areas are scaled proportionally to the number of
 observations. If "width", all violins have the same maximum width.}
 
-\item{na.rm}{If \code{FALSE} (the default), removes missing values with
-a warning.  If \code{TRUE} silently removes missing values.}
+\item{na.rm}{If \code{FALSE}, the default, missing values are removed with
+a warning. If \code{TRUE}, missing values are silently removed.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
@@ -62,47 +62,52 @@ a warning.  If \code{TRUE} silently removes missing values.}
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
-the default plot specification, e.g. \code{\link{borders}}.}
+the default plot specification, e.g. \code{\link[=borders]{borders()}}.}
 
 \item{geom, stat}{Use to override the default connection between
 \code{geom_violin} and \code{stat_ydensity}.}
 
-\item{bw}{the smoothing bandwidth to be used, see
-\code{\link{density}} for details}
+\item{bw}{The smoothing bandwidth to be used.
+If numeric, the standard deviation of the smoothing kernel.
+If character, a rule to choose the bandwidth, as listed in
+\code{\link[stats:bw.nrd]{stats::bw.nrd()}}.}
 
-\item{adjust}{adjustment of the bandwidth, see
-\code{\link{density}} for details}
+\item{adjust}{A multiplicate bandwidth adjustment. This makes it possible
+to adjust the bandwidth while still using the a bandwidth estimator.
+For exampe, \code{adjust = 1/2} means use half of the default bandwidth.}
 
-\item{kernel}{kernel used for density estimation, see
-\code{\link{density}} for details}
+\item{kernel}{Kernel. See list of available kernels in \code{\link[=density]{density()}}.}
 }
 \description{
-Violin plot.
+A violin plot is a compact display of a continuous distribution. It is a
+blend of \code{\link[=geom_boxplot]{geom_boxplot()}} and \code{\link[=geom_density]{geom_density()}}: a
+violin plot is a mirrored density plot displayed in the same way as a
+boxplot.
 }
 \section{Aesthetics}{
 
-\Sexpr[results=rd,stage=build]{ggplot2:::rd_aesthetics("geom", "violin")}
+\aesthetics{geom}{violin}
 }
 
 \section{Computed variables}{
 
 \describe{
-  \item{density}{density estimate}
-  \item{scaled}{density estimate, scaled to maximum of 1}
-  \item{count}{density * number of points - probably useless for violin plots}
-  \item{violinwidth}{density scaled for the violin plot, according to area, counts
-                     or to a constant maximum width}
-  \item{n}{number of points}
-  \item{width}{width of violin bounding box}
+\item{density}{density estimate}
+\item{scaled}{density estimate, scaled to maximum of 1}
+\item{count}{density * number of points - probably useless for violin plots}
+\item{violinwidth}{density scaled for the violin plot, according to area, counts
+or to a constant maximum width}
+\item{n}{number of points}
+\item{width}{width of violin bounding box}
 }
 }
+
 \examples{
 p <- ggplot(mtcars, aes(factor(cyl), mpg))
 p + geom_violin()
 
 \donttest{
-p + geom_violin() + geom_jitter(height = 0)
-p + geom_violin() + coord_flip()
+p + geom_violin() + geom_jitter(height = 0, width = 0.1)
 
 # Scale maximum width proportional to sample size:
 p + geom_violin(scale = "count")
@@ -154,7 +159,6 @@ Hintze, J. L., Nelson, R. D. (1998) Violin Plots: A Box
 Plot-Density Trace Synergism. The American Statistician 52, 181-184.
 }
 \seealso{
-\code{\link{geom_violin}} for examples, and \code{\link{stat_density}}
-  for examples with data along the x axis.
+\code{\link[=geom_violin]{geom_violin()}} for examples, and \code{\link[=stat_density]{stat_density()}}
+for examples with data along the x axis.
 }
-
