@@ -107,7 +107,7 @@ to match the number of dots.
 }
 \section{Aesthetics}{
 
-\Sexpr[results=rd,stage=build]{ggplot2:::rd_aesthetics("geom", "dotplot")}
+\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "dotplot")}
 }
 
 \section{Computed variables}{

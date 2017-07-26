@@ -101,20 +101,20 @@ layer <- function(geom = NULL, stat = NULL,
 
   all <- c(geom$parameters(TRUE), stat$parameters(TRUE), geom$aesthetics())
   extra <- setdiff(names(params), all)
-  
+
   # Handle extra params
   if (is.null(params$validate_params)) {
-    params$validate_params <- TRUE
+    params$validate_params <- FALSE
     extra_params <- NULL
   }
-  
+
   if (length(extra) > 0 && params$validate_params) {
     stop("Unknown parameters: ", paste(extra, collapse = ", "), call. = FALSE)
   }else if (length(extra) > 0) {
     extra <- extra[!extra == "validate_params"]
     extra_params <- params[extra]
   }
-  
+
   ggproto("LayerInstance", Layer,
     geom = geom,
     geom_params = geom_params,

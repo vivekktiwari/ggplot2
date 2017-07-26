@@ -68,7 +68,7 @@ Hexagon binning.
 }
 \section{Aesthetics}{
 
-\Sexpr[results=rd,stage=build]{ggplot2:::rd_aesthetics("geom", "hex")}
+\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "hex")}
 }
 \examples{
 d <- ggplot(diamonds, aes(carat, price))

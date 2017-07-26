@@ -81,7 +81,7 @@ when changes occur.
 }
 \section{Aesthetics}{
 
-\Sexpr[results=rd,stage=build]{ggplot2:::rd_aesthetics("geom", "path")}
+\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "path")}
 }
 \examples{
 # geom_line() is suitable for time series
