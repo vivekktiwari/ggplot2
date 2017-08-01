@@ -50,4 +50,3 @@ ggplot(capitals, aes(long, lat)) +
   coord_quickmap()
 }
 }
-

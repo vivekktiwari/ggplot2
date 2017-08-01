@@ -70,6 +70,7 @@ Hexagon binning.
 
 \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "hex")}
 }
+
 \examples{
 d <- ggplot(diamonds, aes(carat, price))
 d + geom_hex()
@@ -88,4 +89,3 @@ d + geom_hex(binwidth = c(.1, 500))
 \seealso{
 \code{\link{stat_bin2d}} for rectangular binning
 }
-

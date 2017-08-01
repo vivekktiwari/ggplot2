@@ -115,6 +115,7 @@ See McGill et al. (1978) for more details.
   \item{ymax}{upper whisker = largest observation less than or equal to upper hinge + 1.5 * IQR}
 }
 }
+
 \examples{
 p <- ggplot(mpg, aes(class, hwy))
 p + geom_boxplot()
@@ -166,4 +167,3 @@ McGill, R., Tukey, J. W. and Larsen, W. A. (1978) Variations of
   continuous variable, \code{\link{geom_jitter}} for another way to look
   at conditional distributions.
 }
-

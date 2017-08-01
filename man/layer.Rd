@@ -71,4 +71,3 @@ ggplot(mpg, aes(displ, hwy)) +
   )
 
 }
-

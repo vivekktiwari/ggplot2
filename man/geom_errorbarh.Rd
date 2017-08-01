@@ -58,6 +58,7 @@ Horizontal error bars
 
 \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "errorbarh")}
 }
+
 \examples{
 df <- data.frame(
   trt = factor(c(1, 1, 2, 2)),
@@ -77,4 +78,3 @@ p + geom_point() +
 \seealso{
 \code{\link{geom_errorbar}}: vertical error bars
 }
-

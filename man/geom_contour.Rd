@@ -78,6 +78,7 @@ Display contours of a 3d surface in 2d.
  \item{level}{height of contour}
 }
 }
+
 \examples{
 #' # Basic plot
 v <- ggplot(faithfuld, aes(waiting, eruptions, z = density))
@@ -107,4 +108,3 @@ v + geom_raster(aes(fill = density)) +
 \seealso{
 \code{\link{geom_density_2d}}: 2d density contours
 }
-

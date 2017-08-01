@@ -78,6 +78,7 @@ in smaller datasets.
 
 \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "point")}
 }
+
 \examples{
 p <- ggplot(mpg, aes(cyl, hwy))
 p + geom_point()
@@ -99,4 +100,3 @@ ggplot(mpg, aes(cty, hwy)) + geom_jitter(width = 0.5, height = 0.5)
  \code{\link{geom_boxplot}} for another way of looking at the conditional
     distribution of a variable
 }
-

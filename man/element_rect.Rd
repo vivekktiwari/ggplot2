@@ -21,4 +21,3 @@ element_rect(fill = NULL, colour = NULL, size = NULL, linetype = NULL,
 \description{
 Most often used for backgrounds and borders.
 }
-

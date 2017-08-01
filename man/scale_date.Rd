@@ -3,8 +3,8 @@
 \name{scale_date}
 \alias{scale_date}
 \alias{scale_x_date}
-\alias{scale_x_datetime}
 \alias{scale_y_date}
+\alias{scale_x_datetime}
 \alias{scale_y_datetime}
 \title{Position scale, date & date times}
 \usage{
@@ -104,4 +104,3 @@ base + scale_x_date(limits = c(Sys.Date() - 7, NA))
 \seealso{
 \code{\link{scale_continuous}} for continuous position scales.
 }
-

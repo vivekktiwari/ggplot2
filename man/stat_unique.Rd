@@ -57,8 +57,8 @@ Remove duplicates.
 
 \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("stat", "unique")}
 }
+
 \examples{
 ggplot(mtcars, aes(vs, am)) + geom_point(alpha = 0.1)
 ggplot(mtcars, aes(vs, am)) + geom_point(alpha = 0.1, stat="unique")
 }
-

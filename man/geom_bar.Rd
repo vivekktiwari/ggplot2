@@ -99,6 +99,7 @@ the bars and then stretching or squashing to the same height.
   \item{prop}{groupwise proportion}
 }
 }
+
 \examples{
 # geom_bar is designed to make it easy to create bar charts that show
 # counts (or sums of weights)
@@ -150,4 +151,3 @@ ggplot(mpg, aes(reorder_size(class))) + geom_bar()
   \code{\link{stat_bin}} requires continuous x data, whereas
   \code{stat_count} can be used for both discrete and continuous x data.
 }
-

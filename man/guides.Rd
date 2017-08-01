@@ -70,4 +70,3 @@ ggplot(mpg, aes(displ, cty)) +
 Other guides: \code{\link{guide_colourbar}},
   \code{\link{guide_legend}}
 }
-

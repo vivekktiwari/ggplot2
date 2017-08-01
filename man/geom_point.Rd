@@ -80,6 +80,7 @@ points, e.g. \code{geom_point(alpha = 0.05)}.
 
 \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "point")}
 }
+
 \examples{
 p <- ggplot(mtcars, aes(wt, mpg))
 p + geom_point()
@@ -138,4 +139,3 @@ ggplot(mtcars2, aes(wt, mpg)) + geom_point(na.rm = TRUE)
   radius, \code{\link{geom_jitter}} to jitter points to reduce (mild)
   overplotting
 }
-

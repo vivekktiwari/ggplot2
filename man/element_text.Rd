@@ -38,4 +38,3 @@ is anchored.}
 \description{
 Theme element: text.
 }
-
