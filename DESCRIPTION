@@ -1,7 +1,11 @@
 Package: ggplot2Animint
 Version: 2.1.0.99
 Authors@R: c(
-    person("Faizan", "Khan", , "faizan.khan.iitbhu@gmail.com", c("cre")))
+    person("Hadley", "Wickham", , "hadley@rstudio.com", c("aut")),
+    person("Winston", "Chang", , "winston@rstudio.com", "aut"),
+    person("RStudio", role = "cph"),
+    person("Faizan", "Khan", , "faizan.khan.iitbhu@gmail.com", c("cre"))
+    )
 Title: An Implementation of the Grammar of Graphics
 Description: An implementation of the grammar of graphics in R. It combines the
     advantages of both base and lattice graphics: conditioning and shared axes
