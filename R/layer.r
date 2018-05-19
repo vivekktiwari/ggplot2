@@ -104,7 +104,7 @@ layer <- function(geom = NULL, stat = NULL,
 
   # Handle extra params
   if (is.null(params$validate_params)) {
-    params$validate_params <- FALSE
+    params$validate_params <- TRUE
     extra_params <- NULL
   }
 
