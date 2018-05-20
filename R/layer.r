@@ -104,6 +104,9 @@ layer <- function(geom = NULL, stat = NULL,
 
   # Handle extra params
   if (is.null(params$validate_params)) {
+    ## If validate_params has not been defined, default is set to TRUE
+    ## TODO: Since we don't have to worry about ggplot2 compatability now,
+    ## we could get rid of this altogether for a better implementation??
     params$validate_params <- TRUE
     extra_params <- NULL
   }
