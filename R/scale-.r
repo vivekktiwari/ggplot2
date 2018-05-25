@@ -522,7 +522,7 @@ continuous_scale <- function(aesthetics, scale_name, palette, name = waiver(),
                              labels = waiver(), limits = NULL,
                              rescaler = rescale, oob = censor,
                              expand = waiver(), na.value = NA_real_,
-                             trans = "identity", guide = "legend") {
+                             trans = "identity", guide = "legend", super=ScaleContinuous) {
 
   check_breaks_labels(breaks, labels)
 
@@ -535,7 +535,7 @@ continuous_scale <- function(aesthetics, scale_name, palette, name = waiver(),
     limits <- trans$transform(limits)
   }
 
-  ggproto(NULL, ScaleContinuous,
+  ggproto(NULL, super,
     call = match.call(),
 
     aesthetics = aesthetics,
@@ -602,7 +602,7 @@ continuous_scale <- function(aesthetics, scale_name, palette, name = waiver(),
 #' @keywords internal
 discrete_scale <- function(aesthetics, scale_name, palette, name = waiver(), breaks = waiver(),
   labels = waiver(), limits = NULL, expand = waiver(), na.value = NA, drop = TRUE,
-  guide = "legend") {
+  guide = "legend", super=ScaleDiscrete) {
 
   check_breaks_labels(breaks, labels)
 
@@ -610,7 +610,7 @@ discrete_scale <- function(aesthetics, scale_name, palette, name = waiver(), bre
     guide <- "none"
   }
 
-  ggproto(NULL, ScaleDiscrete,
+  ggproto(NULL, super,
     call = match.call(),
 
     aesthetics = aesthetics,
@@ -629,3 +629,4 @@ discrete_scale <- function(aesthetics, scale_name, palette, name = waiver(), bre
     guide = guide
   )
 }
+      

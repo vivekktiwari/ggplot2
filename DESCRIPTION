@@ -23,7 +23,11 @@ Imports:
     MASS,
     plyr (>= 1.7.1),
     reshape2,
+<<<<<<< HEAD
     scales (>= 0.4.0),
+=======
+    scales (>= 0.4.1.9002),
+>>>>>>> 89d300c436a808018f4f829fa1e976b435e39a1e
     stats
 Suggests:
     covr,
