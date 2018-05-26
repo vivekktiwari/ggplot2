@@ -3,4 +3,4 @@ sudo: false
 cache: packages
 
 only:
-  - cran
+  - validate-params
