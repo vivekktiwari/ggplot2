@@ -2,5 +2,7 @@ language: r
 sudo: false
 cache: packages
 
-only:
+branches: 
+  only:
   - cran
+  - validate-params
