@@ -4,3 +4,4 @@ cache: packages
 
 only:
   - validate-params
+  - cran
