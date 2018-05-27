@@ -68,9 +68,9 @@ Stat <- ggproto("Stat",
 
   compute_layer = function(self, data, params, panels) {
     check_required_aesthetics(
-      self$required_aes,
+      self$stat$required_aes,
       c(names(data), names(params)),
-      snake_class(self)
+      snake_class(stat$self)
     )
 
     data <- remove_missing(data, params$na.rm,
