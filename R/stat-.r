@@ -70,7 +70,7 @@ Stat <- ggproto("Stat",
     check_required_aesthetics(
       self$stat$required_aes,
       c(names(data), names(params)),
-      snake_class(stat$self)
+      snake_class(self$stat)
     )
 
     data <- remove_missing(data, params$na.rm,
