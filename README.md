@@ -1,6 +1,6 @@
 # ggplot2Animint
 
-[![Build Status](https://travis-ci.org/faizan-khan-iit/ggplot2.svg?branch=validate-params)](https://travis-ci.org/faizan-khan-iit/ggplot2)
+[![Build Status](https://travis-ci.org/faizan-khan-iit/ggplot2.svg?branch=cran)](https://travis-ci.org/faizan-khan-iit/ggplot2)
 
 ggplot2 is a plotting system for R, based on the grammar of graphics, which tries to take the good parts of base and lattice graphics and avoid bad parts. It takes care of many of the fiddly details
 that make plotting a hassle (like drawing legends) as well as providing a powerful model of graphics that makes it easy to produce complex multi-layered graphics.
