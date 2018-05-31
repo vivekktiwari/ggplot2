@@ -22,7 +22,7 @@ devtools::install_github("faizan-khan-iit/ggplot2@e62066b462070a3a46f403d6f63531
 ```
 
 
-#About ggpolot2
+## About ggpolot2
 
 ggplot2 is a plotting system for R, based on the grammar of graphics, which tries to take the good parts of base and lattice graphics and avoid bad parts. It takes care of many of the fiddly details that make plotting a hassle (like drawing legends) as well as providing a powerful model of graphics that makes it easy to produce complex multi-layered graphics.
 
