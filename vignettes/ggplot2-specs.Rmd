@@ -1,6 +1,7 @@
 ---
 title: "Aesthetic specifications"
 author: "Hadley Wickham"
+maintainer: "Faizan Khan"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
