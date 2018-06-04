@@ -139,7 +139,7 @@ print.ggplot <- function(x, newpage = is.null(vp), vp = NULL, ...) {
   set_last_plot(x)
   if (newpage) grid.newpage()
 
-  # Record dependency on 'ggplot2' on the display list
+  # Record dependency on 'ggplot2Animint' on the display list
   # (AFTER grid.newpage())
   grDevices::recordGraphics(
     requireNamespace("ggplot2Animint", quietly = TRUE),
