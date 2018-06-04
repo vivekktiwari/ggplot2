@@ -11,21 +11,22 @@ new_panel <- function() {
   structure(list(), class = "panel")
 }
 
-# Learn the layout of panels within a plot.
-#
-# This is determined by the facet, which returns a data frame, than
-# when joined to the data to be plotted tells us which panel it should
-# appear in, where that panel appears in the grid, and what scales it
-# uses.
-#
-# As well as the layout info, this function also adds empty lists in which
-# to house the x and y scales.
-#
-# @param the panel object to train
-# @param the facetting specification
-# @param data a list of data frames (one for each layer), and one for the plot
-# @param plot_data the default data frame
-# @return an updated panel object
+#' Learn the layout of panels within a plot.
+#'
+#' This is determined by the facet, which returns a data frame, than
+#' when joined to the data to be plotted tells us which panel it should
+#' appear in, where that panel appears in the grid, and what scales it
+#' uses.
+#'
+#' As well as the layout info, this function also adds empty lists in which
+#' to house the x and y scales.
+#'
+#' @param panel the panel object to train
+#' @param facet the facetting specification
+#' @param data a list of data frames (one for each layer), and one for the plot
+#' @param plot_data the default data frame
+#' @return an updated panel object
+#' @keywords internal
 train_layout <- function(panel, facet, data, plot_data) {
   layout <- facet_train_layout(facet, c(list(plot_data), data))
   panel$layout <- layout
@@ -34,32 +35,34 @@ train_layout <- function(panel, facet, data, plot_data) {
   panel
 }
 
-# Map data to find out where it belongs in the plot.
-#
-# Layout map ensures that all layer data has extra copies of data for margins
-# and missing facetting variables, and has a PANEL variable that tells that
-# so it know what panel it belongs to. This is a change from the previous
-# design which added facetting variables directly to the data frame and
-# caused problems when they had names of aesthetics (like colour or group).
-#
-# @param panel a trained panel object
-# @param the facetting specification
-# @param data list of data frames (one for each layer)
+#' Map data to find out where it belongs in the plot.
+#'
+#' Layout map ensures that all layer data has extra copies of data for margins
+#' and missing facetting variables, and has a PANEL variable that tells that
+#' so it know what panel it belongs to. This is a change from the previous
+#' design which added facetting variables directly to the data frame and
+#' caused problems when they had names of aesthetics (like colour or group).
+#'
+#' @param panel a trained panel object
+#' @param the facetting specification
+#' @param data list of data frames (one for each layer)
+#' @keywords internal
 map_layout <- function(panel, facet, data) {
   lapply(data, function(data) {
     facet_map_layout(facet, data, panel$layout)
   })
 }
 
-# Train position scales with data
-#
-# If panel-specific scales are not already present, will clone from
-# the scales provided in the parameter
-#
-# @param panel the panel object to train
-# @param data a list of data frames (one for each layer)
-# @param x_scale x scale for the plot
-# @param y_scale y scale for the plot
+#' Train position scales with data
+#'
+#' If panel-specific scales are not already present, will clone from
+#' the scales provided in the parameter
+#'
+#' @param panel the panel object to train
+#' @param data a list of data frames (one for each layer)
+#' @param x_scale x scale for the plot
+#' @param y_scale y scale for the plot
+#' @keywords internal
 train_position <- function(panel, data, x_scale, y_scale) {
   # Initialise scales if needed, and possible.
   layout <- panel$layout
@@ -101,12 +104,13 @@ reset_scales <- function(panel) {
   invisible()
 }
 
-# Map data with scales.
-#
-# This operation must be idempotent because it is applied twice: both before
-# and after statistical transformation.
-#
-# @param data a list of data frames (one for each layer)
+#' Map data with scales.
+#'
+#' This operation must be idempotent because it is applied twice: both before
+#' and after statistical transformation.
+#'
+#' @param data a list of data frames (one for each layer)
+#' @keywords internal
 map_position <- function(panel, data, x_scale, y_scale) {
   layout <- panel$layout
 

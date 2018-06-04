@@ -21,7 +21,7 @@ dotstackGrob <- function(
          name = name, gp = gp, vp = vp, cl = "dotstackGrob")
 }
 
-#' @export
+#' @keywords internal
 makeContext.dotstackGrob <- function(x, recording = TRUE) {
   # Need absolute coordinates because when using npc coords with circleGrob,
   # the radius is in the _smaller_ of the two axes. We need the radius

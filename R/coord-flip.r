@@ -4,7 +4,7 @@
 #' vertical, horizontal. This is primarily useful for converting geoms and
 #' statistics which display y conditional on x, to x conditional on y.
 #'
-#' @export
+#' @keywords internal
 #' @inheritParams coord_cartesian
 #' @examples
 #' # Very useful for creating boxplots, and other interval
@@ -12,19 +12,19 @@
 #'
 #' ggplot(diamonds, aes(cut, price)) +
 #'   geom_boxplot() +
-#'   coord_flip()
+#'   ggplot2Animint:::coord_flip()
 #'
 #' h <- ggplot(diamonds, aes(carat)) +
 #'   geom_histogram()
 #' h
-#' h + coord_flip()
-#' h + coord_flip() + scale_x_reverse()
+#' h + ggplot2Animint:::coord_flip()
+#' h + ggplot2Animint:::coord_flip() + scale_x_reverse()
 #'
 #' # You can also use it to flip line and area plots:
 #' df <- data.frame(x = 1:5, y = (1:5) ^ 2)
 #' ggplot(df, aes(x, y)) +
 #'   geom_area()
-#' last_plot() + coord_flip()
+#' last_plot() + ggplot2Animint:::coord_flip()
 coord_flip <- function(xlim = NULL, ylim = NULL, expand = TRUE) {
   ggproto(NULL, CoordFlip,
     limits = list(x = xlim, y = ylim),

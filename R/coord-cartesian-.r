@@ -9,7 +9,7 @@
 #' @param expand If \code{TRUE}, the default, adds a small expansion factor to
 #'   the limits to ensure that data and axes don't overlap. If \code{FALSE},
 #'   limits are taken exactly from the data or \code{xlim}/\code{ylim}.
-#' @export
+#' @keywords internal
 #' @examples
 #' # There are two ways of zooming the plot display: with scales or
 #' # with coordinate systems.  They work in two rather different ways.
@@ -25,15 +25,15 @@
 #' # Setting the limits on the coordinate system performs a visual zoom.
 #' # The data is unchanged, and we just view a small portion of the original
 #' # plot. Note how smooth continues past the points visible on this plot.
-#' p + coord_cartesian(xlim = c(325, 500))
+#' p + ggplot2Animint:::coord_cartesian(xlim = c(325, 500))
 #'
 #' # By default, the same expansion factor is applied as when setting scale
 #' # limits. You can set the limits precisely by setting expand = FALSE
-#' p + coord_cartesian(xlim = c(325, 500), expand = FALSE)
+#' p + ggplot2Animint:::coord_cartesian(xlim = c(325, 500), expand = FALSE)
 #'
 #' # Simiarly, we can use expand = FALSE to turn off expansion with the
 #' # default limits
-#' p + coord_cartesian(expand = FALSE)
+#' p + ggplot2Animint:::coord_cartesian(expand = FALSE)
 #'
 #' # You can see the same thing with this 2d histogram
 #' d <- ggplot(diamonds, aes(carat, price)) +
@@ -46,7 +46,7 @@
 #'
 #' # When zooming the coordinate system, we see a subset of original 50 bins,
 #' # displayed bigger
-#' d + coord_cartesian(xlim = c(0, 1))
+#' d + ggplot2Animint:::coord_cartesian(xlim = c(0, 1))
 coord_cartesian <- function(xlim = NULL, ylim = NULL, expand = TRUE) {
   ggproto(NULL, CoordCartesian,
     limits = list(x = xlim, y = ylim),

@@ -74,7 +74,8 @@
 #' # Add a text annotation
 #' p +
 #'   geom_text() +
-#'   annotate("text", label = "plot mpg vs. wt", x = 2, y = 15, size = 8, colour = "red")
+#'   ggplot2Animint:::annotate("text",
+#'   label = "plot mpg vs. wt", x = 2, y = 15, size = 8, colour = "red")
 #'
 #' \donttest{
 #' # Aligning labels and bars --------------------------------------------------

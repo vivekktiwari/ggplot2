@@ -34,15 +34,15 @@ p + scale_x_continuous(limits = c(325, 500))
 # Setting the limits on the coordinate system performs a visual zoom.
 # The data is unchanged, and we just view a small portion of the original
 # plot. Note how smooth continues past the points visible on this plot.
-p + coord_cartesian(xlim = c(325, 500))
+p + ggplot2Animint:::coord_cartesian(xlim = c(325, 500))
 
 # By default, the same expansion factor is applied as when setting scale
 # limits. You can set the limits precisely by setting expand = FALSE
-p + coord_cartesian(xlim = c(325, 500), expand = FALSE)
+p + ggplot2Animint:::coord_cartesian(xlim = c(325, 500), expand = FALSE)
 
 # Simiarly, we can use expand = FALSE to turn off expansion with the
 # default limits
-p + coord_cartesian(expand = FALSE)
+p + ggplot2Animint:::coord_cartesian(expand = FALSE)
 
 # You can see the same thing with this 2d histogram
 d <- ggplot(diamonds, aes(carat, price)) +
@@ -55,5 +55,6 @@ d + scale_x_continuous(limits = c(0, 1))
 
 # When zooming the coordinate system, we see a subset of original 50 bins,
 # displayed bigger
-d + coord_cartesian(xlim = c(0, 1))
+d + ggplot2Animint:::coord_cartesian(xlim = c(0, 1))
 }
+\keyword{internal}

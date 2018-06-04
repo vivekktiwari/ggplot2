@@ -340,7 +340,7 @@ It's easiest to start with a simple example. The code below is a simplified vers
 GeomSimplePoint <- ggproto("GeomSimplePoint", Geom,
   required_aes = c("x", "y"),
   default_aes = aes(shape = 19, colour = "black"),
-  draw_key = draw_key_point,
+  draw_key = ggplot2Animint:::draw_key_point,
 
   draw_panel = function(data, panel_scales, coord) {
     coords <- coord$transform(data, panel_scales)
@@ -406,7 +406,7 @@ GeomSimplePolygon <- ggproto("GeomPolygon", Geom,
     linetype = 1, alpha = 1
   ),
 
-  draw_key = draw_key_polygon,
+  draw_key = ggplot2Animint:::draw_key_polygon,
 
   draw_group = function(data, panel_scales, coord) {
     n <- nrow(data)

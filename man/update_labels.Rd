@@ -16,8 +16,9 @@ Update axis/legend labels
 }
 \examples{
 p <- ggplot(mtcars, aes(mpg, wt)) + geom_point()
-update_labels(p, list(x = "New x"))
-update_labels(p, list(x = expression(x / y ^ 2)))
-update_labels(p, list(x = "New x", y = "New Y"))
-update_labels(p, list(colour = "Fail silently"))
+ggplot2Animint:::update_labels(p, list(x = "New x"))
+ggplot2Animint:::update_labels(p, list(x = expression(x / y ^ 2)))
+ggplot2Animint:::update_labels(p, list(x = "New x", y = "New Y"))
+ggplot2Animint:::update_labels(p, list(colour = "Fail silently"))
 }
+\keyword{internal}

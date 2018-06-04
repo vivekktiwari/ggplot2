@@ -23,7 +23,7 @@ bins <- function(breaks, closed = c("right", "left"),
 
 is_bins <- function(x) inherits(x, "ggplot2_bins")
 
-#' @export
+#' @keywords internal
 print.ggplot2_bins <- function(x, ...) {
   n <- length(x$breaks)
   cat("<Bins>\n")

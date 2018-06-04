@@ -116,6 +116,7 @@ layer <- function(geom = NULL, stat = NULL,
   }else if (length(extra) > 0) {
     extra <- extra[!extra == "validate_params"]
     extra_params <- params[extra]
+    validate_params <- FALSE
   }
 
   ggproto("LayerInstance", Layer,
@@ -145,7 +146,6 @@ Layer <- ggproto("Layer", NULL,
   position = NULL,
   inherit.aes = FALSE,
   extra_params = NULL,
-
   print = function(self) {
     if (!is.null(self$mapping)) {
       cat("mapping:", clist(self$mapping), "\n")

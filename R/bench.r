@@ -2,11 +2,10 @@
 #' Broken down into construct, build, render and draw times.
 #'
 #' @param x code to create ggplot2 plot
-#' @export
 #' @keywords internal
 #' @examples
-#' benchplot(ggplot(mtcars, aes(mpg, wt)) + geom_point())
-#' benchplot(ggplot(mtcars, aes(mpg, wt)) + geom_point() + facet_grid(. ~ cyl))
+#' ggplot2Animint:::benchplot(ggplot(mtcars, aes(mpg, wt)) + geom_point())
+#' ggplot2Animint:::benchplot(ggplot(mtcars, aes(mpg, wt)) + geom_point() + facet_grid(. ~ cyl))
 benchplot <- function(x) {
 
   construct <- system.time(force(x))

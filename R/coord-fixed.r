@@ -8,7 +8,7 @@
 #' y axis longer than units on the x-axis, and vice versa. This is similar to
 #' \code{\link[MASS]{eqscplot}}, but it works for all types of graphics.
 #'
-#' @export
+#' @keywords internal
 #' @inheritParams coord_cartesian
 #' @param ratio aspect ratio, expressed as \code{y / x}
 #' @examples
@@ -16,9 +16,9 @@
 #' # adjusting the plot aspect ratio
 #'
 #' p <- ggplot(mtcars, aes(mpg, wt)) + geom_point()
-#' p + coord_fixed(ratio = 1)
-#' p + coord_fixed(ratio = 5)
-#' p + coord_fixed(ratio = 1/5)
+#' p + ggplot2Animint:::coord_fixed(ratio = 1)
+#' p + ggplot2Animint:::coord_fixed(ratio = 5)
+#' p + ggplot2Animint:::coord_fixed(ratio = 1/5)
 #'
 #' # Resize the plot to see that the specified aspect ratio is maintained
 coord_fixed <- function(ratio = 1, xlim = NULL, ylim = NULL, expand = TRUE) {

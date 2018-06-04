@@ -30,20 +30,20 @@ caption.
 }
 \examples{
 p <- ggplot(mtcars, aes(mpg, wt)) + geom_point()
-p + labs(title = "New plot title")
-p + labs(x = "New x label")
+p + ggplot2Animint:::labs(title = "New plot title")
+p + ggplot2Animint:::labs(x = "New x label")
 p + xlab("New x label")
 p + ylab("New y label")
 p + ggtitle("New plot title")
 
 # Can add a subtitle to plots with either of the following
 p + ggtitle("New plot title", subtitle = "A subtitle")
-p + labs(title = "New plot title", subtitle = "A subtitle")
+p + ggplot2Animint:::labs(title = "New plot title", subtitle = "A subtitle")
 
 # Can add a plot caption underneath the whole plot (for sources, notes or
 # copyright), similar to the \\code{sub} parameter in base R, with the
 # following
-p + labs(caption = "(based on data from ...)")
+p + ggplot2Animint:::labs(caption = "(based on data from ...)")
 
 # This should work independently of other functions that modify the
 # the scale names
@@ -52,8 +52,9 @@ p + ylim(2, 4) + ylab("New y label")
 
 # The labs function also modifies legend labels
 p <- ggplot(mtcars, aes(mpg, wt, colour = cyl)) + geom_point()
-p + labs(colour = "Cylinders")
+p + ggplot2Animint:::labs(colour = "Cylinders")
 
 # Can also pass in a list, if that is more convenient
-p + labs(list(title = "Title", subtitle = "Subtitle", x = "X", y = "Y"))
+p + ggplot2Animint:::labs(list(title = "Title", subtitle = "Subtitle", x = "X", y = "Y"))
 }
+\keyword{internal}

@@ -2,13 +2,13 @@
 #'
 #' @param p plot to modify
 #' @param labels named list of new labels
-#' @export
+#' @keywords internal
 #' @examples
 #' p <- ggplot(mtcars, aes(mpg, wt)) + geom_point()
-#' update_labels(p, list(x = "New x"))
-#' update_labels(p, list(x = expression(x / y ^ 2)))
-#' update_labels(p, list(x = "New x", y = "New Y"))
-#' update_labels(p, list(colour = "Fail silently"))
+#' ggplot2Animint:::update_labels(p, list(x = "New x"))
+#' ggplot2Animint:::update_labels(p, list(x = expression(x / y ^ 2)))
+#' ggplot2Animint:::update_labels(p, list(x = "New x", y = "New Y"))
+#' ggplot2Animint:::update_labels(p, list(colour = "Fail silently"))
 update_labels <- function(p, labels) {
   p <- plot_clone(p)
   p$labels <- defaults(labels, p$labels)
@@ -22,23 +22,23 @@ update_labels <- function(p, labels) {
 #' @param subtitle the text for the subtitle for the plot which will be
 #'        displayed below the title. Leave \code{NULL} for no subtitle.
 #' @param ... a list of new names in the form aesthetic = "new name"
-#' @export
+#' @keywords internal
 #' @examples
 #' p <- ggplot(mtcars, aes(mpg, wt)) + geom_point()
-#' p + labs(title = "New plot title")
-#' p + labs(x = "New x label")
+#' p + ggplot2Animint:::labs(title = "New plot title")
+#' p + ggplot2Animint:::labs(x = "New x label")
 #' p + xlab("New x label")
 #' p + ylab("New y label")
 #' p + ggtitle("New plot title")
 #'
 #' # Can add a subtitle to plots with either of the following
 #' p + ggtitle("New plot title", subtitle = "A subtitle")
-#' p + labs(title = "New plot title", subtitle = "A subtitle")
+#' p + ggplot2Animint:::labs(title = "New plot title", subtitle = "A subtitle")
 #'
 #' # Can add a plot caption underneath the whole plot (for sources, notes or
 #' # copyright), similar to the \code{sub} parameter in base R, with the
 #' # following
-#' p + labs(caption = "(based on data from ...)")
+#' p + ggplot2Animint:::labs(caption = "(based on data from ...)")
 #'
 #' # This should work independently of other functions that modify the
 #' # the scale names
@@ -47,10 +47,10 @@ update_labels <- function(p, labels) {
 #'
 #' # The labs function also modifies legend labels
 #' p <- ggplot(mtcars, aes(mpg, wt, colour = cyl)) + geom_point()
-#' p + labs(colour = "Cylinders")
+#' p + ggplot2Animint:::labs(colour = "Cylinders")
 #'
 #' # Can also pass in a list, if that is more convenient
-#' p + labs(list(title = "Title", subtitle = "Subtitle", x = "X", y = "Y"))
+#' p + ggplot2Animint:::labs(list(title = "Title", subtitle = "Subtitle", x = "X", y = "Y"))
 labs <- function(...) {
   args <- list(...)
   if (is.list(args[[1]])) args <- args[[1]]

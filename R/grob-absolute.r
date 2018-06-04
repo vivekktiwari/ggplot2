@@ -16,31 +16,31 @@ absoluteGrob <- function(grob, width = NULL, height = NULL,
   )
 }
 
-#' @export
+#' @keywords internal
 #' @method grobHeight absoluteGrob
 grobHeight.absoluteGrob <- function(x) {
   x$height %||% grobHeight(x$children)
 }
-#' @export
+#' @keywords internal
 #' @method grobWidth absoluteGrob
 grobWidth.absoluteGrob <- function(x) {
   x$width %||%  grobWidth(x$children)
 }
 
-#' @export
+#' @keywords internal
 #' @method grobX absoluteGrob
 grobX.absoluteGrob <- function(x, theta) {
   if (!is.null(x$xmin) && theta == "west") return(x$xmin)
   grobX(x$children, theta)
 }
-#' @export
+#' @keywords internal
 #' @method grobY absoluteGrob
 grobY.absoluteGrob <- function(x, theta) {
   if (!is.null(x$ymin) && theta == "south") return(x$ymin)
   grobY(x$children, theta)
 }
 
-#' @export
+#' @keywords internal
 #' @method grid.draw absoluteGrob
 grid.draw.absoluteGrob <- function(x, recording = TRUE) {
   NextMethod()

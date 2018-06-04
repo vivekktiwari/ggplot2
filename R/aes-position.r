@@ -18,7 +18,7 @@
 #'
 #' # Using annotate
 #' p <- ggplot(mtcars, aes(wt, mpg)) + geom_point()
-#' p + annotate("rect", xmin = 2, xmax = 3.5, ymin = 2, ymax = 25,
+#' p + ggplot2Animint:::annotate("rect", xmin = 2, xmax = 3.5, ymin = 2, ymax = 25,
 #'   fill = "dark grey", alpha = .5)
 #'
 #' # Geom_segment examples

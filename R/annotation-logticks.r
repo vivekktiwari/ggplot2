@@ -24,7 +24,7 @@
 #' @param color An alias for \code{colour}.
 #' @param ... Other parameters passed on to the layer
 #'
-#' @export
+#' @keywords internal
 #' @seealso \code{\link{scale_y_continuous}}, \code{\link{scale_y_log10}} for log scale
 #'   transformations.
 #' @seealso \code{\link{coord_trans}} for log coordinate transformations.
@@ -43,12 +43,12 @@
 #'  ) +
 #'  theme_bw()
 #'
-#' a + annotation_logticks()                # Default: log ticks on bottom and left
-#' a + annotation_logticks(sides = "lr")    # Log ticks for y, on left and right
-#' a + annotation_logticks(sides = "trbl")  # All four sides
+#' a + ggplot2Animint:::annotation_logticks()                # Default: log ticks on bottom and left
+#' a + ggplot2Animint:::annotation_logticks(sides = "lr")    # Log ticks for y, on left and right
+#' a + ggplot2Animint:::annotation_logticks(sides = "trbl")  # All four sides
 #'
 #' # Hide the minor grid lines because they don't align with the ticks
-#' a + annotation_logticks(sides = "trbl") + theme(panel.grid.minor = element_blank())
+#' a + ggplot2Animint:::annotation_logticks(sides = "trbl") + theme(panel.grid.minor = element_blank())
 #'
 #' # Another way to get the same results as 'a' above: log-transform the data before
 #' # plotting it. Also hide the minor grid lines.
@@ -58,17 +58,17 @@
 #'  scale_y_continuous(name = "brain", labels = scales::math_format(10^.x)) +
 #'  theme_bw() + theme(panel.grid.minor = element_blank())
 #'
-#' b + annotation_logticks()
+#' b + ggplot2Animint:::annotation_logticks()
 #'
 #' # Using a coordinate transform requires scaled = FALSE
 #' t <- ggplot(msleep, aes(bodywt, brainwt)) +
 #'   geom_point() +
-#'   coord_trans(x = "log10", y = "log10") +
+#'   ggplot2Animint:::coord_trans(x = "log10", y = "log10") +
 #'   theme_bw()
-#' t + annotation_logticks(scaled = FALSE)
+#' t + ggplot2Animint:::annotation_logticks(scaled = FALSE)
 #'
 #' # Change the length of the ticks
-#' a + annotation_logticks(
+#' a + ggplot2Animint:::annotation_logticks(
 #'   short = unit(.5,"mm"),
 #'   mid = unit(3,"mm"),
 #'   long = unit(4,"mm")

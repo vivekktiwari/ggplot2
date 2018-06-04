@@ -39,7 +39,7 @@
 #'   geom_point()
 #'
 #' p
-#' p + coord_cartesian(ylim = c(0, 40))
+#' p + ggplot2Animint:::coord_cartesian(ylim = c(0, 40))
 #' p + scale_colour_continuous(breaks = c(100, 300))
 #' p + guides(colour = "colourbar")
 #'

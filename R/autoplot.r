@@ -7,13 +7,13 @@
 #' @param object an object, whose class will determine the behaviour of autoplot
 #' @param ... other arguments passed to specific methods
 #' @return a ggplot object
-#' @export
+#' @keywords internal
 #' @seealso \code{\link{ggplot}} and \code{\link{fortify}}
 autoplot <- function(object, ...) {
   UseMethod("autoplot")
 }
 
-#' @export
+#' @keywords internal
 autoplot.default <- function(object, ...) {
   stop("Objects of type ", paste(class(object), collapse = "/"),
     " not supported by autoplot.", call. = FALSE)

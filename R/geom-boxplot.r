@@ -49,7 +49,7 @@
 #' p <- ggplot(mpg, aes(class, hwy))
 #' p + geom_boxplot()
 #' p + geom_boxplot() + geom_jitter(width = 0.2)
-#' p + geom_boxplot() + coord_flip()
+#' p + geom_boxplot() + ggplot2Animint:::coord_flip()
 #'
 #' p + geom_boxplot(notch = TRUE)
 #' p + geom_boxplot(varwidth = TRUE)

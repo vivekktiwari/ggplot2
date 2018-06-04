@@ -5,6 +5,55 @@ The goal of this guide is to help you get up and contributing to ggplot2 as quic
 1. Filing a bug report or feature request in an issue.
 1. Suggesting a change via a pull request.
 
+## Development Moode: ggplot2Animint 
+
+@vivekktiwari [For Future References]
+Following function/object have been made internal functions: 
+
+S3method(autoplot,default)
+S3method(grid.draw,absoluteGrob)
+S3method(grobHeight,absoluteGrob)
+S3method(grobWidth,absoluteGrob)
+S3method(grobX,absoluteGrob)
+S3method(grobY,absoluteGrob)
+S3method(heightDetails,stripGrob)
+S3method(makeContext,dotstackGrob)
+S3method(print,ggplot2_bins)
+S3method(widthDetails,stripGrob)
+export(annotate)
+export(annotation_custom)
+export(annotation_logticks)
+export(annotation_map)
+export(annotation_raster)
+export(autoplot)
+export(benchplot)
+export(coord_cartesian)
+export(coord_fixed) 
+export(coord_flip)
+export(coord_munch)
+export(coord_polar)
+export(coord_quickmap)
+export(coord_trans)
+export(draw_key_abline)
+export(draw_key_blank)
+export(draw_key_boxplot)
+export(draw_key_crossbar)
+export(draw_key_dotplot)
+export(draw_key_label)
+export(draw_key_path)
+export(draw_key_point)
+export(draw_key_pointrange)
+export(draw_key_polygon)
+export(draw_key_rect)
+export(draw_key_smooth)
+export(draw_key_text)
+export(draw_key_vline)
+export(draw_key_vpath)
+export(expand_limits)
+export(labs)
+export(transform_position)
+export(update_labels)
+
 ## Issues
 
 When filing an issue, the most important thing is to include a minimal reproducible example so that we can quickly verify the problem, and then figure out how to fix it. There are three things you need to include to make your example reproducible: required packages, data, code.

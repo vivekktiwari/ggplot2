@@ -41,7 +41,7 @@ ggplot(diamonds, aes(carat, price)) +
 #  * by transforming the coordinate system:
 ggplot(diamonds, aes(carat, price)) +
   geom_point() +
-  coord_trans(x = "log10", y = "log10")
+  ggplot2Animint:::coord_trans(x = "log10", y = "log10")
 
 # The difference between transforming the scales and
 # transforming the coordinate system is that scale
@@ -60,7 +60,7 @@ ggplot(d, aes(carat, price)) +
 ggplot(d, aes(carat, price)) +
   geom_point() +
   geom_smooth(method = "lm") +
-  coord_trans(x = "log10", y = "log10")
+  ggplot2Animint:::coord_trans(x = "log10", y = "log10")
 
 # Here I used a subset of diamonds so that the smoothed line didn't
 # drop below zero, which obviously causes problems on the log-transformed
@@ -73,7 +73,7 @@ ggplot(diamonds, aes(carat, price)) +
   geom_smooth(method = "lm") +
   scale_x_log10() +
   scale_y_log10() +
-  coord_trans(x = scales::exp_trans(10), y = scales::exp_trans(10))
+  ggplot2Animint:::coord_trans(x = scales::exp_trans(10), y = scales::exp_trans(10))
 
 # cf.
 ggplot(diamonds, aes(carat, price)) +
@@ -84,7 +84,8 @@ ggplot(diamonds, aes(carat, price)) +
 df <- data.frame(a = abs(rnorm(26)),letters)
 plot <- ggplot(df,aes(a,letters)) + geom_point()
 
-plot + coord_trans(x = "log10")
-plot + coord_trans(x = "sqrt")
+plot + ggplot2Animint:::coord_trans(x = "log10")
+plot + ggplot2Animint:::coord_trans(x = "sqrt")
 }
 }
+\keyword{internal}
