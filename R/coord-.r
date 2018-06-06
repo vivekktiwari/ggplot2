@@ -1,13 +1,7 @@
 #' @section Coordinate systems:
 #'
 #' All `coord_*` functions (like `coord_trans`) return a `Coord*`
-#' object (like `CoordTrans`). The `Coord*` object is responsible for
-#' adjusting the position of overlapping geoms.
-#'
-#' The way that the `coord_*` functions work is slightly different from the
-#' `geom_*` and `stat_*` functions, because a `coord_*` function
-#' actually "instantiates" the `Coord*` object by creating a descendant,
-#' and returns that.
+#' object (like `CoordTrans`).
 #'
 #' Each of the `Coord*` objects is a [ggproto()] object,
 #' descended from the top-level `Coord`.  To create a new type of Coord
@@ -20,16 +14,13 @@
 #'   - `render_axis_h`: Renders the horizontal axes.
 #'   - `render_axis_v`: Renders the vertical axes.
 #'   - `range`: Returns the x and y ranges
-#'   - `train`: Return the trained scale ranges.
 #'   - `transform`: Transforms x and y coordinates.
 #'   - `distance`: Calculates distance.
 #'   - `is_linear`: Returns `TRUE` if the coordinate system is
 #'     linear; `FALSE` otherwise.
-#'
-#'   - `setup_params(data)`: Allows the coordinate system to inspect
-#'     all layers and return a list of additional parameters that vary based on
-#'     the data. These parameters are currently only passed to the other
-#'     setup functions and `train()`.
+#'   - `is_free`: Returns `TRUE` if the coordinate system supports free
+#'     positional scales.
+#'   - `setup_panel_params(data)`:
 #'   - `setup_data(data, params)`: Allows the coordinate system to
 #'     manipulate the plot data. Should return list of data frames.
 #'   - `setup_layout(layout, params)`: Allows the coordinate
@@ -41,6 +32,13 @@
 #' @usage NULL
 #' @export
 Coord <- ggproto("Coord",
+
+  # Is this the default coordinate system?
+  default = FALSE,
+
+  # should drawing be clipped to the extent of the plot panel?
+  # "on" = yes, "off" = no
+  clip = "on",
 
   aspect = function(ranges) NULL,
 
@@ -89,6 +87,10 @@ Coord <- ggproto("Coord",
 
   is_linear = function() FALSE,
 
+  # Does the coordinate system support free scaling of axes in a faceted plot?
+  # Will generally have to return FALSE for coordinate systems that enforce a fixed aspect ratio.
+  is_free = function() FALSE,
+
   setup_params = function(data) {
     list()
   },
@@ -114,7 +116,7 @@ Coord <- ggproto("Coord",
 #' @keywords internal
 is.Coord <- function(x) inherits(x, "Coord")
 
-expand_default <- function(scale, discrete = c(0, 0.6), continuous = c(0.05, 0)) {
+expand_default <- function(scale, discrete = c(0, 0.6, 0, 0.6), continuous = c(0.05, 0, 0.05, 0)) {
   scale$expand %|W|% if (scale$is_discrete()) discrete else continuous
 }
 

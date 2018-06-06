@@ -6,13 +6,14 @@
 \title{Line segments and curves}
 \usage{
 geom_segment(mapping = NULL, data = NULL, stat = "identity",
-  position = "identity", ..., arrow = NULL, lineend = "butt",
-  na.rm = FALSE, show.legend = NA, inherit.aes = TRUE)
+  position = "identity", ..., arrow = NULL, arrow.fill = NULL,
+  lineend = "butt", linejoin = "round", na.rm = FALSE, show.legend = NA,
+  inherit.aes = TRUE)
 
 geom_curve(mapping = NULL, data = NULL, stat = "identity",
   position = "identity", ..., curvature = 0.5, angle = 90, ncp = 5,
-  arrow = NULL, lineend = "butt", na.rm = FALSE, show.legend = NA,
-  inherit.aes = TRUE)
+  arrow = NULL, arrow.fill = NULL, lineend = "butt", na.rm = FALSE,
+  show.legend = NA, inherit.aes = TRUE)
 }
 \arguments{
 \item{mapping}{Set of aesthetic mappings created by \code{\link[=aes]{aes()}} or
@@ -40,21 +41,28 @@ layer, as a string.}
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
 
-\item{...}{other arguments passed on to \code{\link[=layer]{layer()}}. These are
+\item{...}{Other arguments passed on to \code{\link[=layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
 \code{color = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
 
 \item{arrow}{specification for arrow heads, as created by arrow().}
 
+\item{arrow.fill}{fill color to use for the arrow head (if closed). \code{NULL}
+means use \code{colour} aesthetic.}
+
 \item{lineend}{Line end style (round, butt, square).}
+
+\item{linejoin}{Line join style (round, mitre, bevel).}
 
 \item{na.rm}{If \code{FALSE}, the default, missing values are removed with
 a warning. If \code{TRUE}, missing values are silently removed.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
-\code{FALSE} never includes, and \code{TRUE} always includes.}
+\code{FALSE} never includes, and \code{TRUE} always includes.
+It can also be a named logical vector to finely select the aesthetics to
+display.}
 
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
@@ -86,7 +94,19 @@ need to connect points across multiple cases.
 }
 \section{Aesthetics}{
 
-\aesthetics{geom}{segment}
+\code{geom_segment} understands the following aesthetics (required aesthetics are in bold):
+\itemize{
+\item \strong{\code{x}}
+\item \strong{\code{y}}
+\item \strong{\code{xend}}
+\item \strong{\code{yend}}
+\item \code{alpha}
+\item \code{colour}
+\item \code{group}
+\item \code{linetype}
+\item \code{size}
+}
+Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}
 }
 
 \examples{
@@ -110,6 +130,21 @@ ggplot(seals, aes(long, lat)) +
   geom_segment(aes(xend = long + delta_long, yend = lat + delta_lat),
     arrow = arrow(length = unit(0.1,"cm"))) +
   borders("state")
+
+# Use lineend and linejoin to change the style of the segments
+df2 <- expand.grid(
+  lineend = c('round', 'butt', 'square'),
+  linejoin = c('round', 'mitre', 'bevel'),
+  stringsAsFactors = FALSE
+)
+df2 <- data.frame(df2, y = 1:9)
+ggplot(df2, aes(x = 1, y = y, xend = 2, yend = y, label = paste(lineend, linejoin))) +
+  geom_segment(
+     lineend = df2$lineend, linejoin = df2$linejoin,
+     size = 3, arrow = arrow(length = unit(0.3, "inches"))
+  ) +
+  geom_text(hjust = 'outside', nudge_x = -0.2) +
+  xlim(0.5, 2)
 
 # You can also use geom_segment to recreate plot(type = "h") :
 counts <- as.data.frame(table(x = rpois(100,5)))

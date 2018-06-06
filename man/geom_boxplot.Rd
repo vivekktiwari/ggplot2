@@ -6,14 +6,14 @@
 \title{A box and whiskers plot (in the style of Tukey)}
 \usage{
 geom_boxplot(mapping = NULL, data = NULL, stat = "boxplot",
-  position = "dodge", ..., outlier.colour = NULL, outlier.color = NULL,
+  position = "dodge2", ..., outlier.colour = NULL, outlier.color = NULL,
   outlier.fill = NULL, outlier.shape = 19, outlier.size = 1.5,
   outlier.stroke = 0.5, outlier.alpha = NULL, notch = FALSE,
   notchwidth = 0.5, varwidth = FALSE, na.rm = FALSE, show.legend = NA,
   inherit.aes = TRUE)
 
 stat_boxplot(mapping = NULL, data = NULL, geom = "boxplot",
-  position = "dodge", ..., coef = 1.5, na.rm = FALSE, show.legend = NA,
+  position = "dodge2", ..., coef = 1.5, na.rm = FALSE, show.legend = NA,
   inherit.aes = TRUE)
 }
 \arguments{
@@ -39,7 +39,7 @@ will be used as the layer data.}
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
 
-\item{...}{other arguments passed on to \code{\link[=layer]{layer()}}. These are
+\item{...}{Other arguments passed on to \code{\link[=layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
 \code{color = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
@@ -48,17 +48,23 @@ to the paired geom/stat.}
 aesthetics used for the box.
 
 In the unlikely event you specify both US and UK spellings of colour, the
-US spelling will take precedence.}
+US spelling will take precedence.
 
-\item{notch}{if \code{FALSE} (default) make a standard box plot. If
+Sometimes it can be useful to hide the outliers, for example when overlaying
+the raw data points on top of the boxplot. Hiding the outliers can be achieved
+by setting \code{outlier.shape = NA}. Importantly, this does not remove the outliers,
+it only hides them, so the range calculated for the y-axis will be the
+same with outliers shown and outliers hidden.}
+
+\item{notch}{If \code{FALSE} (default) make a standard box plot. If
 \code{TRUE}, make a notched box plot. Notches are used to compare groups;
 if the notches of two boxes do not overlap, this suggests that the medians
 are significantly different.}
 
-\item{notchwidth}{for a notched box plot, width of the notch relative to
+\item{notchwidth}{For a notched box plot, width of the notch relative to
 the body (default 0.5)}
 
-\item{varwidth}{if \code{FALSE} (default) make a standard box plot. If
+\item{varwidth}{If \code{FALSE} (default) make a standard box plot. If
 \code{TRUE}, boxes are drawn with widths proportional to the
 square-roots of the number of observations in the groups (possibly
 weighted, using the \code{weight} aesthetic).}
@@ -68,7 +74,9 @@ a warning. If \code{TRUE}, missing values are silently removed.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
-\code{FALSE} never includes, and \code{TRUE} always includes.}
+\code{FALSE} never includes, and \code{TRUE} always includes.
+It can also be a named logical vector to finely select the aesthetics to
+display.}
 
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
@@ -78,7 +86,7 @@ the default plot specification, e.g. \code{\link[=borders]{borders()}}.}
 \item{geom, stat}{Use to override the default connection between
 \code{geom_boxplot} and \code{stat_boxplot}.}
 
-\item{coef}{length of the whiskers as multiple of IQR.  Defaults to 1.5}
+\item{coef}{Length of the whiskers as multiple of IQR. Defaults to 1.5.}
 }
 \description{
 The boxplot compactly displays the distribution of a continuous variable.
@@ -107,7 +115,24 @@ See McGill et al. (1978) for more details.
 
 \section{Aesthetics}{
 
-\aesthetics{geom}{boxplot}
+\code{geom_boxplot} understands the following aesthetics (required aesthetics are in bold):
+\itemize{
+\item \strong{\code{x}}
+\item \strong{\code{lower}}
+\item \strong{\code{upper}}
+\item \strong{\code{middle}}
+\item \strong{\code{ymin}}
+\item \strong{\code{ymax}}
+\item \code{alpha}
+\item \code{colour}
+\item \code{fill}
+\item \code{group}
+\item \code{linetype}
+\item \code{shape}
+\item \code{size}
+\item \code{weight}
+}
+Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}
 }
 
 \section{Computed variables}{

@@ -42,12 +42,12 @@ layer, as a string.}
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
 
-\item{...}{other arguments passed on to \code{\link[=layer]{layer()}}. These are
+\item{...}{Other arguments passed on to \code{\link[=layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
 \code{color = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
 
-\item{parse}{If TRUE, the labels will be parsed into expressions and
+\item{parse}{If \code{TRUE}, the labels will be parsed into expressions and
 displayed as described in ?plotmath}
 
 \item{nudge_x, nudge_y}{Horizontal and vertical adjustment to nudge labels by.
@@ -64,7 +64,9 @@ a warning. If \code{TRUE}, missing values are silently removed.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
-\code{FALSE} never includes, and \code{TRUE} always includes.}
+\code{FALSE} never includes, and \code{TRUE} always includes.
+It can also be a named logical vector to finely select the aesthetics to
+display.}
 
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
@@ -79,16 +81,38 @@ same layer will not be plotted.}
 a rectangle behind the text, making it easier to read.
 }
 \details{
-Note the the "width" and "height" of a text element are 0, so stacking
+Note that the "width" and "height" of a text element are 0, so stacking
 and dodging text will not work by default, and axis limits are not
 automatically expanded to include all text. Obviously, labels do have
 height and width, but they are physical units, not data units. The amount of
-space they occupy on that plot is not constant in data units: when you
+space they occupy on the plot is not constant in data units: when you
 resize a plot, labels stay the same size, but the size of the axes changes.
+
+\code{geom_text} and \code{geom_label} both add a label for each row in the
+data, even if coordinates x, y are set to single values in the call
+to \code{geom_label} or \code{geom_text}.
+To add labels at specified points use \code{\link[=annotate]{annotate()}} with
+\code{annotate(geom = "text", ...)} or \code{annotate(geom = "label", ...)}
 }
 \section{Aesthetics}{
 
-\aesthetics{geom}{text}
+\code{geom_text} understands the following aesthetics (required aesthetics are in bold):
+\itemize{
+\item \strong{\code{x}}
+\item \strong{\code{y}}
+\item \strong{\code{label}}
+\item \code{alpha}
+\item \code{angle}
+\item \code{colour}
+\item \code{family}
+\item \code{fontface}
+\item \code{group}
+\item \code{hjust}
+\item \code{lineheight}
+\item \code{size}
+\item \code{vjust}
+}
+Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}
 }
 
 \section{\code{geom_label}}{
@@ -102,10 +126,10 @@ controls the background colour of the label.
 
 You can modify text alignment with the \code{vjust} and \code{hjust}
 aesthetics. These can either be a number between 0 (right/bottom) and
-1 (top/left) or a character ("left", "middle", "right", "bottom", "center",
-"top"). There are two special alignments: "inward" and "outward".
-Inward always aligns text towards the center, and outward aligns
-it away from the center
+1 (top/left) or a character (\code{"left"}, \code{"middle"}, \code{"right"}, \code{"bottom"},
+\code{"center"}, \code{"top"}). There are two special alignments: \code{"inward"} and
+\code{"outward"}. Inward always aligns text towards the center, and outward
+aligns it away from the center
 }
 
 \examples{

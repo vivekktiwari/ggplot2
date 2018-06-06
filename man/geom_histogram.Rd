@@ -43,7 +43,7 @@ will be used as the layer data.}
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
 
-\item{...}{other arguments passed on to \code{\link[=layer]{layer()}}. These are
+\item{...}{Other arguments passed on to \code{\link[=layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
 \code{color = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
@@ -53,7 +53,9 @@ a warning. If \code{TRUE}, missing values are silently removed.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
-\code{FALSE} never includes, and \code{TRUE} always includes.}
+\code{FALSE} never includes, and \code{TRUE} always includes.
+It can also be a named logical vector to finely select the aesthetics to
+display.}
 
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
@@ -70,7 +72,7 @@ stories in your data.
 The bin width of a date variable is the number of days in each time; the
 bin width of a time variable is the number of seconds.}
 
-\item{bins}{Number of bins. Overridden by \code{binwidth}. Defaults to 30}
+\item{bins}{Number of bins. Overridden by \code{binwidth}. Defaults to 30.}
 
 \item{geom, stat}{Use to override the default connection between
 \code{geom_histogram}/\code{geom_freqpoly} and \code{stat_bin}.}
@@ -102,17 +104,17 @@ frequency polygons touch 0. Defaults to \code{FALSE}.}
 Visualise the distribution of a single continuous variable by dividing
 the x axis into bins and counting the number of observations in each bin.
 Histograms (\code{geom_histogram}) display the count with bars; frequency
-polygons (\code{geom_freqpoly}), display the counts with lines. Frequency
+polygons (\code{geom_freqpoly}) display the counts with lines. Frequency
 polygons are more suitable when you want to compare the distribution
-across a the levels of a categorical variable.
-
-\code{stat_bin} is suitable only for continuous x data. If your x data is
-discrete, you probably want to use \code{\link[=stat_count]{stat_count()}}.
+across the levels of a categorical variable.
 }
 \details{
-By default, the underlying computation (\code{stat_bin}) uses 30 bins -
+\code{stat_bin} is suitable only for continuous x data. If your x data is
+discrete, you probably want to use \code{\link[=stat_count]{stat_count()}}.
+
+By default, the underlying computation (\code{stat_bin}) uses 30 bins;
 this is not a good default, but the idea is to get you experimenting with
-different binwidths. You may need to look at a few to uncover the full
+different bin widths. You may need to look at a few to uncover the full
 story behind your data.
 }
 \section{Aesthetics}{
@@ -148,7 +150,7 @@ ggplot(diamonds, aes(price, colour = cut)) +
 
 # To make it easier to compare distributions with very different counts,
 # put density on the y axis instead of the default count
-ggplot(diamonds, aes(price, ..density.., colour = cut)) +
+ggplot(diamonds, aes(price, stat(density), colour = cut)) +
   geom_freqpoly(binwidth = 500)
 
 if (require("ggplot2movies")) {
@@ -194,6 +196,6 @@ ggplot(mtlong, aes(value)) + facet_wrap(~variable, scales = 'free_x') +
 }
 \seealso{
 \code{\link[=stat_count]{stat_count()}}, which counts the number of cases at each x
-posotion, without binning. It is suitable for both discrete and continuous
+position, without binning. It is suitable for both discrete and continuous
 x data, whereas \link{stat_bin} is suitable only for continuous x data.
 }

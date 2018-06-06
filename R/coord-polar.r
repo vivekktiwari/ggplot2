@@ -6,6 +6,9 @@
 #' @param theta variable to map angle to (`x` or `y`)
 #' @param start offset of starting point from 12 o'clock in radians
 #' @param direction 1, clockwise; -1, anticlockwise
+#' @param clip Should drawing be clipped to the extent of the plot panel? A
+#'   setting of `"on"` (the default) means yes, and a setting of `"off"`
+#'   means no. For details, please see [`coord_cartesian()`].
 #' @export
 #' @examples
 #' # NOTE: Use these plots with caution - polar coordinates has
@@ -54,7 +57,7 @@
 #' doh + geom_bar(width = 0.9, position = "fill") + coord_polar(theta = "y")
 #' }
 #' }
-coord_polar <- function(theta = "x", start = 0, direction = 1) {
+coord_polar <- function(theta = "x", start = 0, direction = 1, clip = "on") {
   theta <- match.arg(theta, c("x", "y"))
   r <- if (theta == "x") "y" else "x"
 
@@ -62,7 +65,8 @@ coord_polar <- function(theta = "x", start = 0, direction = 1) {
     theta = theta,
     r = r,
     start = start,
-    direction = sign(direction)
+    direction = sign(direction),
+    clip = clip
   )
 }
 
@@ -117,12 +121,21 @@ CoordPolar <- ggproto("CoordPolar", Coord,
       ret[[n]]$major <- out$major_source
       ret[[n]]$minor <- out$minor_source
       ret[[n]]$labels <- out$labels
+      ret[[n]]$sec.range <- out$sec.range
+      ret[[n]]$sec.major <- out$sec.major_source
+      ret[[n]]$sec.minor <- out$sec.minor_source
+      ret[[n]]$sec.labels <- out$sec.labels
     }
 
     details = list(
       x.range = ret$x$range, y.range = ret$y$range,
-      x.major = ret$x$major, x.minor = ret$x$minor, x.labels = ret$x$labels,
-      y.major = ret$y$major, y.minor = ret$y$minor, y.labels = ret$y$labels
+      x.major = ret$x$major, y.major = ret$y$major,
+      x.minor = ret$x$minor, y.minor = ret$y$minor,
+      x.labels = ret$x$labels, y.labels = ret$y$labels,
+      x.sec.range = ret$x$sec.range, y.sec.range = ret$y$sec.range,
+      x.sec.major = ret$x$sec.major, y.sec.major = ret$y$sec.major,
+      x.sec.minor = ret$x$sec.minor, y.sec.minor = ret$y$sec.minor,
+      x.sec.labels = ret$x$sec.labels, y.sec.labels = ret$y$sec.labels
     )
 
     if (self$theta == "y") {
@@ -153,13 +166,15 @@ CoordPolar <- ggproto("CoordPolar", Coord,
     arrange <- panel_params$r.arrange %||% c("primary", "secondary")
 
     x <- r_rescale(self, panel_params$r.major, panel_params) + 0.5
-    guide_axis(x, panel_params$r.labels, "left", theme)
-    axes <- list(
-      left = guide_axis(x, panel_params$r.labels, "left", theme),
-      right = guide_axis(x, panel_params$r.labels, "right", theme)
+    panel_params$r.major <- x
+    if (!is.null(panel_params$r.sec.major)) {
+      panel_params$r.sec.major <- x
+    }
+
+    list(
+      left = render_axis(panel_params, arrange[1], "r", "left", theme),
+      right = render_axis(panel_params, arrange[2], "r", "right", theme)
     )
-    axes[[which(arrange == "secondary")]] <- zeroGrob()
-    axes
   },
 
   render_axis_h = function(panel_params, theme) {

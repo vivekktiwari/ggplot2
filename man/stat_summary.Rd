@@ -7,8 +7,9 @@
 \usage{
 stat_summary_bin(mapping = NULL, data = NULL, geom = "pointrange",
   position = "identity", ..., fun.data = NULL, fun.y = NULL,
-  fun.ymax = NULL, fun.ymin = NULL, fun.args = list(), na.rm = FALSE,
-  show.legend = NA, inherit.aes = TRUE)
+  fun.ymax = NULL, fun.ymin = NULL, fun.args = list(), bins = 30,
+  binwidth = NULL, breaks = NULL, na.rm = FALSE, show.legend = NA,
+  inherit.aes = TRUE)
 
 stat_summary(mapping = NULL, data = NULL, geom = "pointrange",
   position = "identity", ..., fun.data = NULL, fun.y = NULL,
@@ -41,7 +42,7 @@ will be used as the layer data.}
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
 
-\item{...}{other arguments passed on to \code{\link[=layer]{layer()}}. These are
+\item{...}{Other arguments passed on to \code{\link[=layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
 \code{color = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
@@ -55,12 +56,30 @@ single number.}
 
 \item{fun.args}{Optional additional arguments passed on to the functions.}
 
+\item{bins}{Number of bins. Overridden by \code{binwidth}. Defaults to 30.}
+
+\item{binwidth}{The width of the bins. Can be specified as a numeric value,
+or a function that calculates width from x.
+The default is to use \code{bins}
+bins that cover the range of the data. You should always override
+this value, exploring multiple widths to find the best to illustrate the
+stories in your data.
+
+The bin width of a date variable is the number of days in each time; the
+bin width of a time variable is the number of seconds.}
+
+\item{breaks}{Alternatively, you can supply a numeric vector giving
+the bin boundaries. Overrides \code{binwidth}, \code{bins}, \code{center},
+and \code{boundary}.}
+
 \item{na.rm}{If \code{FALSE}, the default, missing values are removed with
 a warning. If \code{TRUE}, missing values are silently removed.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
-\code{FALSE} never includes, and \code{TRUE} always includes.}
+\code{FALSE} never includes, and \code{TRUE} always includes.
+It can also be a named logical vector to finely select the aesthetics to
+display.}
 
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
@@ -69,13 +88,19 @@ the default plot specification, e.g. \code{\link[=borders]{borders()}}.}
 }
 \description{
 \code{stat_summary} operates on unique \code{x}; \code{stat_summary_bin}
-operators on binned \code{x}. They are more flexible versions of
+operates on binned \code{x}. They are more flexible versions of
 \code{\link[=stat_bin]{stat_bin()}}: instead of just counting, they can compute any
 aggregate.
 }
 \section{Aesthetics}{
 
-\aesthetics{stat}{summary}
+\code{stat_summary} understands the following aesthetics (required aesthetics are in bold):
+\itemize{
+\item \strong{\code{x}}
+\item \strong{\code{y}}
+\item \code{group}
+}
+Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}
 }
 
 \section{Summary functions}{

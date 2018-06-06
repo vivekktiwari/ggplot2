@@ -4,7 +4,7 @@
 #'   [stats::bw.nrd()].
 #' @param adjust A multiplicate bandwidth adjustment. This makes it possible
 #'    to adjust the bandwidth while still using the a bandwidth estimator.
-#'    For exampe, `adjust = 1/2` means use half of the default bandwidth.
+#'    For example, `adjust = 1/2` means use half of the default bandwidth.
 #' @param kernel Kernel. See list of available kernels in [density()].
 #' @param n number of equally spaced points at which the density is to be
 #'   estimated, should be a power of two, see [density()] for
@@ -62,7 +62,7 @@ stat_density <- function(mapping = NULL, data = NULL,
 #' @export
 StatDensity <- ggproto("StatDensity", Stat,
   required_aes = "x",
-  default_aes = aes(y = ..density.., fill = NA),
+  default_aes = aes(y = stat(density), fill = NA),
 
   compute_group = function(data, scales, bw = "nrd0", adjust = 1, kernel = "gaussian",
                            n = 512, trim = FALSE, na.rm = FALSE) {
@@ -89,11 +89,11 @@ compute_density <- function(x, w, from, to, bw = "nrd0", adjust = 1,
   if (nx < 2) {
     warning("Groups with fewer than two data points have been dropped.", call. = FALSE)
     return(data.frame(
-      x = NA,
-      density = NA,
-      scaled = NA,
-      count = NA,
-      n = NA
+      x = NA_real_,
+      density = NA_real_,
+      scaled = NA_real_,
+      count = NA_real_,
+      n = NA_integer_
     ))
   }
 

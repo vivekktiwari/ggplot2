@@ -9,6 +9,7 @@
 #' @param solid Should the shapes be solid, `TRUE`, or hollow,
 #'   `FALSE`?
 #' @inheritParams scale_x_discrete
+#' @inheritDotParams discrete_scale -expand -position
 #' @rdname scale_shape
 #' @export
 #' @examples
@@ -41,6 +42,14 @@ scale_shape <- function(..., solid = TRUE) {
 #' @export
 #' @usage NULL
 scale_shape_discrete <- scale_shape
+
+#' @rdname scale_shape
+#' @export
+#' @usage NULL
+scale_shape_ordinal <- function(...) {
+  warning("Using shapes for an ordinal variable is not advised", call. = FALSE)
+  scale_shape(...)
+}
 
 #' @rdname scale_shape
 #' @export

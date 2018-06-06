@@ -6,7 +6,7 @@
 \usage{
 layer(geom = NULL, stat = NULL, data = NULL, mapping = NULL,
   position = NULL, params = list(), inherit.aes = TRUE,
-  check.aes = TRUE, check.param = TRUE, subset = NULL, show.legend = NA)
+  check.aes = TRUE, check.param = TRUE, show.legend = NA)
 }
 \arguments{
 \item{geom}{The geometric object to use display the data}
@@ -47,12 +47,11 @@ the default plot specification, e.g. \code{\link[=borders]{borders()}}.}
 supplied parameters and aesthetics are understood by the \code{geom} or
 \code{stat}. Use \code{FALSE} to suppress the checks.}
 
-\item{subset}{DEPRECATED. An older way of subsetting the dataset used in a
-layer.}
-
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
-\code{FALSE} never includes, and \code{TRUE} always includes.}
+\code{FALSE} never includes, and \code{TRUE} always includes.
+It can also be a named logical vector to finely select the aesthetics to
+display.}
 }
 \description{
 A layer is a combination of data, stat and geom with a potential position

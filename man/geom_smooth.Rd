@@ -38,33 +38,39 @@ will be used as the layer data.}
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
 
-\item{...}{other arguments passed on to \code{\link[=layer]{layer()}}. These are
+\item{...}{Other arguments passed on to \code{\link[=layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
 \code{color = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
 
-\item{method}{smoothing method (function) to use, eg. "lm", "glm",
-"gam", "loess", "rlm".
+\item{method}{Smoothing method (function) to use, eg. \code{lm}, \code{glm},
+\code{gam}, \code{loess}, \code{MASS::rlm}.
 
 For \code{method = "auto"} the smoothing method is chosen based on the
 size of the largest group (across all panels). \code{\link[=loess]{loess()}} is
 used for less than 1,000 observations; otherwise \code{\link[mgcv:gam]{mgcv::gam()}} is
 used with \code{formula = y ~ s(x, bs = "cs")}. Somewhat anecdotally,
 \code{loess} gives a better appearance, but is O(n^2) in memory, so does
-not work for larger datasets.}
+not work for larger datasets.
 
-\item{formula}{formula to use in smoothing function, eg. \code{y ~ x},
+If you have fewer than 1,000 observations but want to use the same \code{gam}
+model that \code{method = "auto"} would use then set
+\code{method = "gam", formula = y ~ s(x, bs = "cs")}.}
+
+\item{formula}{Formula to use in smoothing function, eg. \code{y ~ x},
 \code{y ~ poly(x, 2)}, \code{y ~ log(x)}}
 
-\item{se}{display confidence interval around smooth? (TRUE by default, see
-level to control}
+\item{se}{Display confidence interval around smooth? (TRUE by default, see
+level to control.)}
 
 \item{na.rm}{If \code{FALSE}, the default, missing values are removed with
 a warning. If \code{TRUE}, missing values are silently removed.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
-\code{FALSE} never includes, and \code{TRUE} always includes.}
+\code{FALSE} never includes, and \code{TRUE} always includes.
+It can also be a named logical vector to finely select the aesthetics to
+display.}
 
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
@@ -74,16 +80,16 @@ the default plot specification, e.g. \code{\link[=borders]{borders()}}.}
 \item{geom, stat}{Use to override the default connection between
 \code{geom_smooth} and \code{stat_smooth}.}
 
-\item{n}{number of points to evaluate smoother at}
+\item{n}{Number of points at which to evaluate smoother.}
 
 \item{span}{Controls the amount of smoothing for the default loess smoother.
 Smaller numbers produce wigglier lines, larger numbers produce smoother
 lines.}
 
-\item{fullrange}{should the fit span the full range of the plot, or just
-the data}
+\item{fullrange}{Should the fit span the full range of the plot, or just
+the data?}
 
-\item{level}{level of confidence interval to use (0.95 by default)}
+\item{level}{Level of confidence interval to use (0.95 by default).}
 
 \item{method.args}{List of additional arguments passed on to the modelling
 function defined by \code{method}.}
@@ -104,7 +110,21 @@ scale, and then back-transformed to the response scale.
 }
 \section{Aesthetics}{
 
-\aesthetics{geom}{smooth}
+\code{geom_smooth} understands the following aesthetics (required aesthetics are in bold):
+\itemize{
+\item \strong{\code{x}}
+\item \strong{\code{y}}
+\item \code{alpha}
+\item \code{colour}
+\item \code{fill}
+\item \code{group}
+\item \code{linetype}
+\item \code{size}
+\item \code{weight}
+\item \code{ymax}
+\item \code{ymin}
+}
+Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}
 }
 
 \section{Computed variables}{
@@ -132,18 +152,18 @@ ggplot(mpg, aes(displ, hwy)) +
 # Instead of a loess smooth, you can use any other modelling function:
 ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
-  geom_smooth(method = "lm", se = FALSE)
+  geom_smooth(method = lm, se = FALSE)
 
 ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
-  geom_smooth(method = "lm", formula = y ~ splines::bs(x, 3), se = FALSE)
+  geom_smooth(method = lm, formula = y ~ splines::bs(x, 3), se = FALSE)
 
 # Smoothes are automatically fit to each group (defined by categorical
 # aesthetics or the group aesthetic) and for each facet
 
 ggplot(mpg, aes(displ, hwy, colour = class)) +
   geom_point() +
-  geom_smooth(se = FALSE, method = "lm")
+  geom_smooth(se = FALSE, method = lm)
 ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
   geom_smooth(span = 0.8) +

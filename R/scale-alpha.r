@@ -28,7 +28,32 @@ scale_alpha_continuous <- scale_alpha
 
 #' @rdname scale_alpha
 #' @export
-scale_alpha_discrete <- function(..., range = c(0.1, 1)) {
-  discrete_scale("alpha", "alpha_d",
-    function(n) seq(range[1], range[2], length.out = n), ...)
+scale_alpha_discrete <- function(...) {
+  warning("Using alpha for a discrete variable is not advised.", call. = FALSE)
+  scale_alpha_ordinal(...)
+}
+
+#' @rdname scale_alpha
+#' @export
+scale_alpha_ordinal <- function(..., range = c(0.1, 1)) {
+  discrete_scale(
+    "alpha",
+    "alpha_d",
+    function(n) seq(range[1], range[2], length.out = n),
+    ...
+  )
+}
+
+#' @rdname scale_alpha
+#' @export
+#' @usage NULL
+scale_alpha_datetime <- function(..., range = c(0.1, 1)) {
+  datetime_scale("alpha", "time", palette = rescale_pal(range), ...)
+}
+
+#' @rdname scale_alpha
+#' @export
+#' @usage NULL
+scale_alpha_date <- function(..., range = c(0.1, 1)){
+  datetime_scale("alpha", "date", palette = rescale_pal(range), ...)
 }

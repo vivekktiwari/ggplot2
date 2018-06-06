@@ -194,7 +194,7 @@ element_grob.element_rect <- function(element, x = 0.5, y = 0.5,
 element_grob.element_text <- function(element, label = "", x = NULL, y = NULL,
   family = NULL, face = NULL, colour = NULL, size = NULL,
   hjust = NULL, vjust = NULL, angle = NULL, lineheight = NULL,
-  margin = NULL, expand_x = FALSE, expand_y = FALSE, ...) {
+  margin = NULL, margin_x = FALSE, margin_y = FALSE, ...) {
 
   if (is.null(label))
     return(zeroGrob())
@@ -203,10 +203,7 @@ element_grob.element_text <- function(element, label = "", x = NULL, y = NULL,
   hj <- hjust %||% element$hjust
   margin <- margin %||% element$margin
 
-  angle <- angle %||% element$angle
-  if (is.null(angle)) {
-    stop("Text element requires non-NULL value for 'angle'.")
-  }
+  angle <- angle %||% element$angle %||% 0
 
   # The gp settings can override element_gp
   gp <- gpar(fontsize = size, col = colour,
@@ -218,7 +215,7 @@ element_grob.element_text <- function(element, label = "", x = NULL, y = NULL,
 
   titleGrob(label, x, y, hjust = hj, vjust = vj, angle = angle,
     gp = utils::modifyList(element_gp, gp), margin = margin,
-    expand_x = expand_x, expand_y = expand_y, debug = element$debug)
+    margin_x = margin_x, margin_y = margin_y, debug = element$debug)
 }
 
 
@@ -276,17 +273,29 @@ el_def <- function(class = NULL, inherit = NULL, description = NULL) {
   strip.text          = el_def("element_text", "text"),
 
   axis.line.x         = el_def("element_line", "axis.line"),
+  axis.line.x.top     = el_def("element_line", "axis.line.x"),
+  axis.line.x.bottom  = el_def("element_line", "axis.line.x"),
   axis.line.y         = el_def("element_line", "axis.line"),
+  axis.line.y.left    = el_def("element_line", "axis.line.y"),
+  axis.line.y.right   = el_def("element_line", "axis.line.y"),
   axis.text.x         = el_def("element_text", "axis.text"),
   axis.text.x.top     = el_def("element_text", "axis.text.x"),
+  axis.text.x.bottom  = el_def("element_text", "axis.text.x"),
   axis.text.y         = el_def("element_text", "axis.text"),
+  axis.text.y.left    = el_def("element_text", "axis.text.y"),
   axis.text.y.right   = el_def("element_text", "axis.text.y"),
   axis.ticks.length   = el_def("unit"),
   axis.ticks.x        = el_def("element_line", "axis.ticks"),
+  axis.ticks.x.top    = el_def("element_line", "axis.ticks.x"),
+  axis.ticks.x.bottom = el_def("element_line", "axis.ticks.x"),
   axis.ticks.y        = el_def("element_line", "axis.ticks"),
+  axis.ticks.y.left   = el_def("element_line", "axis.ticks.y"),
+  axis.ticks.y.right  = el_def("element_line", "axis.ticks.y"),
   axis.title.x        = el_def("element_text", "axis.title"),
   axis.title.x.top    = el_def("element_text", "axis.title.x"),
+  axis.title.x.bottom = el_def("element_text", "axis.title.x"),
   axis.title.y        = el_def("element_text", "axis.title"),
+  axis.title.y.left   = el_def("element_text", "axis.title.y"),
   axis.title.y.right  = el_def("element_text", "axis.title.y"),
 
   legend.background   = el_def("element_rect", "rect"),
@@ -322,6 +331,8 @@ el_def <- function(class = NULL, inherit = NULL, description = NULL) {
   panel.ontop         = el_def("logical"),
 
   strip.background    = el_def("element_rect", "rect"),
+  strip.background.x  = el_def("element_rect", "strip.background"),
+  strip.background.y  = el_def("element_rect", "strip.background"),
   strip.text.x        = el_def("element_text", "strip.text"),
   strip.text.y        = el_def("element_text", "strip.text"),
   strip.placement     = el_def("character"),
@@ -334,6 +345,8 @@ el_def <- function(class = NULL, inherit = NULL, description = NULL) {
   plot.title          = el_def("element_text", "title"),
   plot.subtitle       = el_def("element_text", "title"),
   plot.caption        = el_def("element_text", "title"),
+  plot.tag            = el_def("element_text", "title"),
+  plot.tag.position   = el_def("character"),  # Need to also accept numbers
   plot.margin         = el_def("margin"),
 
   aspect.ratio        = el_def("character")

@@ -35,7 +35,7 @@ A \code{function} will be called with a single argument,
 the plot data. The return value must be a \code{data.frame.}, and
 will be used as the layer data.}
 
-\item{...}{other arguments passed on to \code{\link[=layer]{layer()}}. These are
+\item{...}{Other arguments passed on to \code{\link[=layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
 \code{color = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
@@ -45,11 +45,13 @@ a warning. If \code{TRUE}, missing values are silently removed.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
-\code{FALSE} never includes, and \code{TRUE} always includes.}
+\code{FALSE} never includes, and \code{TRUE} always includes.
+It can also be a named logical vector to finely select the aesthetics to
+display.}
 
 \item{xintercept, yintercept, slope, intercept}{Parameters that control the
 position of the line. If these are set, \code{data}, \code{mapping} and
-\code{show.legend} are overridden}
+\code{show.legend} are overridden.}
 }
 \description{
 These geoms add reference lines (sometimes called rules) to a plot, either
@@ -57,7 +59,7 @@ horizontal, vertical, or diagonal (specified by slope and intercept).
 These are useful for annotating plots.
 }
 \details{
-These geoms act slightly different to other geoms. You can supply the
+These geoms act slightly differently from other geoms. You can supply the
 parameters in two ways: either as arguments to the layer function,
 or via aesthetics. If you use arguments, e.g.
 \code{geom_abline(intercept = 0, slope = 1)}, then behind the scenes

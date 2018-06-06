@@ -59,16 +59,27 @@ scale_size <- scale_size_continuous
 #' @rdname scale_size
 #' @export
 #' @usage NULL
-scale_size_discrete <- function(..., range = c(2, 6)) {
+scale_size_discrete <- function(...) {
   warning("Using size for a discrete variable is not advised.", call. = FALSE)
-  discrete_scale("size", "size_d", function(n) {
-    area <- seq(range[1] ^ 2, range[2] ^ 2, length.out = n)
-    sqrt(area)
-  }, ...)
+  scale_size_ordinal(...)
 }
 
-#' @param ... Other arguments passed on to [continuous_scale()]
-#'   to control name, limits, breaks, labels and so forth.
+#' @rdname scale_size
+#' @export
+#' @usage NULL
+scale_size_ordinal <- function(..., range = c(2, 6)) {
+  discrete_scale(
+    "size",
+    "size_d",
+    function(n) {
+      area <- seq(range[1] ^ 2, range[2] ^ 2, length.out = n)
+      sqrt(area)
+    },
+    ...
+  )
+}
+
+#' @inheritDotParams continuous_scale -aesthetics -scale_name -palette -rescaler
 #' @param max_size Size of largest points.
 #' @export
 #' @rdname scale_size
@@ -81,14 +92,13 @@ scale_size_area <- function(..., max_size = 6) {
 #' @rdname scale_size
 #' @export
 #' @usage NULL
-scale_size_datetime <- function() {
-  scale_size_continuous(trans = "time")
+scale_size_datetime <- function(..., range = c(1, 6)) {
+  datetime_scale("size", "time", palette = area_pal(range), ...)
 }
 
 #' @rdname scale_size
 #' @export
 #' @usage NULL
-scale_size_date <- function() {
-  scale_size_continuous(trans = "date")
+scale_size_date <- function(..., range = c(1, 6)) {
+  datetime_scale("size", "date", palette = area_pal(range), ...)
 }
-

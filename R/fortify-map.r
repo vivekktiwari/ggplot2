@@ -70,7 +70,8 @@ fortify.map <- function(model, data, ...) {
 #' }
 map_data <- function(map, region = ".", exact = FALSE, ...) {
   try_require("maps", "map_data")
-  fortify(maps::map(map, region, exact = exact, plot = FALSE, fill = TRUE, ...))
+  map_obj <- maps::map(map, region, exact = exact, plot = FALSE, fill = TRUE, ...)
+  fortify(map_obj)
 }
 
 #' Create a layer of map borders
@@ -86,7 +87,7 @@ map_data <- function(map, region = ".", exact = FALSE, ...) {
 #' @param colour border colour
 #' @param xlim,ylim latitudinal and logitudinal range for extracting map
 #'   polygons, see [maps::map()] for details.
-#' @param ... other arguments passed onto [geom_polygon()]
+#' @inheritDotParams geom_polygon
 #' @export
 #' @examples
 #' if (require("maps")) {
