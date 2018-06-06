@@ -20,7 +20,7 @@
 #'
 #' \donttest{
 #' p + geom_violin() + geom_jitter(height = 0)
-#' p + geom_violin() + coord_flip()
+#' p + geom_violin() + ggplot2Animint:::coord_flip()
 #'
 #' # Scale maximum width proportional to sample size:
 #' p + geom_violin(scale = "count")
@@ -56,8 +56,8 @@
 #' m <- ggplot(movies, aes(y = votes, x = rating, group = cut_width(rating, 0.5)))
 #' m + geom_violin()
 #' m + geom_violin() + scale_y_log10()
-#' m + geom_violin() + coord_trans(y = "log10")
-#' m + geom_violin() + scale_y_log10() + coord_trans(y = "log10")
+#' m + geom_violin() + ggplot2Animint:::coord_trans(y = "log10")
+#' m + geom_violin() + scale_y_log10() + ggplot2Animint:::coord_trans(y = "log10")
 #'
 #' # Violin plots with continuous x:
 #' # Use the group aesthetic to group observations in violins

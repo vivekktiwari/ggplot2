@@ -29,7 +29,7 @@ coord_fixed <- function(ratio = 1, xlim = NULL, ylim = NULL, expand = TRUE) {
   )
 }
 
-#' @export
+#' @keywords internal
 #' @rdname coord_fixed
 #' @usage NULL
 coord_equal <- coord_fixed

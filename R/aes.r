@@ -63,7 +63,7 @@ aes <- function(x, y, ...) {
   aes <- structure(as.list(match.call()[-1]), class = "uneval")
   rename_aes(aes)
 }
-#' @export
+#' @keywords internal
 print.uneval <- function(x, ...) {
   values <- vapply(x, deparse2, character(1))
   bullets <- paste0("* ", format(names(x)), " -> ", values, "\n")
@@ -71,12 +71,12 @@ print.uneval <- function(x, ...) {
   cat(bullets, sep = "")
 }
 
-#' @export
+#' @keywords internal
 str.uneval <- function(object, ...) utils::str(unclass(object), ...)
 #' @export
 "[.uneval" <- function(x, i, ...) structure(unclass(x)[i], class = "uneval")
 
-#' @export
+#' @keywords internal
 as.character.uneval <- function(x, ...) {
   char <- as.character(unclass(x))
   names(char) <- names(x)

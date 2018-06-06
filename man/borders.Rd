@@ -37,16 +37,17 @@ ggplot(ia, aes(long, lat)) +
 data(us.cities)
 capitals <- subset(us.cities, capital == 2)
 ggplot(capitals, aes(long, lat)) +
-  borders("state") +
+  ggplot2Animint:::borders("state") +
   geom_point(aes(size = pop)) +
   scale_size_area() +
   ggplot2Animint:::coord_quickmap()
 
 # Same map, with some world context
 ggplot(capitals, aes(long, lat)) +
-  borders("world", xlim = c(-130, -60), ylim = c(20, 50)) +
+  ggplot2Animint:::borders("world", xlim = c(-130, -60), ylim = c(20, 50)) +
   geom_point(aes(size = pop)) +
   scale_size_area() +
   ggplot2Animint:::coord_quickmap()
 }
 }
+\keyword{internal}

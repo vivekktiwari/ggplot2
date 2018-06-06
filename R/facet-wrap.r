@@ -18,16 +18,16 @@
 #' @param dir Direction: either "h" for horizontal, the default, or "v", for
 #'   vertical.
 #' @inheritParams facet_grid
-#' @export
+#' @keywords internal
 #' @examples
 #' ggplot(mpg, aes(displ, hwy)) +
 #'   geom_point() +
-#'   facet_wrap(~class)
+#'   ggplot2Animint:::facet_wrap(~class)
 #'
 #' # Control the number of rows and columns with nrow and ncol
 #' ggplot(mpg, aes(displ, hwy)) +
 #'   geom_point() +
-#'   facet_wrap(~class, nrow = 4)
+#'   ggplot2Animint:::facet_wrap(~class, nrow = 4)
 #'
 #' \donttest{
 #' # You can facet by multiple variables
@@ -108,7 +108,7 @@ facet_wrap <- function(facets, nrow = NULL, ncol = NULL, scales = "fixed",
   )
 }
 
-#' @export
+#' @keywords internal
 facet_train_layout.wrap <- function(facet, data) {
   panels <- layout_wrap(data, facet$facets, facet$nrow, facet$ncol,
      facet$as.table, facet$drop, facet$dir)
@@ -127,7 +127,7 @@ facet_train_layout.wrap <- function(facet, data) {
   panels
 }
 
-#' @export
+#' @keywords internal
 facet_map_layout.wrap <- function(facet, data, layout) {
   locate_wrap(data, layout, facet$facets)
 }
@@ -139,7 +139,7 @@ facet_map_layout.wrap <- function(facet, data, layout) {
 #  * combine panels, strips and axes, then wrap into 2d
 #  * finally: add title, labels and legend
 #
-#' @export
+#' @keywords internal
 facet_render.wrap <- function(facet, panel, coord, theme, geom_grobs) {
 
   # If coord is (non-cartesian or flip) and (x is free or y is free)
@@ -319,7 +319,7 @@ facet_render.wrap <- function(facet, panel, coord, theme, geom_grobs) {
   gt
 }
 
-#' @export
+#' @keywords internal
 facet_panels.wrap <- function(facet, panel, coord, theme, geom_grobs) {
   panels <- panel$layout$PANEL
   lapply(panels, function(i) {
@@ -339,7 +339,7 @@ facet_panels.wrap <- function(facet, panel, coord, theme, geom_grobs) {
   })
 }
 
-#' @export
+#' @keywords internal
 facet_strips.wrap <- function(facet, panel, theme) {
   labels_df <- panel$layout[names(facet$facets)]
 
@@ -376,7 +376,7 @@ facet_strips.wrap <- function(facet, panel, theme) {
 }
 
 
-#' @export
+#' @keywords internal
 facet_axes.wrap <- function(facet, panel, coord, theme) {
   panels <- panel$layout$PANEL
 
@@ -402,7 +402,7 @@ facet_axes.wrap <- function(facet, panel, coord, theme) {
 
 }
 
-#' @export
+#' @keywords internal
 facet_vars.wrap <- function(facet) {
   paste(lapply(facet$facets, paste, collapse = ", "), collapse = " ~ ")
 }

@@ -23,7 +23,7 @@ NULL
 #' ggplot(seal2,  aes(x = long, y = lat)) +
 #'   ggplot2Animint:::annotation_map(usamap, fill = "NA", colour = "grey50") +
 #'   geom_segment(aes(xend = long + delta_long, yend = lat + delta_lat)) +
-#'   facet_grid(latr ~ longr, scales = "free", space = "free")
+#'   ggplot2Animint:::facet_grid(latr ~ longr, scales = "free", space = "free")
 #' }
 annotation_map <- function(map, ...) {
   # Get map input into correct form
