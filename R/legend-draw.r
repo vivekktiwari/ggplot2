@@ -39,7 +39,7 @@ draw_key_abline <- function(data, params, size) {
   )
 }
 
-#' @keywords internal
+#' @export
 #' @rdname draw_key
 draw_key_rect <- function(data, params, size) {
   rectGrob(gp = gpar(
@@ -48,7 +48,7 @@ draw_key_rect <- function(data, params, size) {
     lty = data$linetype
   ))
 }
-#' @export
+#' @keywords internal
 #' @rdname draw_key
 draw_key_polygon <- function(data, params, size) {
   lwd <- min(data$size, min(size) / 4)
