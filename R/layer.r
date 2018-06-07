@@ -107,7 +107,7 @@ layer <- function(geom = NULL, stat = NULL,
     ## If validate_params has not been defined, default is set to TRUE
     ## TODO: Since we don't have to worry about ggplot2 compatability now,
     ## we could get rid of this altogether for a better implementation??
-    params$validate_params <- FALSE
+    params$validate_params <- TRUE
     extra_params <- NULL
   }
 
@@ -116,6 +116,7 @@ layer <- function(geom = NULL, stat = NULL,
   }else if (length(extra) > 0) {
     extra <- extra[!extra == "validate_params"]
     extra_params <- params[extra]
+    validate_params <- FALSE
   }
 
   ggproto("LayerInstance", Layer,
