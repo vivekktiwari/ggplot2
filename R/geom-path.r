@@ -289,12 +289,10 @@ GeomStep <- ggproto("GeomStep", GeomPath,
   }
 )
 
-#' Calculate stairsteps
-#' Used by \code{\link{geom_step}}
-#' @param data object
-#' @param direction ...
-#' @export
-## ToDo: describe parameters clearly
+# Calculate stairsteps
+# Used by \code{\link{geom_step}}
+#
+# @keywords internal
 stairstep <- function(data, direction="hv") {
   direction <- match.arg(direction, c("hv", "vh"))
   data <- as.data.frame(data)[order(data$x), ]
