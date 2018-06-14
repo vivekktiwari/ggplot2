@@ -103,6 +103,6 @@ if (require(maps)) {
   ggplot(crimesm, aes(map_id = state)) +
     geom_map(aes(fill = value), map = states_map) +
     ggplot2Animint:::expand_limits(x = states_map$long, y = states_map$lat) +
-    facet_wrap( ~ variable)
+    ggplot2Animint:::facet_wrap( ~ variable)
 }
 }

@@ -77,7 +77,7 @@ map_data <- function(map, region = ".", exact = FALSE, ...) {
 #' @param xlim,ylim latitudinal and logitudinal range for extracting map
 #'   polygons, see \code{\link[maps]{map}} for details.
 #' @param ... other arguments passed onto \code{\link{geom_polygon}}
-#' @export
+#' @keywords internal
 #' @examples
 #' if (require("maps")) {
 #'
@@ -91,14 +91,14 @@ map_data <- function(map, region = ".", exact = FALSE, ...) {
 #' data(us.cities)
 #' capitals <- subset(us.cities, capital == 2)
 #' ggplot(capitals, aes(long, lat)) +
-#'   borders("state") +
+#'   ggplot2Animint:::borders("state") +
 #'   geom_point(aes(size = pop)) +
 #'   scale_size_area() +
 #'   ggplot2Animint:::coord_quickmap()
 #'
 #' # Same map, with some world context
 #' ggplot(capitals, aes(long, lat)) +
-#'   borders("world", xlim = c(-130, -60), ylim = c(20, 50)) +
+#'   ggplot2Animint:::borders("world", xlim = c(-130, -60), ylim = c(20, 50)) +
 #'   geom_point(aes(size = pop)) +
 #'   scale_size_area() +
 #'   ggplot2Animint:::coord_quickmap()

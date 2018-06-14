@@ -49,14 +49,14 @@ facet_vars <- function(facet)
   UseMethod("facet_vars")
 
 
-#' @export
+#' @keywords internal
 format.facet <- function(x, ...) {
   name <- paste(rev(class(x)), collapse = "_")
 
   paste(name, "(", facet_vars(x), ")", sep = "")
 }
 
-#' @export
+#' @keywords internal
 print.facet <- function(x, ...) {
   cat(format(x, ...), "\n")
 }

@@ -10,14 +10,14 @@ facet_null <- function(shrink = TRUE) {
   facet(shrink = shrink, subclass = "null")
 }
 
-#' @export
+#' @keywords internal
 facet_train_layout.null <- function(facet, data) {
   data.frame(
     PANEL = 1L, ROW = 1L, COL = 1L,
     SCALE_X = 1L, SCALE_Y = 1L)
 }
 
-#' @export
+#' @keywords internal
 facet_map_layout.null <- function(facet, data, layout) {
   # Need the is.waive check for special case where no data, but aesthetics
   # are mapped to vectors
@@ -27,7 +27,7 @@ facet_map_layout.null <- function(facet, data, layout) {
   data
 }
 
-#' @export
+#' @keywords internal
 facet_render.null <- function(facet, panel, coord, theme, geom_grobs) {
   range <- panel$ranges[[1]]
 
@@ -72,5 +72,5 @@ facet_render.null <- function(facet, panel, coord, theme, geom_grobs) {
   layout
 }
 
-#' @export
+#' @keywords internal
 facet_vars.null <- function(facet) ""

@@ -95,8 +95,8 @@ mtcars$cyl2 <- factor(mtcars$cyl, labels = c("alpha", "beta", "gamma"))
 p <- ggplot(mtcars, aes(wt, mpg)) + geom_point()
 
 # Displaying only the values
-p + facet_grid(. ~ cyl)
-p + facet_grid(. ~ cyl, labeller = label_value)
+p + ggplot2Animint:::facet_grid(. ~ cyl)
+p + ggplot2Animint:::facet_grid(. ~ cyl, labeller = label_value)
 
 \donttest{
 # Displaying both the values and the variables
@@ -116,3 +116,4 @@ p + facet_wrap(~vs + cyl2, labeller = label_parsed)
 \code{\link{labeller}()}, \code{\link{as_labeller}()},
   \code{\link{label_bquote}()}
 }
+\keyword{internal}

@@ -251,9 +251,9 @@ print.theme <- function(x, ...) utils::str(x)
 #' # Change the axis labels
 #' # Original plot
 #' p
-#' p + labs(x = "Vehicle Weight", y = "Miles per Gallon")
+#' p + ggplot2Animint:::labs(x = "Vehicle Weight", y = "Miles per Gallon")
 #' # Or
-#' p + labs(x = "Vehicle Weight", y = "Miles per Gallon")
+#' p + ggplot2Animint:::labs(x = "Vehicle Weight", y = "Miles per Gallon")
 #'
 #' # Change title appearance
 #' p <- p + labs(title = "Vehicle Weight-Gas Mileage Relationship")
@@ -372,9 +372,9 @@ theme <- function(..., complete = FALSE, validate = TRUE) {
 
 
 #' plot_theme function
-#' 
+#'
 #' Combine plot defaults with current theme to get complete theme for a plot
-#' @param x plot object 
+#' @param x plot object
 #' @export
 ## ToDO: Describe parameters correctly.
 plot_theme <- function(x) {

@@ -78,10 +78,10 @@ dist_euclidean <- function(x, y) {
   sqrt((x[-n] - x[-1]) ^ 2 + (y[-n] - y[-1]) ^ 2)
 }
 
-# Compute central angle between two points.
-# Multiple by radius of sphere to get great circle distance
-# @arguments longitude
-# @arguments latitude
+#' Compute central angle between two points.
+#' Multiple by radius of sphere to get great circle distance
+#' @param lon longitude
+#' @param lat latitude
 dist_central_angle <- function(lon, lat) {
   # Convert to radians
   lat <- lat * pi / 180

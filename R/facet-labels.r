@@ -71,8 +71,8 @@
 #' p <- ggplot(mtcars, aes(wt, mpg)) + geom_point()
 #'
 #' # Displaying only the values
-#' p + facet_grid(. ~ cyl)
-#' p + facet_grid(. ~ cyl, labeller = label_value)
+#' p + ggplot2Animint:::facet_grid(. ~ cyl)
+#' p + ggplot2Animint:::facet_grid(. ~ cyl, labeller = label_value)
 #'
 #' \donttest{
 #' # Displaying both the values and the variables
@@ -193,9 +193,9 @@ find_names <- function(expr) {
 #' # The variables mentioned in the plotmath expression must be
 #' # backquoted and referred to by their names.
 #' p <- ggplot(mtcars, aes(wt, mpg)) + geom_point()
-#' p + facet_grid(vs ~ ., labeller = label_bquote(alpha ^ .(vs)))
-#' p + facet_grid(. ~ vs, labeller = label_bquote(cols = .(vs) ^ .(vs)))
-#' p + facet_grid(. ~ vs + am, labeller = label_bquote(cols = .(am) ^ .(vs)))
+#' p + ggplot2Animint:::facet_grid(vs ~ ., labeller = label_bquote(alpha ^ .(vs)))
+#' p + ggplot2Animint:::facet_grid(. ~ vs, labeller = label_bquote(cols = .(vs) ^ .(vs)))
+#' p + ggplot2Animint:::facet_grid(. ~ vs + am, labeller = label_bquote(cols = .(am) ^ .(vs)))
 label_bquote <- function(rows = NULL, cols = NULL,
                          default = label_value) {
   cols_quoted <- substitute(cols)
@@ -234,7 +234,7 @@ label_bquote <- function(rows = NULL, cols = NULL,
 globalVariables(c("x", "."))
 
 #' @rdname labellers
-#' @export
+#' @keywords internal
 label_wrap_gen <- function(width = 25, multi_line = TRUE) {
   fun <- function(labels) {
     labels <- label_value(labels, multi_line = multi_line)
@@ -284,20 +284,20 @@ resolve_labeller <- function(rows, cols, labels) {
 #' @export
 #' @examples
 #' p <- ggplot(mtcars, aes(disp, drat)) + geom_point()
-#' p + facet_wrap(~am)
+#' p + ggplot2Animint:::facet_wrap(~am)
 #'
 #' # Rename labels on the fly with a lookup character vector
 #' to_string <- as_labeller(c(`0` = "Zero", `1` = "One"))
-#' p + facet_wrap(~am, labeller = to_string)
+#' p + ggplot2Animint:::facet_wrap(~am, labeller = to_string)
 #'
 #' # Quickly transform a function operating on character vectors to a
 #' # labeller function:
 #' appender <- function(string, suffix = "-foo") paste0(string, suffix)
-#' p + facet_wrap(~am, labeller = as_labeller(appender))
+#' p + ggplot2Animint:::facet_wrap(~am, labeller = as_labeller(appender))
 #'
 #' # If you have more than one facetting variable, be sure to dispatch
 #' # your labeller to the right variable with labeller()
-#' p + facet_grid(cyl ~ am, labeller = labeller(am = to_string))
+#' p + ggplot2Animint:::facet_grid(cyl ~ am, labeller = labeller(am = to_string))
 as_labeller <- function(x, default = label_value, multi_line = TRUE) {
   force(x)
   fun <- function(labels) {

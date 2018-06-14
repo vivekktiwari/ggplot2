@@ -67,9 +67,9 @@ Lay out panels in a grid.
 \examples{
 p <- ggplot(mpg, aes(displ, cty)) + geom_point()
 
-p + facet_grid(. ~ cyl)
-p + facet_grid(drv ~ .)
-p + facet_grid(drv ~ cyl)
+p + ggplot2Animint:::facet_grid(. ~ cyl)
+p + ggplot2Animint:::facet_grid(drv ~ .)
+p + ggplot2Animint:::facet_grid(drv ~ cyl)
 
 # To change plot order of facet grid,
 # change the order of variable levels with factor()
@@ -79,7 +79,7 @@ p + facet_grid(drv ~ cyl)
 # combinations:
 df <- data.frame(displ = mean(mpg$displ), cty = mean(mpg$cty))
 p +
-  facet_grid(. ~ cyl) +
+  ggplot2Animint:::facet_grid(. ~ cyl) +
   geom_point(data = df, colour = "red", size = 2)
 
 # Free scales -------------------------------------------------------
@@ -89,14 +89,14 @@ p +
 mt <- ggplot(mtcars, aes(mpg, wt, colour = factor(cyl))) +
   geom_point()
 
-mt + facet_grid(. ~ cyl, scales = "free")
+mt + ggplot2Animint:::facet_grid(. ~ cyl, scales = "free")
 
 # If scales and space are free, then the mapping between position
 # and values in the data will be the same across all panels. This
 # is particularly useful for categorical axes
 ggplot(mpg, aes(drv, model)) +
   geom_point() +
-  facet_grid(manufacturer ~ ., scales = "free", space = "free") +
+  ggplot2Animint:::facet_grid(manufacturer ~ ., scales = "free", space = "free") +
   theme(strip.text.y = element_text(angle = 0))
 
 # Facet labels ------------------------------------------------------
@@ -104,16 +104,16 @@ p <- ggplot(mtcars, aes(wt, mpg)) + geom_point()
 p
 
 # label_both() displays both variable name and value
-p + facet_grid(vs ~ cyl, labeller = label_both)
+p + ggplot2Animint:::facet_grid(vs ~ cyl, labeller = label_both)
 
 # label_parsed() parses text into mathematical expressions, see ?plotmath
 mtcars$cyl2 <- factor(mtcars$cyl, labels = c("alpha", "beta", "sqrt(x, y)"))
 ggplot(mtcars, aes(wt, mpg)) +
   geom_point() +
-  facet_grid(. ~ cyl2, labeller = label_parsed)
+  ggplot2Animint:::facet_grid(. ~ cyl2, labeller = label_parsed)
 
 # label_bquote() makes it easy to construct math expressions
-p + facet_grid(. ~ vs, labeller = label_bquote(cols = alpha ^ .(vs)))
+p + ggplot2Animint:::facet_grid(. ~ vs, labeller = label_bquote(cols = alpha ^ .(vs)))
 
 # The facet strips can be displayed near the axes with switch
 data <- transform(mtcars,
@@ -121,9 +121,9 @@ data <- transform(mtcars,
   gear = factor(gear, levels = 3:5, labels = c("Three", "Four", "Five"))
 )
 p <- ggplot(data, aes(mpg, disp)) + geom_point()
-p + facet_grid(am ~ gear, switch = "both")
+p + ggplot2Animint:::facet_grid(am ~ gear, switch = "both")
 # It looks better without boxes around the strips
-p + facet_grid(am ~ gear, switch = "both") +
+p + ggplot2Animint:::facet_grid(am ~ gear, switch = "both") +
   theme(strip.background = element_blank())
 
 # Margins ----------------------------------------------------------
@@ -142,3 +142,4 @@ mg + facet_grid(vs + am ~ gear, margins = "gear")
 mg + facet_grid(vs + am ~ gear, margins = c("gear", "am"))
 }
 }
+\keyword{internal}

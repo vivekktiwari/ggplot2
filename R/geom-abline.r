@@ -58,7 +58,7 @@ NULL
 #' # To show different lines in different facets, use aesthetics
 #' p <- ggplot(mtcars, aes(mpg, wt)) +
 #'   geom_point() +
-#'   facet_wrap(~ cyl)
+#'   ggplot2Animint:::facet_wrap(~ cyl)
 #'
 #' mean_wt <- data.frame(cyl = c(4, 6, 8), wt = c(2.28, 3.11, 4.00))
 #' p + geom_hline(aes(yintercept = wt), mean_wt)
@@ -67,7 +67,7 @@ NULL
 #' ggplot(mtcars, aes(mpg, wt, colour = wt)) +
 #'   geom_point() +
 #'   geom_hline(aes(yintercept = wt, colour = wt), mean_wt) +
-#'   facet_wrap(~ cyl)
+#'   ggplot2Animint:::facet_wrap(~ cyl)
 geom_abline <- function(mapping = NULL, data = NULL,
                         ...,
                         slope,

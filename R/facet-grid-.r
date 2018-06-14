@@ -43,13 +43,13 @@
 #' @param drop If \code{TRUE}, the default, all factor levels not used in the
 #'   data will automatically be dropped. If \code{FALSE}, all factor levels
 #'   will be shown, regardless of whether or not they appear in the data.
-#' @export
+#' @keywords internal
 #' @examples
 #' p <- ggplot(mpg, aes(displ, cty)) + geom_point()
 #'
-#' p + facet_grid(. ~ cyl)
-#' p + facet_grid(drv ~ .)
-#' p + facet_grid(drv ~ cyl)
+#' p + ggplot2Animint:::facet_grid(. ~ cyl)
+#' p + ggplot2Animint:::facet_grid(drv ~ .)
+#' p + ggplot2Animint:::facet_grid(drv ~ cyl)
 #'
 #' # To change plot order of facet grid,
 #' # change the order of variable levels with factor()
@@ -59,7 +59,7 @@
 #' # combinations:
 #' df <- data.frame(displ = mean(mpg$displ), cty = mean(mpg$cty))
 #' p +
-#'   facet_grid(. ~ cyl) +
+#'   ggplot2Animint:::facet_grid(. ~ cyl) +
 #'   geom_point(data = df, colour = "red", size = 2)
 #'
 #' # Free scales -------------------------------------------------------
@@ -69,14 +69,14 @@
 #' mt <- ggplot(mtcars, aes(mpg, wt, colour = factor(cyl))) +
 #'   geom_point()
 #'
-#' mt + facet_grid(. ~ cyl, scales = "free")
+#' mt + ggplot2Animint:::facet_grid(. ~ cyl, scales = "free")
 #'
 #' # If scales and space are free, then the mapping between position
 #' # and values in the data will be the same across all panels. This
 #' # is particularly useful for categorical axes
 #' ggplot(mpg, aes(drv, model)) +
 #'   geom_point() +
-#'   facet_grid(manufacturer ~ ., scales = "free", space = "free") +
+#'   ggplot2Animint:::facet_grid(manufacturer ~ ., scales = "free", space = "free") +
 #'   theme(strip.text.y = element_text(angle = 0))
 #'
 #' # Facet labels ------------------------------------------------------
@@ -84,16 +84,16 @@
 #' p
 #'
 #' # label_both() displays both variable name and value
-#' p + facet_grid(vs ~ cyl, labeller = label_both)
+#' p + ggplot2Animint:::facet_grid(vs ~ cyl, labeller = label_both)
 #'
 #' # label_parsed() parses text into mathematical expressions, see ?plotmath
 #' mtcars$cyl2 <- factor(mtcars$cyl, labels = c("alpha", "beta", "sqrt(x, y)"))
 #' ggplot(mtcars, aes(wt, mpg)) +
 #'   geom_point() +
-#'   facet_grid(. ~ cyl2, labeller = label_parsed)
+#'   ggplot2Animint:::facet_grid(. ~ cyl2, labeller = label_parsed)
 #'
 #' # label_bquote() makes it easy to construct math expressions
-#' p + facet_grid(. ~ vs, labeller = label_bquote(cols = alpha ^ .(vs)))
+#' p + ggplot2Animint:::facet_grid(. ~ vs, labeller = label_bquote(cols = alpha ^ .(vs)))
 #'
 #' # The facet strips can be displayed near the axes with switch
 #' data <- transform(mtcars,
@@ -101,9 +101,9 @@
 #'   gear = factor(gear, levels = 3:5, labels = c("Three", "Four", "Five"))
 #' )
 #' p <- ggplot(data, aes(mpg, disp)) + geom_point()
-#' p + facet_grid(am ~ gear, switch = "both")
+#' p + ggplot2Animint:::facet_grid(am ~ gear, switch = "both")
 #' # It looks better without boxes around the strips
-#' p + facet_grid(am ~ gear, switch = "both") +
+#' p + ggplot2Animint:::facet_grid(am ~ gear, switch = "both") +
 #'   theme(strip.background = element_blank())
 #'
 #' # Margins ----------------------------------------------------------
@@ -169,7 +169,7 @@ facet_grid <- function(facets, margins = FALSE, scales = "fixed", space = "fixed
 }
 
 
-#' @export
+#' @keywords internal
 facet_train_layout.grid <- function(facet, data) {
   layout <- layout_grid(data, facet$rows, facet$cols, facet$margins,
     drop = facet$drop, as.table = facet$as.table)
@@ -182,12 +182,12 @@ facet_train_layout.grid <- function(facet, data) {
 }
 
 
-#' @export
+#' @keywords internal
 facet_map_layout.grid <- function(facet, data, layout) {
   locate_grid(data, layout, facet$rows, facet$cols, facet$margins)
 }
 
-#' @export
+#' @keywords internal
 facet_render.grid <- function(facet, panel, coord, theme, geom_grobs) {
   axes <- facet_axes(facet, panel, coord, theme)
   strips <- facet_strips(facet, panel, theme)
@@ -287,7 +287,7 @@ facet_render.grid <- function(facet, panel, coord, theme, geom_grobs) {
   complete
 }
 
-#' @export
+#' @keywords internal
 facet_strips.grid <- function(facet, panel, theme) {
   col_vars <- unique(panel$layout[names(facet$cols)])
   row_vars <- unique(panel$layout[names(facet$rows)])
@@ -322,7 +322,7 @@ facet_strips.grid <- function(facet, panel, theme) {
   }, strips, dir)
 }
 
-#' @export
+#' @keywords internal
 facet_axes.grid <- function(facet, panel, coord, theme) {
   axes <- list()
 
@@ -341,7 +341,7 @@ facet_axes.grid <- function(facet, panel, coord, theme) {
   axes
 }
 
-#' @export
+#' @keywords internal
 facet_panels.grid <- function(facet, panel, coord, theme, geom_grobs) {
 
   # If user hasn't set aspect ratio, and we have fixed scales, then
@@ -408,7 +408,7 @@ facet_panels.grid <- function(facet, panel, coord, theme, geom_grobs) {
   panels
 }
 
-#' @export
+#' @keywords internal
 facet_vars.grid <- function(facet) {
   paste(lapply(list(facet$rows, facet$cols), paste, collapse = ", "),
     collapse = " ~ ")
