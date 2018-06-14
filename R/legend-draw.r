@@ -39,9 +39,9 @@ draw_key_abline <- function(data, params, size) {
   )
 }
 
-#' @export
-#' @rdname draw_key
-draw_key_rect <- function(data, params, size) {
+#' @
+#' @rdname a_draw_key
+a_draw_key_rect <- function(data, params, size) {
   rectGrob(gp = gpar(
     col = NA,
     fill = alpha(data$fill, data$alpha),
