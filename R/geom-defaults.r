@@ -1,7 +1,7 @@
 #' Modify geom/stat aesthetic defaults for future plots
 #'
 #' @param stat,geom Name of geom/stat to modify (like \code{"point"} or
-#'   \code{"bin"}), or a Geom/Stat object (like \code{GeomPoint} or
+#'   \code{"bin"}), or a Geom/Stat object (like \code{a_GeomPoint} or
 #'   \code{StatBin}).
 #' @param new Named list of aesthetics.
 #' @export
@@ -12,11 +12,11 @@
 #' @rdname update_defaults
 update_geom_defaults <- function(geom, new) {
   if (is.character(geom)) {
-    g <- find_subclass("Geom", geom)
-  } else if (inherits(geom, "Geom")) {
+    g <- find_subclass("a_Geom", geom)
+  } else if (inherits(geom, "a_Geom")) {
     g <- geom
   } else {
-    stop('`geom` must be a string (like "point") or a Geom object (like GeomPoint).',
+    stop('`geom` must be a string (like "point") or a a_Geom object (like a_GeomPoint).',
       call. = FALSE)
   }
 

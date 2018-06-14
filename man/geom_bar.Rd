@@ -89,7 +89,7 @@ the bars and then stretching or squashing to the same height.
 }
 \section{Aesthetics}{
 
-  \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "bar")}
+  \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "bar")}
 }
 
 \section{Computed variables}{

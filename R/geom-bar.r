@@ -21,7 +21,7 @@
 #' the bars and then stretching or squashing to the same height.
 #'
 #' @section Aesthetics:
-#'   \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "bar")}
+#'   \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "bar")}
 #'
 #' @seealso \code{\link{geom_histogram}} for continuous data,
 #'   \code{\link{position_dodge}} for creating side-by-side barcharts.
@@ -95,7 +95,7 @@ geom_bar <- function(mapping = NULL, data = NULL,
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomBar,
+    geom = a_GeomBar,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -112,7 +112,7 @@ geom_bar <- function(mapping = NULL, data = NULL,
 #' @usage NULL
 #' @export
 #' @include geom-rect.r
-GeomBar <- ggproto("GeomBar", GeomRect,
+a_GeomBar <- ggproto("a_GeomBar", a_GeomRect,
   required_aes = "x",
 
   setup_data = function(data, params) {
@@ -126,6 +126,6 @@ GeomBar <- ggproto("GeomBar", GeomRect,
 
   draw_panel = function(self, data, panel_scales, coord, width = NULL) {
     # Hack to ensure that width is detected as a parameter
-    ggproto_parent(GeomRect, self)$draw_panel(data, panel_scales, coord)
+    ggproto_parent(a_GeomRect, self)$draw_panel(data, panel_scales, coord)
   }
 )

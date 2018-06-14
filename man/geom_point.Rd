@@ -78,7 +78,7 @@ points, e.g. \code{geom_point(alpha = 0.05)}.
 }
 \section{Aesthetics}{
 
-\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "point")}
+\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "point")}
 }
 
 \examples{

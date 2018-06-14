@@ -56,7 +56,7 @@ Horizontal error bars
 }
 \section{Aesthetics}{
 
-\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "errorbarh")}
+\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "errorbarh")}
 }
 
 \examples{

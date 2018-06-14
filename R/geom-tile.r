@@ -8,7 +8,7 @@
 #' performance special case for when all the tiles are the same size.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "tile")}
+#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "tile")}
 #'
 #' @inheritParams layer
 #' @inheritParams geom_point
@@ -66,7 +66,7 @@ geom_tile <- function(mapping = NULL, data = NULL,
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomTile,
+    geom = a_GeomTile,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -82,7 +82,7 @@ geom_tile <- function(mapping = NULL, data = NULL,
 #' @usage NULL
 #' @export
 #' @include geom-rect.r
-GeomTile <- ggproto("GeomTile", GeomRect,
+a_GeomTile <- ggproto("a_GeomTile", a_GeomRect,
   extra_params = c("na.rm", "width", "height"),
 
   setup_data = function(data, params) {
@@ -100,5 +100,5 @@ GeomTile <- ggproto("GeomTile", GeomRect,
 
   required_aes = c("x", "y"),
 
-  draw_key = draw_key_polygon
+  draw_key = a_draw_key_polygon
 )

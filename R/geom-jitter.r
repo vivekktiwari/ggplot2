@@ -5,7 +5,7 @@
 #' in smaller datasets.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "point")}
+#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "point")}
 #'
 #' @inheritParams layer
 #' @inheritParams geom_point
@@ -50,7 +50,7 @@ geom_jitter <- function(mapping = NULL, data = NULL,
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomPoint,
+    geom = a_GeomPoint,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,

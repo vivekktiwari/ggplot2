@@ -4,7 +4,7 @@
 #' with underlying smoothness.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "density")}
+#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "density")}
 #'
 #' @seealso See \code{\link{geom_histogram}}, \code{\link{geom_freqpoly}} for
 #'   other methods of displaying continuous distribution.
@@ -57,7 +57,7 @@ geom_density <- function(mapping = NULL, data = NULL,
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomDensity,
+    geom = a_GeomDensity,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -73,9 +73,9 @@ geom_density <- function(mapping = NULL, data = NULL,
 #' @usage NULL
 #' @export
 #' @include geom-ribbon.r
-GeomDensity <- ggproto("GeomDensity", GeomArea,
+a_GeomDensity <- ggproto("a_GeomDensity", a_GeomArea,
   default_aes = defaults(
     aes(fill = NA, weight = 1, colour = "black", alpha = NA),
-    GeomArea$default_aes
+    a_GeomArea$default_aes
   )
 )

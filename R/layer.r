@@ -82,11 +82,11 @@ layer <- function(geom = NULL, stat = NULL,
   }
 
   if (is.character(geom))
-    geom <- find_subclass("Geom", geom)
+    geom <- find_subclass("a_Geom", geom)
   if (is.character(stat))
-    stat <- find_subclass("Stat", stat)
+    stat <- find_subclass("a_Stat", stat)
   if (is.character(position))
-    position <- find_subclass("Position", position)
+    position <- find_subclass("a_Position", position)
 
   # Special case for na.rm parameter needed by all layers
   if (is.null(params$na.rm)) {
@@ -119,7 +119,7 @@ layer <- function(geom = NULL, stat = NULL,
     validate_params <- FALSE
   }
 
-  ggproto("LayerInstance", Layer,
+  ggproto("a_LayerInstance", a_Layer,
     geom = geom,
     geom_params = geom_params,
     stat = stat,
@@ -135,7 +135,7 @@ layer <- function(geom = NULL, stat = NULL,
   )
 }
 
-Layer <- ggproto("Layer", NULL,
+a_Layer <- ggproto("a_Layer", NULL,
   geom = NULL,
   geom_params = NULL,
   stat = NULL,
@@ -302,7 +302,7 @@ Layer <- ggproto("Layer", NULL,
   }
 )
 
-is.layer <- function(x) inherits(x, "Layer")
+is.layer <- function(x) inherits(x, "a_Layer")
 
 
 find_subclass <- function(super, class) {

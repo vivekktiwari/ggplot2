@@ -36,14 +36,14 @@
 #'   position = position_dodge(width = 0.90))
 #' }
 position_dodge <- function(width = NULL) {
-  ggproto(NULL, PositionDodge, width = width)
+  ggproto(NULL, a_PositionDodge, width = width)
 }
 
 #' @rdname ggplot2-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-PositionDodge <- ggproto("PositionDodge", Position,
+a_PositionDodge <- ggproto("a_PositionDodge", a_Position,
   required_aes = "x",
   width = NULL,
   setup_params = function(self, data) {

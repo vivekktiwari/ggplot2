@@ -86,7 +86,7 @@ scale_x_continuous <- function(name = waiver(), breaks = waiver(),
     "position_c", identity, name = name, breaks = breaks,
     minor_breaks = minor_breaks, labels = labels, limits = limits,
     expand = expand, oob = oob, na.value = na.value, trans = trans,
-    guide = "none", super=ScaleContinuousPosition
+    guide = "none", super=a_ScaleContinuousPosition
   )
   sc
 }
@@ -101,7 +101,7 @@ scale_y_continuous <- function(name = waiver(), breaks = waiver(),
     "position_c", identity, name = name, breaks = breaks,
     minor_breaks = minor_breaks, labels = labels, limits = limits,
     expand = expand, oob = oob, na.value = na.value, trans = trans,
-    guide = "none", super=ScaleContinuousPosition
+    guide = "none", super=a_ScaleContinuousPosition
   )
   sc
 }
@@ -111,7 +111,7 @@ scale_y_continuous <- function(name = waiver(), breaks = waiver(),
 #' @format NULL
 #' @usage NULL
 #' @export
-ScaleContinuousPosition <- ggproto("ScaleContinuousPosition", ScaleContinuous,
+a_ScaleContinuousPosition <- ggproto("a_ScaleContinuousPosition", a_ScaleContinuous,
   # Position aesthetics don't map, because the coordinate system takes
   # care of it. But they do need to be made in to doubles, so stat methods
   # can tell the difference between continuous and discrete data.

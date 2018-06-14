@@ -5,7 +5,7 @@
 #' useful when you have discrete data.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "point")}
+#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "point")}
 #' @param geom,stat Use to override the default connection between
 #'   \code{geom_count} and \code{stat_sum}.
 #' @inheritParams layer
@@ -51,7 +51,7 @@ geom_count <- function(mapping = NULL, data = NULL,
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomPoint,
+    geom = a_GeomPoint,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,

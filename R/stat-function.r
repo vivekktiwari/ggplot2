@@ -1,7 +1,7 @@
 #' Superimpose a function.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("stat", "function")}
+#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_stat", "function")}
 #'
 #' @param fun function to use
 #' @param n number of points to interpolate along
@@ -60,7 +60,7 @@ stat_function <- function(mapping = NULL, data = NULL,
   layer(
     data = data,
     mapping = mapping,
-    stat = StatFunction,
+    stat = a_StatFunction,
     geom = geom,
     position = position,
     show.legend = show.legend,
@@ -80,7 +80,7 @@ stat_function <- function(mapping = NULL, data = NULL,
 #' @format NULL
 #' @usage NULL
 #' @export
-StatFunction <- ggproto("StatFunction", Stat,
+a_StatFunction <- ggproto("a_StatFunction", a_Stat,
   default_aes = aes(y = ..y..),
 
   compute_group = function(data, scales, fun, xlim = NULL, n = 101, args = list()) {

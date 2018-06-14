@@ -70,7 +70,7 @@ Add heatmap of 2d bin counts.
 }
 \section{Aesthetics}{
 
-\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("stat", "bin2d")}
+\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_stat", "bin2d")}
 }
 
 \examples{

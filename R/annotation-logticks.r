@@ -83,9 +83,9 @@ annotation_logticks <- function(base = 10, sides = "bl", scaled = TRUE,
   layer(
     data = data.frame(x = NA),
     mapping = NULL,
-    stat = StatIdentity,
-    geom = GeomLogticks,
-    position = PositionIdentity,
+    stat = a_StatIdentity,
+    geom = a_GeomLogticks,
+    position = a_PositionIdentity,
     show.legend = FALSE,
     inherit.aes = FALSE,
     params = list(
@@ -108,7 +108,7 @@ annotation_logticks <- function(base = 10, sides = "bl", scaled = TRUE,
 #' @format NULL
 #' @usage NULL
 #' @export
-GeomLogticks <- ggproto("GeomLogticks", Geom,
+a_GeomLogticks <- ggproto("a_GeomLogticks", a_Geom,
   extra_params = "",
   handle_na = function(data, params) {
     data

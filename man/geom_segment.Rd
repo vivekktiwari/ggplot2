@@ -80,7 +80,7 @@ the default plot specification, e.g. \code{\link{borders}}.}
 }
 \section{Aesthetics}{
 
-\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "segment")}
+\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "segment")}
 }
 
 \examples{

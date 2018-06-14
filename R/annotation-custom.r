@@ -42,9 +42,9 @@ NULL
 annotation_custom <- function(grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf) {
   layer(
     data = NULL,
-    stat = StatIdentity,
-    position = PositionIdentity,
-    geom = GeomCustomAnn,
+    stat = a_StatIdentity,
+    position = a_PositionIdentity,
+    geom = a_GeomCustomAnn,
     inherit.aes = TRUE,
     params = list(
 
@@ -61,7 +61,7 @@ annotation_custom <- function(grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax =
 #' @format NULL
 #' @usage NULL
 #' @export
-GeomCustomAnn <- ggproto("GeomCustomAnn", Geom,
+a_GeomCustomAnn <- ggproto("a_GeomCustomAnn", a_Geom,
   extra_params = "",
   handle_na = function(data, params) {
     data
@@ -69,7 +69,7 @@ GeomCustomAnn <- ggproto("GeomCustomAnn", Geom,
 
   draw_panel = function(data, panel_scales, coord, grob, xmin, xmax,
                         ymin, ymax) {
-    if (!inherits(coord, "CoordCartesian")) {
+    if (!inherits(coord, "a_CoordCartesian")) {
       stop("annotation_custom only works with Cartesian coordinates",
         call. = FALSE)
     }

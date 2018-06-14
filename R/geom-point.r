@@ -24,7 +24,7 @@
 #' points, e.g. \code{geom_point(alpha = 0.05)}.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "point")}
+#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "point")}
 #'
 #' @seealso \code{\link{scale_size}} to see scale area of points, instead of
 #'   radius, \code{\link{geom_jitter}} to jitter points to reduce (mild)
@@ -100,7 +100,7 @@ geom_point <- function(mapping = NULL, data = NULL,
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomPoint,
+    geom = a_GeomPoint,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -115,7 +115,7 @@ geom_point <- function(mapping = NULL, data = NULL,
 #' @format NULL
 #' @usage NULL
 #' @export
-GeomPoint <- ggproto("GeomPoint", Geom,
+a_GeomPoint <- ggproto("a_GeomPoint", a_Geom,
   required_aes = c("x", "y"),
   non_missing_aes = c("size", "shape"),
   default_aes = aes(
@@ -140,5 +140,5 @@ GeomPoint <- ggproto("GeomPoint", Geom,
     )
   },
 
-  draw_key = draw_key_point
+  draw_key = a_draw_key_point
 )

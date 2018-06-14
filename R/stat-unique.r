@@ -1,7 +1,7 @@
 #' Remove duplicates.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("stat", "unique")}
+#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_stat", "unique")}
 #'
 #' @export
 #' @inheritParams layer
@@ -18,7 +18,7 @@ stat_unique <- function(mapping = NULL, data = NULL,
   layer(
     data = data,
     mapping = mapping,
-    stat = StatUnique,
+    stat = a_StatUnique,
     geom = geom,
     position = position,
     show.legend = show.legend,
@@ -34,6 +34,6 @@ stat_unique <- function(mapping = NULL, data = NULL,
 #' @format NULL
 #' @usage NULL
 #' @export
-StatUnique <- ggproto("StatUnique", Stat,
+a_StatUnique <- ggproto("a_StatUnique", a_Stat,
   compute_panel = function(data, scales) unique(data)
 )

@@ -3,7 +3,7 @@
 #' This can be used as a continuous analogue of a geom_boxplot.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "quantile")}
+#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "quantile")}
 #'
 #' @export
 #' @inheritParams layer
@@ -42,7 +42,7 @@ geom_quantile <- function(mapping = NULL, data = NULL,
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomQuantile,
+    geom = a_GeomQuantile,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -61,9 +61,9 @@ geom_quantile <- function(mapping = NULL, data = NULL,
 #' @usage NULL
 #' @export
 #' @include geom-path.r
-GeomQuantile <- ggproto("GeomQuantile", GeomPath,
+a_GeomQuantile <- ggproto("a_GeomQuantile", a_GeomPath,
   default_aes = defaults(
     aes(weight = 1, colour = "#3366FF", size = 0.5),
-    GeomPath$default_aes
+    a_GeomPath$default_aes
   )
 )

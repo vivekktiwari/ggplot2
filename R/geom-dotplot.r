@@ -17,7 +17,7 @@
 #' to match the number of dots.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "dotplot")}
+#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "dotplot")}
 #'
 #' @inheritParams layer
 #' @inheritParams geom_point
@@ -143,8 +143,8 @@ geom_dotplot <- function(mapping = NULL, data = NULL,
   layer(
     data = data,
     mapping = mapping,
-    stat = StatBindot,
-    geom = GeomDotplot,
+    stat = a_StatBindot,
+    geom = a_GeomDotplot,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -172,7 +172,7 @@ geom_dotplot <- function(mapping = NULL, data = NULL,
 #' @format NULL
 #' @usage NULL
 #' @export
-GeomDotplot <- ggproto("GeomDotplot", Geom,
+a_GeomDotplot <- ggproto("a_GeomDotplot", a_Geom,
   required_aes = c("x", "y"),
   non_missing_aes = c("size", "shape"),
 
@@ -281,5 +281,5 @@ GeomDotplot <- ggproto("GeomDotplot", Geom,
     )
   },
 
-  draw_key = draw_key_dotplot
+  draw_key = a_draw_key_dotplot
 )

@@ -84,7 +84,7 @@
 #' worldmap + ggplot2Animint:::coord_map("ortho", orientation = c(41, -74, 0))
 #' }
 coord_map <- function(projection="mercator", ..., orientation = NULL, xlim = NULL, ylim = NULL) {
-  ggproto(NULL, CoordMap,
+  ggproto(NULL, a_CoordMap,
     projection = projection,
     orientation = orientation,
     limits = list(x = xlim, y = ylim),
@@ -96,7 +96,7 @@ coord_map <- function(projection="mercator", ..., orientation = NULL, xlim = NUL
 #' @format NULL
 #' @usage NULL
 #' @export
-CoordMap <- ggproto("CoordMap", Coord,
+a_CoordMap <- ggproto("a_CoordMap", a_Coord,
 
   transform = function(self, data, scale_details) {
     trans <- mproject(self, data$x, data$y, scale_details$orientation)

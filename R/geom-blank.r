@@ -18,7 +18,7 @@ geom_blank <- function(mapping = NULL, data = NULL,
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomBlank,
+    geom = a_GeomBlank,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -31,7 +31,7 @@ geom_blank <- function(mapping = NULL, data = NULL,
 #' @format NULL
 #' @usage NULL
 #' @export
-GeomBlank <- ggproto("GeomBlank", Geom,
+a_GeomBlank <- ggproto("a_GeomBlank", a_Geom,
   default_aes = aes(),
   handle_na = function(data, params) data,
   draw_panel = function(...) nullGrob()

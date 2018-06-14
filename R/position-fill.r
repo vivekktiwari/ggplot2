@@ -1,21 +1,21 @@
 #' @export
 #' @rdname position_stack
 position_fill <- function() {
-  PositionFill
+  a_PositionFill
 }
 
 #' @rdname ggplot2-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-PositionFill <- ggproto("PositionFill", Position,
+a_PositionFill <- ggproto("a_PositionFill", a_Position,
   required_aes = c("x", "ymax"),
 
   setup_data = function(self, data, params) {
     if (!is.null(data$ymin) && !all(data$ymin == 0))
       warning("Filling not well defined when ymin != 0", call. = FALSE)
 
-    ggproto_parent(Position, self)$setup_data(data)
+    ggproto_parent(a_Position, self)$setup_data(data)
   },
 
   compute_panel = function(data, params, scales) {

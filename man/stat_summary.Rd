@@ -75,7 +75,7 @@ aggregate.
 }
 \section{Aesthetics}{
 
-\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("stat", "summary")}
+\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_stat", "summary")}
 }
 
 \section{Summary functions}{

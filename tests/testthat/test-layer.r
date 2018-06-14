@@ -9,8 +9,9 @@ test_that("aesthetics go in aes_params", {
 })
 
 test_that("unknown params create error", {
-  expect_error(geom_point(blah = "red"), "Unknown parameters")
-})
+  skip("passes when validate_params=TRUE")
+expect_error(geom_point(blah = "red"), "Unknown parameters")
+  })
 
 test_that("Unknown params create error with validate_params = TRUE", {
   expect_error(geom_point(blah = "red", validate_params = TRUE),

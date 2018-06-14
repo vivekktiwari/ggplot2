@@ -1,12 +1,16 @@
-# Scales object encapsulates multiple scales.
-# All input and output done with data.frames to facilitate
-# multiple input and output variables
-
+#' Scales object encapsulates multiple scales.
+#' All input and output done with data.frames to facilitate
+#' multiple input and output variables
+#' @export
 scales_list <- function() {
-  ggproto(NULL, ScalesList)
+  ggproto(NULL, a_ScalesList)
 }
 
-ScalesList <- ggproto("ScalesList", NULL,
+#' @rdname ggplot2-ggproto
+#' @format NULL
+#' @usage NULL
+#' @export
+a_ScalesList <- ggproto("a_ScalesList", NULL,
   scales = NULL,
 
   find = function(self, aesthetic) {

@@ -35,9 +35,9 @@ annotation_map <- function(map, ...) {
 
   layer(
     data = NULL,
-    stat = StatIdentity,
-    geom = GeomAnnotationMap,
-    position = PositionIdentity,
+    stat = a_StatIdentity,
+    geom = a_GeomAnnotationMap,
+    position = a_PositionIdentity,
     inherit.aes = FALSE,
     params = list(map = map, ...)
   )
@@ -47,7 +47,7 @@ annotation_map <- function(map, ...) {
 #' @format NULL
 #' @usage NULL
 #' @export
-GeomAnnotationMap <- ggproto("GeomAnnotationMap", GeomMap,
+a_GeomAnnotationMap <- ggproto("a_GeomAnnotationMap", a_GeomMap,
   extra_params = "",
   handle_na = function(data, params) {
     data

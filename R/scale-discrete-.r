@@ -48,7 +48,7 @@
 #' }
 scale_x_discrete <- function(..., expand = waiver()) {
   sc <- discrete_scale(c("x", "xmin", "xmax", "xend"), "position_d", identity, ...,
-    expand = expand, guide = "none", super=ScaleDiscretePosition)
+    expand = expand, guide = "none", super=a_ScaleDiscretePosition)
 
   sc$range_c <- continuous_range()
   sc
@@ -57,7 +57,7 @@ scale_x_discrete <- function(..., expand = waiver()) {
 #' @export
 scale_y_discrete <- function(..., expand = waiver()) {
   sc <- discrete_scale(c("y", "ymin", "ymax", "yend"), "position_d", identity, ...,
-    expand = expand, guide = "none", super=ScaleDiscretePosition)
+    expand = expand, guide = "none", super=a_ScaleDiscretePosition)
   sc$range_c <- continuous_range()
   sc
 }
@@ -71,7 +71,7 @@ scale_y_discrete <- function(..., expand = waiver()) {
 #' @format NULL
 #' @usage NULL
 #' @export
-ScaleDiscretePosition <- ggproto("ScaleDiscretePosition", ScaleDiscrete,
+a_ScaleDiscretePosition <- ggproto("a_ScaleDiscretePosition", a_ScaleDiscrete,
 
   train = function(self, x) {
     if (is.discrete(x)) {

@@ -13,7 +13,7 @@
 #' scale, and then back-transformed to the response scale.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "smooth")}
+#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "smooth")}
 #'
 #' @inheritParams layer
 #' @inheritParams geom_point
@@ -101,7 +101,7 @@ geom_smooth <- function(mapping = NULL, data = NULL,
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomSmooth,
+    geom = a_GeomSmooth,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -113,7 +113,7 @@ geom_smooth <- function(mapping = NULL, data = NULL,
 #' @format NULL
 #' @usage NULL
 #' @export
-GeomSmooth <- ggproto("GeomSmooth", Geom,
+a_GeomSmooth <- ggproto("a_GeomSmooth", a_Geom,
   draw_group = function(data, panel_scales, coord) {
     ribbon <- transform(data, colour = NA)
     path <- transform(data, alpha = NA)
@@ -121,12 +121,12 @@ GeomSmooth <- ggproto("GeomSmooth", Geom,
     has_ribbon <- !is.null(data$ymax) && !is.null(data$ymin)
 
     gList(
-      if (has_ribbon) GeomRibbon$draw_group(ribbon, panel_scales, coord),
-      GeomLine$draw_panel(path, panel_scales, coord)
+      if (has_ribbon) a_GeomRibbon$draw_group(ribbon, panel_scales, coord),
+      a_GeomLine$draw_panel(path, panel_scales, coord)
     )
   },
 
-  draw_key = draw_key_smooth,
+  draw_key = a_draw_key_smooth,
 
   required_aes = c("x", "y"),
 

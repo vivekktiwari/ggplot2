@@ -6,7 +6,7 @@
 #' when changes occur.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "path")}
+#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "path")}
 #'
 #' @inheritParams layer
 #' @inheritParams geom_point
@@ -99,7 +99,7 @@ geom_path <- function(mapping = NULL, data = NULL,
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomPath,
+    geom = a_GeomPath,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -118,7 +118,7 @@ geom_path <- function(mapping = NULL, data = NULL,
 #' @format NULL
 #' @usage NULL
 #' @export
-GeomPath <- ggproto("GeomPath", Geom,
+a_GeomPath <- ggproto("a_GeomPath", a_Geom,
   required_aes = c("x", "y"),
 
   default_aes = aes(colour = "black", size = 0.5, linetype = 1, alpha = NA),
@@ -220,7 +220,7 @@ GeomPath <- ggproto("GeomPath", Geom,
     }
   },
 
-  draw_key = draw_key_path
+  draw_key = a_draw_key_path
 )
 
 #' @export
@@ -232,7 +232,7 @@ geom_line <- function(mapping = NULL, data = NULL, stat = "identity",
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomLine,
+    geom = a_GeomLine,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -248,7 +248,7 @@ geom_line <- function(mapping = NULL, data = NULL, stat = "identity",
 #' @usage NULL
 #' @export
 #' @include geom-path.r
-GeomLine <- ggproto("GeomLine", GeomPath,
+a_GeomLine <- ggproto("a_GeomLine", a_GeomPath,
   setup_data = function(data, params) {
     data[order(data$PANEL, data$group, data$x), ]
   }
@@ -265,7 +265,7 @@ geom_step <- function(mapping = NULL, data = NULL, stat = "identity",
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomStep,
+    geom = a_GeomStep,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -282,10 +282,10 @@ geom_step <- function(mapping = NULL, data = NULL, stat = "identity",
 #' @usage NULL
 #' @export
 #' @include geom-path.r
-GeomStep <- ggproto("GeomStep", GeomPath,
+a_GeomStep <- ggproto("a_GeomStep", a_GeomPath,
   draw_panel = function(data, panel_scales, coord, direction = "hv") {
     data <- plyr::ddply(data, "group", stairstep, direction = direction)
-    GeomPath$draw_panel(data, panel_scales, coord)
+    a_GeomPath$draw_panel(data, panel_scales, coord)
   }
 )
 

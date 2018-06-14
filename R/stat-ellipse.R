@@ -52,7 +52,7 @@ stat_ellipse <- function(mapping = NULL, data = NULL,
   layer(
     data = data,
     mapping = mapping,
-    stat = StatEllipse,
+    stat = a_StatEllipse,
     geom = geom,
     position = position,
     show.legend = show.legend,
@@ -71,7 +71,7 @@ stat_ellipse <- function(mapping = NULL, data = NULL,
 #' @format NULL
 #' @usage NULL
 #' @export
-StatEllipse <- ggproto("StatEllipse", Stat,
+a_StatEllipse <- ggproto("a_StatEllipse", a_Stat,
   required_aes = c("x", "y"),
 
   compute_group = function(data, scales, type = "t", level = 0.95,

@@ -16,7 +16,7 @@ stat_identity <- function(mapping = NULL, data = NULL,
   layer(
     data = data,
     mapping = mapping,
-    stat = StatIdentity,
+    stat = a_StatIdentity,
     geom = geom,
     position = position,
     show.legend = show.legend,
@@ -32,7 +32,7 @@ stat_identity <- function(mapping = NULL, data = NULL,
 #' @format NULL
 #' @usage NULL
 #' @export
-StatIdentity <- ggproto("StatIdentity", Stat,
+a_StatIdentity <- ggproto("a_StatIdentity", a_Stat,
   compute_layer = function(data, scales, params) {
     data
   }

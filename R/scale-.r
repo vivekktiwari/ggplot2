@@ -1,17 +1,17 @@
-#' @section Scales:
+#' @section a_Scales:
 #'
 #' All \code{scale_*} functions (like \code{scale_x_continuous}) return a
-#' \code{Scale*} object (like \code{ScaleContinuous}). The \code{Scale*}
+#' \code{a_Scale*} object (like \code{a_ScaleContinuous}). The \code{a_Scale*}
 #' object represents a single scale.
 #'
-#' Each of the \code{Scale*} objects is a \code{\link{ggproto}} object,
-#' descended from the top-level \code{Scale}.
+#' Each of the \code{a_Scale*} objects is a \code{\link{ggproto}} object,
+#' descended from the top-level \code{a_Scale}.
 #'
 #' @rdname ggplot2-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-Scale <- ggproto("Scale", NULL,
+a_Scale <- ggproto("a_Scale", NULL,
 
   call = NULL,
 
@@ -21,7 +21,7 @@ Scale <- ggproto("Scale", NULL,
     stop("Not implemented", call. = FALSE)
   },
 
-  range = ggproto(NULL, Range),
+  range = ggproto(NULL, a_Range),
   limits = NULL,
   na.value = NA,
   expand = waiver(),
@@ -172,7 +172,7 @@ check_breaks_labels <- function(breaks, labels) {
 #' @format NULL
 #' @usage NULL
 #' @export
-ScaleContinuous <- ggproto("ScaleContinuous", Scale,
+a_ScaleContinuous <- ggproto("a_ScaleContinuous", a_Scale,
   range = continuous_range(),
   na.value = NA_real_,
   rescaler = rescale, # Used by diverging and n colour gradients x
@@ -342,7 +342,7 @@ ScaleContinuous <- ggproto("ScaleContinuous", Scale,
 #' @format NULL
 #' @usage NULL
 #' @export
-ScaleDiscrete <- ggproto("ScaleDiscrete", Scale,
+a_ScaleDiscrete <- ggproto("a_ScaleDiscrete", a_Scale,
   drop = TRUE,
   na.value = NA,
 
@@ -522,7 +522,7 @@ continuous_scale <- function(aesthetics, scale_name, palette, name = waiver(),
                              labels = waiver(), limits = NULL,
                              rescaler = rescale, oob = censor,
                              expand = waiver(), na.value = NA_real_,
-                             trans = "identity", guide = "legend", super=ScaleContinuous) {
+                             trans = "identity", guide = "legend", super=a_ScaleContinuous) {
 
   check_breaks_labels(breaks, labels)
 
@@ -602,7 +602,7 @@ continuous_scale <- function(aesthetics, scale_name, palette, name = waiver(),
 #' @keywords internal
 discrete_scale <- function(aesthetics, scale_name, palette, name = waiver(), breaks = waiver(),
   labels = waiver(), limits = NULL, expand = waiver(), na.value = NA, drop = TRUE,
-  guide = "legend", super=ScaleDiscrete) {
+  guide = "legend", super=a_ScaleDiscrete) {
 
   check_breaks_labels(breaks, labels)
 

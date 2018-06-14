@@ -1,7 +1,7 @@
 #' Violin plot.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "violin")}
+#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "violin")}
 #'
 #' @inheritParams layer
 #' @inheritParams geom_point
@@ -79,7 +79,7 @@ geom_violin <- function(mapping = NULL, data = NULL,
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomViolin,
+    geom = a_GeomViolin,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -97,7 +97,7 @@ geom_violin <- function(mapping = NULL, data = NULL,
 #' @format NULL
 #' @usage NULL
 #' @export
-GeomViolin <- ggproto("GeomViolin", Geom,
+a_GeomViolin <- ggproto("a_GeomViolin", a_Geom,
   setup_data = function(data, params) {
     data$width <- data$width %||%
       params$width %||% (resolution(data$x, FALSE) * 0.9)
@@ -138,18 +138,18 @@ GeomViolin <- ggproto("GeomViolin", Geom,
         drop = FALSE
       ]
       both <- cbind(quantiles, aesthetics)
-      quantile_grob <- GeomPath$draw_panel(both, ...)
+      quantile_grob <- a_GeomPath$draw_panel(both, ...)
 
       ggname("geom_violin", grobTree(
-        GeomPolygon$draw_panel(newdata, ...),
+        a_GeomPolygon$draw_panel(newdata, ...),
         quantile_grob)
       )
     } else {
-      ggname("geom_violin", GeomPolygon$draw_panel(newdata, ...))
+      ggname("geom_violin", a_GeomPolygon$draw_panel(newdata, ...))
     }
   },
 
-  draw_key = draw_key_polygon,
+  draw_key = a_draw_key_polygon,
 
   default_aes = aes(weight = 1, colour = "grey20", fill = "white", size = 0.5,
     alpha = NA, linetype = "solid"),
