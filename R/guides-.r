@@ -92,19 +92,6 @@ update_guides <- function(p, guides) {
 # 5. guides_build()
 #      arrange all ggrobs
 
-
-#' build_guides function
-#' 
-#' Describtion Here
-#' @param scales ...
-#' @param layers ...
-#' @param default_mapping ...
-#' @param position ..
-#' @param theme ...
-#' @param guides ..
-#' @param labels ...
-#' @export
-## ToDO: Describe parameters correctly.
 build_guides <- function(scales, layers, default_mapping, position, theme, guides, labels) {
 
   # set themes w.r.t. guides
@@ -152,12 +139,8 @@ build_guides <- function(scales, layers, default_mapping, position, theme, guide
 
   grobs
 }
-#' validate_guide function
-#' 
-#' validate guide object
-#' @param guide ...
-#' @export
-## ToDO: Describe parameters correctly.
+
+# validate_guide function
 validate_guide <- function(guide) {
   # if guide is specified by character, then find the corresponding guide
   if (is.character(guide))
@@ -167,16 +150,8 @@ validate_guide <- function(guide) {
   else
     stop("Unknown guide: ", guide)
 }
+# train each scale in scales and generate the definition of guide
 
-#' guides_train function
-#' 
-#' train each scale in scales and generate the definition of guide
-#' @param scales ...
-#' @param theme ...
-#' @param guides ...
-#' @param labels ...
-#' @export
-## ToDO: Describe parameters correctly.
 guides_train <- function(scales, theme, guides, labels) {
 
   gdefs <- list()
@@ -216,12 +191,7 @@ guides_train <- function(scales, theme, guides, labels) {
   gdefs
 }
 
-#' guides_merge function
-#' 
-#' merge overlapped guides
-#' @param gdefs ...
-#' @export
-## ToDO: Describe parameters correctly.
+# merge overlapped guides
 guides_merge <- function(gdefs) {
   # split gdefs based on hash, and apply Reduce (guide_merge) to each gdef group.
   gdefs <- lapply(gdefs, function(g) {
@@ -236,25 +206,12 @@ guides_merge <- function(gdefs) {
   tapply(gdefs, sapply(gdefs, function(g)g$hash), function(gs)Reduce(guide_merge, gs))
 }
 
-#' guides_geom function
-#' 
-#' process layer information
-#' @param gdefs ...
-#' @param layers ...
-#' @param default_mapping ...
-#' @export
-## ToDO: Describe parameters correctly.
+# guides_geom function
 guides_geom <- function(gdefs, layers, default_mapping) {
   compact(lapply(gdefs, guide_geom, layers, default_mapping))
 }
 
-#' guides_grob function
-#' 
-#' generate grob from each gdef (needs to write this function?)
-#' @param gdefs ...
-#' @param theme ....
-#' @export
-## ToDO: Describe parameters correctly.
+# generate grob from each gdef (needs to write this function?)
 guides_gengrob <- function(gdefs, theme) {
   # common drawing process for all guides
   gdefs <- lapply(gdefs,
@@ -268,13 +225,7 @@ guides_gengrob <- function(gdefs, theme) {
   lapply(gdefs, guide_gengrob, theme)
 }
 
-#' guides_build function
-#' 
-#' build up all guide boxes into one guide-boxes.
-#' @param ggrobs ...
-#' @param theme ...
-#' @export
-## ToDO: Describe parameters correctly.
+# build up all guide boxes into one guide-boxes.
 guides_build <- function(ggrobs, theme) {
   theme$legend.margin <- theme$legend.margin %||% unit(0.5, "lines")
   theme$legend.vmargin <- theme$legend.vmargin  %||% theme$legend.margin
