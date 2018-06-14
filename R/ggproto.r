@@ -71,7 +71,7 @@ ggproto <- function(`_class` = NULL, `_inherit` = NULL, ...) {
 #' @export
 is.ggproto <- function(x) inherits(x, "ggproto")
 
-fetch_ggproto <- function(x, name) {
+a_fetch_ggproto <- function(x, name) {
   res <- NULL
 
   val <- .subset2(x, name)
@@ -85,7 +85,7 @@ fetch_ggproto <- function(x, name) {
     if (is.null(super)) {
       # no super class
     } else if (is.function(super)) {
-      res <- fetch_ggproto(super(), name)
+      res <- a_fetch_ggproto(super(), name)
     } else {
       stop(
         class(x)[[1]], " was built with an incompatible version of ggproto.\n",
@@ -106,7 +106,7 @@ ggproto_parent <- function(parent, self) {
 
 #' @export
 `$.ggproto` <- function(x, name) {
-  res <- fetch_ggproto(x, name)
+  res <- a_fetch_ggproto(x, name)
   if (!is.function(res)) {
     return(res)
   }
@@ -116,7 +116,7 @@ ggproto_parent <- function(parent, self) {
 
 #' @export
 `$.ggproto_parent` <- function(x, name) {
-  res <- fetch_ggproto(.subset2(x, "parent"), name)
+  res <- a_fetch_ggproto(.subset2(x, "parent"), name)
   if (!is.function(res)) {
     return(res)
   }

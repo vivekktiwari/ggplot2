@@ -26,7 +26,7 @@
 #'   geom_area()
 #' last_plot() + ggplot2Animint:::coord_flip()
 coord_flip <- function(xlim = NULL, ylim = NULL, expand = TRUE) {
-  ggproto(NULL, CoordFlip,
+  ggproto(NULL, a_CoordFlip,
     limits = list(x = xlim, y = ylim),
     expand = expand
   )
@@ -36,11 +36,11 @@ coord_flip <- function(xlim = NULL, ylim = NULL, expand = TRUE) {
 #' @format NULL
 #' @usage NULL
 #' @export
-CoordFlip <- ggproto("CoordFlip", CoordCartesian,
+a_CoordFlip <- ggproto("a_CoordFlip", a_CoordCartesian,
 
   transform = function(data, scale_details) {
     data <- flip_labels(data)
-    CoordCartesian$transform(data, scale_details)
+    a_CoordCartesian$transform(data, scale_details)
   },
 
   range = function(scale_details) {
@@ -48,12 +48,12 @@ CoordFlip <- ggproto("CoordFlip", CoordCartesian,
   },
 
   train = function(self, scale_details) {
-    trained <- ggproto_parent(CoordCartesian, self)$train(scale_details)
+    trained <- ggproto_parent(a_CoordCartesian, self)$train(scale_details)
     flip_labels(trained)
   },
 
   labels = function(scale_details) {
-    flip_labels(CoordCartesian$labels(scale_details))
+    flip_labels(a_CoordCartesian$labels(scale_details))
   }
 )
 

@@ -6,7 +6,7 @@ NULL
 #' Does not affect position scales.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "map")}
+#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "map")}
 #'
 #' @export
 #' @param map Data frame that contains the map coordinates.  This will
@@ -78,8 +78,8 @@ geom_map <- function(mapping = NULL, data = NULL,
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomMap,
-    position = PositionIdentity,
+    geom = a_GeomMap,
+    position = a_PositionIdentity,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
     params = list(
@@ -94,7 +94,7 @@ geom_map <- function(mapping = NULL, data = NULL,
 #' @format NULL
 #' @usage NULL
 #' @export
-GeomMap <- ggproto("GeomMap", GeomPolygon,
+a_GeomMap <- ggproto("a_GeomMap", a_GeomPolygon,
   draw_panel = function(data, panel_scales, coord, map) {
     # Only use matching data and map ids
     common <- intersect(data$map_id, map$id)

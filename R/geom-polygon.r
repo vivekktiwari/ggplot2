@@ -1,7 +1,7 @@
 #' Polygon, a filled path.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "polygon")}
+#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "polygon")}
 #'
 #' @seealso
 #'  \code{\link{geom_path}} for an unfilled polygon,
@@ -57,7 +57,7 @@ geom_polygon <- function(mapping = NULL, data = NULL,
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomPolygon,
+    geom = a_GeomPolygon,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -72,7 +72,7 @@ geom_polygon <- function(mapping = NULL, data = NULL,
 #' @format NULL
 #' @usage NULL
 #' @export
-GeomPolygon <- ggproto("GeomPolygon", Geom,
+a_GeomPolygon <- ggproto("a_GeomPolygon", a_Geom,
   draw_panel = function(data, panel_scales, coord) {
     n <- nrow(data)
     if (n == 1) return(zeroGrob())
@@ -109,6 +109,6 @@ GeomPolygon <- ggproto("GeomPolygon", Geom,
 
   required_aes = c("x", "y"),
 
-  draw_key = draw_key_polygon
+  draw_key = a_draw_key_polygon
 )
 

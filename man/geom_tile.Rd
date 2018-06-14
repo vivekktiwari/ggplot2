@@ -79,7 +79,7 @@ performance special case for when all the tiles are the same size.
 }
 \section{Aesthetics}{
 
-\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "tile")}
+\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "tile")}
 }
 
 \examples{

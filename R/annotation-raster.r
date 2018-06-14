@@ -45,9 +45,9 @@ annotation_raster <- function(raster, xmin, xmax, ymin, ymax,
   layer(
     data = NULL,
     mapping = NULL,
-    stat = StatIdentity,
-    position = PositionIdentity,
-    geom = GeomRasterAnn,
+    stat = a_StatIdentity,
+    position = a_PositionIdentity,
+    geom = a_GeomRasterAnn,
     inherit.aes = TRUE,
     params = list(
       raster = raster,
@@ -65,7 +65,7 @@ annotation_raster <- function(raster, xmin, xmax, ymin, ymax,
 #' @format NULL
 #' @usage NULL
 #' @export
-GeomRasterAnn <- ggproto("GeomRasterAnn", Geom,
+a_GeomRasterAnn <- ggproto("a_GeomRasterAnn", a_Geom,
   extra_params = "",
   handle_na = function(data, params) {
     data
@@ -73,7 +73,7 @@ GeomRasterAnn <- ggproto("GeomRasterAnn", Geom,
 
   draw_panel = function(data, panel_scales, coord, raster, xmin, xmax,
                         ymin, ymax, interpolate = FALSE) {
-    if (!inherits(coord, "CoordCartesian")) {
+    if (!inherits(coord, "a_CoordCartesian")) {
       stop("annotation_raster only works with Cartesian coordinates",
         call. = FALSE)
     }

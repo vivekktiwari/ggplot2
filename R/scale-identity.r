@@ -42,7 +42,7 @@ NULL
 #' @rdname scale_identity
 #' @export
 scale_colour_identity <- function(..., guide = "none") {
-  sc <- discrete_scale("colour", "identity", identity_pal(), ..., guide = guide, super = ScaleDiscreteIdentity)
+  sc <- discrete_scale("colour", "identity", identity_pal(), ..., guide = guide, super = a_ScaleDiscreteIdentity)
 
   sc
 }
@@ -50,7 +50,7 @@ scale_colour_identity <- function(..., guide = "none") {
 #' @rdname scale_identity
 #' @export
 scale_fill_identity <- function(..., guide = "none") {
-  sc <- discrete_scale("fill", "identity", identity_pal(), ..., guide = guide, super = ScaleDiscreteIdentity)
+  sc <- discrete_scale("fill", "identity", identity_pal(), ..., guide = guide, super = a_ScaleDiscreteIdentity)
 
   sc
 }
@@ -58,7 +58,7 @@ scale_fill_identity <- function(..., guide = "none") {
 #' @rdname scale_identity
 #' @export
 scale_shape_identity <- function(..., guide = "none") {
-  sc <- continuous_scale("shape", "identity", identity_pal(), ..., guide = guide, super = ScaleContinuousIdentity)
+  sc <- continuous_scale("shape", "identity", identity_pal(), ..., guide = guide, super = a_ScaleContinuousIdentity)
 
   sc
 }
@@ -66,7 +66,7 @@ scale_shape_identity <- function(..., guide = "none") {
 #' @rdname scale_identity
 #' @export
 scale_linetype_identity <- function(..., guide = "none") {
-  sc <- discrete_scale("linetype", "identity", identity_pal(), ..., guide = guide, super = ScaleDiscreteIdentity)
+  sc <- discrete_scale("linetype", "identity", identity_pal(), ..., guide = guide, super = a_ScaleDiscreteIdentity)
 
   sc
 }
@@ -74,7 +74,7 @@ scale_linetype_identity <- function(..., guide = "none") {
 #' @rdname scale_identity
 #' @export
 scale_alpha_identity <- function(..., guide = "none") {
-  sc <- continuous_scale("alpha", "identity", identity_pal(), ..., guide = guide, super=ScaleContinuousIdentity)
+  sc <- continuous_scale("alpha", "identity", identity_pal(), ..., guide = guide, super=a_ScaleContinuousIdentity)
 
   sc
 }
@@ -82,7 +82,7 @@ scale_alpha_identity <- function(..., guide = "none") {
 #' @rdname scale_identity
 #' @export
 scale_size_identity <- function(..., guide = "none") {
-  sc <- continuous_scale("size", "identity", identity_pal(), ..., guide = guide, super = ScaleContinuousIdentity)
+  sc <- continuous_scale("size", "identity", identity_pal(), ..., guide = guide, super = a_ScaleContinuousIdentity)
 
   sc
 }
@@ -92,7 +92,7 @@ scale_size_identity <- function(..., guide = "none") {
 #' @format NULL
 #' @usage NULL
 #' @export
-ScaleDiscreteIdentity <- ggproto("ScaleDiscreteIdentity", ScaleDiscrete,
+a_ScaleDiscreteIdentity <- ggproto("a_ScaleDiscreteIdentity", a_ScaleDiscrete,
   map = function(x) {
     if (is.factor(x)) {
       as.character(x)
@@ -104,7 +104,7 @@ ScaleDiscreteIdentity <- ggproto("ScaleDiscreteIdentity", ScaleDiscrete,
   train = function(self, x) {
     # do nothing if no guide, otherwise train so we know what breaks to use
     if (self$guide == "none") return()
-    ggproto_parent(ScaleDiscrete, self)$train(x)
+    ggproto_parent(a_ScaleDiscrete, self)$train(x)
   }
 )
 
@@ -113,7 +113,7 @@ ScaleDiscreteIdentity <- ggproto("ScaleDiscreteIdentity", ScaleDiscrete,
 #' @format NULL
 #' @usage NULL
 #' @export
-ScaleContinuousIdentity <- ggproto("ScaleContinuousIdentity", ScaleContinuous,
+a_ScaleContinuousIdentity <- ggproto("a_ScaleContinuousIdentity", a_ScaleContinuous,
   map = function(x) {
     if (is.factor(x)) {
       as.character(x)
@@ -125,6 +125,6 @@ ScaleContinuousIdentity <- ggproto("ScaleContinuousIdentity", ScaleContinuous,
   train = function(self, x) {
     # do nothing if no guide, otherwise train so we know what breaks to use
     if (self$guide == "none") return()
-    ggproto_parent(ScaleDiscrete, self)$train(x)
+    ggproto_parent(a_ScaleDiscrete, self)$train(x)
   }
 )

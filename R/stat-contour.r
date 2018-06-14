@@ -14,7 +14,7 @@ stat_contour <- function(mapping = NULL, data = NULL,
   layer(
     data = data,
     mapping = mapping,
-    stat = StatContour,
+    stat = a_StatContour,
     geom = geom,
     position = position,
     show.legend = show.legend,
@@ -30,7 +30,7 @@ stat_contour <- function(mapping = NULL, data = NULL,
 #' @format NULL
 #' @usage NULL
 #' @export
-StatContour <- ggproto("StatContour", Stat,
+a_StatContour <- ggproto("a_StatContour", a_Stat,
   required_aes = c("x", "y", "z"),
   default_aes = aes(order = ..level..),
 

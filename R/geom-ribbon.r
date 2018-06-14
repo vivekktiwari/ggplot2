@@ -11,7 +11,7 @@
 #' see the individual pattern as you move up the stack.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "ribbon")}
+#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "ribbon")}
 #'
 #' @seealso
 #'   \code{\link{geom_bar}} for discrete intervals (bars),
@@ -42,7 +42,7 @@ geom_ribbon <- function(mapping = NULL, data = NULL,
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomRibbon,
+    geom = a_GeomRibbon,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -57,13 +57,13 @@ geom_ribbon <- function(mapping = NULL, data = NULL,
 #' @format NULL
 #' @usage NULL
 #' @export
-GeomRibbon <- ggproto("GeomRibbon", Geom,
+a_GeomRibbon <- ggproto("a_GeomRibbon", a_Geom,
   default_aes = aes(colour = NA, fill = "grey20", size = 0.5, linetype = 1,
     alpha = NA),
 
   required_aes = c("x", "ymin", "ymax"),
 
-  draw_key = draw_key_polygon,
+  draw_key = a_draw_key_polygon,
 
   handle_na = function(data, params) {
     data
@@ -116,7 +116,7 @@ geom_area <- function(mapping = NULL, data = NULL, stat = "identity",
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomArea,
+    geom = a_GeomArea,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -131,7 +131,7 @@ geom_area <- function(mapping = NULL, data = NULL, stat = "identity",
 #' @format NULL
 #' @usage NULL
 #' @export
-GeomArea <- ggproto("GeomArea", GeomRibbon,
+a_GeomArea <- ggproto("a_GeomArea", a_GeomRibbon,
   default_aes = aes(colour = NA, fill = "grey20", size = 0.5, linetype = 1,
     alpha = NA),
 

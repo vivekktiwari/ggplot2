@@ -69,7 +69,7 @@ Display contours of a 3d surface in 2d.
 }
 \section{Aesthetics}{
 
-\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "contour")}
+\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "contour")}
 }
 
 \section{Computed variables}{

@@ -42,14 +42,14 @@
 #' # But realise that this makes it *much* harder to compare individual
 #' # trends
 position_stack <- function() {
-  PositionStack
+  a_PositionStack
 }
 
 #' @rdname ggplot2-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-PositionStack <- ggproto("PositionStack", Position,
+a_PositionStack <- ggproto("a_PositionStack", a_Position,
   # requires one of c("ymax", "y"),
 
   setup_data = function(self, data, params) {

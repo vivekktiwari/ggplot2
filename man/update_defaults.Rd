@@ -13,7 +13,7 @@ update_stat_defaults(stat, new)
 \item{new}{Named list of aesthetics.}
 
 \item{stat, geom}{Name of geom/stat to modify (like \code{"point"} or
-\code{"bin"}), or a Geom/Stat object (like \code{GeomPoint} or
+\code{"bin"}), or a Geom/Stat object (like \code{a_GeomPoint} or
 \code{StatBin}).}
 }
 \description{

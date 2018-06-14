@@ -2,7 +2,7 @@
 #' @keywords internal
 #' @rdname coord_map
 coord_quickmap <- function(xlim = NULL, ylim = NULL, expand = TRUE) {
-  ggproto(NULL, CoordQuickmap,
+  ggproto(NULL, a_CoordQuickmap,
     limits = list(x = xlim, y = ylim),
     expand = expand
   )
@@ -12,7 +12,7 @@ coord_quickmap <- function(xlim = NULL, ylim = NULL, expand = TRUE) {
 #' @format NULL
 #' @usage NULL
 #' @export
-CoordQuickmap <- ggproto("CoordQuickmap", CoordCartesian,
+a_CoordQuickmap <- ggproto("a_CoordQuickmap", a_CoordCartesian,
 
   aspect = function(ranges) {
     # compute coordinates of center point of map

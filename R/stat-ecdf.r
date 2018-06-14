@@ -35,7 +35,7 @@ stat_ecdf <- function(mapping = NULL, data = NULL,
   layer(
     data = data,
     mapping = mapping,
-    stat = StatEcdf,
+    stat = a_StatEcdf,
     geom = geom,
     position = position,
     show.legend = show.legend,
@@ -53,7 +53,7 @@ stat_ecdf <- function(mapping = NULL, data = NULL,
 #' @format NULL
 #' @usage NULL
 #' @export
-StatEcdf <- ggproto("StatEcdf", Stat,
+a_StatEcdf <- ggproto("a_StatEcdf", a_Stat,
   compute_group = function(data, scales, n = NULL, pad = TRUE) {
     # If n is NULL, use raw values; otherwise interpolate
     if (is.null(n)) {

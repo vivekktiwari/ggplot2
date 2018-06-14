@@ -1,7 +1,7 @@
 #' Horizontal error bars
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "errorbarh")}
+#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "errorbarh")}
 #'
 #' @seealso \code{\link{geom_errorbar}}: vertical error bars
 #' @inheritParams layer
@@ -32,7 +32,7 @@ geom_errorbarh <- function(mapping = NULL, data = NULL,
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomErrorbarh,
+    geom = a_GeomErrorbarh,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -48,11 +48,11 @@ geom_errorbarh <- function(mapping = NULL, data = NULL,
 #' @format NULL
 #' @usage NULL
 #' @export
-GeomErrorbarh <- ggproto("GeomErrorbarh", Geom,
+a_GeomErrorbarh <- ggproto("a_GeomErrorbarh", a_Geom,
   default_aes = aes(colour = "black", size = 0.5, linetype = 1, height = 0.5,
     alpha = NA),
 
-  draw_key = draw_key_path,
+  draw_key = a_draw_key_path,
 
   required_aes = c("x", "xmin", "xmax", "y"),
 
@@ -66,7 +66,7 @@ GeomErrorbarh <- ggproto("GeomErrorbarh", Geom,
   },
 
   draw_panel = function(data, panel_scales, coord, height = NULL) {
-    GeomPath$draw_panel(data.frame(
+    a_GeomPath$draw_panel(data.frame(
       x = as.vector(rbind(data$xmax, data$xmax, NA, data$xmax, data$xmin, NA, data$xmin, data$xmin)),
       y = as.vector(rbind(data$ymin, data$ymax, NA, data$y,    data$y,    NA, data$ymin, data$ymax)),
       colour = rep(data$colour, each = 8),

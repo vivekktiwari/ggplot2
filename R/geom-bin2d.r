@@ -1,7 +1,7 @@
 #' Add heatmap of 2d bin counts.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("stat", "bin2d")}
+#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_stat", "bin2d")}
 #'
 #' @export
 #' @inheritParams layer
@@ -31,7 +31,7 @@ geom_bin2d <- function(mapping = NULL, data = NULL,
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomTile,
+    geom = a_GeomTile,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
