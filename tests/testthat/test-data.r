@@ -6,16 +6,16 @@ test_that("stringsAsFactors doesn't affect results", {
     dat.character <- data.frame(x = letters[5:1], y = 1:5, stringsAsFactors = FALSE)
     dat.factor <- data.frame(x = letters[5:1], y = 1:5, stringsAsFactors = TRUE)
 
-    base <- ggplot(mapping = aes(x, y)) + geom_point()
+    base <- a_plot(mapping = aes(x, y)) + geom_point()
     xlabels <- function(x) x$panel$ranges[[1]]$x.labels
 
     options(stringsAsFactors = TRUE)
-    char_true <- ggplot_build(base %+% dat.character)
-    factor_true <- ggplot_build(base %+% dat.factor)
+    char_true <- a_plot_build(base %+% dat.character)
+    factor_true <- a_plot_build(base %+% dat.factor)
 
     options(stringsAsFactors = FALSE)
-    char_false <- ggplot_build(base %+% dat.character)
-    factor_false <- ggplot_build(base %+% dat.factor)
+    char_false <- a_plot_build(base %+% dat.character)
+    factor_false <- a_plot_build(base %+% dat.factor)
 
     options(stringsAsFactors = sAF)
 

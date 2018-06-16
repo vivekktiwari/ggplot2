@@ -1,6 +1,6 @@
 # Transform the data as the coordinate system does
 cdata <- function(plot) {
-  pieces <- ggplot_build(plot)
+  pieces <- a_plot_build(plot)
 
   lapply(pieces$data, function(d) {
     plyr::ddply(d, "PANEL", function(panel_data) {
@@ -12,7 +12,7 @@ cdata <- function(plot) {
 }
 
 pranges <- function(plot) {
-  panels <- ggplot_build(plot)$panel
+  panels <- a_plot_build(plot)$panel
 
   x_ranges <- lapply(panels$x_scales, function(scale) scale$get_limits())
   y_ranges <- lapply(panels$y_scales, function(scale) scale$get_limits())

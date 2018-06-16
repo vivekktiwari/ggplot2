@@ -9,10 +9,10 @@ test_that("names of values used in manual scales", {
 
 
 dat <- data.frame(g = c("B","A","A"))
-p <- ggplot(dat, aes(g, fill = g)) + geom_bar()
+p <- a_plot(dat, aes(g, fill = g)) + geom_bar()
 col <- c("A" = "red", "B" = "green", "C" = "blue")
 
-cols <- function(x) ggplot_build(x)$data[[1]][, "fill"]
+cols <- function(x) a_plot_build(x)$data[[1]][, "fill"]
 
 test_that("named values work regardless of order", {
   fill_scale <- function(order) scale_fill_manual(values = col[order],
@@ -29,7 +29,7 @@ test_that("named values work regardless of order", {
 
 test_that("missing values replaced with na.value", {
   df <- data.frame(x = 1, y = 1:3, z = factor(c(1:2, NA), exclude = NULL))
-  p <- ggplot(df, aes(x, y, colour = z)) +
+  p <- a_plot(df, aes(x, y, colour = z)) +
     geom_point() +
     scale_colour_manual(values = c("black", "black"), na.value = "red")
 
@@ -40,11 +40,11 @@ test_that("insufficient values raise an error", {
   df <- data.frame(x = 1, y = 1:3, z = factor(c(1:2, NA), exclude = NULL))
   p <- qplot(x, y, data = df, colour = z)
 
-  expect_error(ggplot_build(p + scale_colour_manual(values = "black")),
+  expect_error(a_plot_build(p + scale_colour_manual(values = "black")),
     "Insufficient values")
 
   # Should be sufficient
-  ggplot_build(p + scale_colour_manual(values = c("black", "black")))
+  a_plot_build(p + scale_colour_manual(values = c("black", "black")))
 
 })
 

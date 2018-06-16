@@ -5,12 +5,12 @@ test_that("qplot works with variables in data frame and parent env", {
   y <- 1:10
   b <- 1:10
 
-  expect_is(qplot(x, y, data = df), "ggplot")
-  expect_is(qplot(x, y, data = df, colour = a), "ggplot")
-  expect_is(qplot(x, y, data = df, colour = b), "ggplot")
+  expect_is(qplot(x, y, data = df), "a_plot")
+  expect_is(qplot(x, y, data = df, colour = a), "a_plot")
+  expect_is(qplot(x, y, data = df, colour = b), "a_plot")
 
   bin <- 1
-  expect_is(qplot(x, data = df, binwidth = bin), "ggplot")
+  expect_is(qplot(x, data = df, binwidth = bin), "a_plot")
 })
 
 test_that("qplot works in non-standard environments", {
@@ -21,7 +21,7 @@ test_that("qplot works in non-standard environments", {
     qplot(x, breaks = 0:`-1-`)
   })
 
-  expect_is(eval(expr, env), "ggplot")
+  expect_is(eval(expr, env), "a_plot")
 
 })
 

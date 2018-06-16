@@ -3,18 +3,18 @@ context("stat_bin/stat_count")
 test_that("stat_bin throws error when y aesthetic present", {
   dat <- data.frame(x = c("a", "b", "c"), y = c(1, 5, 10))
 
-  expect_error(ggplot_build(ggplot(dat, aes(x, y)) + stat_bin()),
+  expect_error(a_plot_build(a_plot(dat, aes(x, y)) + stat_bin()),
     "must not be used with a y aesthetic.")
   
   skip("passes when validate_params=TRUE")
-  expect_error(p <- ggplot_build(ggplot(dat, aes(x)) + stat_bin(y = 5)),
+  expect_error(p <- a_plot_build(a_plot(dat, aes(x)) + stat_bin(y = 5)),
                "StatBin requires a continuous x variable the x variable is discrete")
 })
 
 test_that("bins specifies the number of bins", {
   df <- data.frame(x = 1:10)
   out <- function(x, ...) {
-    layer_data(ggplot(df, aes(x)) + geom_histogram(...))
+    layer_data(a_plot(df, aes(x)) + geom_histogram(...))
   }
 
   expect_equal(nrow(out(bins = 2)), 2)
@@ -23,14 +23,14 @@ test_that("bins specifies the number of bins", {
 
 test_that("geom_histogram defaults to pad = FALSE", {
   df <- data.frame(x = 1:3)
-  out <- layer_data(ggplot(df, aes(x)) + geom_histogram(binwidth = 1))
+  out <- layer_data(a_plot(df, aes(x)) + geom_histogram(binwidth = 1))
 
   expect_equal(out$count, c(1, 1, 1))
 })
 
 test_that("geom_freqpoly defaults to pad = TRUE", {
   df <- data.frame(x = 1:3)
-  out <- layer_data(ggplot(df, aes(x)) + geom_freqpoly(binwidth = 1))
+  out <- layer_data(a_plot(df, aes(x)) + geom_freqpoly(binwidth = 1))
 
   expect_equal(out$count, c(0, 1, 1, 1, 0))
 })
@@ -39,7 +39,7 @@ test_that("geom_freqpoly defaults to pad = TRUE", {
 # Underlying binning algorithm --------------------------------------------
 
 comp_bin <- function(df, ...) {
-  plot <- ggplot(df, aes(x = x)) + stat_bin(...)
+  plot <- a_plot(df, aes(x = x)) + stat_bin(...)
   layer_data(plot)
 }
 
@@ -86,7 +86,7 @@ test_that("Setting boundary and center", {
 
 test_that("weights are added", {
   df <- data.frame(x = 1:10, y = 1:10)
-  p <- ggplot(df, aes(x = x, weight = y)) + geom_histogram(binwidth = 1)
+  p <- a_plot(df, aes(x = x, weight = y)) + geom_histogram(binwidth = 1)
   out <- layer_data(p)
 
   expect_equal(out$count, df$y)
@@ -98,28 +98,28 @@ test_that("weights are added", {
 test_that("stat_count throws error when y aesthetic present", {
   dat <- data.frame(x = c("a", "b", "c"), y = c(1, 5, 10))
 
-  expect_error(ggplot_build(ggplot(dat, aes(x, y)) + stat_count()),
+  expect_error(a_plot_build(a_plot(dat, aes(x, y)) + stat_count()),
     "must not be used with a y aesthetic.")
   skip("passes when validate_params=TRUE")
-  expect_error(p <- ggplot_build(ggplot(dat, aes(x)) + stat_count(y = 5)),
+  expect_error(p <- a_plot_build(a_plot(dat, aes(x)) + stat_count(y = 5)),
     "must not be used with a y aesthetic.")
 })
 
 test_that("stat_count preserves x order for continuous and discrete", {
   # x is numeric
-  b <- ggplot_build(ggplot(mtcars, aes(carb)) + geom_bar())
+  b <- a_plot_build(a_plot(mtcars, aes(carb)) + geom_bar())
   expect_identical(b$data[[1]]$x, c(1,2,3,4,6,8))
   expect_identical(b$data[[1]]$y, c(7,10,3,10,1,1))
 
   # x is factor where levels match numeric order
   mtcars$carb2 <- factor(mtcars$carb)
-  b <- ggplot_build(ggplot(mtcars, aes(carb2)) + geom_bar())
+  b <- a_plot_build(a_plot(mtcars, aes(carb2)) + geom_bar())
   expect_identical(b$data[[1]]$x, 1:6)
   expect_identical(b$data[[1]]$y, c(7,10,3,10,1,1))
 
   # x is factor levels differ from numeric order
   mtcars$carb3 <- factor(mtcars$carb, levels = c(4,1,2,3,6,8))
-  b <- ggplot_build(ggplot(mtcars, aes(carb3)) + geom_bar())
+  b <- a_plot_build(a_plot(mtcars, aes(carb3)) + geom_bar())
   expect_identical(b$data[[1]]$x, 1:6)
   expect_identical(b$panel$ranges[[1]]$x.labels, c("4","1","2","3","6","8"))
   expect_identical(b$data[[1]]$y, c(10,7,10,3,1,1))

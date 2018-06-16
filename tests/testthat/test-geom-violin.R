@@ -6,7 +6,7 @@ test_that("", {
     data.frame(x = "b", y = c(0, runif(10), 2))
   )
 
-  p <- ggplot(df, aes(1, y)) +
+  p <- a_plot(df, aes(1, y)) +
     geom_violin() +
     facet_grid(x ~ ., scales = "free") +
     coord_cartesian(expand = FALSE)

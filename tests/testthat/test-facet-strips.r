@@ -1,7 +1,7 @@
 context("Facet Strips")
 
 strip_layout <- function(p) {
-  data <- ggplot_build(p)
+  data <- a_plot_build(p)
   plot <- data$plot
   panel <- data$panel
   data <- data$data
@@ -16,7 +16,7 @@ strip_layout <- function(p) {
   as.list(strip_layout)
 }
 
-p <- ggplot(mtcars, aes(disp, drat)) + geom_point()
+p <- a_plot(mtcars, aes(disp, drat)) + geom_point()
 
 
 test_that("facet_wrap() builds correct output", {

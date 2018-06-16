@@ -4,7 +4,7 @@ test_that("uses scale limits, not data limits", {
   dat <- data.frame(x = c(0.1, 1:100))
   dat$y <- dexp(dat$x)
 
-  base <- ggplot(dat, aes(x, y)) +
+  base <- a_plot(dat, aes(x, y)) +
     stat_function(fun = dexp)
 
   full <- base +
@@ -27,7 +27,7 @@ test_that("uses scale limits, not data limits", {
 test_that("works with discrete x", {
   dat <- data.frame(x = c("a", "b"))
 
-  base <- ggplot(dat, aes(x, group = 1)) +
+  base <- a_plot(dat, aes(x, group = 1)) +
     stat_function(fun = as.numeric, geom = "point", n = 2)
   ret <- layer_data(base)
 

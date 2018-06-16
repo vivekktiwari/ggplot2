@@ -4,7 +4,7 @@ test_that("handles grouping correctly", {
   d <- diamonds[1:1000, ]
   all_ones <- function(x) all.equal(mean(x), 1)
 
-  base <- ggplot(d, aes(cut, clarity))
+  base <- a_plot(d, aes(cut, clarity))
 
   ret <- layer_data(base + stat_sum())
   expect_equal(nrow(ret), 38)

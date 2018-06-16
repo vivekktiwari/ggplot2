@@ -2,8 +2,8 @@ context("geom_rule")
 # tests for geom_vline, geom_hline & geom_abline
 
 df <- data.frame(x = 1:3, y = 3:1)
-p <- ggplot(df, aes(x, y)) + geom_point()
-p_col <- ggplot(df, aes(x, y, colour = factor(x))) + geom_point()
+p <- a_plot(df, aes(x, y)) + geom_point()
+p_col <- a_plot(df, aes(x, y, colour = factor(x))) + geom_point()
 
 test_that("setting parameters makes one row df", {
   b <- p + geom_hline(yintercept = 1.5)

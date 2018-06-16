@@ -4,7 +4,7 @@ test_that("ggsave creates file", {
   path <- tempfile()
   on.exit(unlink(path))
 
-  p <- ggplot(mpg, aes(displ, hwy)) + geom_point()
+  p <- a_plot(mpg, aes(displ, hwy)) + geom_point()
 
   expect_false(file.exists(path))
   ggsave(path, p, device = "pdf", width = 5, height = 5)

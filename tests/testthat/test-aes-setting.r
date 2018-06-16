@@ -2,7 +2,7 @@ context("Aes - setting values")
 
 test_that("Aesthetic parameters must match length of data", {
   df <- data.frame(x = 1:5, y = 1:5)
-  p <- ggplot(df, aes(x, y))
+  p <- a_plot(df, aes(x, y))
 
   set_colours <- function(colours) {
     layer_data(p + geom_point(colour = colours))
@@ -19,11 +19,11 @@ test_that("Aesthetic parameters must match length of data", {
 test_that("alpha affects only fill colour of solid geoms", {
   df <- data.frame(x = 1:2, y = 1)
 
-  poly <- ggplot(df, aes(x = x, y)) +
+  poly <- a_plot(df, aes(x = x, y)) +
     geom_polygon(fill = "red", colour = "red", alpha = 0.5)
-  rect <- ggplot(df, aes(xmin = x, xmax = x + 1, ymin = 1, ymax = y + 1)) +
+  rect <- a_plot(df, aes(xmin = x, xmax = x + 1, ymin = 1, ymax = y + 1)) +
     geom_rect(fill = "red", colour = "red", alpha = 0.5)
-  ribb <- ggplot(df, aes(x = x, ymin = 1, ymax = y + 1)) +
+  ribb <- a_plot(df, aes(x = x, ymin = 1, ymax = y + 1)) +
     geom_ribbon(fill = "red", colour = "red", alpha = 0.5)
 
   expect_equal(layer_grob(poly)[[1]]$gp$col[[1]], "red")
