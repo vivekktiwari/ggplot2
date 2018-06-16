@@ -19,15 +19,15 @@
 #'
 #' # Three ways of doing transformation in ggplot:
 #' #  * by transforming the data
-#' ggplot(diamonds, aes(log10(carat), log10(price))) +
+#' a_plot(diamonds, aes(log10(carat), log10(price))) +
 #'   geom_point()
 #' #  * by transforming the scales
-#' ggplot(diamonds, aes(carat, price)) +
+#' a_plot(diamonds, aes(carat, price)) +
 #'   geom_point() +
 #'   scale_x_log10() +
 #'   scale_y_log10()
 #' #  * by transforming the coordinate system:
-#' ggplot(diamonds, aes(carat, price)) +
+#' a_plot(diamonds, aes(carat, price)) +
 #'   geom_point() +
 #'   ggplot2Animint:::coord_trans(x = "log10", y = "log10")
 #'
@@ -39,13 +39,13 @@
 #'
 #' d <- subset(diamonds, carat > 0.5)
 #'
-#' ggplot(d, aes(carat, price)) +
+#' a_plot(d, aes(carat, price)) +
 #'   geom_point() +
 #'   geom_smooth(method = "lm") +
 #'   scale_x_log10() +
 #'   scale_y_log10()
 #'
-#' ggplot(d, aes(carat, price)) +
+#' a_plot(d, aes(carat, price)) +
 #'   geom_point() +
 #'   geom_smooth(method = "lm") +
 #'   ggplot2Animint:::coord_trans(x = "log10", y = "log10")
@@ -56,7 +56,7 @@
 #'
 #' # With a combination of scale and coordinate transformation, it's
 #' # possible to do back-transformations:
-#' ggplot(diamonds, aes(carat, price)) +
+#' a_plot(diamonds, aes(carat, price)) +
 #'   geom_point() +
 #'   geom_smooth(method = "lm") +
 #'   scale_x_log10() +
@@ -64,13 +64,13 @@
 #'   ggplot2Animint:::coord_trans(x = scales::exp_trans(10), y = scales::exp_trans(10))
 #'
 #' # cf.
-#' ggplot(diamonds, aes(carat, price)) +
+#' a_plot(diamonds, aes(carat, price)) +
 #'   geom_point() +
 #'   geom_smooth(method = "lm")
 #'
 #' # Also works with discrete scales
 #' df <- data.frame(a = abs(rnorm(26)),letters)
-#' plot <- ggplot(df,aes(a,letters)) + geom_point()
+#' plot <- a_plot(df,aes(a,letters)) + geom_point()
 #'
 #' plot + ggplot2Animint:::coord_trans(x = "log10")
 #' plot + ggplot2Animint:::coord_trans(x = "sqrt")

@@ -14,7 +14,7 @@
 #'    options:
 #'
 #'    If \code{NULL}, the default, the data is inherited from the plot
-#'    data as specified in the call to \code{\link{ggplot}}.
+#'    data as specified in the call to \code{\link{a_plot}}.
 #'
 #'    A \code{data.frame}, or other object, will override the plot
 #'    data. All objects will be fortified to produce a data frame. See
@@ -40,15 +40,15 @@
 #'   layer.
 #' @examples
 #' # geom calls are just a short cut for layer
-#' ggplot(mpg, aes(displ, hwy)) + geom_point()
+#' a_plot(mpg, aes(displ, hwy)) + geom_point()
 #' # shortcut for
-#' ggplot(mpg, aes(displ, hwy)) +
+#' a_plot(mpg, aes(displ, hwy)) +
 #'   layer(geom = "point", stat = "identity", position = "identity",
 #'     params = list(na.rm = FALSE)
 #'   )
 #'
 #' # use a function as data to plot a subset of global data
-#' ggplot(mpg, aes(displ, hwy)) +
+#' a_plot(mpg, aes(displ, hwy)) +
 #'   layer(geom = "point", stat = "identity", position = "identity",
 #'     data = head, params = list(na.rm = FALSE)
 #'   )

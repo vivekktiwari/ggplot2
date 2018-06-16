@@ -18,7 +18,7 @@ plot. You must supply \code{mapping} if there is no plot mapping.}
    options:
 
    If \code{NULL}, the default, the data is inherited from the plot
-   data as specified in the call to \code{\link{ggplot}}.
+   data as specified in the call to \code{\link{a_plot}}.
 
    A \code{data.frame}, or other object, will override the plot
    data. All objects will be fortified to produce a data frame. See
@@ -69,7 +69,7 @@ df <- data.frame(
 
 # Define the top and bottom of the errorbars
 
-p <- ggplot(df, aes(resp, trt, colour = group))
+p <- a_plot(df, aes(resp, trt, colour = group))
 p + geom_point() +
   geom_errorbarh(aes(xmax = resp + se, xmin = resp - se))
 p + geom_point() +

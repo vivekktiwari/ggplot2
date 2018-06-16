@@ -10,7 +10,7 @@
 #'   bottom, and left.
 #' @export
 #' @examples
-#' p <- ggplot(mtcars, aes(wt, mpg))
+#' p <- a_plot(mtcars, aes(wt, mpg))
 #' p + geom_point()
 #' p + geom_point() + geom_rug()
 #' p + geom_point() + geom_rug(sides="b")    # Rug on bottom only

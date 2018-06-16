@@ -13,7 +13,7 @@
 #'
 #' dat <- data.frame(x = 1:5, y = 1:5, p = 1:5, q = factor(1:5),
 #'  r = factor(1:5))
-#' p <- ggplot(dat, aes(x, y, colour = p, size = q, shape = r)) + geom_point()
+#' p <- a_plot(dat, aes(x, y, colour = p, size = q, shape = r)) + geom_point()
 #'
 #' # without guide specification
 #' p
@@ -48,7 +48,7 @@
 #' p + theme(legend.position = "bottom", legend.box = "horizontal")
 #'
 #' # Set order for multiple guides
-#' ggplot(mpg, aes(displ, cty)) +
+#' a_plot(mpg, aes(displ, cty)) +
 #'   geom_point(aes(size = hwy, colour = cyl, shape = drv)) +
 #'   guides(
 #'    colour = guide_colourbar(order = 1),
@@ -64,7 +64,7 @@ guides <- function(...) {
 }
 
 update_guides <- function(p, guides) {
-  p <- plot_clone(p)
+  p <- a_plot_clone(p)
   p$guides <- defaults(guides, p$guides)
   p
 }

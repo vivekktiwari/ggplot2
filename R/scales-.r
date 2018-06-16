@@ -2,7 +2,7 @@
 #' All input and output done with data.frames to facilitate
 #' multiple input and output variables
 #' @export
-scales_list <- function() {
+a_scales_list <- function() {
   ggproto(NULL, a_ScalesList)
 }
 

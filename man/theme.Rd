@@ -169,14 +169,14 @@ The individual theme elements are:
 
 \examples{
 \donttest{
-p <- ggplot(mtcars, aes(mpg, wt)) +
+p <- a_plot(mtcars, aes(mpg, wt)) +
   geom_point()
 p
 p + theme(panel.background = element_rect(colour = "pink"))
 p + theme_bw()
 
 # Scatter plot of gas mileage by vehicle weight
-p <- ggplot(mtcars, aes(wt, mpg)) +
+p <- a_plot(mtcars, aes(wt, mpg)) +
   geom_point()
 # Calculate slope and intercept of line of best fit
 coef(lm(mpg ~ wt, data = mtcars))
@@ -207,7 +207,7 @@ p + labs(title = "Vehicle Weight-Gas Mileage Relationship",
 
 # Changing plot look with themes
 DF <- data.frame(x = rnorm(400))
-m <- ggplot(DF, aes(x = x)) +
+m <- a_plot(DF, aes(x = x)) +
   geom_histogram()
 # Default is theme_grey()
 m
@@ -224,7 +224,7 @@ m + theme(axis.title.x = element_blank())
 m + theme(axis.ticks.length = unit(.85, "cm"))
 
 # Legend Attributes
-z <- ggplot(mtcars, aes(wt, mpg)) +
+z <- a_plot(mtcars, aes(wt, mpg)) +
   geom_point(aes(colour = factor(cyl)))
 z
 z + theme(legend.position = "none")
@@ -264,7 +264,7 @@ z + theme(plot.background = element_rect(fill = "green"))
 # Faceting Attributes
 set.seed(4940)
 dsmall <- diamonds[sample(nrow(diamonds), 1000), ]
-k <- ggplot(dsmall, aes(carat, ..density..)) +
+k <- a_plot(dsmall, aes(carat, ..density..)) +
   geom_histogram(binwidth = 0.2) +
   facet_grid(. ~ cut)
 k + theme(strip.background = element_rect(colour = "purple", fill = "pink",
@@ -278,7 +278,7 @@ k + theme(panel.margin.y = unit(0, "lines"))
 meanprice <- tapply(diamonds$price, diamonds$cut, mean)
 cut <- factor(levels(diamonds$cut), levels = levels(diamonds$cut))
 df <- data.frame(meanprice, cut)
-g <- ggplot(df, aes(cut, meanprice)) + geom_bar(stat = "identity")
+g <- a_plot(df, aes(cut, meanprice)) + geom_bar(stat = "identity")
 g + geom_bar(stat = "identity") +
     theme(panel.background = element_blank(),
           panel.grid.major.x = element_blank(),

@@ -33,7 +33,7 @@
 #' # Currently we need to manually merge the two together
 #' datapoly <- merge(values, positions, by = c("id"))
 #'
-#' (p <- ggplot(datapoly, aes(x = x, y = y)) + geom_polygon(aes(fill = value, group = id)))
+#' (p <- a_plot(datapoly, aes(x = x, y = y)) + geom_polygon(aes(fill = value, group = id)))
 #'
 #' # Which seems like a lot of work, but then it's easy to add on
 #' # other features in this coordinate system, e.g.:

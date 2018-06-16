@@ -9,7 +9,7 @@
 #'   given \code{na.value}.
 #' @examples
 #' \donttest{
-#' p <- ggplot(mtcars, aes(mpg, wt)) +
+#' p <- a_plot(mtcars, aes(mpg, wt)) +
 #'   geom_point(aes(colour = factor(cyl)))
 #'
 #' p + ggplot2Animint:::scale_colour_manual(values = c("red","blue", "green"))

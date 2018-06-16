@@ -15,7 +15,7 @@
 #' # ensures that the ranges of axes are equal to the specified ratio by
 #' # adjusting the plot aspect ratio
 #'
-#' p <- ggplot(mtcars, aes(mpg, wt)) + geom_point()
+#' p <- a_plot(mtcars, aes(mpg, wt)) + geom_point()
 #' p + ggplot2Animint:::coord_fixed(ratio = 1)
 #' p + ggplot2Animint:::coord_fixed(ratio = 5)
 #' p + ggplot2Animint:::coord_fixed(ratio = 1/5)

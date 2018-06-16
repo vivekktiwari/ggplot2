@@ -11,7 +11,7 @@
 #' @inheritParams geom_point
 #' @export
 #' @examples
-#' d <- ggplot(diamonds, aes(carat, price))
+#' d <- a_plot(diamonds, aes(carat, price))
 #' d + geom_hex()
 #'
 #' \donttest{

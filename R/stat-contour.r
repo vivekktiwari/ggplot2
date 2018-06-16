@@ -60,7 +60,7 @@ a_StatContour <- ggproto("a_StatContour", a_Stat,
 #
 # breaks <- seq(95, 195, length.out = 10)
 # contours <- contourLines(v3d, breaks)
-# ggplot(contours, aes(x, y)) +
+# a_plot(contours, aes(x, y)) +
 #   geom_path() +
 #   facet_wrap(~piece)
 contour_lines <- function(data, breaks, complete = FALSE) {
@@ -107,7 +107,7 @@ poly_dir <- function(x, y) {
 # To fix breaks and complete the polygons, we need to add 0-4 corner points.
 #
 # contours <- ddply(contours, "piece", mutate, dir = ggplot2Animint:::poly_dir(x, y))
-# ggplot(contours, aes(x, y)) +
+# a_plot(contours, aes(x, y)) +
 #   geom_path(aes(group = piece, colour = factor(dir)))
 # last_plot() + facet_wrap(~ level)
 

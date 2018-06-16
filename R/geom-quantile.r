@@ -14,7 +14,7 @@
 #' @param geom,stat Use to override the default connection between
 #'   \code{geom_quantile} and \code{stat_quantile}.
 #' @examples
-#' m <- ggplot(mpg, aes(displ, 1 / hwy)) + geom_point()
+#' m <- a_plot(mpg, aes(displ, 1 / hwy)) + geom_point()
 #' m + geom_quantile()
 #' m + geom_quantile(quantiles = 0.5)
 #' q10 <- seq(0.05, 0.95, by = 0.05)

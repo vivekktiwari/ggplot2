@@ -4,13 +4,13 @@
 #' @param labels named list of new labels
 #' @keywords internal
 #' @examples
-#' p <- ggplot(mtcars, aes(mpg, wt)) + geom_point()
+#' p <- a_plot(mtcars, aes(mpg, wt)) + geom_point()
 #' ggplot2Animint:::update_labels(p, list(x = "New x"))
 #' ggplot2Animint:::update_labels(p, list(x = expression(x / y ^ 2)))
 #' ggplot2Animint:::update_labels(p, list(x = "New x", y = "New Y"))
 #' ggplot2Animint:::update_labels(p, list(colour = "Fail silently"))
 update_labels <- function(p, labels) {
-  p <- plot_clone(p)
+  p <- a_plot_clone(p)
   p$labels <- defaults(labels, p$labels)
   p
 }
@@ -24,7 +24,7 @@ update_labels <- function(p, labels) {
 #' @param ... a list of new names in the form aesthetic = "new name"
 #' @keywords internal
 #' @examples
-#' p <- ggplot(mtcars, aes(mpg, wt)) + geom_point()
+#' p <- a_plot(mtcars, aes(mpg, wt)) + geom_point()
 #' p + ggplot2Animint:::labs(title = "New plot title")
 #' p + ggplot2Animint:::labs(x = "New x label")
 #' p + xlab("New x label")
@@ -46,7 +46,7 @@ update_labels <- function(p, labels) {
 #' p + ylim(2, 4) + ylab("New y label")
 #'
 #' # The labs function also modifies legend labels
-#' p <- ggplot(mtcars, aes(mpg, wt, colour = cyl)) + geom_point()
+#' p <- a_plot(mtcars, aes(mpg, wt, colour = cyl)) + geom_point()
 #' p + ggplot2Animint:::labs(colour = "Cylinders")
 #'
 #' # Can also pass in a list, if that is more convenient

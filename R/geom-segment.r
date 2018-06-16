@@ -16,7 +16,7 @@
 #'   (x, y), and an angle and radius.
 #' @export
 #' @examples
-#' b <- ggplot(mtcars, aes(wt, mpg)) +
+#' b <- a_plot(mtcars, aes(wt, mpg)) +
 #'   geom_point()
 #'
 #' df <- data.frame(x1 = 2.62, x2 = 3.57, y1 = 21.0, y2 = 15.0)
@@ -32,7 +32,7 @@
 #'   arrow = arrow(length = unit(0.03, "npc"))
 #' )
 #'
-#' ggplot(seals, aes(long, lat)) +
+#' a_plot(seals, aes(long, lat)) +
 #'   geom_segment(aes(xend = long + delta_long, yend = lat + delta_lat),
 #'     arrow = arrow(length = unit(0.1,"cm"))) +
 #'   ggplot2Animint:::borders("state")
@@ -42,7 +42,7 @@
 #' counts$x <- as.numeric(as.character(counts$x))
 #' with(counts, plot(x, Freq, type = "h", lwd = 10))
 #'
-#' ggplot(counts, aes(x, Freq)) +
+#' a_plot(counts, aes(x, Freq)) +
 #'   geom_segment(aes(xend = x, yend = 0), size = 10, lineend = "butt")
 geom_segment <- function(mapping = NULL, data = NULL,
                          stat = "identity", position = "identity",

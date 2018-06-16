@@ -8,6 +8,23 @@ The goal of this guide is to help you get up and contributing to ggplot2 as quic
 ## Development Moode: ggplot2Animint 
 
 @vivekktiwari [For Future References]
+
+Date: 16-06-2018
+
+draw_key_funcname --> a_draw_key_*
+
+ggplot --> a_plot
+(along with its S3 methods)
+
+ggplot_gtable --> a_plot_gtable
+
+ggplot_build --> a_plot_build
+
+scales_list --> a_scales_list
+
+
+Previous Changes:
+
 Following function/object have been made internal functions: 
 
 S3method(autoplot,default)

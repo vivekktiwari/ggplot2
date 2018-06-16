@@ -25,7 +25,7 @@
 #'   lower = c(0.8, 4.6, 2.4, 3.6)
 #' )
 #'
-#' p <- ggplot(df, aes(trt, resp, colour = group))
+#' p <- a_plot(df, aes(trt, resp, colour = group))
 #' p + geom_linerange(aes(ymin = lower, ymax = upper))
 #' p + geom_pointrange(aes(ymin = lower, ymax = upper))
 #' p + geom_crossbar(aes(ymin = lower, ymax = upper), width = 0.2)
@@ -38,7 +38,7 @@
 #'
 #' # If you want to dodge bars and errorbars, you need to manually
 #' # specify the dodge width
-#' p <- ggplot(df, aes(trt, resp, fill = group))
+#' p <- a_plot(df, aes(trt, resp, fill = group))
 #' p +
 #'  geom_bar(position = "dodge", stat = "identity") +
 #'  geom_errorbar(aes(ymin = lower, ymax = upper), position = "dodge", width = 0.25)

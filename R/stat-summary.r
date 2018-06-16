@@ -42,7 +42,7 @@
 #' @param fun.args Optional additional arguments passed on to the functions.
 #' @export
 #' @examples
-#' d <- ggplot(mtcars, aes(cyl, mpg)) + geom_point()
+#' d <- a_plot(mtcars, aes(cyl, mpg)) + geom_point()
 #'
 #' # You can supply individual functions to summarise the value at
 #' # each x:
@@ -53,14 +53,14 @@
 #' d + stat_summary(fun.y = mean, fun.ymin = min, fun.ymax = max,
 #'   colour = "red")
 #'
-#' d <- ggplot(diamonds, aes(cut))
+#' d <- a_plot(diamonds, aes(cut))
 #' d + geom_bar()
 #' d + stat_summary_bin(aes(y = price), fun.y = "mean", geom = "bar")
 #'
 #' \donttest{
 #' # Don't use ylim to zoom into a summary plot - this throws the
 #' # data away
-#' p <- ggplot(mtcars, aes(cyl, mpg)) +
+#' p <- a_plot(mtcars, aes(cyl, mpg)) +
 #'   stat_summary(fun.y = "mean", geom = "point")
 #' p
 #' p + ylim(15, 30)
@@ -71,7 +71,7 @@
 #' stat_sum_df <- function(fun, geom="crossbar", ...) {
 #'   stat_summary(fun.data = fun, colour = "red", geom = geom, width = 0.2, ...)
 #' }
-#' d <- ggplot(mtcars, aes(cyl, mpg)) + geom_point()
+#' d <- a_plot(mtcars, aes(cyl, mpg)) + geom_point()
 #' # The crossbar geom needs grouping to be specified when used with
 #' # a continuous x axis.
 #' d + stat_sum_df("mean_cl_boot", mapping = aes(group = cyl))
@@ -83,7 +83,7 @@
 #' if (require("ggplot2movies")) {
 #' set.seed(596)
 #' mov <- movies[sample(nrow(movies), 1000), ]
-#'  m2 <- ggplot(mov, aes(x = factor(round(rating)), y = votes)) + geom_point()
+#'  m2 <- a_plot(mov, aes(x = factor(round(rating)), y = votes)) + geom_point()
 #'  m2 <- m2 + stat_summary(fun.data = "mean_cl_boot", geom = "crossbar",
 #'                          colour = "red", width = 0.3) + xlab("rating")
 #' m2

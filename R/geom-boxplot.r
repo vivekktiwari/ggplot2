@@ -46,7 +46,7 @@
 #' @references McGill, R., Tukey, J. W. and Larsen, W. A. (1978) Variations of
 #'     box plots. The American Statistician 32, 12-16.
 #' @examples
-#' p <- ggplot(mpg, aes(class, hwy))
+#' p <- a_plot(mpg, aes(class, hwy))
 #' p + geom_boxplot()
 #' p + geom_boxplot() + geom_jitter(width = 0.2)
 #' p + geom_boxplot() + ggplot2Animint:::coord_flip()
@@ -63,9 +63,9 @@
 #'
 #' # You can also use boxplots with continuous x, as long as you supply
 #' # a grouping variable. cut_width is particularly useful
-#' ggplot(diamonds, aes(carat, price)) +
+#' a_plot(diamonds, aes(carat, price)) +
 #'   geom_boxplot()
-#' ggplot(diamonds, aes(carat, price)) +
+#' a_plot(diamonds, aes(carat, price)) +
 #'   geom_boxplot(aes(group = cut_width(carat, 0.25)))
 #'
 #' \donttest{
@@ -80,7 +80,7 @@
 #'   y75 = quantile(y, 0.75),
 #'   y100 = max(y)
 #' )
-#' ggplot(df, aes(x)) +
+#' a_plot(df, aes(x)) +
 #'   geom_boxplot(
 #'    aes(ymin = y0, lower = y25, middle = y50, upper = y75, ymax = y100),
 #'    stat = "identity"

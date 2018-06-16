@@ -10,11 +10,11 @@
 #' # Very useful for creating boxplots, and other interval
 #' # geoms in the horizontal instead of vertical position.
 #'
-#' ggplot(diamonds, aes(cut, price)) +
+#' a_plot(diamonds, aes(cut, price)) +
 #'   geom_boxplot() +
 #'   ggplot2Animint:::coord_flip()
 #'
-#' h <- ggplot(diamonds, aes(carat)) +
+#' h <- a_plot(diamonds, aes(carat)) +
 #'   geom_histogram()
 #' h
 #' h + ggplot2Animint:::coord_flip()
@@ -22,7 +22,7 @@
 #'
 #' # You can also use it to flip line and area plots:
 #' df <- data.frame(x = 1:5, y = (1:5) ^ 2)
-#' ggplot(df, aes(x, y)) +
+#' a_plot(df, aes(x, y)) +
 #'   geom_area()
 #' last_plot() + ggplot2Animint:::coord_flip()
 coord_flip <- function(xlim = NULL, ylim = NULL, expand = TRUE) {

@@ -39,7 +39,7 @@ NULL
 #'   \code{show.legend} are overridden
 #' @export
 #' @examples
-#' p <- ggplot(mtcars, aes(wt, mpg)) + geom_point()
+#' p <- a_plot(mtcars, aes(wt, mpg)) + geom_point()
 #'
 #' # Fixed values
 #' p + geom_vline(xintercept = 5)
@@ -56,7 +56,7 @@ NULL
 #' p + geom_smooth(method = "lm", se = FALSE)
 #'
 #' # To show different lines in different facets, use aesthetics
-#' p <- ggplot(mtcars, aes(mpg, wt)) +
+#' p <- a_plot(mtcars, aes(mpg, wt)) +
 #'   geom_point() +
 #'   ggplot2Animint:::facet_wrap(~ cyl)
 #'
@@ -64,7 +64,7 @@ NULL
 #' p + geom_hline(aes(yintercept = wt), mean_wt)
 #'
 #' # You can also control other aesthetics
-#' ggplot(mtcars, aes(mpg, wt, colour = wt)) +
+#' a_plot(mtcars, aes(mpg, wt, colour = wt)) +
 #'   geom_point() +
 #'   geom_hline(aes(yintercept = wt, colour = wt), mean_wt) +
 #'   ggplot2Animint:::facet_wrap(~ cyl)

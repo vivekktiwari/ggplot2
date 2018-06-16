@@ -12,16 +12,16 @@
 #' @inheritParams geom_point
 #' @export
 #' @examples
-#' ggplot(mpg, aes(cty, hwy)) +
+#' a_plot(mpg, aes(cty, hwy)) +
 #'  geom_point()
 #'
-#' ggplot(mpg, aes(cty, hwy)) +
+#' a_plot(mpg, aes(cty, hwy)) +
 #'  geom_count()
 #'
 #' # Best used in conjunction with scale_size_area which ensures that
 #' # counts of zero would be given size 0. Doesn't make much different
 #' # here because the smallest count is already close to 0.
-#' ggplot(mpg, aes(cty, hwy)) +
+#' a_plot(mpg, aes(cty, hwy)) +
 #'  geom_count()
 #'  scale_size_area()
 #'
@@ -29,7 +29,7 @@
 #' # By default, all categorical variables in the plot form the groups.
 #' # Specifying geom_count without a group identifier leads to a plot which is
 #' # not useful:
-#' d <- ggplot(diamonds, aes(x = cut, y = clarity))
+#' d <- a_plot(diamonds, aes(x = cut, y = clarity))
 #' d + geom_count(aes(size = ..prop..))
 #' # To correct this problem and achieve a more desirable plot, we need
 #' # to specify which group the proportion is to be calculated over.

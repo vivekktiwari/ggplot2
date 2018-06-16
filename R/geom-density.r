@@ -15,18 +15,18 @@
 #'   \code{geom_density} and \code{stat_density}.
 #' @export
 #' @examples
-#' ggplot(diamonds, aes(carat)) +
+#' a_plot(diamonds, aes(carat)) +
 #'   geom_density()
 #'
-#' ggplot(diamonds, aes(carat)) +
+#' a_plot(diamonds, aes(carat)) +
 #'   geom_density(adjust = 1/5)
-#' ggplot(diamonds, aes(carat)) +
+#' a_plot(diamonds, aes(carat)) +
 #'   geom_density(adjust = 5)
 #'
-#' ggplot(diamonds, aes(depth, colour = cut)) +
+#' a_plot(diamonds, aes(depth, colour = cut)) +
 #'   geom_density() +
 #'   xlim(55, 70)
-#' ggplot(diamonds, aes(depth, fill = cut, colour = cut)) +
+#' a_plot(diamonds, aes(depth, fill = cut, colour = cut)) +
 #'   geom_density(alpha = 0.1) +
 #'   xlim(55, 70)
 #'
@@ -36,14 +36,14 @@
 #' # density
 #'
 #' # Loses marginal densities
-#' ggplot(diamonds, aes(carat, fill = cut)) +
+#' a_plot(diamonds, aes(carat, fill = cut)) +
 #'   geom_density(position = "stack")
 #' # Preserves marginal densities
-#' ggplot(diamonds, aes(carat, ..count.., fill = cut)) +
+#' a_plot(diamonds, aes(carat, ..count.., fill = cut)) +
 #'   geom_density(position = "stack")
 #'
 #' # You can use position="fill" to produce a conditional density estimate
-#' ggplot(diamonds, aes(carat, ..count.., fill = cut)) +
+#' a_plot(diamonds, aes(carat, ..count.., fill = cut)) +
 #'   geom_density(position = "fill")
 #' }
 geom_density <- function(mapping = NULL, data = NULL,

@@ -7,7 +7,7 @@
 #' @export
 #' @examples
 #' update_geom_defaults("point", list(colour = "darkblue"))
-#' ggplot(mtcars, aes(mpg, wt)) + geom_point()
+#' a_plot(mtcars, aes(mpg, wt)) + geom_point()
 #' update_geom_defaults("point", list(colour = "black"))
 #' @rdname update_defaults
 update_geom_defaults <- function(geom, new) {

@@ -36,12 +36,12 @@ NULL
 #'   2.2, 2.1, 1.7, 2.1, 3.2, 2.8, 2.1, 2.2, 3.3, 3.2)
 #' )
 #'
-#' ggplot(values) + geom_map(aes(map_id = id), map = positions) +
+#' a_plot(values) + geom_map(aes(map_id = id), map = positions) +
 #'   ggplot2Animint:::expand_limits(positions)
-#' ggplot(values, aes(fill = value)) +
+#' a_plot(values, aes(fill = value)) +
 #'   geom_map(aes(map_id = id), map = positions) +
 #'   ggplot2Animint:::expand_limits(positions)
-#' ggplot(values, aes(fill = value)) +
+#' a_plot(values, aes(fill = value)) +
 #'   geom_map(aes(map_id = id), map = positions) +
 #'   ggplot2Animint:::expand_limits(positions) + ylim(0, 3)
 #'
@@ -50,12 +50,12 @@ NULL
 #' crimesm <- reshape2::melt(crimes, id = 1)
 #' if (require(maps)) {
 #'   states_map <- map_data("state")
-#'   ggplot(crimes, aes(map_id = state)) +
+#'   a_plot(crimes, aes(map_id = state)) +
 #'     geom_map(aes(fill = Murder), map = states_map) +
 #'     ggplot2Animint:::expand_limits(x = states_map$long, y = states_map$lat)
 #'
 #'   last_plot() + ggplot2Animint:::coord_map()
-#'   ggplot(crimesm, aes(map_id = state)) +
+#'   a_plot(crimesm, aes(map_id = state)) +
 #'     geom_map(aes(fill = value), map = states_map) +
 #'     ggplot2Animint:::expand_limits(x = states_map$long, y = states_map$lat) +
 #'     ggplot2Animint:::facet_wrap( ~ variable)

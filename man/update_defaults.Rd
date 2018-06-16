@@ -21,6 +21,6 @@ Modify geom/stat aesthetic defaults for future plots
 }
 \examples{
 update_geom_defaults("point", list(colour = "darkblue"))
-ggplot(mtcars, aes(mpg, wt)) + geom_point()
+a_plot(mtcars, aes(mpg, wt)) + geom_point()
 update_geom_defaults("point", list(colour = "black"))
 }

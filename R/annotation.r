@@ -18,7 +18,7 @@
 #' @inheritParams geom_point
 #' @keywords internal
 #' @examples
-#' p <- ggplot(mtcars, aes(x = wt, y = mpg)) + geom_point()
+#' p <- a_plot(mtcars, aes(x = wt, y = mpg)) + geom_point()
 #' p + ggplot2Animint:::annotate("text", x = 4, y = 25, label = "Some text")
 #' p + ggplot2Animint:::annotate("text", x = 2:5, y = 25, label = "Some text")
 #' p + ggplot2Animint:::annotate("rect", xmin = 3, xmax = 4.2, ymin = 12, ymax = 21,

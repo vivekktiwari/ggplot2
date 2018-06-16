@@ -17,19 +17,19 @@
 #' @examples
 #' \donttest{
 #' df <- data.frame(y = rt(200, df = 5))
-#' p <- ggplot(df, aes(sample = y))
+#' p <- a_plot(df, aes(sample = y))
 #' p + stat_qq()
 #' p + geom_point(stat = "qq")
 #'
 #' # Use fitdistr from MASS to estimate distribution params
 #' params <- as.list(MASS::fitdistr(df$y, "t")$estimate)
-#' ggplot(df, aes(sample = y)) +
+#' a_plot(df, aes(sample = y)) +
 #'   stat_qq(distribution = qt, dparams = params["df"])
 #'
 #' # Using to explore the distribution of a variable
-#' ggplot(mtcars) +
+#' a_plot(mtcars) +
 #'   stat_qq(aes(sample = mpg))
-#' ggplot(mtcars) +
+#' a_plot(mtcars) +
 #'   stat_qq(aes(sample = mpg, colour = factor(cyl)))
 #' }
 stat_qq <- function(mapping = NULL, data = NULL,

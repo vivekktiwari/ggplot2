@@ -109,7 +109,7 @@ qplot <- function(x, y = NULL, ..., data, facets = NULL, margins = FALSE,
     }
   }
 
-  p <- ggplot(data, aesthetics, environment = env)
+  p <- a_plot(data, aesthetics, environment = env)
 
   if (is.null(facets)) {
     p <- p + facet_null()

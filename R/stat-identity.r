@@ -6,7 +6,7 @@
 #' @inheritParams geom_point
 #' @export
 #' @examples
-#' p <- ggplot(mtcars, aes(wt, mpg))
+#' p <- a_plot(mtcars, aes(wt, mpg))
 #' p + stat_identity()
 stat_identity <- function(mapping = NULL, data = NULL,
                           geom = "point", position = "identity",

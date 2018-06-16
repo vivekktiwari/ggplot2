@@ -7,8 +7,8 @@
 #' @inheritParams layer
 #' @inheritParams geom_point
 #' @examples
-#' ggplot(mtcars, aes(vs, am)) + geom_point(alpha = 0.1)
-#' ggplot(mtcars, aes(vs, am)) + geom_point(alpha = 0.1, stat="unique")
+#' a_plot(mtcars, aes(vs, am)) + geom_point(alpha = 0.1)
+#' a_plot(mtcars, aes(vs, am)) + geom_point(alpha = 0.1, stat="unique")
 stat_unique <- function(mapping = NULL, data = NULL,
                         geom = "point", position = "identity",
                         ...,

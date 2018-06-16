@@ -24,7 +24,7 @@ plot. You must supply \code{mapping} if there is no plot mapping.}
    options:
 
    If \code{NULL}, the default, the data is inherited from the plot
-   data as specified in the call to \code{\link{ggplot}}.
+   data as specified in the call to \code{\link{a_plot}}.
 
    A \code{data.frame}, or other object, will override the plot
    data. All objects will be fortified to produce a data frame. See
@@ -89,7 +89,7 @@ This can be used as a continuous analogue of a geom_boxplot.
 }
 
 \examples{
-m <- ggplot(mpg, aes(displ, 1 / hwy)) + geom_point()
+m <- a_plot(mpg, aes(displ, 1 / hwy)) + geom_point()
 m + geom_quantile()
 m + geom_quantile(quantiles = 0.5)
 q10 <- seq(0.05, 0.95, by = 0.05)

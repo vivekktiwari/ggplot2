@@ -24,7 +24,7 @@ plot. You must supply \code{mapping} if there is no plot mapping.}
    options:
 
    If \code{NULL}, the default, the data is inherited from the plot
-   data as specified in the call to \code{\link{ggplot}}.
+   data as specified in the call to \code{\link{a_plot}}.
 
    A \code{data.frame}, or other object, will override the plot
    data. All objects will be fortified to produce a data frame. See
@@ -72,7 +72,7 @@ Hexagon binning.
 }
 
 \examples{
-d <- ggplot(diamonds, aes(carat, price))
+d <- a_plot(diamonds, aes(carat, price))
 d + geom_hex()
 
 \donttest{

@@ -4,7 +4,7 @@
 \alias{+.gg}
 \alias{\%+\%}
 \alias{\%+replace\%}
-\title{Add a new component to a ggplot or theme object.}
+\title{Add a new component to a a_plot or theme object.}
 \usage{
 \method{+}{gg}(e1, e2)
 
@@ -13,16 +13,16 @@ e1 \%+\% e2
 e1 \%+replace\% e2
 }
 \arguments{
-\item{e1}{An object of class \code{ggplot} or \code{theme}}
+\item{e1}{An object of class \code{a_plot} or \code{theme}}
 
 \item{e2}{A component to add to \code{e1}}
 }
 \description{
-This operator allows you to add objects to a ggplot or theme object.
+This operator allows you to add objects to a a_plot or theme object.
 }
 \details{
-If the first object is an object of class \code{ggplot}, you can add
-the following types of objects, and it will return a modified ggplot
+If the first object is an object of class \code{a_plot}, you can add
+the following types of objects, and it will return a modified a_plot
 object.
 
 \itemize{
@@ -45,7 +45,7 @@ can be used to modify elements in themes.
 The \code{+} operator updates the elements of e1 that differ from
 elements specified (not NULL) in e2.
 Thus this operator can be used to incrementally add or modify attributes
-of a ggplot theme.
+of a a_plot theme.
 
 In contrast, the \code{\%+replace\%} operator replaces the
 entire element; any element of a theme not specified in e2 will not be
@@ -53,8 +53,8 @@ present in the resulting theme (i.e. NULL).
 Thus this operator can be used to overwrite an entire theme.
 }
 \examples{
-### Adding objects to a ggplot object
-p <- ggplot(mtcars, aes(wt, mpg, colour = disp)) +
+### Adding objects to a a_plot object
+p <- a_plot(mtcars, aes(wt, mpg, colour = disp)) +
   geom_point()
 
 p

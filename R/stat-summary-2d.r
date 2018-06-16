@@ -27,7 +27,7 @@
 #' @param fun.args A list of extra arguments to pass to \code{fun}
 #' @export
 #' @examples
-#' d <- ggplot(diamonds, aes(carat, depth, z = price))
+#' d <- a_plot(diamonds, aes(carat, depth, z = price))
 #' d + stat_summary_2d()
 #'
 #' # Specifying function

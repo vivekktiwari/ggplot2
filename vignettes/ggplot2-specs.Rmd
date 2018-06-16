@@ -53,7 +53,7 @@ Line types can be specified with:
       y = seq_along(lty),
       lty = lty
     ) 
-    ggplot(linetypes, aes(0, y)) + 
+    a_plot(linetypes, aes(0, y)) + 
       geom_segment(aes(xend = 5, yend = y, linetype = lty)) + 
       scale_linetype_identity() + 
       geom_text(aes(label = lty), hjust = 0, nudge_y = 0.2) +
@@ -84,7 +84,7 @@ Shapes take four types of values:
       x = 0:24 %/% 5,
       y = -(0:24 %% 5)
     )
-    ggplot(shapes, aes(x, y)) + 
+    a_plot(shapes, aes(x, y)) + 
       geom_point(aes(shape = shape), size = 5, fill = "red") +
       geom_text(aes(label = shape), hjust = 0, nudge_x = 0.15) +
       scale_shape_identity() +
@@ -103,7 +103,7 @@ Note that shapes 21-24 have both stroke `colour` and a `fill`. The size of the f
 
 ```{r}
 sizes <- expand.grid(size = (0:3) * 2, stroke = (0:3) * 2)
-ggplot(sizes, aes(size, stroke, size = size, stroke = stroke)) + 
+a_plot(sizes, aes(size, stroke, size = size, stroke = stroke)) + 
   geom_abline(slope = -1, intercept = 6, colour = "white", size = 6) + 
   geom_point(shape = 21, fill = "red") +
   scale_size_identity()
@@ -121,7 +121,7 @@ There are only three fonts that are guaranteed to work everywhere: "sans" (the d
 
 ```{r}
 df <- data.frame(x = 1, y = 3:1, family = c("sans", "serif", "mono"))
-ggplot(df, aes(x, y)) + 
+a_plot(df, aes(x, y)) + 
   geom_text(aes(label = family, family = family))
 ```
 
@@ -161,7 +161,7 @@ Horizontal and vertical justification have the same parameterisation, either a s
 just <- expand.grid(hjust = c(0, 0.5, 1), vjust = c(0, 0.5, 1))
 just$label <- paste0(just$hjust, ", ", just$vjust)
 
-ggplot(just, aes(hjust, vjust)) +
+a_plot(just, aes(hjust, vjust)) +
   geom_point(colour = "grey70", size = 5) + 
   geom_text(aes(label = label, hjust = hjust, vjust = vjust))
 ```

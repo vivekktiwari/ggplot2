@@ -11,11 +11,11 @@
 #' @export
 #' @examples
 #' #' # Basic plot
-#' v <- ggplot(faithfuld, aes(waiting, eruptions, z = density))
+#' v <- a_plot(faithfuld, aes(waiting, eruptions, z = density))
 #' v + geom_contour()
 #'
 #' # Or compute from raw data
-#' ggplot(faithful, aes(waiting, eruptions)) +
+#' a_plot(faithful, aes(waiting, eruptions)) +
 #'   geom_density_2d()
 #'
 #' \donttest{

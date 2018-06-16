@@ -15,13 +15,13 @@
 #' @rdname scale_discrete
 #' @export
 #' @examples
-#' ggplot(diamonds, aes(cut)) + geom_bar()
+#' a_plot(diamonds, aes(cut)) + geom_bar()
 #'
 #' \donttest{
 #' # The discrete position scale is added automatically whenever you
 #' # have a discrete position.
 #'
-#' (d <- ggplot(subset(diamonds, carat > 1), aes(cut, clarity)) +
+#' (d <- a_plot(subset(diamonds, carat > 1), aes(cut, clarity)) +
 #'       geom_jitter())
 #'
 #' d + scale_x_discrete("Cut")
@@ -37,12 +37,12 @@
 #' d + ylim("I1", "IF")
 #'
 #' # See ?reorder to reorder based on the values of another variable
-#' ggplot(mpg, aes(manufacturer, cty)) + geom_point()
-#' ggplot(mpg, aes(reorder(manufacturer, cty), cty)) + geom_point()
-#' ggplot(mpg, aes(reorder(manufacturer, displ), cty)) + geom_point()
+#' a_plot(mpg, aes(manufacturer, cty)) + geom_point()
+#' a_plot(mpg, aes(reorder(manufacturer, cty), cty)) + geom_point()
+#' a_plot(mpg, aes(reorder(manufacturer, displ), cty)) + geom_point()
 #'
 #' # Use abbreviate as a formatter to reduce long names
-#' ggplot(mpg, aes(reorder(manufacturer, displ), cty)) +
+#' a_plot(mpg, aes(reorder(manufacturer, displ), cty)) +
 #'   geom_point() +
 #'   scale_x_discrete(labels = abbreviate)
 #' }

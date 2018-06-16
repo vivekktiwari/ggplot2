@@ -7,7 +7,7 @@
 #' @inheritParams layer
 #' @inheritParams geom_point
 #' @examples
-#' ggplot(mtcars, aes(wt, mpg))
+#' a_plot(mtcars, aes(wt, mpg))
 #' # Nothing to see here!
 geom_blank <- function(mapping = NULL, data = NULL,
                        stat = "identity", position = "identity",

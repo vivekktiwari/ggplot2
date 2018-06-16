@@ -13,7 +13,7 @@
 #' @seealso \code{\link{\%+replace\%}} and \code{\link{+.gg}}
 #' @export
 #' @examples
-#' p <- ggplot(mtcars, aes(mpg, wt)) +
+#' p <- a_plot(mtcars, aes(mpg, wt)) +
 #'   geom_point()
 #' p
 #' old <- theme_set(theme_bw())
@@ -38,7 +38,7 @@
 #' theme_get()
 #'
 #'
-#' ggplot(mtcars, aes(mpg, wt)) +
+#' a_plot(mtcars, aes(mpg, wt)) +
 #'   geom_point(aes(color = mpg)) +
 #'   theme(legend.position = c(0.95, 0.95),
 #'         legend.justification = c(1, 1))
@@ -230,14 +230,14 @@ print.theme <- function(x, ...) utils::str(x)
 #' @export
 #' @examples
 #' \donttest{
-#' p <- ggplot(mtcars, aes(mpg, wt)) +
+#' p <- a_plot(mtcars, aes(mpg, wt)) +
 #'   geom_point()
 #' p
 #' p + theme(panel.background = element_rect(colour = "pink"))
 #' p + theme_bw()
 #'
 #' # Scatter plot of gas mileage by vehicle weight
-#' p <- ggplot(mtcars, aes(wt, mpg)) +
+#' p <- a_plot(mtcars, aes(wt, mpg)) +
 #'   geom_point()
 #' # Calculate slope and intercept of line of best fit
 #' coef(lm(mpg ~ wt, data = mtcars))
@@ -268,7 +268,7 @@ print.theme <- function(x, ...) utils::str(x)
 #'
 #' # Changing plot look with themes
 #' DF <- data.frame(x = rnorm(400))
-#' m <- ggplot(DF, aes(x = x)) +
+#' m <- a_plot(DF, aes(x = x)) +
 #'   geom_histogram()
 #' # Default is theme_grey()
 #' m
@@ -285,7 +285,7 @@ print.theme <- function(x, ...) utils::str(x)
 #' m + theme(axis.ticks.length = unit(.85, "cm"))
 #'
 #' # Legend Attributes
-#' z <- ggplot(mtcars, aes(wt, mpg)) +
+#' z <- a_plot(mtcars, aes(wt, mpg)) +
 #'   geom_point(aes(colour = factor(cyl)))
 #' z
 #' z + theme(legend.position = "none")
@@ -325,7 +325,7 @@ print.theme <- function(x, ...) utils::str(x)
 #' # Faceting Attributes
 #' set.seed(4940)
 #' dsmall <- diamonds[sample(nrow(diamonds), 1000), ]
-#' k <- ggplot(dsmall, aes(carat, ..density..)) +
+#' k <- a_plot(dsmall, aes(carat, ..density..)) +
 #'   geom_histogram(binwidth = 0.2) +
 #'   facet_grid(. ~ cut)
 #' k + theme(strip.background = element_rect(colour = "purple", fill = "pink",
@@ -339,7 +339,7 @@ print.theme <- function(x, ...) utils::str(x)
 #' meanprice <- tapply(diamonds$price, diamonds$cut, mean)
 #' cut <- factor(levels(diamonds$cut), levels = levels(diamonds$cut))
 #' df <- data.frame(meanprice, cut)
-#' g <- ggplot(df, aes(cut, meanprice)) + geom_bar(stat = "identity")
+#' g <- a_plot(df, aes(cut, meanprice)) + geom_bar(stat = "identity")
 #' g + geom_bar(stat = "identity") +
 #'     theme(panel.background = element_blank(),
 #'           panel.grid.major.x = element_blank(),
@@ -470,7 +470,7 @@ add_theme <- function(t1, t2, t2name) {
 
 # Update a theme from a plot object
 #
-# This is called from add_ggplot.
+# This is called from add_a_plot.
 #
 # If newtheme is a *complete* theme, then it is meant to replace
 # oldtheme; this function just returns newtheme.
@@ -481,7 +481,7 @@ add_theme <- function(t1, t2, t2name) {
 # same name as those from newtheme, and puts them in oldtheme. Then
 # it adds elements from newtheme to oldtheme.
 # This makes it possible to do things like:
-#   ggplot(data.frame(x = 1:3, y = 1:3)) +
+#   a_plot(data.frame(x = 1:3, y = 1:3)) +
 #   geom_point() + theme(text = element_text(colour = 'red'))
 # and have 'text' keep properties from the default theme. Otherwise
 # you would have to set all the element properties, like family, size,
