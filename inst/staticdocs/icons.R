@@ -63,7 +63,7 @@ coord_transform  <- sd_icon({
 
 # Faceting ---------------------------------------------------------------------
 
-facet_grid  <- sd_icon({
+a_facet_grid  <- sd_icon({
   gTree(children = gList(
     rectGrob(
       0,
@@ -87,7 +87,7 @@ facet_grid  <- sd_icon({
   ))
 })
 
-facet_null  <- sd_icon({
+a_facet_null  <- sd_icon({
   gTree(children = gList(
     rectGrob(
       0,

@@ -13,6 +13,10 @@ Date: 16-06-2018
 
 draw_key_funcname --> a_draw_key_*
 
+facet_funcname --> a_facet_*
+
+facet -- > a_facet
+
 ggplot --> a_plot
 (along with its S3 methods)
 
@@ -38,24 +42,6 @@ S3method(makeContext,dotstackGrob)
 S3method(print,ggplot2_bins)
 S3method(widthDetails,stripGrob)
 S3method(as.character,uneval)
-S3method(facet_axes,grid)
-S3method(facet_axes,wrap)
-S3method(facet_map_layout,grid)
-S3method(facet_map_layout,null)
-S3method(facet_map_layout,wrap)
-S3method(facet_panels,grid)
-S3method(facet_panels,wrap)
-S3method(facet_render,grid)
-S3method(facet_render,null)
-S3method(facet_render,wrap)
-S3method(facet_strips,grid)
-S3method(facet_strips,wrap)
-S3method(facet_train_layout,grid)
-S3method(facet_train_layout,null)
-S3method(facet_train_layout,wrap)
-S3method(facet_vars,grid)
-S3method(facet_vars,null)
-S3method(facet_vars,wrap)
 S3method(format,facet)
 S3method(fortify,Line)
 S3method(fortify,Lines)

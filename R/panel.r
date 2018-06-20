@@ -22,15 +22,15 @@ new_panel <- function() {
 #' to house the x and y scales.
 #'
 #' @param panel the panel object to train
-#' @param facet the facetting specification
+#' @param a_facet the facetting specification
 #' @param data a list of data frames (one for each layer), and one for the plot
 #' @param plot_data the default data frame
 #' @return an updated panel object
 #' @keywords internal
-train_layout <- function(panel, facet, data, plot_data) {
-  layout <- facet_train_layout(facet, c(list(plot_data), data))
+train_layout <- function(panel, a_facet, data, plot_data) {
+  layout <- a_facet_train_layout(a_facet, c(list(plot_data), data))
   panel$layout <- layout
-  panel$shrink <- facet$shrink
+  panel$shrink <- a_facet$shrink
 
   panel
 }
@@ -47,9 +47,9 @@ train_layout <- function(panel, facet, data, plot_data) {
 #' @param the facetting specification
 #' @param data list of data frames (one for each layer)
 #' @keywords internal
-map_layout <- function(panel, facet, data) {
+map_layout <- function(panel, a_facet, data) {
   lapply(data, function(data) {
-    facet_map_layout(facet, data, panel$layout)
+    a_facet_map_layout(a_facet, data, panel$layout)
   })
 }
 

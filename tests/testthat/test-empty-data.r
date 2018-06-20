@@ -33,11 +33,11 @@ test_that("plots with empty data and vectors for aesthetics work", {
 })
 
 
-test_that("layers with empty data are silently omitted with facet_wrap", {
+test_that("layers with empty data are silently omitted with a_facet_wrap", {
   # Empty data, facet_wrap, throws error
   d <- a_plot(df0, aes(mpg, wt)) +
     geom_point() +
-    facet_wrap(~cyl)
+    a_facet_wrap(~cyl)
   expect_error(layer_data(d), "must have at least one value")
 
   d <- d + geom_point(data = mtcars)
@@ -48,7 +48,7 @@ test_that("layers with empty data are silently omitted with facet_wrap", {
 test_that("layers with empty data are silently omitted with facet_grid", {
   d <- a_plot(df0, aes(mpg, wt)) +
     geom_point() +
-    facet_grid(am ~ cyl)
+    a_facet_grid(am ~ cyl)
   expect_error(layer_data(d), "must have at least one value")
 
   d <- d + geom_point(data = mtcars)
@@ -91,7 +91,7 @@ test_that("empty layers still generate one grob per panel", {
   d <- a_plot(df, aes(x, y)) +
     geom_point(data = df[0, ]) +
     geom_point() +
-    facet_wrap(~y)
+    a_facet_wrap(~y)
 
   expect_equal(length(layer_grob(d)), 3)
 })
@@ -101,5 +101,5 @@ test_that("missing layers generate one grob per panel", {
   base <- a_plot(df, aes(x, y)) + geom_point(shape = NA, na.rm = TRUE)
 
   expect_equal(length(layer_grob(base)), 1)
-  expect_equal(length(layer_grob(base + facet_wrap(~ g))), 2)
+  expect_equal(length(layer_grob(base + a_facet_wrap(~ g))), 2)
 })

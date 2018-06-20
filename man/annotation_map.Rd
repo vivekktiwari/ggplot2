@@ -31,7 +31,7 @@ seal2 <- transform(seal.sub,
 a_plot(seal2,  aes(x = long, y = lat)) +
   ggplot2Animint:::annotation_map(usamap, fill = "NA", colour = "grey50") +
   geom_segment(aes(xend = long + delta_long, yend = lat + delta_lat)) +
-  ggplot2Animint:::facet_grid(latr ~ longr, scales = "free", space = "free")
+  ggplot2Animint:::a_facet_grid(latr ~ longr, scales = "free", space = "free")
 }
 }
 \keyword{internal}

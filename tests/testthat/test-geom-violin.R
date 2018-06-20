@@ -8,7 +8,7 @@ test_that("", {
 
   p <- a_plot(df, aes(1, y)) +
     geom_violin() +
-    facet_grid(x ~ ., scales = "free") +
+    a_facet_grid(x ~ ., scales = "free") +
     coord_cartesian(expand = FALSE)
 
   expect_equal(layer_scales(p, 1)$y$dimension(), c(0, 1))

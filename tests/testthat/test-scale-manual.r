@@ -2,7 +2,7 @@ context("scale_manual")
 
 
 test_that("names of values used in manual scales", {
-   s <- scale_colour_manual(values = c("8" = "c","4" = "a","6" = "b"))
+   s <- ggplot2Animint:::scale_colour_manual(values = c("8" = "c","4" = "a","6" = "b"))
    s$train(c("4", "6", "8"))
    expect_equal(s$map(c("4", "6", "8")), c("a", "b", "c"))
 })
@@ -31,7 +31,7 @@ test_that("missing values replaced with na.value", {
   df <- data.frame(x = 1, y = 1:3, z = factor(c(1:2, NA), exclude = NULL))
   p <- a_plot(df, aes(x, y, colour = z)) +
     geom_point() +
-    scale_colour_manual(values = c("black", "black"), na.value = "red")
+    ggplot2Animint:::scale_colour_manual(values = c("black", "black"), na.value = "red")
 
   expect_equal(layer_data(p)$colour, c("black", "black", "red"))
 })
@@ -40,16 +40,16 @@ test_that("insufficient values raise an error", {
   df <- data.frame(x = 1, y = 1:3, z = factor(c(1:2, NA), exclude = NULL))
   p <- qplot(x, y, data = df, colour = z)
 
-  expect_error(a_plot_build(p + scale_colour_manual(values = "black")),
+  expect_error(a_plot_build(p + ggplot2Animint:::scale_colour_manual(values = "black")),
     "Insufficient values")
 
   # Should be sufficient
-  a_plot_build(p + scale_colour_manual(values = c("black", "black")))
+  a_plot_build(p + ggplot2Animint:::scale_colour_manual(values = c("black", "black")))
 
 })
 
 test_that("values are matched when scale contains more unique valuesthan are in the data", {
-  s <- scale_colour_manual(values = c("8" = "c", "4" = "a",
+  s <- ggplot2Animint:::scale_colour_manual(values = c("8" = "c", "4" = "a",
     "22" = "d", "6"  = "b"))
   s$train(c("4", "6", "8"))
   expect_equal(s$map(c("4", "6", "8")), c("a", "b", "c"))

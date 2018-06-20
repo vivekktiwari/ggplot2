@@ -100,7 +100,7 @@ a_plot.data.frame <- function(data, mapping = aes(), ...,
     mapping = mapping,
     theme = list(),
     coordinates = coord_cartesian(),
-    facet = facet_null(),
+    a_facet = a_facet_null(),
     plot_env = environment
   ), class = c("gg", "a_plot"))
 

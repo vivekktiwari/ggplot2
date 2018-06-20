@@ -38,8 +38,8 @@ a_plot_build <- function(plot) {
   # variables, and add on a PANEL variable to data
 
   panel <- new_panel()
-  panel <- train_layout(panel, plot$facet, layer_data, plot$data)
-  data <- map_layout(panel, plot$facet, layer_data)
+  panel <- train_layout(panel, plot$a_facet, layer_data, plot$data)
+  data <- map_layout(panel, plot$a_facet, layer_data)
 
   # Compute aesthetics to produce data with generalised variable names
   data <- by_layer(function(l, d) l$compute_aesthetics(d, plot))
@@ -144,7 +144,7 @@ a_plot_gtable <- function(data) {
   geom_grobs <- Map(function(l, d) l$draw_geom(d, panel, plot$coordinates),
     plot$layers, data)
 
-  plot_table <- facet_render(plot$facet, panel, plot$coordinates,
+  plot_table <- a_facet_render(plot$a_facet, panel, plot$coordinates,
     theme, geom_grobs)
 
   # Axis labels

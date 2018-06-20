@@ -4,12 +4,12 @@
 \alias{train_layout}
 \title{Learn the layout of panels within a plot.}
 \usage{
-train_layout(panel, facet, data, plot_data)
+train_layout(panel, a_facet, data, plot_data)
 }
 \arguments{
 \item{panel}{the panel object to train}
 
-\item{facet}{the facetting specification}
+\item{a_facet}{the facetting specification}
 
 \item{data}{a list of data frames (one for each layer), and one for the plot}
 

@@ -102,16 +102,16 @@ p + geom_smooth(method = "lm", se = FALSE)
 # To show different lines in different facets, use aesthetics
 p <- a_plot(mtcars, aes(mpg, wt)) +
   geom_point() +
-  ggplot2Animint:::facet_wrap(~ cyl)
+  ggplot2Animint:::a_facet_wrap(~ cyl)
 
 mean_wt <- data.frame(cyl = c(4, 6, 8), wt = c(2.28, 3.11, 4.00))
 p + geom_hline(aes(yintercept = wt), mean_wt)
 
 # You can also control other aesthetics
-a_plot(mtcars, aes(mpg, wt, colour = wt)) +
+a_plot(mtcars, aes(mpg, wt, colourffa = wt)) +
   geom_point() +
   geom_hline(aes(yintercept = wt, colour = wt), mean_wt) +
-  ggplot2Animint:::facet_wrap(~ cyl)
+  ggplot2Animint:::a_facet_wrap(~ cyl)
 }
 \seealso{
 See \code{\link{geom_segment}} for a more general approach to

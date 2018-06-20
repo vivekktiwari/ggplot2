@@ -81,9 +81,9 @@ argument.
   attribute of the incoming data frame of labels. The value of this
   attribute reflects the kind of strips your labeller is dealing
   with: \code{"cols"} for columns and \code{"rows"} for rows. Note
-  that \code{\link{facet_wrap}()} has columns by default and rows
+  that \code{\link{a_facet_wrap}()} has columns by default and rows
   when the strips are switched with the \code{switch} option. The
-  \code{facet} attribute also provides metadata on the labels. It
+  \code{a_facet} attribute also provides metadata on the labels. It
   takes the values \code{"grid"} or \code{"wrap"}.
 
   For compatibility with \code{\link{labeller}()}, each labeller
@@ -95,8 +95,8 @@ mtcars$cyl2 <- factor(mtcars$cyl, labels = c("alpha", "beta", "gamma"))
 p <- a_plot(mtcars, aes(wt, mpg)) + geom_point()
 
 # Displaying only the values
-p + ggplot2Animint:::facet_grid(. ~ cyl)
-p + ggplot2Animint:::facet_grid(. ~ cyl, labeller = label_value)
+p + ggplot2Animint:::a_facet_grid(. ~ cyl)
+p + ggplot2Animint:::a_facet_grid(. ~ cyl, labeller = label_value)
 
 \donttest{
 # Displaying both the values and the variables

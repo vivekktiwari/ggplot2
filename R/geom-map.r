@@ -58,7 +58,7 @@ NULL
 #'   a_plot(crimesm, aes(map_id = state)) +
 #'     geom_map(aes(fill = value), map = states_map) +
 #'     ggplot2Animint:::expand_limits(x = states_map$long, y = states_map$lat) +
-#'     ggplot2Animint:::facet_wrap( ~ variable)
+#'     ggplot2Animint:::a_facet_wrap( ~ variable)
 #' }
 geom_map <- function(mapping = NULL, data = NULL,
                      stat = "identity",

@@ -30,7 +30,7 @@ function.}
 used with lookup tables or non-labeller functions.}
 }
 \value{
-A labeller function to supply to \code{\link{facet_grid}}
+A labeller function to supply to \code{\link{a_facet_grid}}
   for the argument \code{labeller}.
 }
 \description{

@@ -266,7 +266,7 @@ set.seed(4940)
 dsmall <- diamonds[sample(nrow(diamonds), 1000), ]
 k <- a_plot(dsmall, aes(carat, ..density..)) +
   geom_histogram(binwidth = 0.2) +
-  facet_grid(. ~ cut)
+  a_facet_grid(. ~ cut)
 k + theme(strip.background = element_rect(colour = "purple", fill = "pink",
                                           size = 3, linetype = "dashed"))
 k + theme(strip.text.x = element_text(colour = "red", angle = 45, size = 10,

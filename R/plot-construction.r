@@ -14,7 +14,7 @@
 #'   \item \code{theme}: update plot theme
 #'   \item \code{scale}: replace current scale
 #'   \item \code{coord}: override current coordinate system
-#'   \item \code{facet}: override current coordinate faceting
+#'   \item \code{a_facet}: override current coordinate faceting
 #' }
 #'
 #' If the first object is an object of class \code{theme}, you can add
@@ -99,8 +99,8 @@ add_a_plot <- function(p, object, objectname) {
   } else if (is.Coord(object)) {
       p$coordinates <- object
       p
-  } else if (is.facet(object)) {
-      p$facet <- object
+  } else if (is.a_facet(object)) {
+      p$a_facet <- object
       p
   } else if (is.list(object)) {
     for (o in object) {

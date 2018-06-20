@@ -20,7 +20,7 @@ test_that("geom_boxplot for continuous x gives warning if more than one x (#992)
   }
 
   expect_warning(bplot(aes(x, y)), "Continuous x aesthetic")
-  expect_warning(bplot(aes(x, y), facet_wrap(~x)), "Continuous x aesthetic")
+  expect_warning(bplot(aes(x, y), a_facet_wrap(~x)), "Continuous x aesthetic")
   expect_warning(bplot(aes(Sys.Date() + x, y)), "Continuous x aesthetic")
 
   expect_warning(bplot(aes(x, group = x, y)), NA)

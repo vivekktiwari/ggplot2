@@ -47,9 +47,9 @@
 #'   attribute of the incoming data frame of labels. The value of this
 #'   attribute reflects the kind of strips your labeller is dealing
 #'   with: \code{"cols"} for columns and \code{"rows"} for rows. Note
-#'   that \code{\link{facet_wrap}()} has columns by default and rows
+#'   that \code{\link{a_facet_wrap}()} has columns by default and rows
 #'   when the strips are switched with the \code{switch} option. The
-#'   \code{facet} attribute also provides metadata on the labels. It
+#'   \code{a_facet} attribute also provides metadata on the labels. It
 #'   takes the values \code{"grid"} or \code{"wrap"}.
 #'
 #'   For compatibility with \code{\link{labeller}()}, each labeller
@@ -62,7 +62,7 @@
 #'   on separate lines.
 #' @param sep String separating variables and values.
 #' @param width Maximum number of characters before wrapping the strip.
-#' @family facet
+#' @family a_facet
 #' @seealso \code{\link{labeller}()}, \code{\link{as_labeller}()},
 #'   \code{\link{label_bquote}()}
 #' @name labellers
@@ -71,8 +71,8 @@
 #' p <- a_plot(mtcars, aes(wt, mpg)) + geom_point()
 #'
 #' # Displaying only the values
-#' p + ggplot2Animint:::facet_grid(. ~ cyl)
-#' p + ggplot2Animint:::facet_grid(. ~ cyl, labeller = label_value)
+#' p + ggplot2Animint:::a_facet_grid(. ~ cyl)
+#' p + ggplot2Animint:::a_facet_grid(. ~ cyl, labeller = label_value)
 #'
 #' \donttest{
 #' # Displaying both the values and the variables
@@ -193,9 +193,9 @@ find_names <- function(expr) {
 #' # The variables mentioned in the plotmath expression must be
 #' # backquoted and referred to by their names.
 #' p <- a_plot(mtcars, aes(wt, mpg)) + geom_point()
-#' p + ggplot2Animint:::facet_grid(vs ~ ., labeller = label_bquote(alpha ^ .(vs)))
-#' p + ggplot2Animint:::facet_grid(. ~ vs, labeller = label_bquote(cols = .(vs) ^ .(vs)))
-#' p + ggplot2Animint:::facet_grid(. ~ vs + am, labeller = label_bquote(cols = .(am) ^ .(vs)))
+#' p + ggplot2Animint:::a_facet_grid(vs ~ ., labeller = label_bquote(alpha ^ .(vs)))
+#' p + ggplot2Animint:::a_facet_grid(. ~ vs, labeller = label_bquote(cols = .(vs) ^ .(vs)))
+#' p + ggplot2Animint:::a_facet_grid(. ~ vs + am, labeller = label_bquote(cols = .(am) ^ .(vs)))
 label_bquote <- function(rows = NULL, cols = NULL,
                          default = label_value) {
   cols_quoted <- substitute(cols)
@@ -252,10 +252,10 @@ resolve_labeller <- function(rows, cols, labels) {
   if (is.null(cols) && is.null(rows)) {
     stop("Supply one of rows or cols", call. = FALSE)
   }
-  if (attr(labels, "facet") == "wrap") {
+  if (attr(labels, "a_facet") == "wrap") {
     # Return either rows or cols for facet_wrap()
     if (!is.null(cols) && !is.null(rows)) {
-      stop("Cannot supply both rows and cols to facet_wrap()", call. = FALSE)
+      stop("Cannot supply both rows and cols to a_facet_wrap()", call. = FALSE)
     }
     cols %||% rows
   } else {
@@ -284,20 +284,20 @@ resolve_labeller <- function(rows, cols, labels) {
 #' @export
 #' @examples
 #' p <- a_plot(mtcars, aes(disp, drat)) + geom_point()
-#' p + ggplot2Animint:::facet_wrap(~am)
+#' p + ggplot2Animint:::a_facet_wrap(~am)
 #'
 #' # Rename labels on the fly with a lookup character vector
 #' to_string <- as_labeller(c(`0` = "Zero", `1` = "One"))
-#' p + ggplot2Animint:::facet_wrap(~am, labeller = to_string)
+#' p + ggplot2Animint:::a_facet_wrap(~am, labeller = to_string)
 #'
 #' # Quickly transform a function operating on character vectors to a
 #' # labeller function:
 #' appender <- function(string, suffix = "-foo") paste0(string, suffix)
-#' p + ggplot2Animint:::facet_wrap(~am, labeller = as_labeller(appender))
+#' p + ggplot2Animint:::a_facet_wrap(~am, labeller = as_labeller(appender))
 #'
 #' # If you have more than one facetting variable, be sure to dispatch
 #' # your labeller to the right variable with labeller()
-#' p + ggplot2Animint:::facet_grid(cyl ~ am, labeller = labeller(am = to_string))
+#' p + ggplot2Animint:::a_facet_grid(cyl ~ am, labeller = labeller(am = to_string))
 as_labeller <- function(x, default = label_value, multi_line = TRUE) {
   force(x)
   fun <- function(labels) {
@@ -352,9 +352,9 @@ as_labeller <- function(x, default = label_value, multi_line = TRUE) {
 #'   function.
 #' @param .default Default labeller for variables not specified. Also
 #'   used with lookup tables or non-labeller functions.
-#' @family facet labeller
+#' @family a_facet labeller
 #' @seealso \code{\link{as_labeller}()}, \link{labellers}
-#' @return A labeller function to supply to \code{\link{facet_grid}}
+#' @return A labeller function to supply to \code{\link{a_facet_grid}}
 #'   for the argument \code{labeller}.
 #' @export
 #' @examples

@@ -4,7 +4,7 @@
 \alias{map_layout}
 \title{Map data to find out where it belongs in the plot.}
 \usage{
-map_layout(panel, facet, data)
+map_layout(panel, a_facet, data)
 }
 \arguments{
 \item{panel}{a trained panel object}

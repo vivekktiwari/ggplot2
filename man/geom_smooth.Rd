@@ -142,7 +142,7 @@ a_plot(mpg, aes(displ, hwy, colour = class)) +
 a_plot(mpg, aes(displ, hwy)) +
   geom_point() +
   geom_smooth(span = 0.8) +
-  ggplot2Animint:::facet_wrap(~drv)
+  ggplot2Animint:::a_facet_wrap(~drv)
 
 \donttest{
 binomial_smooth <- function(...) {
