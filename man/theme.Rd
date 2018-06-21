@@ -27,7 +27,7 @@ directly or indirectly from \code{text}; all lines inherit from
 \code{line}, and all rectangular objects inherit from \code{rect}.
 
 For more examples of modifying properties using inheritance, see
-\code{\link{+.gg}} and \code{\link{\%+replace\%}}.
+\code{\link{+.ggg}} and \code{\link{\%+replace\%}}.
 
 To see a graphical representation of the inheritance tree, see the
 last example below.
@@ -293,7 +293,7 @@ p + mytheme
 }
 }
 \seealso{
-\code{\link{+.gg}}
+\code{\link{+.ggg}}
 
 \code{\link{\%+replace\%}}
 

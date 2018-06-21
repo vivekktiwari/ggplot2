@@ -98,8 +98,8 @@ stat_chull <- function(mapping = NULL, data = NULL, geom = "polygon",
 Once we have a layer function we can try our new stat:
 
 ```{r}
-a_plot(mpg, aes(displ, hwy)) + 
-  geom_point() + 
+a_plot(mpg, aes(displ, hwy)) + browser()
+  geom_point() + browser()
   stat_chull(fill = NA, colour = "black")
 ```
 

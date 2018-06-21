@@ -10,7 +10,7 @@
 #'
 #'
 #' @param ... named list of theme settings
-#' @seealso \code{\link{\%+replace\%}} and \code{\link{+.gg}}
+#' @seealso \code{\link{\%+replace\%}} and \code{\link{+.ggg}}
 #' @export
 #' @examples
 #' p <- a_plot(mtcars, aes(mpg, wt)) +
@@ -75,7 +75,7 @@ print.theme <- function(x, ...) utils::str(x)
 #' \code{line}, and all rectangular objects inherit from \code{rect}.
 #'
 #' For more examples of modifying properties using inheritance, see
-#' \code{\link{+.gg}} and \code{\link{\%+replace\%}}.
+#' \code{\link{+.ggg}} and \code{\link{\%+replace\%}}.
 #'
 #' To see a graphical representation of the inheritance tree, see the
 #' last example below.
@@ -220,7 +220,7 @@ print.theme <- function(x, ...) utils::str(x)
 #'   differently when added to a ggplot object.
 #' @param validate TRUE to run validate_element, FALSE to bypass checks.
 #'
-#' @seealso \code{\link{+.gg}}
+#' @seealso \code{\link{+.ggg}}
 #' @seealso \code{\link{\%+replace\%}}
 #' @seealso \code{\link{rel}}
 #' @seealso \code{\link{element_blank}}
@@ -366,7 +366,7 @@ theme <- function(..., complete = FALSE, validate = TRUE) {
     mapply(validate_element, elements, names(elements))
   }
 
-  structure(elements, class = c("theme", "gg"),
+  structure(elements, class = c("theme", "ggg"),
             complete = complete, validate = validate)
 }
 
@@ -405,7 +405,7 @@ theme_get <- .theme$get
 theme_set <- .theme$set
 
 
-#' @rdname gg-add
+#' @rdname ggg-add
 #' @export
 "%+replace%" <- function(e1, e2) {
   if (!is.theme(e1) || !is.theme(e2)) {
@@ -425,7 +425,7 @@ theme_set <- .theme$set
 #' @param t2name A name of the t2 object. This is used for printing
 #'   informative error messages.
 #'
-#' @seealso +.gg
+#' @seealso +.ggg
 #'
 add_theme <- function(t1, t2, t2name) {
   if (!is.theme(t2)) {
