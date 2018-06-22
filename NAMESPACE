@@ -2,7 +2,7 @@
 
 S3method("$",ggproto)
 S3method("$",ggproto_parent)
-S3method("+",ggg)
+S3method("+",aaa)
 S3method("[",uneval)
 S3method("[[",ggproto)
 S3method(a_facet_axes,grid)

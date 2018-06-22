@@ -59,9 +59,9 @@
 #' @param e2 A component to add to \code{e1}
 #' @export
 #' @seealso \code{\link{theme}}
-#' @method + ggg
-#' @rdname ggg-add
-"+.ggg" <- function(e1, e2) {
+#' @method + aaa
+#' @rdname aaa-add
+"+.aaa" <- function(e1, e2) {
   # Get the name of what was passed in as e2, and pass along so that it
   # can be displayed in error messages
   e2name <- deparse(substitute(e2))
@@ -71,9 +71,9 @@
 }
 
 
-#' @rdname ggg-add
+#' @rdname aaa-add
 #' @export
-"%+%" <- `+.ggg`
+"%+%" <- `+.aaa`
 
 
 add_a_plot <- function(p, object, objectname) {

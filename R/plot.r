@@ -102,7 +102,7 @@ a_plot.data.frame <- function(data, mapping = aes(), ...,
     coordinates = coord_cartesian(),
     a_facet = a_facet_null(),
     plot_env = environment
-  ), class = c("gg", "a_plot"))
+  ), class = c("aaa", "a_plot"))
 
   p$labels <- make_labels(mapping)
 

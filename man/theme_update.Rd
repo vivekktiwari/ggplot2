@@ -64,5 +64,5 @@ last_plot() +
 
 }
 \seealso{
-\code{\link{\%+replace\%}} and \code{\link{+.ggg}}
+\code{\link{\%+replace\%}} and \code{\link{+.aaa}}
 }
