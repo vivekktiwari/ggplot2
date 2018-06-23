@@ -21,11 +21,11 @@ geom_errorbar <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_GeomErrorbar <- ggproto("a_GeomErrorbar", a_Geom,
+a_GeomErrorbar <- a_ggproto("a_GeomErrorbar", a_Geom,
   default_aes = aes(colour = "black", size = 0.5, linetype = 1, width = 0.5,
     alpha = NA),
 

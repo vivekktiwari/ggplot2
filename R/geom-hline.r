@@ -31,11 +31,11 @@ geom_hline <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_GeomHline <- ggproto("a_GeomHline", a_Geom,
+a_GeomHline <- a_ggproto("a_GeomHline", a_Geom,
   draw_panel = function(data, panel_scales, coord) {
     ranges <- coord$range(panel_scales)
 

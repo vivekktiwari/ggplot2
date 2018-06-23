@@ -68,10 +68,10 @@ geom_density_2d <- function(mapping = NULL, data = NULL,
 geom_density2d <- geom_density_2d
 
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_GeomDensity2d <- ggproto("a_GeomDensity2d", a_GeomPath,
+a_GeomDensity2d <- a_ggproto("a_GeomDensity2d", a_GeomPath,
   default_aes = aes(colour = "#3366FF", size = 0.5, linetype = 1, alpha = NA)
 )

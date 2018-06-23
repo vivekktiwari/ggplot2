@@ -76,11 +76,11 @@ stat_function <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_StatFunction <- ggproto("a_StatFunction", a_Stat,
+a_StatFunction <- a_ggproto("a_StatFunction", a_Stat,
   default_aes = aes(y = ..y..),
 
   compute_group = function(data, scales, fun, xlim = NULL, n = 101, args = list()) {

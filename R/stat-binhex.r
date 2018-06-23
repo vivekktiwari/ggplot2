@@ -31,11 +31,11 @@ stat_bin_hex <- function(mapping = NULL, data = NULL,
 #' @usage NULL
 stat_binhex <- stat_bin_hex
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_StatBinhex <- ggproto("a_StatBinhex", a_Stat,
+a_StatBinhex <- a_ggproto("a_StatBinhex", a_Stat,
   default_aes = aes(fill = ..value..),
 
   required_aes = c("x", "y"),

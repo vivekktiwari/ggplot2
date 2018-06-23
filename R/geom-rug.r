@@ -40,11 +40,11 @@ geom_rug <- function(mapping = NULL, data = NULL,
 }
 
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_GeomRug <- ggproto("a_GeomRug", a_Geom,
+a_GeomRug <- a_ggproto("a_GeomRug", a_Geom,
   draw_panel = function(data, panel_scales, coord, sides = "bl") {
     rugs <- list()
     data <- coord$transform(data, panel_scales)

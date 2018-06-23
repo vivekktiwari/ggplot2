@@ -71,11 +71,11 @@ stat_bin <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_StatBin <- ggproto("a_StatBin", a_Stat,
+a_StatBin <- a_ggproto("a_StatBin", a_Stat,
   setup_params = function(data, params) {
     if (!is.null(data$y)){
       stop("stat_bin() must not be used with a y aesthetic.", call. = FALSE)

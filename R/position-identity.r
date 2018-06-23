@@ -6,11 +6,11 @@ position_identity <- function() {
   a_PositionIdentity
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_PositionIdentity <- ggproto("a_PositionIdentity", a_Position,
+a_PositionIdentity <- a_ggproto("a_PositionIdentity", a_Position,
   compute_layer = function(data, params, scales) {
     data
   }

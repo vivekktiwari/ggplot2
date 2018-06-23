@@ -68,11 +68,11 @@ geom_polygon <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_GeomPolygon <- ggproto("a_GeomPolygon", a_Geom,
+a_GeomPolygon <- a_ggproto("a_GeomPolygon", a_Geom,
   draw_panel = function(data, panel_scales, coord) {
     n <- nrow(data)
     if (n == 1) return(zeroGrob())

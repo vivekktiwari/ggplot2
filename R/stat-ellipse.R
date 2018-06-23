@@ -67,11 +67,11 @@ stat_ellipse <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_StatEllipse <- ggproto("a_StatEllipse", a_Stat,
+a_StatEllipse <- a_ggproto("a_StatEllipse", a_Stat,
   required_aes = c("x", "y"),
 
   compute_group = function(data, scales, type = "t", level = 0.95,

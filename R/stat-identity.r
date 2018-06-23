@@ -28,11 +28,11 @@ stat_identity <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_StatIdentity <- ggproto("a_StatIdentity", a_Stat,
+a_StatIdentity <- a_ggproto("a_StatIdentity", a_Stat,
   compute_layer = function(data, scales, params) {
     data
   }

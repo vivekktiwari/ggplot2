@@ -136,21 +136,21 @@ scale_datetime <- function(aesthetics, trans,
 }
 
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_ScaleContinuousDatetime <- ggproto("a_ScaleContinuousDatetime", a_ScaleContinuous,
+a_ScaleContinuousDatetime <- a_ggproto("a_ScaleContinuousDatetime", a_ScaleContinuous,
   map = function(self, x, limits = self$get_limits()) {
     self$oob(x, limits)
   }
 )
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_ScaleContinuousDate <- ggproto("a_ScaleContinuousDate", a_ScaleContinuous,
+a_ScaleContinuousDate <- a_ggproto("a_ScaleContinuousDate", a_ScaleContinuous,
   map = function(self, x, limits = self$get_limits()) {
     self$oob(x, limits)
   }

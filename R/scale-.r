@@ -4,14 +4,14 @@
 #' \code{a_Scale*} object (like \code{a_ScaleContinuous}). The \code{a_Scale*}
 #' object represents a single scale.
 #'
-#' Each of the \code{a_Scale*} objects is a \code{\link{ggproto}} object,
+#' Each of the \code{a_Scale*} objects is a \code{\link{a_ggproto}} object,
 #' descended from the top-level \code{a_Scale}.
 #'
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_Scale <- ggproto("a_Scale", NULL,
+a_Scale <- a_ggproto("a_Scale", NULL,
 
   call = NULL,
 
@@ -21,7 +21,7 @@ a_Scale <- ggproto("a_Scale", NULL,
     stop("Not implemented", call. = FALSE)
   },
 
-  range = ggproto(NULL, a_Range),
+  range = a_ggproto(NULL, a_Range),
   limits = NULL,
   na.value = NA,
   expand = waiver(),
@@ -168,11 +168,11 @@ check_breaks_labels <- function(breaks, labels) {
 }
 
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_ScaleContinuous <- ggproto("a_ScaleContinuous", a_Scale,
+a_ScaleContinuous <- a_ggproto("a_ScaleContinuous", a_Scale,
   range = continuous_range(),
   na.value = NA_real_,
   rescaler = rescale, # Used by diverging and n colour gradients x
@@ -296,7 +296,7 @@ a_ScaleContinuous <- ggproto("a_ScaleContinuous", a_Scale,
   },
 
   clone = function(self) {
-    new <- ggproto(NULL, self)
+    new <- a_ggproto(NULL, self)
     new$range <- continuous_range()
     new
   },
@@ -338,11 +338,11 @@ a_ScaleContinuous <- ggproto("a_ScaleContinuous", a_Scale,
 )
 
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_ScaleDiscrete <- ggproto("a_ScaleDiscrete", a_Scale,
+a_ScaleDiscrete <- a_ggproto("a_ScaleDiscrete", a_Scale,
   drop = TRUE,
   na.value = NA,
 
@@ -432,7 +432,7 @@ a_ScaleDiscrete <- ggproto("a_ScaleDiscrete", a_Scale,
   },
 
   clone = function(self) {
-    new <- ggproto(NULL, self)
+    new <- a_ggproto(NULL, self)
     new$range <- discrete_range()
     new
   },
@@ -535,7 +535,7 @@ continuous_scale <- function(aesthetics, scale_name, palette, name = waiver(),
     limits <- trans$transform(limits)
   }
 
-  ggproto(NULL, super,
+  a_ggproto(NULL, super,
     call = match.call(),
 
     aesthetics = aesthetics,
@@ -610,7 +610,7 @@ discrete_scale <- function(aesthetics, scale_name, palette, name = waiver(), bre
     guide <- "none"
   }
 
-  ggproto(NULL, super,
+  a_ggproto(NULL, super,
     call = match.call(),
 
     aesthetics = aesthetics,
@@ -629,4 +629,4 @@ discrete_scale <- function(aesthetics, scale_name, palette, name = waiver(), bre
     guide = guide
   )
 }
-      
+

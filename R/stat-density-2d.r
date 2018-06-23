@@ -39,11 +39,11 @@ stat_density_2d <- function(mapping = NULL, data = NULL,
 #' @usage NULL
 stat_density2d <- stat_density_2d
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_StatDensity2d <- ggproto("a_StatDensity2d", a_Stat,
+a_StatDensity2d <- a_ggproto("a_StatDensity2d", a_Stat,
   default_aes = aes(colour = "#3366FF", size = 0.5),
 
   required_aes = c("x", "y"),

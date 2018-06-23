@@ -2,7 +2,7 @@
 #'
 #' @param stat,geom Name of geom/stat to modify (like \code{"point"} or
 #'   \code{"bin"}), or a Geom/Stat object (like \code{a_GeomPoint} or
-#'   \code{StatBin}).
+#'   \code{a_StatBin}).
 #' @param new Named list of aesthetics.
 #' @export
 #' @examples
@@ -28,11 +28,11 @@ update_geom_defaults <- function(geom, new) {
 #' @export
 update_stat_defaults <- function(stat, new) {
   if (is.character(stat)) {
-    g <- find_subclass("Stat", stat)
-  } else if (inherits(stat, "Stat")) {
+    g <- find_subclass("a_Stat", stat)
+  } else if (inherits(stat, "a_Stat")) {
     g <- stat
   } else {
-    stop('`stat` must be a string (like "point") or a Stat object (like StatBin).',
+    stop('`stat` must be a string (like "point") or a Stat object (like a_StatBin).',
       call. = FALSE)
   }
 

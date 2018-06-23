@@ -28,11 +28,11 @@ stat_sum <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_StatSum <- ggproto("a_StatSum", a_Stat,
+a_StatSum <- a_ggproto("a_StatSum", a_Stat,
   default_aes = aes(size = ..n..),
 
   required_aes = c("x", "y"),

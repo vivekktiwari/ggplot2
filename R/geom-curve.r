@@ -32,12 +32,12 @@ geom_curve <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @include geom-segment.r
 #' @format NULL
 #' @usage NULL
 #' @export
-a_GeomCurve <- ggproto("a_GeomCurve", a_GeomSegment,
+a_GeomCurve <- a_ggproto("a_GeomCurve", a_GeomSegment,
   draw_panel = function(data, panel_scales, coord, curvature = 0.5, angle = 90,
                         ncp = 5, arrow = NULL, lineend = "butt", na.rm = FALSE) {
     if (!coord$is_linear()) {

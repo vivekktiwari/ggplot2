@@ -45,11 +45,11 @@ position_stack <- function() {
   a_PositionStack
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_PositionStack <- ggproto("a_PositionStack", a_Position,
+a_PositionStack <- a_ggproto("a_PositionStack", a_Position,
   # requires one of c("ymax", "y"),
 
   setup_data = function(self, data, params) {

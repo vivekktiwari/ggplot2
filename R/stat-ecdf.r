@@ -49,11 +49,11 @@ stat_ecdf <- function(mapping = NULL, data = NULL,
 }
 
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_StatEcdf <- ggproto("a_StatEcdf", a_Stat,
+a_StatEcdf <- a_ggproto("a_StatEcdf", a_Stat,
   compute_group = function(data, scales, n = NULL, pad = TRUE) {
     # If n is NULL, use raw values; otherwise interpolate
     if (is.null(n)) {

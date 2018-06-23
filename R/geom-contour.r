@@ -61,12 +61,12 @@ geom_contour <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
 #' @include geom-path.r
-a_GeomContour <- ggproto("a_GeomContour", a_GeomPath,
+a_GeomContour <- a_ggproto("a_GeomContour", a_GeomPath,
   default_aes = aes(weight = 1, colour = "#3366FF", size = 0.5, linetype = 1,
     alpha = NA)
 )

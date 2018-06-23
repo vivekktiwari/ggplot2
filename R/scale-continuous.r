@@ -107,11 +107,11 @@ scale_y_continuous <- function(name = waiver(), breaks = waiver(),
 }
 
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_ScaleContinuousPosition <- ggproto("a_ScaleContinuousPosition", a_ScaleContinuous,
+a_ScaleContinuousPosition <- a_ggproto("a_ScaleContinuousPosition", a_ScaleContinuous,
   # Position aesthetics don't map, because the coordinate system takes
   # care of it. But they do need to be made in to doubles, so stat methods
   # can tell the difference between continuous and discrete data.

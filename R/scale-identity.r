@@ -88,11 +88,11 @@ scale_size_identity <- function(..., guide = "none") {
 }
 
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_ScaleDiscreteIdentity <- ggproto("a_ScaleDiscreteIdentity", a_ScaleDiscrete,
+a_ScaleDiscreteIdentity <- a_ggproto("a_ScaleDiscreteIdentity", a_ScaleDiscrete,
   map = function(x) {
     if (is.factor(x)) {
       as.character(x)
@@ -104,16 +104,16 @@ a_ScaleDiscreteIdentity <- ggproto("a_ScaleDiscreteIdentity", a_ScaleDiscrete,
   train = function(self, x) {
     # do nothing if no guide, otherwise train so we know what breaks to use
     if (self$guide == "none") return()
-    ggproto_parent(a_ScaleDiscrete, self)$train(x)
+    a_ggproto_parent(a_ScaleDiscrete, self)$train(x)
   }
 )
 
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_ScaleContinuousIdentity <- ggproto("a_ScaleContinuousIdentity", a_ScaleContinuous,
+a_ScaleContinuousIdentity <- a_ggproto("a_ScaleContinuousIdentity", a_ScaleContinuous,
   map = function(x) {
     if (is.factor(x)) {
       as.character(x)
@@ -125,6 +125,6 @@ a_ScaleContinuousIdentity <- ggproto("a_ScaleContinuousIdentity", a_ScaleContinu
   train = function(self, x) {
     # do nothing if no guide, otherwise train so we know what breaks to use
     if (self$guide == "none") return()
-    ggproto_parent(a_ScaleDiscrete, self)$train(x)
+    a_ggproto_parent(a_ScaleDiscrete, self)$train(x)
   }
 )

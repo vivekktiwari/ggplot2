@@ -1,8 +1,8 @@
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_StatBindot <- ggproto("a_StatBindot", a_Stat,
+a_StatBindot <- a_ggproto("a_StatBindot", a_Stat,
   required_aes = "x",
   non_missing_aes = "weight",
   default_aes = aes(y = ..count..),
@@ -20,7 +20,7 @@ a_StatBindot <- ggproto("a_StatBindot", a_Stat,
       snake_class(self),
       finite = TRUE
     )
-    ggproto_parent(a_Stat, self)$compute_layer(data, params, panels)
+    a_ggproto_parent(a_Stat, self)$compute_layer(data, params, panels)
   },
 
   compute_panel = function(self, data, scales, na.rm = FALSE, binwidth = NULL,
@@ -54,7 +54,7 @@ a_StatBindot <- ggproto("a_StatBindot", a_Stat,
 
     }
 
-    ggproto_parent(a_Stat, self)$compute_panel(data, scales, binwidth = binwidth,
+    a_ggproto_parent(a_Stat, self)$compute_panel(data, scales, binwidth = binwidth,
       binaxis = binaxis, method = method, binpositions = binpositions,
       origin = origin, width = width, drop = drop,
       right = right)

@@ -168,11 +168,11 @@ geom_dotplot <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_GeomDotplot <- ggproto("a_GeomDotplot", a_Geom,
+a_GeomDotplot <- a_ggproto("a_GeomDotplot", a_Geom,
   required_aes = c("x", "y"),
   non_missing_aes = c("size", "shape"),
 

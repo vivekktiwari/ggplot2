@@ -58,7 +58,7 @@ coord_polar <- function(theta = "x", start = 0, direction = 1) {
   theta <- match.arg(theta, c("x", "y"))
   r <- if (theta == "x") "y" else "x"
 
-  ggproto(NULL, a_CoordPolar,
+  a_ggproto(NULL, a_CoordPolar,
     theta = theta,
     r = r,
     start = start,
@@ -66,11 +66,11 @@ coord_polar <- function(theta = "x", start = 0, direction = 1) {
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_CoordPolar <- ggproto("a_CoordPolar", a_Coord,
+a_CoordPolar <- a_ggproto("a_CoordPolar", a_Coord,
 
   aspect = function(details) 1,
 

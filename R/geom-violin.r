@@ -93,11 +93,11 @@ geom_violin <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_GeomViolin <- ggproto("a_GeomViolin", a_Geom,
+a_GeomViolin <- a_ggproto("a_GeomViolin", a_Geom,
   setup_data = function(data, params) {
     data$width <- data$width %||%
       params$width %||% (resolution(data$x, FALSE) * 0.9)

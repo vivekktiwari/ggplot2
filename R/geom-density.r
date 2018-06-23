@@ -68,12 +68,12 @@ geom_density <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
 #' @include geom-ribbon.r
-a_GeomDensity <- ggproto("a_GeomDensity", a_GeomArea,
+a_GeomDensity <- a_ggproto("a_GeomDensity", a_GeomArea,
   default_aes = defaults(
     aes(fill = NA, weight = 1, colour = "black", alpha = NA),
     a_GeomArea$default_aes

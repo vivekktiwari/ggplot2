@@ -26,11 +26,11 @@ stat_contour <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_StatContour <- ggproto("a_StatContour", a_Stat,
+a_StatContour <- a_ggproto("a_StatContour", a_Stat,
   required_aes = c("x", "y", "z"),
   default_aes = aes(order = ..level..),
 

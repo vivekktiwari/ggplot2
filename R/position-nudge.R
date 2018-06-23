@@ -20,17 +20,17 @@
 #'   geom_point() +
 #'   geom_text(aes(label = y), position = position_nudge(y = -0.1))
 position_nudge <- function(x = 0, y = 0) {
-  ggproto(NULL, a_PositionNudge,
+  a_ggproto(NULL, a_PositionNudge,
     x = x,
     y = y
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_PositionNudge <- ggproto("a_PositionNudge", a_Position,
+a_PositionNudge <- a_ggproto("a_PositionNudge", a_Position,
   x = 0,
   y = 0,
 

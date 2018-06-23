@@ -31,11 +31,11 @@ geom_vline <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_GeomVline <- ggproto("a_GeomVline", a_Geom,
+a_GeomVline <- a_ggproto("a_GeomVline", a_Geom,
   draw_panel = function(data, panel_scales, coord) {
     ranges <- coord$range(panel_scales)
 

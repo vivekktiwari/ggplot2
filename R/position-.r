@@ -9,7 +9,7 @@
 #' function actually "instantiates" the \code{a_Position*} object by creating a
 #' descendant, and returns that.
 #'
-#' Each of the \code{a_Position*} objects is a \code{\link{ggproto}} object,
+#' Each of the \code{a_Position*} objects is a \code{\link{a_ggproto}} object,
 #' descended from the top-level \code{a_Position}, and each implements the
 #' following methods:
 #'
@@ -41,11 +41,11 @@
 #'      that must be present for this position adjustment to work.
 #' }
 #'
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_Position <- ggproto("a_Position",
+a_Position <- a_ggproto("a_Position",
   required_aes = character(),
 
   setup_params = function(self, data) {

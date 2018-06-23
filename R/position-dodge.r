@@ -36,14 +36,14 @@
 #'   position = position_dodge(width = 0.90))
 #' }
 position_dodge <- function(width = NULL) {
-  ggproto(NULL, a_PositionDodge, width = width)
+  a_ggproto(NULL, a_PositionDodge, width = width)
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_PositionDodge <- ggproto("a_PositionDodge", a_Position,
+a_PositionDodge <- a_ggproto("a_PositionDodge", a_Position,
   required_aes = "x",
   width = NULL,
   setup_params = function(self, data) {

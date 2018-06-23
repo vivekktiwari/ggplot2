@@ -7,7 +7,7 @@ NULL
 #' contains a \code{a_Geom*} object (like \code{a_GeomPoint}). The \code{a_Geom*}
 #' object is responsible for rendering the data in the plot.
 #'
-#' Each of the \code{a_Geom*} objects is a \code{\link{ggproto}} object, descended
+#' Each of the \code{a_Geom*} objects is a \code{\link{a_ggproto}} object, descended
 #' from the top-level \code{a)Geom}, and each implements various methods and
 #' fields. To create a new type of Geom object, you typically will want to
 #' implement one or more of the following:
@@ -47,11 +47,11 @@ NULL
 #'   \item \code{reparameterise}: Converts width and height to xmin and xmax,
 #'     and ymin and ymax values. It can potentially set other values as well.
 #' }
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_Geom <- ggproto("a_Geom",
+a_Geom <- a_ggproto("a_Geom",
   required_aes = character(),
   non_missing_aes = character(),
 
@@ -127,12 +127,12 @@ a_Geom <- ggproto("a_Geom",
 
   parameters = function(self, extra = FALSE) {
     # Look first in draw_panel. If it contains ... then look in draw groups
-    panel_args <- names(ggproto_formals(self$draw_panel))
-    group_args <- names(ggproto_formals(self$draw_group))
+    panel_args <- names(a_ggproto_formals(self$draw_panel))
+    group_args <- names(a_ggproto_formals(self$draw_group))
     args <- if ("..." %in% panel_args) group_args else panel_args
 
     # Remove arguments of defaults
-    args <- setdiff(args, names(ggproto_formals(a_Geom$draw_group)))
+    args <- setdiff(args, names(a_ggproto_formals(a_Geom$draw_group)))
 
     if (extra) {
       args <- union(args, self$extra_params)

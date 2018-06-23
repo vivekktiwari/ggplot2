@@ -77,12 +77,12 @@ geom_tile <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
 #' @include geom-rect.r
-a_GeomTile <- ggproto("a_GeomTile", a_GeomRect,
+a_GeomTile <- a_ggproto("a_GeomTile", a_GeomRect,
   extra_params = c("na.rm", "width", "height"),
 
   setup_data = function(data, params) {

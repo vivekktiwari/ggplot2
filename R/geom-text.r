@@ -155,11 +155,11 @@ geom_text <- function(mapping = NULL, data = NULL,
 }
 
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_GeomText <- ggproto("a_GeomText", a_Geom,
+a_GeomText <- a_ggproto("a_GeomText", a_Geom,
   required_aes = c("x", "y", "label"),
 
   default_aes = aes(

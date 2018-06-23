@@ -3,14 +3,14 @@
 #' multiple input and output variables
 #' @export
 a_scales_list <- function() {
-  ggproto(NULL, a_ScalesList)
+  a_ggproto(NULL, a_ScalesList)
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_ScalesList <- ggproto("a_ScalesList", NULL,
+a_ScalesList <- a_ggproto("a_ScalesList", NULL,
   scales = NULL,
 
   find = function(self, aesthetic) {
@@ -51,11 +51,11 @@ a_ScalesList <- ggproto("a_ScalesList", NULL,
   # This actually makes a descendant of self, which is functionally the same
   # as a actually clone for most purposes.
   clone = function(self) {
-    ggproto(NULL, self, scales = lapply(self$scales, function(s) s$clone()))
+    a_ggproto(NULL, self, scales = lapply(self$scales, function(s) s$clone()))
   },
 
   non_position_scales = function(self) {
-    ggproto(NULL, self, scales = self$scales[!self$find("x") & !self$find("y")])
+    a_ggproto(NULL, self, scales = self$scales[!self$find("x") & !self$find("y")])
   },
 
   get_scales = function(self, output) {

@@ -67,11 +67,11 @@ scale_y_discrete <- function(..., expand = waiver()) {
 # mapping, but makes it possible to place objects at non-integer positions,
 # as is necessary for jittering etc.
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_ScaleDiscretePosition <- ggproto("a_ScaleDiscretePosition", a_ScaleDiscrete,
+a_ScaleDiscretePosition <- a_ggproto("a_ScaleDiscretePosition", a_ScaleDiscrete,
 
   train = function(self, x) {
     if (is.discrete(x)) {
@@ -122,7 +122,7 @@ a_ScaleDiscretePosition <- ggproto("a_ScaleDiscretePosition", a_ScaleDiscrete,
   },
 
   clone = function(self) {
-    new <- ggproto(NULL, self)
+    new <- a_ggproto(NULL, self)
     new$range <- discrete_range()
     new$range_c <- continuous_range()
     new

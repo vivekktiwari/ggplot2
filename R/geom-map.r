@@ -90,11 +90,11 @@ geom_map <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_GeomMap <- ggproto("a_GeomMap", a_GeomPolygon,
+a_GeomMap <- a_ggproto("a_GeomMap", a_GeomPolygon,
   draw_panel = function(data, panel_scales, coord, map) {
     # Only use matching data and map ids
     common <- intersect(data$map_id, map$id)

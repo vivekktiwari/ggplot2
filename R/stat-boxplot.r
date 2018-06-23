@@ -37,11 +37,11 @@ stat_boxplot <- function(mapping = NULL, data = NULL,
 }
 
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_StatBoxplot <- ggproto("a_StatBoxplot", a_Stat,
+a_StatBoxplot <- a_ggproto("a_StatBoxplot", a_Stat,
   required_aes = c("x", "y"),
   non_missing_aes = "weight",
 

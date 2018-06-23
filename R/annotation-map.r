@@ -43,11 +43,11 @@ annotation_map <- function(map, ...) {
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_GeomAnnotationMap <- ggproto("a_GeomAnnotationMap", a_GeomMap,
+a_GeomAnnotationMap <- a_ggproto("a_GeomAnnotationMap", a_GeomMap,
   extra_params = "",
   handle_na = function(data, params) {
     data

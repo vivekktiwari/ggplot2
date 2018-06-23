@@ -14,7 +14,7 @@ update_stat_defaults(stat, new)
 
 \item{stat, geom}{Name of geom/stat to modify (like \code{"point"} or
 \code{"bin"}), or a Geom/Stat object (like \code{a_GeomPoint} or
-\code{StatBin}).}
+\code{a_StatBin}).}
 }
 \description{
 Modify geom/stat aesthetic defaults for future plots

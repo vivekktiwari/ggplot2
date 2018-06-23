@@ -47,11 +47,11 @@ stat_spoke <- function(...) {
   geom_spoke(...)
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_GeomSpoke <- ggproto("a_GeomSpoke", a_GeomSegment,
+a_GeomSpoke <- a_ggproto("a_GeomSpoke", a_GeomSegment,
   setup_data = function(data, params) {
     data$radius <- data$radius %||% params$radius
     data$angle <- data$angle %||% params$angle

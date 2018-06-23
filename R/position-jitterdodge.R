@@ -19,18 +19,18 @@
 position_jitterdodge <- function(jitter.width = NULL, jitter.height = 0,
                                  dodge.width = 0.75) {
 
-  ggproto(NULL, a_PositionJitterdodge,
+  a_ggproto(NULL, a_PositionJitterdodge,
     jitter.width = jitter.width,
     jitter.height = jitter.height,
     dodge.width = dodge.width
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_PositionJitterdodge <- ggproto("a_PositionJitterdodge", a_Position,
+a_PositionJitterdodge <- a_ggproto("a_PositionJitterdodge", a_Position,
   jitter.width = NULL,
   jitter.height = NULL,
   dodge.width = NULL,
@@ -40,13 +40,13 @@ a_PositionJitterdodge <- ggproto("a_PositionJitterdodge", a_Position,
   setup_params = function(self, data) {
     width <- self$jitter.width %||% resolution(data$x, zero = FALSE) * 0.4
     # Adjust the x transformation based on the number of 'dodge' variables
-    dodgecols <- intersect(c("fill", "colour", "linetype", "shape", "size", "alpha"), colnames(data))  
+    dodgecols <- intersect(c("fill", "colour", "linetype", "shape", "size", "alpha"), colnames(data))
     if (length(dodgecols) == 0) {
       stop("`position_jitterdodge()` requires at least one aesthetic to dodge by", call. = FALSE)
     }
     ndodge    <- lapply(data[dodgecols], levels)  # returns NULL for numeric, i.e. non-dodge layers
     ndodge    <- length(unique(unlist(ndodge)))
-    
+
     list(
       dodge.width = self$dodge.width,
       jitter.height = self$jitter.height,

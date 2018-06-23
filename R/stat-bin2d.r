@@ -38,11 +38,11 @@ stat_bin_2d <- function(mapping = NULL, data = NULL,
 #' @usage NULL
 stat_bin2d <- stat_bin_2d
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_StatBin2d <- ggproto("a_StatBin2d", a_Stat,
+a_StatBin2d <- a_ggproto("a_StatBin2d", a_Stat,
   default_aes = aes(fill = ..count..),
   required_aes = c("x", "y"),
 

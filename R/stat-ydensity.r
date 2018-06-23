@@ -52,11 +52,11 @@ stat_ydensity <- function(mapping = NULL, data = NULL,
 }
 
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_StatYdensity <- ggproto("a_StatYdensity", a_Stat,
+a_StatYdensity <- a_ggproto("a_StatYdensity", a_Stat,
   required_aes = c("x", "y"),
   non_missing_aes = "weight",
 
@@ -87,7 +87,7 @@ a_StatYdensity <- ggproto("a_StatYdensity", a_Stat,
   compute_panel = function(self, data, scales, width = NULL, bw = "nrd0", adjust = 1,
                            kernel = "gaussian", trim = TRUE, na.rm = FALSE,
                            scale = "area") {
-    data <- ggproto_parent(a_Stat, self)$compute_panel(
+    data <- a_ggproto_parent(a_Stat, self)$compute_panel(
       data, scales, width = width, bw = bw, adjust = adjust, kernel = kernel,
       trim = trim, na.rm = na.rm
     )

@@ -9,7 +9,7 @@
 #' actually "instantiates" the \code{a_Coord*} object by creating a descendant,
 #' and returns that.
 #'
-#' Each of the \code{a_Coord*} objects is a \code{\link{ggproto}} object,
+#' Each of the \code{a_Coord*} objects is a \code{\link{a_ggproto}} object,
 #' descended from the top-level \code{a_Coord}.  To create a new type of Coord
 #' object, you typically will want to implement one or more of the following:
 #'
@@ -28,11 +28,11 @@
 #'     linear; \code{FALSE} otherwise.
 #' }
 #'
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_Coord <- ggproto("a_Coord",
+a_Coord <- a_ggproto("a_Coord",
 
   aspect = function(ranges) NULL,
 

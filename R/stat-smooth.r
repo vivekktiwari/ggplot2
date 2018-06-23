@@ -61,11 +61,11 @@ stat_smooth <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_StatSmooth <- ggproto("a_StatSmooth", a_Stat,
+a_StatSmooth <- a_ggproto("a_StatSmooth", a_Stat,
 
   setup_params = function(data, params) {
     # Figure out what type of smoothing to do: loess for small datasets,

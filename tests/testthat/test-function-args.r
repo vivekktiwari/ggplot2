@@ -26,7 +26,7 @@ test_that("geom_xxx and GeomXxx$draw arg defaults match", {
     draw_groups <- geom_fun()$geom$draw_group
 
     fun_args <- formals(geom_fun)
-    draw_args <- c(ggproto_formals(draw), ggproto_formals(draw_groups))
+    draw_args <- c(a_ggproto_formals(draw), a_ggproto_formals(draw_groups))
     draw_args <- filter_args(draw_args)
 
     common_names <- intersect(names(fun_args), names(draw_args))
@@ -58,7 +58,7 @@ test_that("stat_xxx and StatXxx$draw arg defaults match", {
     calculate_groups <- stat_fun()$stat$compute_group
 
     fun_args <- formals(stat_fun)
-    calc_args <- c(ggproto_formals(calculate), ggproto_formals(calculate_groups))
+    calc_args <- c(a_ggproto_formals(calculate), a_ggproto_formals(calculate_groups))
     calc_args <- filter_args(calc_args)
 
     common_names <- intersect(names(fun_args), names(calc_args))

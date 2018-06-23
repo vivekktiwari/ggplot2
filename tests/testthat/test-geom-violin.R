@@ -9,7 +9,7 @@ test_that("", {
   p <- a_plot(df, aes(1, y)) +
     geom_violin() +
     a_facet_grid(x ~ ., scales = "free") +
-    coord_cartesian(expand = FALSE)
+    ggplot2Animint:::coord_cartesian(expand = FALSE)
 
   expect_equal(layer_scales(p, 1)$y$dimension(), c(0, 1))
   expect_equal(layer_scales(p, 2)$y$dimension(), c(0, 2))

@@ -39,11 +39,11 @@ geom_raster <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_GeomRaster <- ggproto("a_GeomRaster", a_Geom,
+a_GeomRaster <- a_ggproto("a_GeomRaster", a_Geom,
   default_aes = aes(fill = "grey20", alpha = NA),
   non_missing_aes = "fill",
   required_aes = c("x", "y"),

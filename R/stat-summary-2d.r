@@ -77,11 +77,11 @@ stat_summary2d <- function(...) {
   stat_summary_2d(...)
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_StatSummary2d <- ggproto("a_StatSummary2d", a_Stat,
+a_StatSummary2d <- a_ggproto("a_StatSummary2d", a_Stat,
   default_aes = aes(fill = ..value..),
 
   required_aes = c("x", "y", "z"),

@@ -70,11 +70,11 @@ geom_linerange <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' @rdname ggplot2Animint-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
-a_GeomLinerange <- ggproto("a_GeomLinerange", a_Geom,
+a_GeomLinerange <- a_ggproto("a_GeomLinerange", a_Geom,
   default_aes = aes(colour = "black", size = 0.5, linetype = 1, alpha = NA),
 
   draw_key = a_draw_key_vpath,

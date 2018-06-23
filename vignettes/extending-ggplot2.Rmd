@@ -28,7 +28,7 @@ As you read this document, you'll see many things that will make you scratch you
 
 If you are planning to make your own package, make sure you should understand the difference between ```ggplot2``` and ```ggplot2Animint```.
 
-## ggproto
+## a_ggproto
 
 All ggplot2 objects are built using the ggproto system of object oriented programming. This OO system is used only in one place: ggplot2. This is mostly historical accident: ggplot2 started off using [proto]( https://cran.r-project.org/package=proto) because I needed mutable objects. This was well before the creation of (the briefly lived) [mutatr](http://vita.had.co.nz/papers/mutatr.html), reference classes and R6: proto was the only game in town.
 
@@ -41,7 +41,7 @@ Recent changes in ggproto feature on inheriting class, we have introduced `super
 Here's a quick demo of ggproto in action:
 
 ```{r ggproto-intro}
-A <- ggproto("A", NULL,
+A <- a_ggproto("A", NULL,
   x = 1,
   inc = function(self) {
     self$x <- self$x + 1
@@ -66,7 +66,7 @@ To create a new geom or stat, you will just create a new ggproto that inherits f
 We'll start by creating a very simple stat: one that gives the convex hull (the _c_ hull) of a set of points. First we create a new ggproto object that inherits from `Stat`:
 
 ```{r chull}
-a_StatChull <- ggproto("a_StatChull", a_Stat,
+a_StatChull <- a_ggproto("a_StatChull", a_Stat,
   compute_group = function(data, scales) {
     data[chull(data$x, data$y), , drop = FALSE]
   },
@@ -126,7 +126,7 @@ a_plot(mpg, aes(displ, hwy)) +
 A more complex stat will do some computation. Let's implement a simple version of `geom_smooth()` that adds a line of best fit to a plot. We create a `StatLm` that inherits from `Stat` and a layer function, `stat_lm()`:
 
 ```{r}
-a_StatLm <- ggproto("a_StatLm", a_Stat, 
+a_StatLm <- a_ggproto("a_StatLm", a_Stat, 
   required_aes = c("x", "y"),
   
   compute_group = function(data, scales) {
@@ -158,7 +158,7 @@ a_plot(mpg, aes(displ, hwy)) +
 `StatLm` is inflexible because it has no parameters. We might want to allow the user to control the model formula and the number of points used to generate the grid. To do so, we add arguments to the `compute_group()` method and our wrapper function:
 
 ```{r}
-a_StatLm <- ggproto("a_StatLm", a_Stat, 
+a_StatLm <- a_ggproto("a_StatLm", a_Stat, 
   required_aes = c("x", "y"),
   
   compute_group = function(data, scales, params, n = 100, formula = y ~ x) {
@@ -216,7 +216,7 @@ Sometimes you have calculations that should be performed once for the complete d
 To do this we override the `setup_params()` method. It's passed the data and a list of params, and returns an updated list.
 
 ```{r}
-a_StatDensityCommon <- ggproto("a_StatDensityCommon", a_Stat, 
+a_StatDensityCommon <- a_ggproto("a_StatDensityCommon", a_Stat, 
   required_aes = "x",
   
   setup_params = function(data, params) {
@@ -263,7 +263,7 @@ I recommend using `NULL` as a default value. If you pick important parameters au
 This stat illustrates another important point. If we want to make this stat usable with other geoms, we should return a variable called `density` instead of `y`. Then we can set up the `default_aes` to automatically map `density` to `y`, which allows the user to override it to use with different geoms:
 
 ```{r}
-a_StatDensityCommon <- ggproto("a_StatDensity2", a_Stat, 
+a_StatDensityCommon <- a_ggproto("a_StatDensity2", a_Stat, 
   required_aes = "x",
   default_aes = aes(y = ..density..),
 
@@ -287,7 +287,7 @@ a_plot(mpg, aes(displ, fill = drv)) +
 This is because each density is computed independently, and the estimated `x`s don't line up. We can resolve that issue by computing the range of the data once in `setup_params()`.
 
 ```{r}
-a_StatDensityCommon <- ggproto("a_StatDensityCommon", a_Stat, 
+a_StatDensityCommon <- a_ggproto("a_StatDensityCommon", a_Stat, 
   required_aes = "x",
   default_aes = aes(y = ..density..),
 
@@ -337,7 +337,7 @@ It's harder to create a new geom than a new stat because you also need to know s
 It's easiest to start with a simple example. The code below is a simplified version of `geom_point()`:
 
 ```{r GeomSimplePoint}
-a_GeomSimplePoint <- ggproto("a_GeomSimplePoint", a_Geom,
+a_GeomSimplePoint <- a_ggproto("a_GeomSimplePoint", a_Geom,
   required_aes = c("x", "y"),
   default_aes = aes(shape = 19, colour = "black"),
   draw_key = ggplot2Animint:::a_draw_key_point,
@@ -398,7 +398,7 @@ Overriding `draw_panel()` is most appropriate if there is one graphic element pe
 The following code makes a simplified version of `GeomPolygon`:
 
 ```{r}
-a_GeomSimplePolygon <- ggproto("a_GeomPolygon", a_Geom,
+a_GeomSimplePolygon <- a_ggproto("a_GeomPolygon", a_Geom,
   required_aes = c("x", "y"),
   
   default_aes = aes(
@@ -467,7 +467,7 @@ There are a few things to note here:
 Sometimes you just want to make a small modification to an existing geom. In this case, rather than inheriting from `Geom` you can inherit from an existing subclass. For example, we might want to change the defaults for `GeomPolygon` to work better with `StatChull`:
 
 ```{r}
-a_GeomPolygonHollow <- ggproto("a_GeomPolygonHollow", a_GeomPolygon,
+a_GeomPolygonHollow <- a_ggproto("a_GeomPolygonHollow", a_GeomPolygon,
   default_aes = aes(colour = "black", fill = NA, size = 0.5, linetype = 1,
     alpha = NA)
   )

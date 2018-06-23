@@ -119,7 +119,7 @@ layer <- function(geom = NULL, stat = NULL,
     validate_params <- FALSE
   }
 
-  ggproto("a_LayerInstance", a_Layer,
+  a_ggproto("a_LayerInstance", a_Layer,
     geom = geom,
     geom_params = geom_params,
     stat = stat,
@@ -135,7 +135,7 @@ layer <- function(geom = NULL, stat = NULL,
   )
 }
 
-a_Layer <- ggproto("a_Layer", NULL,
+a_Layer <- a_ggproto("a_Layer", NULL,
   geom = NULL,
   geom_params = NULL,
   stat = NULL,
