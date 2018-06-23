@@ -371,6 +371,8 @@ theme <- function(..., complete = FALSE, validate = TRUE) {
 }
 
 # Combine plot defaults with current theme to get complete theme for a plot
+
+#' @export
 plot_theme <- function(x) {
   defaults(x$theme, theme_get())
 }
@@ -468,28 +470,29 @@ add_theme <- function(t1, t2, t2name) {
 }
 
 
-# Update a theme from a plot object
-#
-# This is called from add_a_plot.
-#
-# If newtheme is a *complete* theme, then it is meant to replace
-# oldtheme; this function just returns newtheme.
-#
-# Otherwise, it adds elements from newtheme to oldtheme:
-# If oldtheme doesn't already contain those elements,
-# it searches the current default theme, grabs the elements with the
-# same name as those from newtheme, and puts them in oldtheme. Then
-# it adds elements from newtheme to oldtheme.
-# This makes it possible to do things like:
-#   a_plot(data.frame(x = 1:3, y = 1:3)) +
-#   geom_point() + theme(text = element_text(colour = 'red'))
-# and have 'text' keep properties from the default theme. Otherwise
-# you would have to set all the element properties, like family, size,
-# etc.
-#
-# @param oldtheme an existing theme, usually from a plot object, like
-#   plot$theme. This could be an empty list.
-# @param newtheme a new theme object to add to the existing theme
+#' Update a theme from a plot object
+#'
+#' This is called from add_a_plot.
+#'
+#' If newtheme is a *complete* theme, then it is meant to replace
+#' oldtheme; this function just returns newtheme.
+#'
+#' Otherwise, it adds elements from newtheme to oldtheme:
+#' If oldtheme doesn't already contain those elements,
+#' it searches the current default theme, grabs the elements with the
+#' same name as those from newtheme, and puts them in oldtheme. Then
+#' it adds elements from newtheme to oldtheme.
+#' This makes it possible to do things like:
+#'   a_plot(data.frame(x = 1:3, y = 1:3)) +
+#'   geom_point() + theme(text = element_text(colour = 'red'))
+#' and have 'text' keep properties from the default theme. Otherwise
+#' you would have to set all the element properties, like family, size,
+#' etc.
+#'
+#' @param oldtheme an existing theme, usually from a plot object, like
+#'   plot$theme. This could be an empty list.
+#' @param newtheme a new theme object to add to the existing theme
+#' @export
 update_theme <- function(oldtheme, newtheme) {
   # If the newtheme is a complete one, don't bother searching
   # the default theme -- just replace everything with newtheme

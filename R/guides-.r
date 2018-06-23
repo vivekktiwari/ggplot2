@@ -140,7 +140,10 @@ build_guides <- function(scales, layers, default_mapping, position, theme, guide
   grobs
 }
 
-# validate_guide function
+#' validate_guide function
+#'
+#' @param guide ...
+#' @export
 validate_guide <- function(guide) {
   # if guide is specified by character, then find the corresponding guide
   if (is.character(guide))
@@ -151,7 +154,8 @@ validate_guide <- function(guide) {
     stop("Unknown guide: ", guide)
 }
 # train each scale in scales and generate the definition of guide
-
+#' @noRd
+#' @export
 guides_train <- function(scales, theme, guides, labels) {
 
   gdefs <- list()
@@ -192,6 +196,8 @@ guides_train <- function(scales, theme, guides, labels) {
 }
 
 # merge overlapped guides
+#' @noRd
+#' @export
 guides_merge <- function(gdefs) {
   # split gdefs based on hash, and apply Reduce (guide_merge) to each gdef group.
   gdefs <- lapply(gdefs, function(g) {
@@ -207,6 +213,8 @@ guides_merge <- function(gdefs) {
 }
 
 # guides_geom function
+#' @noRd
+#' @export
 guides_geom <- function(gdefs, layers, default_mapping) {
   compact(lapply(gdefs, guide_geom, layers, default_mapping))
 }
