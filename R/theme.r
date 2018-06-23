@@ -370,8 +370,8 @@ theme <- function(..., complete = FALSE, validate = TRUE) {
             complete = complete, validate = validate)
 }
 
-# Combine plot defaults with current theme to get complete theme for a plot
-
+#' Combine plot defaults with current theme to get complete theme for a plot
+#' @param x ....
 #' @export
 plot_theme <- function(x) {
   defaults(x$theme, theme_get())

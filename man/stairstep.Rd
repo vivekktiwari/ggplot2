@@ -9,6 +9,8 @@ stairstep(data, direction = "hv")
 }
 \arguments{
 \item{data}{...}
+
+\item{direction}{...}
 }
 \description{
 Calculate stairsteps

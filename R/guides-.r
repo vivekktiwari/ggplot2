@@ -153,8 +153,12 @@ validate_guide <- function(guide) {
   else
     stop("Unknown guide: ", guide)
 }
-# train each scale in scales and generate the definition of guide
-#' @noRd
+
+#' train each scale in scales and generate the definition of guide
+#' @param scales ...
+#' @param theme ...
+#' @param guides ...
+#' @param labels ....
 #' @export
 guides_train <- function(scales, theme, guides, labels) {
 
@@ -195,8 +199,8 @@ guides_train <- function(scales, theme, guides, labels) {
   gdefs
 }
 
-# merge overlapped guides
-#' @noRd
+#' merge overlapped guides
+#' @param gdefs ...
 #' @export
 guides_merge <- function(gdefs) {
   # split gdefs based on hash, and apply Reduce (guide_merge) to each gdef group.
@@ -212,8 +216,10 @@ guides_merge <- function(gdefs) {
   tapply(gdefs, sapply(gdefs, function(g)g$hash), function(gs)Reduce(guide_merge, gs))
 }
 
-# guides_geom function
-#' @noRd
+#' guides_geom function
+#' @param gdefs ...
+#' @param layers ....
+#' @param default_mapping ...
 #' @export
 guides_geom <- function(gdefs, layers, default_mapping) {
   compact(lapply(gdefs, guide_geom, layers, default_mapping))
@@ -233,7 +239,10 @@ guides_gengrob <- function(gdefs, theme) {
   lapply(gdefs, guide_gengrob, theme)
 }
 
-# build up all guide boxes into one guide-boxes.
+#' build up all guide boxes into one guide-boxes.
+#' @param ggrobs ...
+#' @param theme ...
+#' @export
 guides_build <- function(ggrobs, theme) {
   theme$legend.margin <- theme$legend.margin %||% unit(0.5, "lines")
   theme$legend.vmargin <- theme$legend.vmargin  %||% theme$legend.margin
