@@ -27,7 +27,7 @@ new_panel <- function() {
 #' @param plot_data the default data frame
 #' @return an updated panel object
 #' @keywords internal
-train_layout <- function(panel, a_facet, data, plot_data) {
+a_train_layout <- function(panel, a_facet, data, plot_data) {
   layout <- a_facet_train_layout(a_facet, c(list(plot_data), data))
   panel$layout <- layout
   panel$shrink <- a_facet$shrink
