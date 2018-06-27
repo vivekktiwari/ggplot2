@@ -13,7 +13,7 @@ autoplot <- function(object, ...) {
   UseMethod("autoplot")
 }
 
-#' @keywords internal
+#' @export
 autoplot.default <- function(object, ...) {
   stop("Objects of type ", paste(class(object), collapse = "/"),
     " not supported by autoplot.", call. = FALSE)

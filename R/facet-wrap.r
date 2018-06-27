@@ -108,7 +108,7 @@ a_facet_wrap <- function(facets, nrow = NULL, ncol = NULL, scales = "fixed",
   )
 }
 
-#' @keywords internal
+#' @export
 a_facet_train_layout.wrap <- function(a_facet, data) {
   panels <- layout_wrap(data, a_facet$facets, a_facet$nrow, a_facet$ncol,
      a_facet$as.table, a_facet$drop, a_facet$dir)
@@ -127,7 +127,7 @@ a_facet_train_layout.wrap <- function(a_facet, data) {
   panels
 }
 
-#' @keywords internal
+#' @export
 a_facet_map_layout.wrap <- function(a_facet, data, layout) {
   locate_wrap(data, layout, a_facet$facets)
 }
@@ -137,8 +137,7 @@ a_facet_map_layout.wrap <- function(a_facet, data, layout) {
 #  * if scales fixed, most axes empty
 #  * combine panels, strips and axes, then wrap into 2d
 #  * finally: add title, labels and legend
-#
-#' @keywords internal
+#' @export
 a_facet_render.wrap <- function(a_facet, panel, coord, theme, geom_grobs) {
 
   # If coord is (non-cartesian or flip) and (x is free or y is free)
@@ -318,7 +317,7 @@ a_facet_render.wrap <- function(a_facet, panel, coord, theme, geom_grobs) {
   gt
 }
 
-#' @keywords internal
+#' @export
 a_facet_panels.wrap <- function(a_facet, panel, coord, theme, geom_grobs) {
   panels <- panel$layout$PANEL
   lapply(panels, function(i) {
@@ -338,7 +337,7 @@ a_facet_panels.wrap <- function(a_facet, panel, coord, theme, geom_grobs) {
   })
 }
 
-#' @keywords internal
+#' @export
 a_facet_strips.wrap <- function(a_facet, panel, theme) {
   labels_df <- panel$layout[names(a_facet$facets)]
 
@@ -375,7 +374,7 @@ a_facet_strips.wrap <- function(a_facet, panel, theme) {
 }
 
 
-#' @keywords internal
+#' @export
 a_facet_axes.wrap <- function(a_facet, panel, coord, theme) {
   panels <- panel$layout$PANEL
 
@@ -401,7 +400,7 @@ a_facet_axes.wrap <- function(a_facet, panel, coord, theme) {
 
 }
 
-#' @keywords internal
+#' @export
 a_facet_vars.wrap <- function(a_facet) {
   paste(lapply(a_facet$facets, paste, collapse = ", "), collapse = " ~ ")
 }

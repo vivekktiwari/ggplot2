@@ -12,7 +12,7 @@
 #' @name a_draw_key
 NULL
 
-#' @keywords internal
+#' @export
 #' @rdname a_draw_key
 a_draw_key_point <- function(data, params, size) {
   pointsGrob(0.5, 0.5,
@@ -26,7 +26,7 @@ a_draw_key_point <- function(data, params, size) {
   )
 }
 
-#' @keywords internal
+#' @export
 #' @rdname a_draw_key
 a_draw_key_abline <- function(data, params, size) {
   segmentsGrob(0, 0, 1, 1,
@@ -48,7 +48,7 @@ a_draw_key_rect <- function(data, params, size) {
     lty = data$linetype
   ))
 }
-#' @keywords internal
+#' @export
 #' @rdname a_draw_key
 a_draw_key_polygon <- function(data, params, size) {
   lwd <- min(data$size, min(size) / 4)
@@ -65,13 +65,13 @@ a_draw_key_polygon <- function(data, params, size) {
   ))
 }
 
-#' @keywords internal
+#' @export
 #' @rdname a_draw_key
 a_draw_key_blank <- function(data, params, size) {
   zeroGrob()
 }
 
-#' @keywords internal
+#' @export
 #' @rdname a_draw_key
 a_draw_key_boxplot <- function(data, params, size) {
   grobTree(
@@ -88,7 +88,7 @@ a_draw_key_boxplot <- function(data, params, size) {
   )
 }
 
-#' @keywords internal
+#' @export
 #' @rdname a_draw_key
 a_draw_key_crossbar <- function(data, params, size) {
   grobTree(
@@ -103,7 +103,7 @@ a_draw_key_crossbar <- function(data, params, size) {
   )
 }
 
-#' @keywords internal
+#' @export
 #' @rdname a_draw_key
 a_draw_key_path <- function(data, params, size) {
   segmentsGrob(0.1, 0.5, 0.9, 0.5,
@@ -117,7 +117,7 @@ a_draw_key_path <- function(data, params, size) {
   )
 }
 
-#' @keywords internal
+#' @export
 #' @rdname a_draw_key
 a_draw_key_vpath <- function(data, params, size) {
   segmentsGrob(0.5, 0.1, 0.5, 0.9,
@@ -131,7 +131,7 @@ a_draw_key_vpath <- function(data, params, size) {
   )
 }
 
-#' @keywords internal
+#' @export
 #' @rdname a_draw_key
 a_draw_key_dotplot <- function(data, params, size) {
   pointsGrob(0.5, 0.5, size = unit(.5, "npc"),
@@ -143,7 +143,7 @@ a_draw_key_dotplot <- function(data, params, size) {
   )
 }
 
-#' @keywords internal
+#' @export
 #' @rdname a_draw_key
 a_draw_key_pointrange <- function(data, params, size) {
   grobTree(
@@ -152,7 +152,7 @@ a_draw_key_pointrange <- function(data, params, size) {
   )
 }
 
-#' @keywords internal
+#' @export
 #' @rdname a_draw_key
 a_draw_key_smooth <- function(data, params, size) {
   data$fill <- alpha(data$fill, data$alpha)
@@ -164,7 +164,7 @@ a_draw_key_smooth <- function(data, params, size) {
   )
 }
 
-#' @keywords internal
+#' @export
 #' @rdname a_draw_key
 a_draw_key_text <- function(data, params, size) {
   textGrob("a", 0.5, 0.5,
@@ -178,7 +178,7 @@ a_draw_key_text <- function(data, params, size) {
   )
 }
 
-#' @keywords internal
+#' @export
 #' @rdname a_draw_key
 a_draw_key_label <- function(data, params, size) {
   grobTree(
@@ -187,7 +187,7 @@ a_draw_key_label <- function(data, params, size) {
   )
 }
 
-#' @keywords internal
+#' @export
 #' @rdname a_draw_key
 a_draw_key_vline <- function(data, params, size) {
   segmentsGrob(0.5, 0, 0.5, 1,

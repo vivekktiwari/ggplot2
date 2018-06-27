@@ -157,12 +157,12 @@ stripGrob <- function(label, hjust, vjust, angle = 0, gp = gpar(),
   )
 }
 
-#' @keywords internal
+#' @export
 widthDetails.stripGrob <- function(x) {
   sum(x$widths)
 }
 
-#' @keywords internal
+#' @export
 heightDetails.stripGrob <- function(x) {
   sum(x$heights)
 }

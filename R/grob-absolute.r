@@ -1,10 +1,13 @@
 #' Absolute grob
-#'
 #' This grob has fixed dimensions and position.
-#'
 #' It's still experimental
-#'
-#' @keywords internal
+#' @param  grob ....
+#' @param width .....
+#' @param height .....
+#' @param xmin ......
+#' @param ymin .......
+#' @param vp ....
+#' @export
 absoluteGrob <- function(grob, width = NULL, height = NULL,
   xmin = NULL, ymin = NULL, vp = NULL) {
 
@@ -16,31 +19,31 @@ absoluteGrob <- function(grob, width = NULL, height = NULL,
   )
 }
 
-#' @keywords internal
+#' @export
 #' @method grobHeight absoluteGrob
 grobHeight.absoluteGrob <- function(x) {
   x$height %||% grobHeight(x$children)
 }
-#' @keywords internal
+#' @export
 #' @method grobWidth absoluteGrob
 grobWidth.absoluteGrob <- function(x) {
   x$width %||%  grobWidth(x$children)
 }
 
-#' @keywords internal
+#' @export
 #' @method grobX absoluteGrob
 grobX.absoluteGrob <- function(x, theta) {
   if (!is.null(x$xmin) && theta == "west") return(x$xmin)
   grobX(x$children, theta)
 }
-#' @keywords internal
+#' @export
 #' @method grobY absoluteGrob
 grobY.absoluteGrob <- function(x, theta) {
   if (!is.null(x$ymin) && theta == "south") return(x$ymin)
   grobY(x$children, theta)
 }
 
-#' @keywords internal
+#' @export
 #' @method grid.draw absoluteGrob
 grid.draw.absoluteGrob <- function(x, recording = TRUE) {
   NextMethod()
