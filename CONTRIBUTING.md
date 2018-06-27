@@ -18,6 +18,7 @@ build_strip --> a_build_strip
 
 -------------------------------
 draw_key_funcname --> a_draw_key_*
+(all its functions)
 
 facet_funcname --> a_facet_*
 
@@ -58,24 +59,7 @@ export(coord_munch)
 export(coord_polar)
 export(coord_quickmap)
 export(coord_trans)
-export(draw_key_abline)
-export(draw_key_blank)
-export(draw_key_boxplot)
-export(draw_key_crossbar)
-export(draw_key_dotplot)
-export(draw_key_label)
-export(draw_key_path)
-export(draw_key_point)
-export(draw_key_pointrange)
-export(draw_key_polygon)
-export(draw_key_rect)
-export(draw_key_smooth)
-export(draw_key_text)
-export(draw_key_vline)
-export(draw_key_vpath)
 export(expand_limits)
-export(facet_grid)
-export(facet_wrap)
 export(label_wrap_gen)
 export(labs)
 export(scale_alpha_manual)
