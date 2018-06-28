@@ -29,7 +29,7 @@
 #'  \code{\link[mapproj]{mapproject}} for more information.
 #' @param xlim manually specific x limits (in degrees of longitude)
 #' @param ylim manually specific y limits (in degrees of latitude)
-#' @keywords internal
+#' @export
 #' @examples
 #' if (require("maps")) {
 #' nz <- map_data("nz")
@@ -40,13 +40,13 @@
 #' # Plot it in cartesian coordinates
 #' nzmap
 #' # With correct mercator projection
-#' nzmap + ggplot2Animint:::coord_map()
+#' nzmap + coord_map()
 #' # With the aspect ratio approximation
-#' nzmap + ggplot2Animint:::coord_quickmap()
+#' nzmap + coord_quickmap()
 #'
 #' # Other projections
-#' nzmap + ggplot2Animint:::coord_map("cylindrical")
-#' nzmap + ggplot2Animint:::coord_map("azequalarea", orientation = c(-36.92,174.6,0))
+#' nzmap + coord_map("cylindrical")
+#' nzmap + coord_map("azequalarea", orientation = c(-36.92,174.6,0))
 #'
 #' states <- map_data("state")
 #' usamap <- a_plot(states, aes(long, lat, group = group)) +
@@ -55,19 +55,19 @@
 #' # Use cartesian coordinates
 #' usamap
 #' # With mercator projection
-#' usamap + ggplot2Animint:::coord_map()
-#' usamap + ggplot2Animint:::coord_quickmap()
+#' usamap + coord_map()
+#' usamap + coord_quickmap()
 #' # See ?mapproject for coordinate systems and their parameters
-#' usamap + ggplot2Animint:::coord_map("gilbert")
-#' usamap + ggplot2Animint:::coord_map("lagrange")
+#' usamap + coord_map("gilbert")
+#' usamap + coord_map("lagrange")
 #'
 #' # For most projections, you'll need to set the orientation yourself
 #' # as the automatic selection done by mapproject is not available to
 #' # ggplot
-#' usamap + ggplot2Animint:::coord_map("orthographic")
-#' usamap + ggplot2Animint:::coord_map("stereographic")
-#' usamap + ggplot2Animint:::coord_map("conic", lat0 = 30)
-#' usamap + ggplot2Animint:::coord_map("bonne", lat0 = 50)
+#' usamap + coord_map("orthographic")
+#' usamap + coord_map("stereographic")
+#' usamap + coord_map("conic", lat0 = 30)
+#' usamap + coord_map("bonne", lat0 = 50)
 #'
 #' # World map, using geom_path instead of geom_polygon
 #' world <- map_data("world")
@@ -77,11 +77,11 @@
 #'   scale_x_continuous(breaks = (-4:4) * 45)
 #'
 #' # Orthographic projection with default orientation (looking down at North pole)
-#' worldmap + ggplot2Animint:::coord_map("ortho")
+#' worldmap + coord_map("ortho")
 #' # Looking up up at South Pole
 #' worldmap + coord_map("ortho", orientation = c(-90, 0, 0))
 #' # Centered on New York (currently has issues with closing polygons)
-#' worldmap + ggplot2Animint:::coord_map("ortho", orientation = c(41, -74, 0))
+#' worldmap + coord_map("ortho", orientation = c(41, -74, 0))
 #' }
 coord_map <- function(projection="mercator", ..., orientation = NULL, xlim = NULL, ylim = NULL) {
   a_ggproto(NULL, a_CoordMap,

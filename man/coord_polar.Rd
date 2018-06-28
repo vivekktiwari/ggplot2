@@ -26,7 +26,7 @@ are a stacked bar chart in polar coordinates.
 #' # A pie chart = stacked bar chart + polar coordinates
 pie <- a_plot(mtcars, aes(x = factor(1), fill = factor(cyl))) +
  geom_bar(width = 1)
-pie + ggplot2Animint:::coord_polar(theta = "y")
+pie + coord_polar(theta = "y")
 
 \donttest{
 
@@ -65,4 +65,3 @@ doh + geom_bar(width = 0.9, position = "fill") + coord_polar(theta = "y")
 }
 }
 }
-\keyword{internal}

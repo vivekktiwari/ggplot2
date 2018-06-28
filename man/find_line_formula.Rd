@@ -16,7 +16,6 @@ find_line_formula(x, y)
 This returns a data frame with length(x)-1 rows
 }
 \examples{
-ggplot2Animint:::find_line_formula(c(4, 7), c(1, 5))
-ggplot2Animint:::find_line_formula(c(4, 7, 9), c(1, 5, 3))
+find_line_formula(c(4, 7), c(1, 5))
+find_line_formula(c(4, 7, 9), c(1, 5, 3))
 }
-\keyword{internal}

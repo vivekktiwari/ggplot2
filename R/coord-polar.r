@@ -6,7 +6,7 @@
 #' @param theta variable to map angle to (\code{x} or \code{y})
 #' @param start offset of starting point from 12 o'clock in radians
 #' @param direction 1, clockwise; -1, anticlockwise
-#' @keywords internal
+#' @export
 #' @examples
 #' # NOTE: Use these plots with caution - polar coordinates has
 #' # major perceptual problems.  The main point of these examples is
@@ -16,7 +16,7 @@
 #' #' # A pie chart = stacked bar chart + polar coordinates
 #' pie <- a_plot(mtcars, aes(x = factor(1), fill = factor(cyl))) +
 #'  geom_bar(width = 1)
-#' pie + ggplot2Animint:::coord_polar(theta = "y")
+#' pie + coord_polar(theta = "y")
 #'
 #' \donttest{
 #'

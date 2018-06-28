@@ -9,7 +9,7 @@
 #'   All other variables are duplicated as needed.
 #' @param range Panel range specification.
 #' @param segment_length Target segment length
-#' @keywords internal
+#' @export
 coord_munch <- function(coord, data, range, segment_length = 0.01) {
   if (coord$is_linear()) return(coord$transform(data, range))
 
@@ -164,9 +164,9 @@ dist_polar <- function(r, theta) {
 #' @param x A vector of x values
 #' @param y A vector of y values
 #' @examples
-#' ggplot2Animint:::find_line_formula(c(4, 7), c(1, 5))
-#' ggplot2Animint:::find_line_formula(c(4, 7, 9), c(1, 5, 3))
-#' @keywords internal
+#' find_line_formula(c(4, 7), c(1, 5))
+#' find_line_formula(c(4, 7, 9), c(1, 5, 3))
+#' @export
 find_line_formula <- function(x, y) {
   slope <- diff(y) / diff(x)
   yintercept <- y[-1] - (slope * x[-1])

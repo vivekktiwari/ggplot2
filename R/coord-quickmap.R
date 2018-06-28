@@ -1,5 +1,5 @@
 #' @inheritParams coord_cartesian
-#' @keywords internal
+#' @export
 #' @rdname coord_map
 coord_quickmap <- function(xlim = NULL, ylim = NULL, expand = TRUE) {
   a_ggproto(NULL, a_CoordQuickmap,

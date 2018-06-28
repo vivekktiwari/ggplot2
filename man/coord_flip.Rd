@@ -26,18 +26,17 @@ statistics which display y conditional on x, to x conditional on y.
 
 a_plot(diamonds, aes(cut, price)) +
   geom_boxplot() +
-  ggplot2Animint:::coord_flip()
+  coord_flip()
 
 h <- a_plot(diamonds, aes(carat)) +
   geom_histogram()
 h
-h + ggplot2Animint:::coord_flip()
-h + ggplot2Animint:::coord_flip() + scale_x_reverse()
+h + coord_flip()
+h + coord_flip() + scale_x_reverse()
 
 # You can also use it to flip line and area plots:
 df <- data.frame(x = 1:5, y = (1:5) ^ 2)
 a_plot(df, aes(x, y)) +
   geom_area()
-last_plot() + ggplot2Animint:::coord_flip()
+last_plot() + coord_flip()
 }
-\keyword{internal}
