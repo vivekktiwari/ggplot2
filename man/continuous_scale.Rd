@@ -79,8 +79,9 @@ discrete variables.}
   transformation with \code{\link[scales]{trans_new}}.}
 
 \item{guide}{Name of guide object, or object itself.}
+
+\item{super}{take ggproto class}
 }
 \description{
 Continuous scale constructor.
 }
-\keyword{internal}

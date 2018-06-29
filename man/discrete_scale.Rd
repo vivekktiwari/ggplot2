@@ -56,8 +56,9 @@ The default, \code{TRUE}, uses the levels that appear in the data;
 
 \item{guide}{the name of, or actual function, used to create the
 guide. See \code{\link{guides}} for more info.}
+
+\item{super}{take ggproto class}
 }
 \description{
 Discrete scale constructor.
 }
-\keyword{internal}

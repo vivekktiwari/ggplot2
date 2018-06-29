@@ -42,7 +42,7 @@ fortify.glht <- function(model, data, ...) {
 
 #' @rdname fortify-multcomp
 #' @method fortify confint.glht
-#' @keywords internal
+#' @export
 fortify.confint.glht <- function(model, data, ...) {
   coef <- model$confint
   colnames(coef) <- tolower(colnames(coef))
@@ -57,7 +57,7 @@ fortify.confint.glht <- function(model, data, ...) {
 
 #' @method fortify summary.glht
 #' @rdname fortify-multcomp
-#' @keywords internal
+#' @export
 fortify.summary.glht <- function(model, data, ...) {
   coef <- as.data.frame(
     model$test[c("coefficients", "sigma", "tstat", "pvalues")])

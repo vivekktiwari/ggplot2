@@ -39,11 +39,7 @@ Previous Changes:
 Following function/object have been made internal functions: 
 
 
-S3method(print,ggplot2_bins)
-S3method(fortify,Line)
-S3method(fortify,Lines)
-S3method(fortify,confint.glht)
-S3method(fortify,summary.glht)
+
 export(annotate)
 export(annotation_custom)
 export(annotation_logticks)
@@ -51,25 +47,8 @@ export(annotation_map)
 export(annotation_raster)
 export(benchplot)
 export(borders)
-export(coord_cartesian)
-export(coord_equal)
-export(coord_fixed) 
-export(coord_flip)
-export(coord_munch)
-export(coord_polar)
-export(coord_quickmap)
-export(coord_trans)
-export(expand_limits)
 export(label_wrap_gen)
 export(labs)
-export(scale_alpha_manual)
-export(scale_fill_manual)
-export(scale_linetype_manual)
-export(scale_shape_manual)
-export(scale_size_manual)
-export(scale_colour_manual)
-export(transform_position)
-export(update_labels)
 
 
 ## Issues

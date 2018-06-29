@@ -8,7 +8,7 @@
 #' a_plot(luv_colours, aes(u, v)) +
 #'   geom_point(aes(colour = col), size = 3) +
 #'   scale_color_identity() +
-#'   ggplot2Animint:::coord_equal()
+#'   coord_equal()
 #'
 #' df <- data.frame(
 #'   x = 1:4,

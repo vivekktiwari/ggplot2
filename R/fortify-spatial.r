@@ -81,7 +81,7 @@ fortify.SpatialLinesDataFrame <- function(model, data, ...) {
 }
 
 #' @rdname fortify.sp
-#' @keywords internal
+#' @export
 #' @method fortify Lines
 fortify.Lines <- function(model, data, ...) {
   lines <- model@Lines
@@ -99,7 +99,7 @@ fortify.Lines <- function(model, data, ...) {
 }
 
 #' @rdname fortify.sp
-#' @keywords internal
+#' @export
 #' @method fortify Line
 fortify.Line <- function(model, data, ...) {
   df <- as.data.frame(model@coords)

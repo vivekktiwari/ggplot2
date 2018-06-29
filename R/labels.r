@@ -2,13 +2,13 @@
 #'
 #' @param p plot to modify
 #' @param labels named list of new labels
-#' @keywords internal
+#' @export
 #' @examples
 #' p <- a_plot(mtcars, aes(mpg, wt)) + geom_point()
-#' ggplot2Animint:::update_labels(p, list(x = "New x"))
-#' ggplot2Animint:::update_labels(p, list(x = expression(x / y ^ 2)))
-#' ggplot2Animint:::update_labels(p, list(x = "New x", y = "New Y"))
-#' ggplot2Animint:::update_labels(p, list(colour = "Fail silently"))
+#' update_labels(p, list(x = "New x"))
+#' update_labels(p, list(x = expression(x / y ^ 2)))
+#' update_labels(p, list(x = "New x", y = "New Y"))
+#' update_labels(p, list(colour = "Fail silently"))
 update_labels <- function(p, labels) {
   p <- a_plot_clone(p)
   p$labels <- defaults(labels, p$labels)

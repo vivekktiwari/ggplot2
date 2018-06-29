@@ -7,6 +7,8 @@
 transform_position(df, trans_x = NULL, trans_y = NULL, ...)
 }
 \arguments{
+\item{df}{....}
+
 \item{trans_x, trans_y}{Transformation functions for x and y aesthetics.
 (will transform x, xmin, xmax, xend etc)}
 
@@ -15,4 +17,3 @@ transform_position(df, trans_x = NULL, trans_y = NULL, ...)
 \description{
 Convenience function to transform all position variables.
 }
-\keyword{internal}

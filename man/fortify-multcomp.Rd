@@ -48,4 +48,3 @@ cld <- cld(wht)
 fortify(cld)
 }
 }
-\keyword{internal}

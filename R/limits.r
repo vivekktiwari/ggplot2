@@ -53,15 +53,15 @@ ylim <- function(...) {
 
 #' Generate correct scale type for specified limits
 #'
-#' @param limits vector of limits
+#' @param lims vector of limits
 #' @param var name of variable
-#' @keywords internal
+#' @export
 #' @examples
-#' ggplot2Animint:::limits(c(1, 5), "x")
-#' ggplot2Animint:::limits(c(5, 1), "x")
-#' ggplot2Animint:::limits(c("A", "b", "c"), "x")
-#' ggplot2Animint:::limits(c("A", "b", "c"), "fill")
-#' ggplot2Animint:::limits(as.Date(c("2008-01-01", "2009-01-01")), "x")
+#' limits(c(1, 5), "x")
+#' limits(c(5, 1), "x")
+#' limits(c("A", "b", "c"), "x")
+#' limits(c("A", "b", "c"), "fill")
+#' limits(as.Date(c("2008-01-01", "2009-01-01")), "x")
 limits <- function(lims, var) UseMethod("limits")
 #' @export
 limits.numeric <- function(lims, var) {
@@ -112,19 +112,19 @@ limits.POSIXlt <- function(lims, var) {
 #'
 #' @param ... named list of aesthetics specifying the value (or values) that
 #'   should be included in each scale.
-#' @keywords internal
+#' @export
 #' @examples
 #' p <- a_plot(mtcars, aes(mpg, wt)) + geom_point()
-#' p + ggplot2Animint:::expand_limits(x = 0)
-#' p + ggplot2Animint:::expand_limits(y = c(1, 9))
-#' p + ggplot2Animint:::expand_limits(x = 0, y = 0)
+#' p + expand_limits(x = 0)
+#' p + expand_limits(y = c(1, 9))
+#' p + expand_limits(x = 0, y = 0)
 #'
 #' a_plot(mtcars, aes(mpg, wt)) +
 #'   geom_point(aes(colour = cyl)) +
-#'   ggplot2Animint:::expand_limits(colour = seq(2, 10, by = 2))
+#'   expand_limits(colour = seq(2, 10, by = 2))
 #' a_plot(mtcars, aes(mpg, wt)) +
 #'   geom_point(aes(colour = factor(cyl))) +
-#'   ggplot2Animint:::expand_limits(colour = factor(seq(2, 10, by = 2)))
+#'   expand_limits(colour = factor(seq(2, 10, by = 2)))
 expand_limits <- function(...) {
   data <- data.frame(..., stringsAsFactors = FALSE)
 

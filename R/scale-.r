@@ -516,7 +516,8 @@ a_ScaleDiscrete <- a_ggproto("a_ScaleDiscrete", a_Scale,
 #'   \code{c(0.05, 0)} for continuous variables, and \code{c(0, 0.6)} for
 #'   discrete variables.
 #' @param guide Name of guide object, or object itself.
-#' @keywords internal
+#' @param super take ggproto class
+#' @export
 continuous_scale <- function(aesthetics, scale_name, palette, name = waiver(),
                              breaks = waiver(), minor_breaks = waiver(),
                              labels = waiver(), limits = NULL,
@@ -599,7 +600,8 @@ continuous_scale <- function(aesthetics, scale_name, palette, name = waiver(),
 #' @param na.value how should missing values be displayed?
 #' @param guide the name of, or actual function, used to create the
 #'   guide. See \code{\link{guides}} for more info.
-#' @keywords internal
+#' @param super take ggproto class
+#' @export
 discrete_scale <- function(aesthetics, scale_name, palette, name = waiver(), breaks = waiver(),
   labels = waiver(), limits = NULL, expand = waiver(), na.value = NA, drop = TRUE,
   guide = "legend", super=a_ScaleDiscrete) {
