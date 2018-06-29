@@ -3,10 +3,13 @@
 #' @param data list of data frames, one for each layer
 #' @param rows variables that form the rows
 #' @param cols variables that form the columns
+#' @param margins ......
+#' @param drop ....
+#' @param as.table ....
 #' @return a data frame with columns \code{PANEL}, \code{ROW} and \code{COL},
 #'   that match the facetting variable values up with their position in the
 #'   grid
-#' @keywords internal
+#' @export
 layout_grid <- function(data, rows = NULL, cols = NULL, margins = NULL,
                        drop = TRUE, as.table = TRUE) {
   if (length(rows) == 0 && length(cols) == 0) return(layout_null())

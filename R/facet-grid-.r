@@ -43,13 +43,13 @@
 #' @param drop If \code{TRUE}, the default, all factor levels not used in the
 #'   data will automatically be dropped. If \code{FALSE}, all factor levels
 #'   will be shown, regardless of whether or not they appear in the data.
-#' @keywords internal
+#' @export
 #' @examples
 #' p <- a_plot(mpg, aes(displ, cty)) + geom_point()
 #'
-#' p + ggplot2Animint:::a_facet_grid(. ~ cyl)
-#' p + ggplot2Animint:::a_facet_grid(drv ~ .)
-#' p + ggplot2Animint:::a_facet_grid(drv ~ cyl)
+#' p + a_facet_grid(. ~ cyl)
+#' p + a_facet_grid(drv ~ .)
+#' p + a_facet_grid(drv ~ cyl)
 #'
 #' # To change plot order of facet grid,
 #' # change the order of variable levels with factor()
@@ -59,7 +59,7 @@
 #' # combinations:
 #' df <- data.frame(displ = mean(mpg$displ), cty = mean(mpg$cty))
 #' p +
-#'   ggplot2Animint:::a_facet_grid(. ~ cyl) +
+#'   a_facet_grid(. ~ cyl) +
 #'   geom_point(data = df, colour = "red", size = 2)
 #'
 #' # Free scales -------------------------------------------------------
@@ -69,14 +69,14 @@
 #' mt <- a_plot(mtcars, aes(mpg, wt, colour = factor(cyl))) +
 #'   geom_point()
 #'
-#' mt + ggplot2Animint:::a_facet_grid(. ~ cyl, scales = "free")
+#' mt + a_facet_grid(. ~ cyl, scales = "free")
 #'
 #' # If scales and space are free, then the mapping between position
 #' # and values in the data will be the same across all panels. This
 #' # is particularly useful for categorical axes
 #' a_plot(mpg, aes(drv, model)) +
 #'   geom_point() +
-#'   ggplot2Animint:::a_facet_grid(manufacturer ~ ., scales = "free", space = "free") +
+#'   a_facet_grid(manufacturer ~ ., scales = "free", space = "free") +
 #'   theme(strip.text.y = element_text(angle = 0))
 #'
 #' # Facet labels ------------------------------------------------------
@@ -84,16 +84,16 @@
 #' p
 #'
 #' # label_both() displays both variable name and value
-#' p + ggplot2Animint:::a_facet_grid(vs ~ cyl, labeller = label_both)
+#' p + a_facet_grid(vs ~ cyl, labeller = label_both)
 #'
 #' # label_parsed() parses text into mathematical expressions, see ?plotmath
 #' mtcars$cyl2 <- factor(mtcars$cyl, labels = c("alpha", "beta", "sqrt(x, y)"))
 #' a_plot(mtcars, aes(wt, mpg)) +
 #'   geom_point() +
-#'   ggplot2Animint:::a_facet_grid(. ~ cyl2, labeller = label_parsed)
+#'   a_facet_grid(. ~ cyl2, labeller = label_parsed)
 #'
 #' # label_bquote() makes it easy to construct math expressions
-#' p + ggplot2Animint:::a_facet_grid(. ~ vs, labeller = label_bquote(cols = alpha ^ .(vs)))
+#' p + a_facet_grid(. ~ vs, labeller = label_bquote(cols = alpha ^ .(vs)))
 #'
 #' # The facet strips can be displayed near the axes with switch
 #' data <- transform(mtcars,
@@ -101,9 +101,9 @@
 #'   gear = factor(gear, levels = 3:5, labels = c("Three", "Four", "Five"))
 #' )
 #' p <- a_plot(data, aes(mpg, disp)) + geom_point()
-#' p + ggplot2Animint:::a_facet_grid(am ~ gear, switch = "both")
+#' p + a_facet_grid(am ~ gear, switch = "both")
 #' # It looks better without boxes around the strips
-#' p + ggplot2Animint:::a_facet_grid(am ~ gear, switch = "both") +
+#' p + a_facet_grid(am ~ gear, switch = "both") +
 #'   theme(strip.background = element_blank())
 #'
 #' # Margins ----------------------------------------------------------
@@ -111,15 +111,15 @@
 #' # Margins can be specified by logically (all yes or all no) or by specific
 #' # variables as (character) variable names
 #' mg <- a_plot(mtcars, aes(x = mpg, y = wt)) + geom_point()
-#' mg + ggplot2Animint:::a_facet_grid(vs + am ~ gear)
-#' mg + ggplot2Animint:::a_facet_grid(vs + am ~ gear, margins = TRUE)
-#' mg + ggplot2Animint:::a_facet_grid(vs + am ~ gear, margins = "am")
+#' mg + a_facet_grid(vs + am ~ gear)
+#' mg + a_facet_grid(vs + am ~ gear, margins = TRUE)
+#' mg + a_facet_grid(vs + am ~ gear, margins = "am")
 #' # when margins are made over "vs", since the facets for "am" vary
 #' # within the values of "vs", the marginal facet for "vs" is also
 #' # a margin over "am".
-#' mg + ggplot2Animint:::a_facet_grid(vs + am ~ gear, margins = "vs")
-#' mg + ggplot2Animint:::a_facet_grid(vs + am ~ gear, margins = "gear")
-#' mg + ggplot2Animint:::a_facet_grid(vs + am ~ gear, margins = c("gear", "am"))
+#' mg + a_facet_grid(vs + am ~ gear, margins = "vs")
+#' mg + a_facet_grid(vs + am ~ gear, margins = "gear")
+#' mg + a_facet_grid(vs + am ~ gear, margins = c("gear", "am"))
 #' }
 #' @importFrom plyr as.quoted
 a_facet_grid <- function(facets, margins = FALSE, scales = "fixed", space = "fixed", shrink = TRUE, labeller = "label_value", as.table = TRUE, switch = NULL, drop = TRUE) {

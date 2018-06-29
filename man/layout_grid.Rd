@@ -13,6 +13,12 @@ layout_grid(data, rows = NULL, cols = NULL, margins = NULL, drop = TRUE,
 \item{rows}{variables that form the rows}
 
 \item{cols}{variables that form the columns}
+
+\item{margins}{......}
+
+\item{drop}{....}
+
+\item{as.table}{....}
 }
 \value{
 a data frame with columns \code{PANEL}, \code{ROW} and \code{COL},
@@ -22,4 +28,3 @@ a data frame with columns \code{PANEL}, \code{ROW} and \code{COL},
 \description{
 Layout panels in a 2d grid.
 }
-\keyword{internal}

@@ -18,16 +18,16 @@
 #' @param dir Direction: either "h" for horizontal, the default, or "v", for
 #'   vertical.
 #' @inheritParams a_facet_grid
-#' @keywords internal
+#' @export
 #' @examples
 #' a_plot(mpg, aes(displ, hwy)) +
 #'   geom_point() +
-#'   ggplot2Animint:::a_facet_wrap(~class)
+#'   a_facet_wrap(~class)
 #'
 #' # Control the number of rows and columns with nrow and ncol
 #' a_plot(mpg, aes(displ, hwy)) +
 #'   geom_point() +
-#'   ggplot2Animint:::a_facet_wrap(~class, nrow = 4)
+#'   a_facet_wrap(~class, nrow = 4)
 #'
 #' \donttest{
 #' # You can facet by multiple variables

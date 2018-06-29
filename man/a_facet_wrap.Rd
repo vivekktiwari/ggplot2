@@ -57,12 +57,12 @@ wraps a 1d sequence of panels into 2d, making best use of screen real estate.
 \examples{
 a_plot(mpg, aes(displ, hwy)) +
   geom_point() +
-  ggplot2Animint:::a_facet_wrap(~class)
+  a_facet_wrap(~class)
 
 # Control the number of rows and columns with nrow and ncol
 a_plot(mpg, aes(displ, hwy)) +
   geom_point() +
-  ggplot2Animint:::a_facet_wrap(~class, nrow = 4)
+  a_facet_wrap(~class, nrow = 4)
 
 \donttest{
 # You can facet by multiple variables
@@ -110,4 +110,3 @@ a_plot(economics_long, aes(date, value)) +
   theme(strip.background = element_blank())
 }
 }
-\keyword{internal}
