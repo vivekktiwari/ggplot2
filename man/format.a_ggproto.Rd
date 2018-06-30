@@ -2,19 +2,19 @@
 % Please edit documentation in R/ggproto.r
 \name{format.a_ggproto}
 \alias{format.a_ggproto}
-\title{Format a ggproto object}
+\title{Format a a_ggproto object}
 \usage{
 \method{format}{a_ggproto}(x, ..., flat = TRUE)
 }
 \arguments{
-\item{x}{A ggproto object to print.}
+\item{x}{A a_ggproto object to print.}
 
-\item{...}{If the ggproto object has a \code{print} method, further arguments
+\item{...}{If the a_ggproto object has a \code{print} method, further arguments
 will be passed to it. Otherwise, these arguments are unused.}
 
 \item{flat}{If \code{TRUE} (the default), show a flattened list of all local
 and inherited members. If \code{FALSE}, show the inheritance hierarchy.}
 }
 \description{
-Format a ggproto object
+Format a a_ggproto object
 }

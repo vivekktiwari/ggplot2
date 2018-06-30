@@ -3,7 +3,7 @@
 \name{a_ggproto}
 \alias{a_ggproto}
 \alias{a_ggproto_parent}
-\title{Create a new ggproto object}
+\title{Create a new a_ggproto object}
 \usage{
 a_ggproto(`_class` = NULL, `_inherit` = NULL, ...)
 
@@ -14,26 +14,26 @@ a_ggproto_parent(parent, self)
 attribute of the object. If \code{NULL} (the default), no class name will
 be added to the object.}
 
-\item{_inherit}{ggproto object to inherit from. If \code{NULL}, don't inherit
+\item{_inherit}{a_ggproto object to inherit from. If \code{NULL}, don't inherit
 from any object.}
 
-\item{...}{A list of members in the ggproto object.}
+\item{...}{A list of members in the a_ggproto object.}
 
 \item{parent, self}{Access parent class \code{parent} of object \code{self}.}
 }
 \description{
-ggproto is inspired by the proto package, but it has some important
+a_ggproto is inspired by the proto package, but it has some important
 differences. Notably, it cleanly supports cross-package inheritance, and has
 faster performance.
 }
 \section{Calling a_ggproto methods}{
 
 
-ggproto methods can take an optional \code{self} argument: if it is present,
+a_ggproto methods can take an optional \code{self} argument: if it is present,
 it is a regular method; if it's absent, it's a "static" method (i.e. it
 doesn't use any fields).
 
-Imagine you have a ggproto object \code{Adder}, which has a
+Imagine you have a a_ggproto object \code{Adder}, which has a
 method \code{addx = function(self, n) n + self$x}. Then, to call this
 function, you would use \code{Adder$addx(10)} -- the \code{self} is passed
 in automatically by the wrapper function. \code{self} be located anywhere

@@ -44,11 +44,11 @@ scale_x_date <- function(name = waiver(),
                          limits = NULL, expand = waiver()) {
 
   scale_datetime(c("x", "xmin", "xmax", "xend"), "date",
-    name = name,
-    breaks = breaks, date_breaks = date_breaks,
-    labels = labels, date_labels = date_labels,
-    minor_breaks = minor_breaks, date_minor_breaks = date_minor_breaks,
-    limits = limits, expand = expand
+                 name = name,
+                 breaks = breaks, date_breaks = date_breaks,
+                 labels = labels, date_labels = date_labels,
+                 minor_breaks = minor_breaks, date_minor_breaks = date_minor_breaks,
+                 limits = limits, expand = expand
   )
 }
 
@@ -61,11 +61,11 @@ scale_y_date <- function(name = waiver(),
                          limits = NULL, expand = waiver()) {
 
   scale_datetime(c("y", "ymin", "ymax", "yend"), "date",
-    name = name,
-    breaks = breaks, date_breaks = date_breaks,
-    labels = labels, date_labels = date_labels,
-    minor_breaks = minor_breaks, date_minor_breaks = date_minor_breaks,
-    limits = limits, expand = expand
+                 name = name,
+                 breaks = breaks, date_breaks = date_breaks,
+                 labels = labels, date_labels = date_labels,
+                 minor_breaks = minor_breaks, date_minor_breaks = date_minor_breaks,
+                 limits = limits, expand = expand
   )
 }
 
@@ -79,11 +79,11 @@ scale_x_datetime <- function(name = waiver(),
                              limits = NULL, expand = waiver()) {
 
   scale_datetime(c("x", "xmin", "xmax", "xend"), "time",
-    name = name,
-    breaks = breaks, date_breaks = date_breaks,
-    labels = labels, date_labels = date_labels,
-    minor_breaks = minor_breaks, date_minor_breaks = date_minor_breaks,
-    limits = limits, expand = expand
+                 name = name,
+                 breaks = breaks, date_breaks = date_breaks,
+                 labels = labels, date_labels = date_labels,
+                 minor_breaks = minor_breaks, date_minor_breaks = date_minor_breaks,
+                 limits = limits, expand = expand
   )
 }
 
@@ -97,11 +97,11 @@ scale_y_datetime <- function(name = waiver(),
                              limits = NULL, expand = waiver()) {
 
   scale_datetime(c("y", "ymin", "ymax", "yend"), "time",
-    name = name,
-    breaks = breaks, date_breaks = date_breaks,
-    labels = labels, date_labels = date_labels,
-    minor_breaks = minor_breaks, date_minor_breaks = date_minor_breaks,
-    limits = limits, expand = expand
+                 name = name,
+                 breaks = breaks, date_breaks = date_breaks,
+                 labels = labels, date_labels = date_labels,
+                 minor_breaks = minor_breaks, date_minor_breaks = date_minor_breaks,
+                 limits = limits, expand = expand
   )
 }
 
@@ -127,11 +127,16 @@ scale_datetime <- function(aesthetics, trans,
   if (!is.waive(date_labels)) {
     labels <- date_format(date_labels)
   }
-  scale_class <- switch(trans, date = a_ScaleContinuousDate, time = a_ScaleContinuousDatetime)
-  sc <- continuous_scale(aesthetics, name, identity,
-    breaks = breaks, minor_breaks = minor_breaks, labels = labels,
-    guide = "none", trans = trans, ... , super = scale_class)
 
+  sc <- continuous_scale(aesthetics, name, identity,
+                         breaks = breaks, minor_breaks = minor_breaks, labels = labels,
+                         guide = "none", trans = trans, ...)
+
+  # TODO: Fix this hack. We're reassigning the parent a_ggproto object, but this
+  # object should in the first place be created with the correct parent.
+  scale_class <- switch(trans, date = a_ScaleContinuousDate, time = a_ScaleContinuousDatetime)
+  sc$super <- scale_class
+  class(sc) <- class(scale_class)
   sc
 }
 
@@ -141,9 +146,9 @@ scale_datetime <- function(aesthetics, trans,
 #' @usage NULL
 #' @export
 a_ScaleContinuousDatetime <- a_ggproto("a_ScaleContinuousDatetime", a_ScaleContinuous,
-  map = function(self, x, limits = self$get_limits()) {
-    self$oob(x, limits)
-  }
+                                   map = function(self, x, limits = self$get_limits()) {
+                                     self$oob(x, limits)
+                                   }
 )
 
 #' @rdname ggplot2Animint-ggproto
@@ -151,7 +156,7 @@ a_ScaleContinuousDatetime <- a_ggproto("a_ScaleContinuousDatetime", a_ScaleConti
 #' @usage NULL
 #' @export
 a_ScaleContinuousDate <- a_ggproto("a_ScaleContinuousDate", a_ScaleContinuous,
-  map = function(self, x, limits = self$get_limits()) {
-    self$oob(x, limits)
-  }
+                               map = function(self, x, limits = self$get_limits()) {
+                                 self$oob(x, limits)
+                               }
 )

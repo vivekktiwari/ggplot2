@@ -1,16 +1,16 @@
-#' Create a new ggproto object
+#' Create a new a_ggproto object
 #'
-#' ggproto is inspired by the proto package, but it has some important
+#' a_ggproto is inspired by the proto package, but it has some important
 #' differences. Notably, it cleanly supports cross-package inheritance, and has
 #' faster performance.
 #'
 #' @section Calling a_ggproto methods:
 #'
-#' ggproto methods can take an optional \code{self} argument: if it is present,
+#' a_ggproto methods can take an optional \code{self} argument: if it is present,
 #' it is a regular method; if it's absent, it's a "static" method (i.e. it
 #' doesn't use any fields).
 #'
-#' Imagine you have a ggproto object \code{Adder}, which has a
+#' Imagine you have a a_ggproto object \code{Adder}, which has a
 #' method \code{addx = function(self, n) n + self$x}. Then, to call this
 #' function, you would use \code{Adder$addx(10)} -- the \code{self} is passed
 #' in automatically by the wrapper function. \code{self} be located anywhere
@@ -24,17 +24,17 @@
 #' @param _class Class name to assign to the object. This is stored as the class
 #'   attribute of the object. If \code{NULL} (the default), no class name will
 #'   be added to the object.
-#' @param _inherit ggproto object to inherit from. If \code{NULL}, don't inherit
+#' @param _inherit a_ggproto object to inherit from. If \code{NULL}, don't inherit
 #'   from any object.
 #' @param parent,self Access parent class \code{parent} of object \code{self}.
-#' @param ... A list of members in the ggproto object.
+#' @param ... A list of members in the a_ggproto object.
 #' @export
 a_ggproto <- function(`_class` = NULL, `_inherit` = NULL, ...) {
   e <- new.env(parent = emptyenv())
 
   members <- list(...)
   if (length(members) != sum(nzchar(names(members)))) {
-    stop("All members of a ggproto object must be named.")
+    stop("All members of a a_ggproto object must be named.")
   }
 
   # R <3.1.2 will error when list2env() is given an empty list, so we need to
@@ -43,21 +43,13 @@ a_ggproto <- function(`_class` = NULL, `_inherit` = NULL, ...) {
     list2env(members, envir = e)
   }
 
-  # Dynamically capture parent: this is necessary in order to avoid
-  # capturing the parent at package build time.
-  `_inherit` <- substitute(`_inherit`)
-  env <- parent.frame()
-  find_super <- function() {
-    eval(`_inherit`, env, NULL)
-  }
-
-  super <- find_super()
-  if (!is.null(super)) {
-    if (!is.a_ggproto(super)) {
+  if (!is.null(`_inherit`)) {
+    if (!is.a_ggproto(`_inherit`)) {
       stop("`_inherit` must be a a_ggproto object.")
     }
-    e$super <- find_super
-    class(e) <- c(`_class`, class(super))
+    e$super <- `_inherit`
+    class(e) <- c(`_class`, class(`_inherit`))
+
   } else {
     class(e) <- c(`_class`, "a_ggproto")
   }
@@ -71,7 +63,7 @@ a_ggproto <- function(`_class` = NULL, `_inherit` = NULL, ...) {
 #' @export
 is.a_ggproto <- function(x) inherits(x, "a_ggproto")
 
-a_fetch_ggproto <- function(x, name) {
+fetch_a_ggproto <- function(x, name) {
   res <- NULL
 
   val <- .subset2(x, name)
@@ -82,17 +74,8 @@ a_fetch_ggproto <- function(x, name) {
   } else {
     # If not found here, recurse into super environments
     super <- .subset2(x, "super")
-    if (is.null(super)) {
-      # no super class
-    } else if (is.function(super)) {
-      res <- a_fetch_ggproto(super(), name)
-    } else {
-      stop(
-        class(x)[[1]], " was built with an incompatible version of ggproto.\n",
-        "Please reinstall the package that provides this extension.",
-        call. = FALSE
-      )
-    }
+    if (is.a_ggproto(super))
+      res <- fetch_a_ggproto(super, name)
   }
 
   res
@@ -106,25 +89,25 @@ a_ggproto_parent <- function(parent, self) {
 
 #' @export
 `$.a_ggproto` <- function(x, name) {
-  res <- a_fetch_ggproto(x, name)
+  res <- fetch_a_ggproto(x, name)
   if (!is.function(res)) {
     return(res)
   }
 
-  a_make_proto_method(x, res)
+  make_proto_method(x, res)
 }
 
 #' @export
 `$.a_ggproto_parent` <- function(x, name) {
-  res <- a_fetch_ggproto(.subset2(x, "parent"), name)
+  res <- fetch_a_ggproto(.subset2(x, "parent"), name)
   if (!is.function(res)) {
     return(res)
   }
 
-  a_make_proto_method(.subset2(x, "self"), res)
+  make_proto_method(.subset2(x, "self"), res)
 }
 
-a_make_proto_method <- function(self, f) {
+make_proto_method <- function(self, f) {
   args <- formals(f)
   # is.null is a fast path for a common case; the %in% check is slower but also
   # catches the case where there's a `self = NULL` argument.
@@ -144,11 +127,11 @@ a_make_proto_method <- function(self, f) {
 #' @export
 `[[.a_ggproto` <- `$.a_ggproto`
 
-#' Convert a ggproto object to a list
+#' Convert a a_ggproto object to a list
 #'
 #' This will not include the object's \code{super} member.
 #'
-#' @param x A ggproto object to convert to a list.
+#' @param x A a_ggproto object to convert to a list.
 #' @param inherit If \code{TRUE} (the default), flatten all inherited items into
 #'   the returned list. If \code{FALSE}, do not include any inherited items.
 #' @param ... Further arguments to pass to \code{as.list.environment}.
@@ -157,8 +140,8 @@ as.list.a_ggproto <- function(x, inherit = TRUE, ...) {
   res <- list()
 
   if (inherit) {
-    if (is.function(x$super)) {
-      res <- as.list(x$super())
+    if (!is.null(x$super)) {
+      res <- as.list(x$super)
     }
   }
 
@@ -169,16 +152,16 @@ as.list.a_ggproto <- function(x, inherit = TRUE, ...) {
 }
 
 
-#' Print a ggproto object
+#' Print a a_ggproto object
 #'
-#' If a ggproto object has a \code{$print} method, this will call that method.
+#' If a a_ggproto object has a \code{$print} method, this will call that method.
 #' Otherwise, it will print out the members of the object, and optionally, the
 #' members of the inherited objects.
 #'
-#' @param x A ggproto object to print.
+#' @param x A a_ggproto object to print.
 #' @param flat If \code{TRUE} (the default), show a flattened list of all local
 #'   and inherited members. If \code{FALSE}, show the inheritance hierarchy.
-#' @param ... If the ggproto object has a \code{print} method, further arguments
+#' @param ... If the a_ggproto object has a \code{print} method, further arguments
 #'   will be passed to it. Otherwise, these arguments are unused.
 #'
 #' @export
@@ -193,7 +176,7 @@ print.a_ggproto <- function(x, ..., flat = TRUE) {
 }
 
 
-#' Format a ggproto object
+#' Format a a_ggproto object
 #'
 #' @inheritParams print.a_ggproto
 #' @export
@@ -213,15 +196,15 @@ format.a_ggproto <-  function(x, ..., flat = TRUE) {
   }
 
   str <- paste0(
-    "<ggproto object", classes_str(x), ">\n",
+    "<a_ggproto object", classes_str(x), ">\n",
     indent(object_summaries(objs, flat = flat), 4)
   )
 
-  if (flat && is.function(x$super)) {
+  if (flat && !is.null(x$super)) {
     str <- paste0(
       str, "\n",
       indent(
-        paste0("super: ", " <ggproto object", classes_str(x$super()), ">"),
+        paste0("super: ", " <a_ggproto object", classes_str(x$super), ">"),
         4
       )
     )
@@ -292,11 +275,11 @@ format.a_ggproto_method <- function(x, ...) {
 
   x <- unclass(x)
   paste0(
-    "<ggproto method>",
+    "<a_ggproto method>",
     "\n  <Wrapper function>\n    ", format_fun(x),
     "\n\n  <Inner function (f)>\n    ", format_fun(environment(x)$f)
   )
 }
 
-#proto2 TODO: better way of getting formals for self$draw
+# proto2 TODO: better way of getting formals for self$draw
 a_ggproto_formals <- function(x) formals(environment(x)$f)

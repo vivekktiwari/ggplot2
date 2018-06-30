@@ -2,12 +2,12 @@
 % Please edit documentation in R/ggproto.r
 \name{as.list.a_ggproto}
 \alias{as.list.a_ggproto}
-\title{Convert a ggproto object to a list}
+\title{Convert a a_ggproto object to a list}
 \usage{
 \method{as.list}{a_ggproto}(x, inherit = TRUE, ...)
 }
 \arguments{
-\item{x}{A ggproto object to convert to a list.}
+\item{x}{A a_ggproto object to convert to a list.}
 
 \item{inherit}{If \code{TRUE} (the default), flatten all inherited items into
 the returned list. If \code{FALSE}, do not include any inherited items.}
