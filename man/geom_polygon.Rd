@@ -56,7 +56,7 @@ Polygon, a filled path.
 }
 \section{Aesthetics}{
 
-\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "polygon")}
+\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "polygon")}
 }
 
 \examples{

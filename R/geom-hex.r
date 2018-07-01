@@ -1,7 +1,7 @@
 #' Hexagon binning.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "hex")}
+#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "hex")}
 #'
 #' @seealso \code{\link{stat_bin2d}} for rectangular binning
 #' @param geom,stat Override the default connection between \code{geom_hex} and

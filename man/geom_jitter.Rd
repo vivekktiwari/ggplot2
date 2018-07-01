@@ -76,7 +76,7 @@ in smaller datasets.
 }
 \section{Aesthetics}{
 
-\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "point")}
+\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "point")}
 }
 
 \examples{

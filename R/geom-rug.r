@@ -1,7 +1,7 @@
 #' Marginal rug plots.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "rug")}
+#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "rug")}
 #'
 #' @inheritParams layer
 #' @inheritParams geom_point

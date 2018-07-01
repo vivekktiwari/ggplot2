@@ -77,7 +77,7 @@ Various ways of representing a vertical interval defined by \code{x},
 }
 \section{Aesthetics}{
 
-\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "linerange")}
+\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "linerange")}
 }
 
 \examples{

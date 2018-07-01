@@ -99,7 +99,7 @@ See McGill et al. (1978) for more details.
 }
 \section{Aesthetics}{
 
-\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "boxplot")}
+\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "boxplot")}
 }
 
 \section{Computed variables}{

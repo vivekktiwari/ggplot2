@@ -99,7 +99,7 @@ scale, and then back-transformed to the response scale.
 }
 \section{Aesthetics}{
 
-\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_geom", "smooth")}
+\Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("geom", "smooth")}
 }
 
 \section{Computed variables}{
