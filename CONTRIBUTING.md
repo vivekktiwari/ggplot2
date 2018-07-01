@@ -9,6 +9,11 @@ The goal of this guide is to help you get up and contributing to ggplot2 as quic
 
 @vivekktiwari [For Future References]
 
+Date: 30-06-2018
+
+ggproto --> a_ggproto
+9along with its all S3 methods)
+
 Date: 23-06-2018
 
 train_layout --> a_train_layout
