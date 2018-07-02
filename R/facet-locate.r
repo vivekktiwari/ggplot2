@@ -30,12 +30,12 @@ locate_grid <- function(data, panels, rows = NULL, cols = NULL, margins = FALSE)
     to_add <- unique(panels[missing_facets])
 
     data_rep <- rep.int(1:nrow(data), nrow(to_add))
-    facet_rep <- rep(1:nrow(to_add), each = nrow(data))
+    a_facet_rep <- rep(1:nrow(to_add), each = nrow(data))
 
     data <- plyr::unrowname(data[data_rep, , drop = FALSE])
     a_facet_vals <- plyr::unrowname(cbind(
       a_facet_vals[data_rep, ,  drop = FALSE],
-      to_add[facet_rep, , drop = FALSE]))
+      to_add[a_facet_rep, , drop = FALSE]))
   }
 
   # Add PANEL variable
@@ -69,12 +69,12 @@ locate_wrap <- function(data, panels, vars) {
     to_add <- unique(panels[missing_facets])
 
     data_rep <- rep.int(1:nrow(data), nrow(to_add))
-    facet_rep <- rep(1:nrow(to_add), each = nrow(data))
+    a_facet_rep <- rep(1:nrow(to_add), each = nrow(data))
 
     data <- plyr::unrowname(data[data_rep, , drop = FALSE])
     a_facet_vals <- plyr::unrowname(cbind(
       a_facet_vals[data_rep, ,  drop = FALSE],
-      to_add[facet_rep, , drop = FALSE]))
+      to_add[a_facet_rep, , drop = FALSE]))
   }
 
   keys <- plyr::join.keys(a_facet_vals, panels, by = names(vars))

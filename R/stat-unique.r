@@ -1,7 +1,7 @@
 #' Remove duplicates.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("a_stat", "unique")}
+#' \Sexpr[results=rd,stage=build]{ggplot2Animint:::rd_aesthetics("stat", "unique")}
 #'
 #' @export
 #' @inheritParams layer
