@@ -509,14 +509,14 @@ By default, when you add a new theme element, it inherits values from the existi
 ```{r}
 theme_grey()$legend.key
 
-new_theme <- theme_grey() + theme(legend.key = element_rect(colour = "red"))
+new_theme <- theme_grey() + theme(legend.key = a_element_rect(colour = "red"))
 new_theme$legend.key
 ```
 
 To override it completely, use `%+replace%` instead of `+`:
 
 ```{r}
-new_theme <- theme_grey() %+replace% theme(legend.key = element_rect(colour = "red"))
+new_theme <- theme_grey() %+replace% theme(legend.key = a_element_rect(colour = "red"))
 new_theme$legend.key
 ```
 
@@ -526,10 +526,10 @@ There are four elements that affect the global appearance of the plot:
 
 Element      | Theme function    | Description
 -------------|-------------------|------------------------
-line         | `element_line()`  | all line elements
-rect         | `element_rect()`  | all rectangular elements
-text         | `element_text()`  | all text
-title        | `element_text()`  | all text in title elements (plot, axes & legend)
+line         | `a_element_line()`  | all line elements
+rect         | `a_element_rect()`  | all rectangular elements
+text         | `a_element_text()`  | all text
+title        | `a_element_text()`  | all text in title elements (plot, axes & legend)
 
 These set default properties that are inherited by more specific settings. These are most useful for setting an overall "background" colour and overall font settings (e.g. family and size).
 
@@ -540,7 +540,7 @@ base <- a_plot(df, aes(x, y)) +
   theme_minimal()
 
 base
-base + theme(text = element_text(colour = "red"))
+base + theme(text = a_element_text(colour = "red"))
 ```
 
 You should generally start creating a theme by modifying these values.
