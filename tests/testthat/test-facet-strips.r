@@ -5,12 +5,12 @@ strip_layout <- function(p) {
   plot <- data$plot
   panel <- data$panel
   data <- data$data
-  theme <- plot_theme(plot)
+  a_theme <- plot_a_theme(plot)
 
   geom_grobs <- Map(function(l, d) l$draw_geom(d, panel, plot$coordinates),
     plot$layers, data)
 
-  a_facet <- a_facet_render(plot$a_facet, panel, plot$coordinates, theme, geom_grobs)
+  a_facet <- a_facet_render(plot$a_facet, panel, plot$coordinates, a_theme, geom_grobs)
   layout <- a_facet$layout
   strip_layout <- layout[grepl("^strip", layout$name), 1:4]
   as.list(strip_layout)

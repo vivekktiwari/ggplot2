@@ -41,7 +41,7 @@
 #'    breaks = scales::trans_breaks("log10", function(x) 10^x),
 #'    labels = scales::trans_format("log10", scales::math_format(10^.x))
 #'  ) +
-#'  theme_bw()
+#'  a_theme_bw()
 #'
 #' a + ggplot2Animint:::annotation_logticks()                # Default: log ticks on bottom and left
 #' a + ggplot2Animint:::annotation_logticks(sides = "lr")    # Log ticks for y, on left and right
@@ -49,7 +49,7 @@
 #'
 #' # Hide the minor grid lines because they don't align with the ticks
 #' a + ggplot2Animint:::annotation_logticks(sides = "trbl") +
-#' theme(panel.grid.minor = a_element_blank())
+#' a_theme(panel.grid.minor = a_element_blank())
 #'
 #' # Another way to get the same results as 'a' above: log-transform the data before
 #' # plotting it. Also hide the minor grid lines.
@@ -57,7 +57,7 @@
 #'  geom_point(na.rm = TRUE) +
 #'  scale_x_continuous(name = "body", labels = scales::math_format(10^.x)) +
 #'  scale_y_continuous(name = "brain", labels = scales::math_format(10^.x)) +
-#'  theme_bw() + theme(panel.grid.minor = a_element_blank())
+#'  a_theme_bw() + a_theme(panel.grid.minor = a_element_blank())
 #'
 #' b + ggplot2Animint:::annotation_logticks()
 #'
@@ -65,7 +65,7 @@
 #' t <- a_plot(msleep, aes(bodywt, brainwt)) +
 #'   geom_point() +
 #'   ggplot2Animint:::coord_trans(x = "log10", y = "log10") +
-#'   theme_bw()
+#'   a_theme_bw()
 #' t + ggplot2Animint:::annotation_logticks(scaled = FALSE)
 #'
 #' # Change the length of the ticks

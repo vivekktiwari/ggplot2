@@ -11,13 +11,13 @@
 #'      (must use \code{\%+\%})
 #'   \item \code{uneval}: replace current aesthetics
 #'   \item \code{layer}: add new layer
-#'   \item \code{theme}: update plot theme
+#'   \item \code{a_theme}: update plot theme
 #'   \item \code{scale}: replace current scale
 #'   \item \code{coord}: override current coordinate system
 #'   \item \code{a_facet}: override current coordinate faceting
 #' }
 #'
-#' If the first object is an object of class \code{theme}, you can add
+#' If the first object is an object of class \code{a_theme}, you can add
 #' another theme object. This will return a modified theme object.
 #'
 #' For theme objects, the \code{+} operator and the \code{\%+replace\%}
@@ -49,16 +49,16 @@
 #'
 #' ### Adding objects to a theme object
 #' # Compare these results of adding theme objects to other theme objects
-#' add_el <- theme_grey() + theme(text = a_element_text(family = "Times"))
-#' rep_el <- theme_grey() %+replace% theme(text = a_element_text(family = "Times"))
+#' add_el <- a_theme_grey() + a_theme(text = a_element_text(family = "Times"))
+#' rep_el <- a_theme_grey() %+replace% a_theme(text = a_element_text(family = "Times"))
 #'
 #' add_el$text
 #' rep_el$text
 #'
-#' @param e1 An object of class \code{a_plot} or \code{theme}
+#' @param e1 An object of class \code{a_plot} or \code{a_theme}
 #' @param e2 A component to add to \code{e1}
 #' @export
-#' @seealso \code{\link{theme}}
+#' @seealso \code{\link{a_theme}}
 #' @method + aaa
 #' @rdname aaa-add
 "+.aaa" <- function(e1, e2) {
@@ -66,7 +66,7 @@
   # can be displayed in error messages
   e2name <- deparse(substitute(e2))
 
-  if      (is.theme(e1))  add_theme(e1, e2, e2name)
+  if      (is.a_theme(e1))  add_a_theme(e1, e2, e2name)
   else if (is.a_plot(e1)) add_a_plot(e1, e2, e2name)
 }
 
@@ -82,8 +82,8 @@ add_a_plot <- function(p, object, objectname) {
   p <- a_plot_clone(p)
   if (is.data.frame(object)) {
     p$data <- object
-  } else if (is.theme(object)) {
-    p$theme <- update_theme(p$theme, object)
+  } else if (is.a_theme(object)) {
+    p$a_theme <- update_a_theme(p$a_theme, object)
   } else if (inherits(object, "a_Scale")) {
     p$scales$add(object)
   } else if (inherits(object, "labels")) {

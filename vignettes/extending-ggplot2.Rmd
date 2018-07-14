@@ -22,7 +22,7 @@ ggplot2Animint is the customized version of ggplot2 which passes the static plot
 
 ggplot2Animint also drops major dependency packages that can be directly imported to animint2.
 
-This vignette documents the official extension mechanism provided in ggplot2Animint 2.0.0. This vignette is a high-level adjunct to the low-level details found in `?a_Stat`, `?a_Geom` and `?theme`. You'll learn how to extend ggplot2 by creating a new stat, geom, or theme.
+This vignette documents the official extension mechanism provided in ggplot2Animint 2.0.0. This vignette is a high-level adjunct to the low-level details found in `?a_Stat`, `?a_Geom` and `?a_theme`. You'll learn how to extend ggplot2 by creating a new stat, geom, or theme.
 
 As you read this document, you'll see many things that will make you scratch your head and wonder why on earth is it designed this way? Mostly it's historical accident - I wasn't a terribly good R programmer when I started writing ggplot2 and I made a lot of questionable decisions. We cleaned up as many of those issues as possible in the 2.0.0 release, but some fixes simply weren't worth the effort.
 
@@ -507,17 +507,17 @@ If you're going to create your own complete theme, there are a few things you ne
 By default, when you add a new theme element, it inherits values from the existing theme. For example, the following code sets the key colour to red, but it inherits the existing fill colour:
 
 ```{r}
-theme_grey()$legend.key
+a_theme_grey()$legend.key
 
-new_theme <- theme_grey() + theme(legend.key = a_element_rect(colour = "red"))
-new_theme$legend.key
+new_a_theme <- a_theme_grey() + a_theme(legend.key = a_element_rect(colour = "red"))
+new_a_theme$legend.key
 ```
 
 To override it completely, use `%+replace%` instead of `+`:
 
 ```{r}
-new_theme <- theme_grey() %+replace% theme(legend.key = a_element_rect(colour = "red"))
-new_theme$legend.key
+new_a_theme <- a_theme_grey() %+replace% a_theme(legend.key = a_element_rect(colour = "red"))
+new_a_theme$legend.key
 ```
 
 ### Global elements
@@ -537,10 +537,10 @@ These set default properties that are inherited by more specific settings. These
 df <- data.frame(x = 1:3, y = 1:3)
 base <- a_plot(df, aes(x, y)) + 
   geom_point() + 
-  theme_minimal()
+  a_theme_minimal()
 
 base
-base + theme(text = a_element_text(colour = "red"))
+base + a_theme(text = a_element_text(colour = "red"))
 ```
 
 You should generally start creating a theme by modifying these values.
@@ -549,11 +549,11 @@ You should generally start creating a theme by modifying these values.
 
 It is useful to understand the difference between complete and incomplete theme objects. A *complete* theme object is one produced by calling a theme function with the attribute `complete = TRUE`. 
 
-Theme functions `theme_grey()` and `theme_bw()` are examples of complete theme functions. Calls to `theme()` produce *incomplete* theme objects, since they represent (local) modifications to a theme object rather than returning a complete theme object per se. When adding an incomplete theme to a complete one, the result is a complete theme. 
+Theme functions `a_theme_grey()` and `a_theme_bw()` are examples of complete theme functions. Calls to `a_theme()` produce *incomplete* theme objects, since they represent (local) modifications to a theme object rather than returning a complete theme object per se. When adding an incomplete theme to a complete one, the result is a complete theme. 
 
 Complete and incomplete themes behave somewhat differently when added to a ggplot object:
 
 * Adding an incomplete theme augments the current theme object, replacing only 
-  those properties of elements defined in the call to `theme()`.
+  those properties of elements defined in the call to `a_theme()`.
   
-* Adding a complete theme wipes away the existing theme and applies the new theme.
+* Adding a complete theme wipes away the existing a_theme and applies the new theme.

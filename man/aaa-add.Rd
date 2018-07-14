@@ -13,7 +13,7 @@ e1 \%+\% e2
 e1 \%+replace\% e2
 }
 \arguments{
-\item{e1}{An object of class \code{a_plot} or \code{theme}}
+\item{e1}{An object of class \code{a_plot} or \code{a_theme}}
 
 \item{e2}{A component to add to \code{e1}}
 }
@@ -30,13 +30,13 @@ object.
      (must use \code{\%+\%})
   \item \code{uneval}: replace current aesthetics
   \item \code{layer}: add new layer
-  \item \code{theme}: update plot theme
+  \item \code{a_theme}: update plot theme
   \item \code{scale}: replace current scale
   \item \code{coord}: override current coordinate system
   \item \code{a_facet}: override current coordinate faceting
 }
 
-If the first object is an object of class \code{theme}, you can add
+If the first object is an object of class \code{a_theme}, you can add
 another theme object. This will return a modified theme object.
 
 For theme objects, the \code{+} operator and the \code{\%+replace\%}
@@ -68,13 +68,13 @@ p \%+\% m
 
 ### Adding objects to a theme object
 # Compare these results of adding theme objects to other theme objects
-add_el <- theme_grey() + theme(text = a_element_text(family = "Times"))
-rep_el <- theme_grey() \%+replace\% theme(text = a_element_text(family = "Times"))
+add_el <- a_theme_grey() + a_theme(text = a_element_text(family = "Times"))
+rep_el <- a_theme_grey() \%+replace\% a_theme(text = a_element_text(family = "Times"))
 
 add_el$text
 rep_el$text
 
 }
 \seealso{
-\code{\link{theme}}
+\code{\link{a_theme}}
 }
