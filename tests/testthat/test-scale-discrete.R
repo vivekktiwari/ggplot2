@@ -5,7 +5,7 @@ context("scale_discrete")
 test_that("discrete ranges also encompas continuous values", {
   df <- data.frame(x1 = c("a", "b", "c"), x2 = c(0, 2, 4), y = 1:3)
 
-  base <- a_plot(df, aes(y = y)) + scale_x_discrete()
+  base <- a_plot(df, aes(y = y)) + a_scale_x_discrete()
 
   x_range <- function(x) {
     layer_scales(x)$x$dimension()

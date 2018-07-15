@@ -36,7 +36,7 @@ But why ggproto? Well when we turned to add an official extension mechanism to g
 
 It's strange to say, but this is a case where inventing a new OO system was actually the right answer to the problem! Fortunately Winston is now very good at creating OO systems, so it only took him a day to come up with ggproto: it maintains all the features of proto that ggplot2 needs, while allowing cross package inheritance to work.
 
-Recent changes in ggproto feature on inheriting class, we have introduced `super` as new function, which can used as argument in other object oriented functions that requires inheritence class, this has been done to make it compatable with other ggplot2 extension packages and base packages, more specifically in ```scale_colour_identity```,```scale_fill_identity```, ```scale_line_idenitity```, ```scale_x_discrete```, ```scale_y_discrete```, ```scale_datetime``` and other scale-related functions. 
+Recent changes in ggproto feature on inheriting class, we have introduced `super` as new function, which can used as argument in other object oriented functions that requires inheritence class, this has been done to make it compatable with other ggplot2 extension packages and base packages, more specifically in ```a_scale_colour_identity```,```a_scale_fill_identity```, ```a_scale_line_idenitity```, ```a_scale_x_discrete```, ```a_scale_y_discrete```, ```a_scale_datetime``` and other a_scale-related functions. 
 
 Here's a quick demo of ggproto in action:
 

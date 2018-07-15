@@ -15,14 +15,14 @@ test_that("NA's don't appear in breaks", {
   }
 
   scales <- list(
-    x = scale_x_continuous(limits = c(1, 12)),
-    y = scale_y_continuous(limits = c(1, 12))
+    x = a_scale_x_continuous(limits = c(1, 12)),
+    y = a_scale_y_continuous(limits = c(1, 12))
   )
 
-  # First have to test that scale_breaks_positions will return a vector with NA
+  # First have to test that a_scale_breaks_positions will return a vector with NA
   # This is a test to make sure the later tests will be useful!
   # It's possible that changes to the the way that breaks are calculated will
-  # make it so that scale_break_positions will no longer give NA for range 1, 12
+  # make it so that a_scale_break_positions will no longer give NA for range 1, 12
   expect_true(any(is.na((scales$x$break_positions()))))
   expect_true(any(is.na((scales$y$break_positions()))))
 

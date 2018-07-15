@@ -11,7 +11,7 @@ test_that("buidling a plot does not affect its scales", {
 })
 
 test_that("ranges update only for variables listed in aesthetics", {
-  sc <- scale_alpha()
+  sc <- a_scale_alpha()
 
   sc$train_df(data.frame(alpha = 1:10))
   expect_equal(sc$range$range, c(1, 10))
@@ -28,7 +28,7 @@ test_that("ranges update only for variables listed in aesthetics", {
 })
 
 test_that("mapping works", {
-  sc <- scale_alpha(range = c(0, 1), na.value = 0)
+  sc <- a_scale_alpha(range = c(0, 1), na.value = 0)
   sc$train_df(data.frame(alpha = 1:10))
 
   expect_equal(
@@ -49,11 +49,11 @@ test_that("identity scale preserves input values", {
   p1 <- a_plot(df,
     aes(x, z, colour = z, fill = z, shape = z, size = x, alpha = x)) +
     geom_point() +
-    scale_colour_identity() +
-    scale_fill_identity() +
-    scale_shape_identity() +
-    scale_size_identity() +
-    scale_alpha_identity()
+    a_scale_colour_identity() +
+    a_scale_fill_identity() +
+    a_scale_shape_identity() +
+    a_scale_size_identity() +
+    a_scale_alpha_identity()
   d1 <- layer_data(p1)
 
   expect_equal(d1$colour, as.character(df$z))
@@ -101,9 +101,9 @@ test_that("oob affects position values", {
     annotate("point", x = "a", y = c(-Inf, Inf))
 
   y_scale <- function(limits, oob = censor) {
-    scale_y_continuous(limits = limits, oob = oob, expand = c(0, 0))
+    a_scale_y_continuous(limits = limits, oob = oob, expand = c(0, 0))
   }
-  base + scale_y_continuous(limits = c(-0,5))
+  base + a_scale_y_continuous(limits = c(-0,5))
 
   expect_warning(low_censor <- cdata(base + y_scale(c(0, 5), censor)),
     "Removed 1 rows containing missing values")
@@ -130,21 +130,21 @@ test_that("oob affects position values", {
 
 test_that("scales looked for in appropriate place", {
   xlabel <- function(x) a_plot_build(x)$panel$x_scales[[1]]$name
-  p0 <- qplot(mpg, wt, data = mtcars) + scale_x_continuous("0")
+  p0 <- qplot(mpg, wt, data = mtcars) + a_scale_x_continuous("0")
   expect_equal(xlabel(p0), "0")
 
-  scale_x_continuous <- function(...) ggplot2Animint::scale_x_continuous("1")
+  a_scale_x_continuous <- function(...) ggplot2Animint::a_scale_x_continuous("1")
   p1 <- qplot(mpg, wt, data = mtcars)
   expect_equal(xlabel(p1), "1")
 
   f <- function() {
-    scale_x_continuous <- function(...) ggplot2Animint::scale_x_continuous("2")
+    a_scale_x_continuous <- function(...) ggplot2Animint::a_scale_x_continuous("2")
     qplot(mpg, wt, data = mtcars)
   }
   p2 <- f()
   expect_equal(xlabel(p2), "2")
 
-  rm(scale_x_continuous)
+  rm(a_scale_x_continuous)
   p4 <- qplot(mpg, wt, data = mtcars)
   expect_equal(xlabel(p4), waiver())
 })
@@ -153,17 +153,17 @@ test_that("find_global searches in the right places", {
   testenv <- new.env(parent = globalenv())
 
   # This should find the scale object in the package environment
-  expect_identical(find_global("scale_colour_hue", testenv),
-    ggplot2Animint::scale_colour_hue)
+  expect_identical(find_global("a_scale_colour_hue", testenv),
+    ggplot2Animint::a_scale_colour_hue)
 
   # Set an object with the same name in the environment
-  testenv$scale_colour_hue <- "foo"
+  testenv$a_scale_colour_hue <- "foo"
 
   # Now it should return the new object
-  expect_identical(find_global("scale_colour_hue", testenv), "foo")
+  expect_identical(find_global("a_scale_colour_hue", testenv), "foo")
 
   # If we search in the empty env, we should end up with the object
   # from the ggplot2 namespace
-  expect_identical(find_global("scale_colour_hue", emptyenv()),
-    ggplot2Animint::scale_colour_hue)
+  expect_identical(find_global("a_scale_colour_hue", emptyenv()),
+    ggplot2Animint::a_scale_colour_hue)
 })

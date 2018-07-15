@@ -55,10 +55,10 @@ Line types can be specified with:
     ) 
     a_plot(linetypes, aes(0, y)) + 
       geom_segment(aes(xend = 5, yend = y, linetype = lty)) + 
-      scale_linetype_identity() + 
+      a_scale_linetype_identity() + 
       geom_text(aes(label = lty), hjust = 0, nudge_y = 0.2) +
-      scale_x_continuous(NULL, breaks = NULL) + 
-      scale_y_continuous(NULL, breaks = NULL)
+      a_scale_x_continuous(NULL, breaks = NULL) + 
+      a_scale_y_continuous(NULL, breaks = NULL)
     ```
 
 *   The lengths of on/off stretches of line. This is done with a string 
@@ -87,10 +87,10 @@ Shapes take four types of values:
     a_plot(shapes, aes(x, y)) + 
       geom_point(aes(shape = shape), size = 5, fill = "red") +
       geom_text(aes(label = shape), hjust = 0, nudge_x = 0.15) +
-      scale_shape_identity() +
+      a_scale_shape_identity() +
       ggplot2Animint:::expand_limits(x = 4.1) +
-      scale_x_continuous(NULL, breaks = NULL) + 
-      scale_y_continuous(NULL, breaks = NULL)
+      a_scale_x_continuous(NULL, breaks = NULL) + 
+      a_scale_y_continuous(NULL, breaks = NULL)
     ```
 
 *   A __single character__, to use that character as a plotting symbol.
@@ -106,7 +106,7 @@ sizes <- expand.grid(size = (0:3) * 2, stroke = (0:3) * 2)
 a_plot(sizes, aes(size, stroke, size = size, stroke = stroke)) + 
   geom_abline(slope = -1, intercept = 6, colour = "white", size = 6) + 
   geom_point(shape = 21, fill = "red") +
-  scale_size_identity()
+  a_scale_size_identity()
 ```
 
 

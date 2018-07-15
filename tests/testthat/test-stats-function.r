@@ -8,13 +8,13 @@ test_that("uses scale limits, not data limits", {
     stat_function(fun = dexp)
 
   full <- base +
-    scale_x_continuous(limits = c(0.1, 100)) +
-    scale_y_continuous()
+    a_scale_x_continuous(limits = c(0.1, 100)) +
+    a_scale_y_continuous()
   ret <- layer_data(full)
 
   full_log <- base +
-    scale_x_log10(limits = c(0.1, 100)) +
-    scale_y_continuous()
+    a_scale_x_log10(limits = c(0.1, 100)) +
+    a_scale_y_continuous()
   ret_log <- layer_data(full_log)
 
   expect_equal(ret$y[c(1, 101)], ret_log$y[c(1, 101)])

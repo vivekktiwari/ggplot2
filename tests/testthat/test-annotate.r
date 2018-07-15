@@ -24,5 +24,5 @@ test_that("segment annotations transform with scales", {
   a_plot(mtcars, aes(wt, mpg)) +
     geom_point() +
     annotate("segment", x = 2, y = 10, xend = 5, yend = 30, colour = "red") +
-    scale_y_reverse()
+    a_scale_y_reverse()
 })

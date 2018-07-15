@@ -22,7 +22,7 @@ test_that("position aesthetics coerced to correct type", {
   expect_is(d1$x, "numeric")
   expect_is(d1$y, "numeric")
 
-  l2 <- a_plot(df, aes(x, z)) + geom_point() + scale_x_discrete()
+  l2 <- a_plot(df, aes(x, z)) + geom_point() + a_scale_x_discrete()
   d2 <- layer_data(l2, 1)
 
   expect_is(d2$x, "integer")
@@ -37,7 +37,7 @@ test_that("non-position aesthetics are mapped", {
   expect_equal(sort(names(d1)), sort(c("x", "y", "fill", "group",
     "colour", "shape", "size", "PANEL", "alpha", "stroke")))
 
-  l2 <- l1 + scale_colour_manual(values = c("blue", "red", "yellow"))
+  l2 <- l1 + a_scale_colour_manual(values = c("blue", "red", "yellow"))
   d2 <- layer_data(l2, 1)
   expect_equal(d2$colour, c("blue", "red", "yellow"))
 })

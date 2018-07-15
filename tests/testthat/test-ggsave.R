@@ -32,8 +32,8 @@ test_that("warned about large plot unless limitsize = FALSE", {
 })
 
 test_that("scale multiplies height & width", {
-  expect_equal(plot_dim(c(10, 10), scale = 1), c(10, 10))
-  expect_equal(plot_dim(c(5, 5), scale = 2), c(10, 10))
+  expect_equal(plot_dim(c(10, 10), a_scale = 1), c(10, 10))
+  expect_equal(plot_dim(c(5, 5), a_scale = 2), c(10, 10))
 })
 
 

@@ -297,7 +297,7 @@ And the following fields
 \section{a_Scales}{
 
 
-All \code{scale_*} functions (like \code{scale_x_continuous}) return a
+All \code{a_scale_*} functions (like \code{a_scale_x_continuous}) return a
 \code{a_Scale*} object (like \code{a_ScaleContinuous}). The \code{a_Scale*}
 object represents a single scale.
 

@@ -6,8 +6,8 @@ test_that("Polar distance calculation", {
     r     = c(0,    0, 0.5, 0.5, 1, 1, 0.75, .5))
 
   scales <- list(
-    x = scale_x_continuous(limits = c(0, 2*pi)),
-    y = scale_y_continuous(limits = c(0, 1))
+    x = a_scale_x_continuous(limits = c(0, 2*pi)),
+    y = a_scale_y_continuous(limits = c(0, 1))
   )
   coord <- coord_polar()
   dists <- coord$distance(dat$theta, dat$r, coord$train(scales))

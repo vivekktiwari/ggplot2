@@ -13,8 +13,8 @@ xlim(...)
 ylim(...)
 }
 \arguments{
-\item{...}{If numeric, will create a continuous scale, if factor or
-character, will create a discrete scale.  For \code{lims}, every
+\item{...}{If numeric, will create a continuous a_scale, if factor or
+character, will create a discrete a_scale.  For \code{lims}, every
 argument must be named.}
 }
 \description{

@@ -51,11 +51,11 @@
 #'
 #' # For transformed scales, binwidth applies to the transformed data.
 #' # The bins have constant width on the transformed scale.
-#' m + geom_histogram() + scale_x_log10()
-#' m + geom_histogram(binwidth = 0.05) + scale_x_log10()
+#' m + geom_histogram() + a_scale_x_log10()
+#' m + geom_histogram(binwidth = 0.05) + a_scale_x_log10()
 #'
 #' # For transformed coordinate systems, the binwidth applies to the
-#' # raw data. The bins have constant width on the original scale.
+#' # raw data. The bins have constant width on the original a_scale.
 #'
 #' # Using log scales does not work here, because the first
 #' # bar is anchored at zero, and so whens transformed becomes negative
@@ -68,7 +68,7 @@
 #' # You can also transform the y axis.  Remember that the base of the bars
 #' # has value 0, so log transformations are not appropriate
 #' m <- a_plot(movies, aes(x = rating))
-#' m + geom_histogram(binwidth = 0.5) + scale_y_sqrt()
+#' m + geom_histogram(binwidth = 0.5) + a_scale_y_sqrt()
 #' }
 #' rm(movies)
 geom_histogram <- function(mapping = NULL, data = NULL,
