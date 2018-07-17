@@ -1,4 +1,4 @@
-context("coord_polar")
+context("a_coord_polar")
 
 test_that("Polar distance calculation", {
   dat <- data.frame(
@@ -9,8 +9,8 @@ test_that("Polar distance calculation", {
     x = a_scale_x_continuous(limits = c(0, 2*pi)),
     y = a_scale_y_continuous(limits = c(0, 1))
   )
-  coord <- coord_polar()
-  dists <- coord$distance(dat$theta, dat$r, coord$train(scales))
+  a_coord <- a_coord_polar()
+  dists <- a_coord$distance(dat$theta, dat$r, a_coord$train(scales))
 
   # dists is normalized by dividing by this value, so we'll add it back
   # The maximum length of a spiral arc, from (t,r) = (0,0) to (2*pi,1)
@@ -22,7 +22,7 @@ test_that("Polar distance calculation", {
 
   # The picture can be visualized with:
   # a_plot(dat, aes(x=theta, y=r)) + geom_path() +
-  #   geom_point(alpha=0.3) + coord_polar()
+  #   geom_point(alpha=0.3) + a_coord_polar()
 })
 
 

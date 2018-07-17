@@ -1,4 +1,4 @@
-context("coord_train")
+context("a_coord_train")
 
 test_that("NA's don't appear in breaks", {
 
@@ -27,9 +27,9 @@ test_that("NA's don't appear in breaks", {
   expect_true(any(is.na((scales$y$break_positions()))))
 
   # Check the various types of coords to make sure they don't have NA breaks
-  expect_false(any_NA_major_minor(coord_polar()$train(scales)))
-  expect_false(any_NA_major_minor(coord_cartesian()$train(scales)))
-  expect_false(any_NA_major_minor(coord_trans()$train(scales)))
-  expect_false(any_NA_major_minor(coord_fixed()$train(scales)))
-  expect_false(any_NA_major_minor(coord_map()$train(scales)))
+  expect_false(any_NA_major_minor(a_coord_polar()$train(scales)))
+  expect_false(any_NA_major_minor(a_coord_cartesian()$train(scales)))
+  expect_false(any_NA_major_minor(a_coord_trans()$train(scales)))
+  expect_false(any_NA_major_minor(a_coord_fixed()$train(scales)))
+  expect_false(any_NA_major_minor(a_coord_map()$train(scales)))
 })

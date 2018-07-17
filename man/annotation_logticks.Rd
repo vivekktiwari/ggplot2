@@ -19,7 +19,7 @@ bottom, and left.}
 \item{scaled}{is the data already log-scaled? This should be \code{TRUE}
 (default) when the data is already transformed with \code{log10()} or when
 using \code{a_scale_y_log10}. It should be \code{FALSE} when using
-\code{coord_trans(y = "log10")}.}
+\code{a_coord_trans(y = "log10")}.}
 
 \item{short}{a \code{\link[grid]{unit}} object specifying the length of the
 short tick marks}
@@ -81,7 +81,7 @@ b + ggplot2Animint:::annotation_logticks()
 # Using a coordinate transform requires scaled = FALSE
 t <- a_plot(msleep, aes(bodywt, brainwt)) +
   geom_point() +
-  ggplot2Animint:::coord_trans(x = "log10", y = "log10") +
+  ggplot2Animint:::a_coord_trans(x = "log10", y = "log10") +
   a_theme_bw()
 t + ggplot2Animint:::annotation_logticks(scaled = FALSE)
 
@@ -96,6 +96,6 @@ a + ggplot2Animint:::annotation_logticks(
 \code{\link{a_scale_y_continuous}}, \code{\link{a_scale_y_log10}} for log scale
   transformations.
 
-\code{\link{coord_trans}} for log coordinate transformations.
+\code{\link{a_coord_trans}} for log coordinate transformations.
 }
 \keyword{internal}

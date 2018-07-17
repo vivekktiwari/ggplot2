@@ -40,14 +40,14 @@ a_plot(capitals, aes(long, lat)) +
   ggplot2Animint:::borders("state") +
   geom_point(aes(size = pop)) +
   a_scale_size_area() +
-  ggplot2Animint:::coord_quickmap()
+  ggplot2Animint:::a_coord_quickmap()
 
 # Same map, with some world context
 a_plot(capitals, aes(long, lat)) +
   ggplot2Animint:::borders("world", xlim = c(-130, -60), ylim = c(20, 50)) +
   geom_point(aes(size = pop)) +
   a_scale_size_area() +
-  ggplot2Animint:::coord_quickmap()
+  ggplot2Animint:::a_coord_quickmap()
 }
 }
 \keyword{internal}
