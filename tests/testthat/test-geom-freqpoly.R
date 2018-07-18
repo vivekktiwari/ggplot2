@@ -3,7 +3,7 @@ context("freqpoly")
 test_that("can do frequency polygon with categorical x", {
   df <- data.frame(x = rep(letters[1:3], 3:1))
 
-  p <- a_plot(df, aes(x)) + geom_freqpoly(stat = "count")
+  p <- a_plot(df, aes(x)) + geom_freqpoly(a_stat = "count")
   d <- layer_data(p)
 
   expect_is(d$x, "integer")

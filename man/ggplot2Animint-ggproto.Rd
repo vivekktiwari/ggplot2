@@ -205,7 +205,7 @@ object, you typically will want to implement one or more of the following:
 \section{a_Stats}{
 
 
-All \code{stat_*} functions (like \code{stat_bin}) return a layer that
+All \code{a_stat_*} functions (like \code{a_stat_bin}) return a layer that
 contains a \code{a_Stat*} object (like \code{a_StatBin}). The \code{a_Stat*}
 object is responsible for rendering the data in the plot.
 

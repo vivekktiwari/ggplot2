@@ -61,7 +61,7 @@ NULL
 #'     ggplot2Animint:::a_facet_wrap( ~ variable)
 #' }
 geom_map <- function(mapping = NULL, data = NULL,
-                     stat = "identity",
+                     a_stat = "identity",
                      ...,
                      map,
                      na.rm = FALSE,
@@ -77,7 +77,7 @@ geom_map <- function(mapping = NULL, data = NULL,
   layer(
     data = data,
     mapping = mapping,
-    stat = stat,
+    a_stat = a_stat,
     geom = a_GeomMap,
     position = a_PositionIdentity,
     show.legend = show.legend,

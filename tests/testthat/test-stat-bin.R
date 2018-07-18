@@ -1,13 +1,13 @@
 context("stat_bin/stat_count")
 
-test_that("stat_bin throws error when y aesthetic present", {
+test_that("a_stat_bin throws error when y aesthetic present", {
   dat <- data.frame(x = c("a", "b", "c"), y = c(1, 5, 10))
 
-  expect_error(a_plot_build(a_plot(dat, aes(x, y)) + stat_bin()),
+  expect_error(a_plot_build(a_plot(dat, aes(x, y)) + a_stat_bin()),
     "must not be used with a y aesthetic.")
-  
+
   skip("passes when validate_params=TRUE")
-  expect_error(p <- a_plot_build(a_plot(dat, aes(x)) + stat_bin(y = 5)),
+  expect_error(p <- a_plot_build(a_plot(dat, aes(x)) + a_stat_bin(y = 5)),
                "StatBin requires a continuous x variable the x variable is discrete")
 })
 
@@ -39,7 +39,7 @@ test_that("geom_freqpoly defaults to pad = TRUE", {
 # Underlying binning algorithm --------------------------------------------
 
 comp_bin <- function(df, ...) {
-  plot <- a_plot(df, aes(x = x)) + stat_bin(...)
+  plot <- a_plot(df, aes(x = x)) + a_stat_bin(...)
   layer_data(plot)
 }
 
@@ -93,19 +93,19 @@ test_that("weights are added", {
 })
 
 
-# stat_count --------------------------------------------------------------
+# a_stat_count --------------------------------------------------------------
 
-test_that("stat_count throws error when y aesthetic present", {
+test_that("a_stat_count throws error when y aesthetic present", {
   dat <- data.frame(x = c("a", "b", "c"), y = c(1, 5, 10))
 
-  expect_error(a_plot_build(a_plot(dat, aes(x, y)) + stat_count()),
+  expect_error(a_plot_build(a_plot(dat, aes(x, y)) + a_stat_count()),
     "must not be used with a y aesthetic.")
   skip("passes when validate_params=TRUE")
-  expect_error(p <- a_plot_build(a_plot(dat, aes(x)) + stat_count(y = 5)),
+  expect_error(p <- a_plot_build(a_plot(dat, aes(x)) + a_stat_count(y = 5)),
     "must not be used with a y aesthetic.")
 })
 
-test_that("stat_count preserves x order for continuous and discrete", {
+test_that("a_stat_count preserves x order for continuous and discrete", {
   # x is numeric
   b <- a_plot_build(a_plot(mtcars, aes(carb)) + geom_bar())
   expect_identical(b$data[[1]]$x, c(1,2,3,4,6,8))

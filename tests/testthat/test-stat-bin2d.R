@@ -1,12 +1,13 @@
-context("stat_bin2d")
+context("a_stat_bin2d")
 
 test_that("binwidth is respected", {
   df <- data.frame(x = c(1, 1, 1, 2), y = c(1, 1, 1, 2))
   base <- a_plot(df, aes(x, y)) +
-    stat_bin2d(geom = "tile", binwidth = 0.25)
+    a_stat_bin2d(geom = "tile", binwidth = 0.25)
 
   out <- layer_data(base)
   expect_equal(nrow(out), 2)
+
   # Adjust tolerance to account for fuzzy breaks adjustment
   expect_equal(out$xmin, c(1, 1.75), tolerance = 1e-7)
   expect_equal(out$xmax, c(1.25, 2), tolerance = 1e-7)
@@ -20,7 +21,7 @@ test_that("breaks override binwidth", {
 
   df <- data.frame(x = 0:3, y = 0:3)
   base <- a_plot(df, aes(x, y)) +
-    stat_bin2d(
+    a_stat_bin2d(
       breaks = list(x = integer_breaks, y = NULL),
       binwidth = c(0.5, 0.5)
     )

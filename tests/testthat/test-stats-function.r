@@ -1,11 +1,11 @@
-context("stat_function")
+context("a_stat_function")
 
 test_that("uses scale limits, not data limits", {
   dat <- data.frame(x = c(0.1, 1:100))
   dat$y <- dexp(dat$x)
 
   base <- a_plot(dat, aes(x, y)) +
-    stat_function(fun = dexp)
+    a_stat_function(fun = dexp)
 
   full <- base +
     a_scale_x_continuous(limits = c(0.1, 100)) +
@@ -28,7 +28,7 @@ test_that("works with discrete x", {
   dat <- data.frame(x = c("a", "b"))
 
   base <- a_plot(dat, aes(x, group = 1)) +
-    stat_function(fun = as.numeric, geom = "point", n = 2)
+    a_stat_function(fun = as.numeric, geom = "point", n = 2)
   ret <- layer_data(base)
 
   expect_equal(ret$x, 1:2)
