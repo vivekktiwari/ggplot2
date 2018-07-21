@@ -4,26 +4,26 @@ context("Layer")
 # Parameters --------------------------------------------------------------
 
 test_that("aesthetics go in aes_params", {
-  l <- geom_point(size = "red")
+  l <- a_geom_point(size = "red")
   expect_equal(l$aes_params, list(size = "red"))
 })
 
 test_that("unknown params create error", {
   skip("passes when validate_params=TRUE")
-expect_error(geom_point(blah = "red"), "Unknown parameters")
+expect_error(a_geom_point(blah = "red"), "Unknown parameters")
   })
 
 test_that("Unknown params create error with validate_params = TRUE", {
-  expect_error(geom_point(blah = "red", validate_params = TRUE),
+  expect_error(a_geom_point(blah = "red", validate_params = TRUE),
                "Unknown parameters")
 })
 
 test_that("Unknown params don't create error with validate_params = FALSE", {
-  expect_silent(geom_point(blah = "red", validate_params = FALSE))
+  expect_silent(a_geom_point(blah = "red", validate_params = FALSE))
 })
 
 test_that("Unknown params go in extra_params, not aes_params", {
-  l <- geom_point(some_param = "value1",
+  l <- a_geom_point(some_param = "value1",
                   size = "big",
                   validate_params = FALSE)
   expect_equal(l$extra_params, list(some_param = "value1"))
@@ -54,12 +54,12 @@ test_that("strip_dots remove dots around calculated aesthetics", {
 # Data extraction ---------------------------------------------------------
 
 test_that("layer_data returns a data.frame", {
-  l <- geom_point()
+  l <- a_geom_point()
   expect_equal(l$layer_data(mtcars), mtcars)
-  l <- geom_point(data = head(mtcars))
+  l <- a_geom_point(data = head(mtcars))
   expect_equal(l$layer_data(mtcars), head(mtcars))
-  l <- geom_point(data = head)
+  l <- a_geom_point(data = head)
   expect_equal(l$layer_data(mtcars), head(mtcars))
-  l <- geom_point(data = nrow)
+  l <- a_geom_point(data = nrow)
   expect_error(l$layer_data(mtcars), "Data function must return a data.frame")
 })

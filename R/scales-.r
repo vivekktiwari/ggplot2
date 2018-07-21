@@ -119,9 +119,9 @@ scales_add_missing <- function(plot, aesthetics, env) {
   aesthetics <- setdiff(aesthetics, plot$scales$input())
 
   for (aes in aesthetics) {
-    scale_name <- paste("a_scale", aes, "continuous", sep = "_")
+    a_scale_name <- paste("a_scale", aes, "continuous", sep = "_")
 
-    a_scale_f <- find_global(scale_name, env, mode = "function")
+    a_scale_f <- find_global(a_scale_name, env, mode = "function")
     plot$scales$add(a_scale_f())
   }
 }

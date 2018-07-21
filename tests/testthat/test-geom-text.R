@@ -1,4 +1,4 @@
-context("geom_text")
+context("a_geom_text")
 
 # compute_just ------------------------------------------------------------
 

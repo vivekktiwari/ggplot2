@@ -15,8 +15,8 @@ Benchmark plot creation time.
 Broken down into construct, build, render and draw times.
 }
 \examples{
-ggplot2Animint:::benchplot(a_plot(mtcars, aes(mpg, wt)) + geom_point())
-ggplot2Animint:::benchplot(a_plot(mtcars, aes(mpg, wt)) + geom_point() +
+ggplot2Animint:::benchplot(a_plot(mtcars, aes(mpg, wt)) + a_geom_point())
+ggplot2Animint:::benchplot(a_plot(mtcars, aes(mpg, wt)) + a_geom_point() +
 ggplot2Animint:::a_facet_grid(. ~ cyl))
 }
 \keyword{internal}

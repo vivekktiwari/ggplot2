@@ -14,23 +14,23 @@ test_that("a_stat_bin throws error when y aesthetic present", {
 test_that("bins specifies the number of bins", {
   df <- data.frame(x = 1:10)
   out <- function(x, ...) {
-    layer_data(a_plot(df, aes(x)) + geom_histogram(...))
+    layer_data(a_plot(df, aes(x)) + a_geom_histogram(...))
   }
 
   expect_equal(nrow(out(bins = 2)), 2)
   expect_equal(nrow(out(bins = 100)), 100)
 })
 
-test_that("geom_histogram defaults to pad = FALSE", {
+test_that("a_geom_histogram defaults to pad = FALSE", {
   df <- data.frame(x = 1:3)
-  out <- layer_data(a_plot(df, aes(x)) + geom_histogram(binwidth = 1))
+  out <- layer_data(a_plot(df, aes(x)) + a_geom_histogram(binwidth = 1))
 
   expect_equal(out$count, c(1, 1, 1))
 })
 
-test_that("geom_freqpoly defaults to pad = TRUE", {
+test_that("a_geom_freqpoly defaults to pad = TRUE", {
   df <- data.frame(x = 1:3)
-  out <- layer_data(a_plot(df, aes(x)) + geom_freqpoly(binwidth = 1))
+  out <- layer_data(a_plot(df, aes(x)) + a_geom_freqpoly(binwidth = 1))
 
   expect_equal(out$count, c(0, 1, 1, 1, 0))
 })
@@ -86,7 +86,7 @@ test_that("Setting boundary and center", {
 
 test_that("weights are added", {
   df <- data.frame(x = 1:10, y = 1:10)
-  p <- a_plot(df, aes(x = x, weight = y)) + geom_histogram(binwidth = 1)
+  p <- a_plot(df, aes(x = x, weight = y)) + a_geom_histogram(binwidth = 1)
   out <- layer_data(p)
 
   expect_equal(out$count, df$y)
@@ -107,19 +107,19 @@ test_that("a_stat_count throws error when y aesthetic present", {
 
 test_that("a_stat_count preserves x order for continuous and discrete", {
   # x is numeric
-  b <- a_plot_build(a_plot(mtcars, aes(carb)) + geom_bar())
+  b <- a_plot_build(a_plot(mtcars, aes(carb)) + a_geom_bar())
   expect_identical(b$data[[1]]$x, c(1,2,3,4,6,8))
   expect_identical(b$data[[1]]$y, c(7,10,3,10,1,1))
 
   # x is factor where levels match numeric order
   mtcars$carb2 <- factor(mtcars$carb)
-  b <- a_plot_build(a_plot(mtcars, aes(carb2)) + geom_bar())
+  b <- a_plot_build(a_plot(mtcars, aes(carb2)) + a_geom_bar())
   expect_identical(b$data[[1]]$x, 1:6)
   expect_identical(b$data[[1]]$y, c(7,10,3,10,1,1))
 
   # x is factor levels differ from numeric order
   mtcars$carb3 <- factor(mtcars$carb, levels = c(4,1,2,3,6,8))
-  b <- a_plot_build(a_plot(mtcars, aes(carb3)) + geom_bar())
+  b <- a_plot_build(a_plot(mtcars, aes(carb3)) + a_geom_bar())
   expect_identical(b$data[[1]]$x, 1:6)
   expect_identical(b$panel$ranges[[1]]$x.labels, c("4","1","2","3","6","8"))
   expect_identical(b$data[[1]]$y, c(10,7,10,3,1,1))

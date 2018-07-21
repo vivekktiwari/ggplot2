@@ -5,7 +5,7 @@ dat <- data.frame(x = LETTERS[1:2], y = rnorm(30), g = LETTERS[3:5])
 
 test_that("Dodging works", {
   p <- a_plot(dat, aes(x = x, y = y, fill = g)) +
-    geom_dotplot(
+    a_geom_dotplot(
       binwidth = 0.2,
       binaxis = "y",
       position = "dodge",
@@ -37,7 +37,7 @@ test_that("Dodging works", {
 
 test_that("Binning works", {
   bp <- a_plot(dat, aes(y)) +
-    geom_dotplot(binwidth = .4, method = "histodot")
+    a_geom_dotplot(binwidth = .4, method = "histodot")
   x <- layer_data(bp)$x
 
   # Need ugly hack to make sure mod function doesn't give values like -3.99999
@@ -45,7 +45,7 @@ test_that("Binning works", {
   expect_true(all(abs((x - min(x) + 1e-7) %% .4) < 1e-6))
 
   bp <- a_plot(dat, aes(x = y)) +
-    geom_dotplot(binwidth = .4, method = "dotdensity")
+    a_geom_dotplot(binwidth = .4, method = "dotdensity")
   x <- layer_data(bp)$x
 
   # This one doesn't ensure that dotdensity works, but it does check that it's not
@@ -60,6 +60,6 @@ test_that("NA's result in warning from stat_bindot", {
   dat$x[c(2,10)] <- NA
 
   # Need to assign it to a var here so that it doesn't automatically print
-  expect_warning(a_plot_build(a_plot(dat, aes(x)) + geom_dotplot(binwidth = .2)),
+  expect_warning(a_plot_build(a_plot(dat, aes(x)) + a_geom_dotplot(binwidth = .2)),
     "Removed 2 rows.*stat_bindot")
 })

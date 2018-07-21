@@ -28,7 +28,7 @@ test_that("works with discrete x", {
   dat <- data.frame(x = c("a", "b"))
 
   base <- a_plot(dat, aes(x, group = 1)) +
-    a_stat_function(fun = as.numeric, geom = "point", n = 2)
+    a_stat_function(fun = as.numeric, a_geom = "point", n = 2)
   ret <- layer_data(base)
 
   expect_equal(ret$x, 1:2)

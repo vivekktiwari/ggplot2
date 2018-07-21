@@ -1,4 +1,4 @@
-context("geom_violin")
+context("a_geom_violin")
 
 test_that("", {
   df <- rbind(
@@ -7,7 +7,7 @@ test_that("", {
   )
 
   p <- a_plot(df, aes(1, y)) +
-    geom_violin() +
+    a_geom_violin() +
     a_facet_grid(x ~ ., scales = "free") +
     ggplot2Animint:::a_coord_cartesian(expand = FALSE)
 

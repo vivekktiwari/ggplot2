@@ -55,7 +55,7 @@ Thus this operator can be used to overwrite an entire theme.
 \examples{
 ### Adding objects to a a_plot object
 p <- a_plot(mtcars, aes(wt, mpg, colour = disp)) +
-  geom_point()
+  a_geom_point()
 
 p
 p + ggplot2Animint:::a_coord_cartesian(ylim = c(0, 40))

@@ -49,7 +49,7 @@ These tick marks probably make sense only for base 10.
 \examples{
 # Make a log-log plot (without log ticks)
 a <- a_plot(msleep, aes(bodywt, brainwt)) +
- geom_point(na.rm = TRUE) +
+ a_geom_point(na.rm = TRUE) +
  a_scale_x_log10(
    breaks = scales::trans_breaks("log10", function(x) 10^x),
    labels = scales::trans_format("log10", scales::math_format(10^.x))
@@ -71,7 +71,7 @@ a_theme(panel.grid.minor = a_element_blank())
 # Another way to get the same results as 'a' above: log-transform the data before
 # plotting it. Also hide the minor grid lines.
 b <- a_plot(msleep, aes(log10(bodywt), log10(brainwt))) +
- geom_point(na.rm = TRUE) +
+ a_geom_point(na.rm = TRUE) +
  a_scale_x_continuous(name = "body", labels = scales::math_format(10^.x)) +
  a_scale_y_continuous(name = "brain", labels = scales::math_format(10^.x)) +
  a_theme_bw() + a_theme(panel.grid.minor = a_element_blank())
@@ -80,7 +80,7 @@ b + ggplot2Animint:::annotation_logticks()
 
 # Using a coordinate transform requires scaled = FALSE
 t <- a_plot(msleep, aes(bodywt, brainwt)) +
-  geom_point() +
+  a_geom_point() +
   ggplot2Animint:::a_coord_trans(x = "log10", y = "log10") +
   a_theme_bw()
 t + ggplot2Animint:::annotation_logticks(scaled = FALSE)

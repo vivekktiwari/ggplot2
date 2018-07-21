@@ -11,8 +11,8 @@ test_that("discrete ranges also encompas continuous values", {
     layer_scales(x)$x$dimension()
   }
 
-  expect_equal(x_range(base + geom_point(aes(x1))), c(1, 3))
-  expect_equal(x_range(base + geom_point(aes(x2))), c(0, 4))
-  expect_equal(x_range(base + geom_point(aes(x1)) + geom_point(aes(x2))), c(0, 4))
+  expect_equal(x_range(base + a_geom_point(aes(x1))), c(1, 3))
+  expect_equal(x_range(base + a_geom_point(aes(x2))), c(0, 4))
+  expect_equal(x_range(base + a_geom_point(aes(x1)) + a_geom_point(aes(x2))), c(0, 4))
 })
 

@@ -124,12 +124,12 @@ you'll need to extend from \code{ggplot2Animint::a_Geom}, \code{ggplot2Animint::
 \section{a_Geoms}{
 
 
-All \code{geom_*} functions (like \code{geom_point}) return a layer that
+All \code{a_geom_*} functions (like \code{a_geom_point}) return a layer that
 contains a \code{a_Geom*} object (like \code{a_GeomPoint}). The \code{a_Geom*}
 object is responsible for rendering the data in the plot.
 
 Each of the \code{a_Geom*} objects is a \code{\link{a_ggproto}} object, descended
-from the top-level \code{a)Geom}, and each implements various methods and
+from the top-level \code{a_Geom}, and each implements various methods and
 fields. To create a new type of Geom object, you typically will want to
 implement one or more of the following:
 
@@ -178,7 +178,7 @@ object (like \code{a_CoordTrans}). The \code{a_Coord*} object is responsible for
 adjusting the position of overlapping geoms.
 
 The way that the \code{a_coord_*} functions work is slightly different from the
-\code{geom_*} and \code{a_stat_*} functions, because a \code{a_coord_*} function
+\code{a_geom_*} and \code{a_stat_*} functions, because a \code{a_coord_*} function
 actually "instantiates" the \code{a_Coord*} object by creating a descendant,
 and returns that.
 
@@ -257,7 +257,7 @@ All \code{position_*} functions (like \code{position_dodge}) return a
 object is responsible for adjusting the position of overlapping geoms.
 
 The way that the \code{position_*} functions work is slightly different from
-the \code{geom_*} and \code{a_stat_*} functions, because a \code{position_*}
+the \code{a_geom_*} and \code{a_stat_*} functions, because a \code{position_*}
 function actually "instantiates" the \code{a_Position*} object by creating a
 descendant, and returns that.
 

@@ -42,7 +42,7 @@ test_that("aes_all() converts strings into mappings", {
 
 test_that("aes evaluated in environment where plot created", {
   df <- data.frame(x = 1, y = 1)
-  p <- a_plot(df, aes(foo, y)) + geom_point()
+  p <- a_plot(df, aes(foo, y)) + a_geom_point()
 
   # Accessing an undefined variable should result in error
   expect_error(layer_data(p), "'foo' not found")
@@ -54,7 +54,7 @@ test_that("aes evaluated in environment where plot created", {
   # And regular variable shadowing should work
   f <- function() {
     foo <- 10
-    a_plot(df, aes(foo, y)) + geom_point()
+    a_plot(df, aes(foo, y)) + a_geom_point()
   }
   expect_equal(layer_data(f())$x, 10)
 })

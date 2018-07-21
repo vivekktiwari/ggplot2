@@ -7,16 +7,16 @@ strip_layout <- function(p) {
   data <- data$data
   a_theme <- plot_a_theme(plot)
 
-  geom_grobs <- Map(function(l, d) l$draw_geom(d, panel, plot$coordinates),
+  a_geom_grobs <- Map(function(l, d) l$draw_geom(d, panel, plot$coordinates),
     plot$layers, data)
 
-  a_facet <- a_facet_render(plot$a_facet, panel, plot$coordinates, a_theme, geom_grobs)
+  a_facet <- a_facet_render(plot$a_facet, panel, plot$coordinates, a_theme, a_geom_grobs)
   layout <- a_facet$layout
   strip_layout <- layout[grepl("^strip", layout$name), 1:4]
   as.list(strip_layout)
 }
 
-p <- a_plot(mtcars, aes(disp, drat)) + geom_point()
+p <- a_plot(mtcars, aes(disp, drat)) + a_geom_point()
 
 
 test_that("a_facet_wrap() builds correct output", {

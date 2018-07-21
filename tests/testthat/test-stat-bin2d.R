@@ -3,7 +3,7 @@ context("a_stat_bin2d")
 test_that("binwidth is respected", {
   df <- data.frame(x = c(1, 1, 1, 2), y = c(1, 1, 1, 2))
   base <- a_plot(df, aes(x, y)) +
-    a_stat_bin2d(geom = "tile", binwidth = 0.25)
+    a_stat_bin2d(a_geom = "tile", binwidth = 0.25)
 
   out <- layer_data(base)
   expect_equal(nrow(out), 2)

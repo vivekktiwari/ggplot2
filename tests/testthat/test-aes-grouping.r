@@ -10,35 +10,35 @@ group <- function(x) as.vector(layer_data(x, 1)$group)
 groups <- function(x) length(unique(group(x)))
 
 test_that("one group per combination of discrete vars", {
-  plot <- a_plot(df, aes(x, x)) + geom_point()
+  plot <- a_plot(df, aes(x, x)) + a_geom_point()
   expect_equal(group(plot), rep(NO_GROUP, 4))
 
-  plot <- a_plot(df, aes(x, a)) + geom_point()
+  plot <- a_plot(df, aes(x, a)) + a_geom_point()
   expect_equal(group(plot), c(1, 1, 2, 2))
-  plot <- a_plot(df, aes(x, b)) + geom_point()
+  plot <- a_plot(df, aes(x, b)) + a_geom_point()
   expect_equal(group(plot), c(1, 2, 1, 2))
 
-  plot <- a_plot(df, aes(a, b)) + geom_point()
+  plot <- a_plot(df, aes(a, b)) + a_geom_point()
   expect_equal(groups(plot), 4)
 })
 
 test_that("label is not used as a grouping var", {
-  plot <- a_plot(df, aes(x, x, label = a)) + geom_point()
+  plot <- a_plot(df, aes(x, x, label = a)) + a_geom_point()
   expect_equal(group(plot), rep(NO_GROUP, 4))
 
-  plot <- a_plot(df, aes(x, x, colour = a, label = b)) + geom_point()
+  plot <- a_plot(df, aes(x, x, colour = a, label = b)) + a_geom_point()
   expect_equal(group(plot), c(1, 1, 2, 2))
 })
 
 test_that("group aesthetic overrides defaults", {
-  plot <- a_plot(df, aes(x, x, group = x)) + geom_point()
+  plot <- a_plot(df, aes(x, x, group = x)) + a_geom_point()
   expect_equal(groups(plot), 4)
 
-  plot <- a_plot(df, aes(a, b, group = 1)) + geom_point()
+  plot <- a_plot(df, aes(a, b, group = 1)) + a_geom_point()
   expect_equal(groups(plot), 1)
 })
 
 test_that("group param overrides defaults", {
-  plot <- a_plot(df, aes(a, b)) + geom_point(group = 1)
+  plot <- a_plot(df, aes(a, b)) + a_geom_point(group = 1)
   expect_equal(groups(plot), 1)
 })

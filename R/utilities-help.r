@@ -11,7 +11,7 @@ aesthetics <- function(x) {
   }
   return(c(paste("\\strong{", sort(x$required_aes), "}", sep = ""), sort(def_aes)))
 }
-geom_aesthetics <- function(x) {
+a_geom_aesthetics <- function(x) {
   aesthetics(find_subclass("a_Geom", x))
 }
 a_stat_aesthetics <- function(x) {
@@ -20,7 +20,7 @@ a_stat_aesthetics <- function(x) {
 
 rd_aesthetics <- function(type, name) {
   obj <- switch(type,
-    geom = find_subclass("a_Geom", name),
+    a_geom = find_subclass("a_Geom", name),
     a_stat = find_subclass("a_Stat", name)
   )
   aes <- aesthetics(obj)

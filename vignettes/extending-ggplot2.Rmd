@@ -77,16 +77,16 @@ a_StatChull <- a_ggproto("a_StatChull", a_Stat,
 
 The two most important components are the `compute_group()` method (which does the computation), and the `required_aes` field, which lists which aesthetics must be present in order to for the a_stat to work.
 
-Next we write a layer function. Unfortunately, due to an early design mistake I called these either `a_stat_()` or `geom_()`. A better decision would have been to call them `layer_()` functions: that's a more accurate description because every layer involves a a_stat _and_ a geom. 
+Next we write a layer function. Unfortunately, due to an early design mistake I called these either `a_stat_()` or `a_geom_()`. A better decision would have been to call them `layer_()` functions: that's a more accurate description because every layer involves a a_stat _and_ a a_geom. 
 
-All layer functions follow the same form - you specify defaults in the function arguments and then call the `layer()` function, sending `...` into the `params` argument. The arguments in `...` will either be arguments for the geom (if you're making a stat wrapper), arguments for the stat (if you're making a geom wrapper), or aesthetics to be set. `layer()` takes care of teasing the different parameters apart and making sure they're stored in the right place:
+All layer functions follow the same form - you specify defaults in the function arguments and then call the `layer()` function, sending `...` into the `params` argument. The arguments in `...` will either be arguments for the a_geom (if you're making a stat wrapper), arguments for the stat (if you're making a a_geom wrapper), or aesthetics to be set. `layer()` takes care of teasing the different parameters apart and making sure they're stored in the right place:
 
 ```{r}
-a_stat_chull <- function(mapping = NULL, data = NULL, geom = "polygon",
+a_stat_chull <- function(mapping = NULL, data = NULL, a_geom = "polygon",
                        position = "identity", na.rm = FALSE, show.legend = NA, 
                        inherit.aes = TRUE, ...) {
   layer(
-    a_stat = a_StatChull, data = data, mapping = mapping, geom = geom, 
+    a_stat = a_StatChull, data = data, mapping = mapping, a_geom = a_geom, 
     position = position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, ...)
   )
@@ -99,31 +99,31 @@ Once we have a layer function we can try our new stat:
 
 ```{r}
 a_plot(mpg, aes(displ, hwy)) +
-  geom_point() +
+  a_geom_point() +
   a_stat_chull(fill = NA, colour = "black")
 ```
 
-(We'll see later how to change the defaults of the geom so that you don't need to specify `fill = NA` every time.)
+(We'll see later how to change the defaults of the a_geom so that you don't need to specify `fill = NA` every time.)
 
 Once we've written this basic object, ggplot2 gives a lot for free. For example, ggplot2 automatically preserves aesthetics that are constant within each group:
 
 ```{r}
 a_plot(mpg, aes(displ, hwy, colour = drv)) + 
-  geom_point() + 
+  a_geom_point() + 
   a_stat_chull(fill = NA)
 ```
 
-We can also override the default geom to display the convex hull in a different way:
+We can also override the default a_geom to display the convex hull in a different way:
 
 ```{r}
 a_plot(mpg, aes(displ, hwy)) + 
-  a_stat_chull(geom = "point", size = 4, colour = "red") +
-  geom_point()
+  a_stat_chull(a_geom = "point", size = 4, colour = "red") +
+  a_geom_point()
 ```
 
 ### Stat parameters
 
-A more complex stat will do some computation. Let's implement a simple version of `geom_smooth()` that adds a line of best fit to a plot. We create a `a_StatLm` that inherits from `a_Stat` and a layer function, `a_stat_lm()`:
+A more complex stat will do some computation. Let's implement a simple version of `a_geom_smooth()` that adds a line of best fit to a plot. We create a `a_StatLm` that inherits from `a_Stat` and a layer function, `a_stat_lm()`:
 
 ```{r}
 a_StatLm <- a_ggproto("a_StatLm", a_Stat, 
@@ -140,18 +140,18 @@ a_StatLm <- a_ggproto("a_StatLm", a_Stat,
   }
 )
 
-a_stat_lm <- function(mapping = NULL, data = NULL, geom = "line",
+a_stat_lm <- function(mapping = NULL, data = NULL, a_geom = "line",
                     position = "identity", na.rm = FALSE, show.legend = NA, 
                     inherit.aes = TRUE, ...) {
   layer(
-    a_stat = a_StatLm, data = data, mapping = mapping, geom = geom, 
+    a_stat = a_StatLm, data = data, mapping = mapping, a_geom = a_geom, 
     position = position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, ...)
   )
 }
 
 a_plot(mpg, aes(displ, hwy)) + 
-  geom_point() + 
+  a_geom_point() + 
   a_stat_lm()
 ```
 
@@ -172,21 +172,21 @@ a_StatLm <- a_ggproto("a_StatLm", a_Stat,
   }
 )
 
-a_stat_lm <- function(mapping = NULL, data = NULL, geom = "line",
+a_stat_lm <- function(mapping = NULL, data = NULL, a_geom = "line",
                     position = "identity", na.rm = FALSE, show.legend = NA, 
                     inherit.aes = TRUE, n = 50, formula = y ~ x, 
                     ...) {
   layer(
-    a_stat = a_StatLm, data = data, mapping = mapping, geom = geom, 
+    a_stat = a_StatLm, data = data, mapping = mapping, a_geom = a_geom, 
     position = position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(n = n, formula = formula, na.rm = na.rm, ...)
   )
 }
 
 a_plot(mpg, aes(displ, hwy)) + 
-  geom_point() + 
+  a_geom_point() + 
   a_stat_lm(formula = y ~ poly(x, 10)) + 
-  a_stat_lm(formula = y ~ poly(x, 10), geom = "point", colour = "red", n = 20)
+  a_stat_lm(formula = y ~ poly(x, 10), a_geom = "point", colour = "red", n = 20)
 ```
 
 Note that we don't _have_ to explicitly include the new parameters in the arguments for the layer, `...` will get passed to the right place anyway. But you'll need to document them somewhere so the user knows about them. Here's a brief example. Note `@inheritParams ggplot2Animint::a_stat_identity`: that will automatically inherit documentation for all the parameters also defined for `a_stat_identity()`.
@@ -196,12 +196,12 @@ Note that we don't _have_ to explicitly include the new parameters in the argume
 #' @param formula The modelling formula passed to \code{lm}. Should only 
 #'   involve \code{y} and \code{x}
 #' @param n Number of points used for interpolation.
-a_stat_lm <- function(mapping = NULL, data = NULL, geom = "line",
+a_stat_lm <- function(mapping = NULL, data = NULL, a_geom = "line",
                     position = "identity", na.rm = FALSE, show.legend = NA, 
                     inherit.aes = TRUE, n = 50, formula = y ~ x, 
                     ...) {
   layer(
-    a_stat = a_StatLm, data = data, mapping = mapping, geom = geom, 
+    a_stat = a_StatLm, data = data, mapping = mapping, a_geom = a_geom, 
     position = position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(n = n, formula = formula, na.rm = na.rm, ...)
   )
@@ -238,12 +238,12 @@ a_StatDensityCommon <- a_ggproto("a_StatDensityCommon", a_Stat,
   }  
 )
 
-a_stat_density_common <- function(mapping = NULL, data = NULL, geom = "line",
+a_stat_density_common <- function(mapping = NULL, data = NULL, a_geom = "line",
                                 position = "identity", na.rm = FALSE, show.legend = NA, 
                                 inherit.aes = TRUE, bandwidth = NULL,
                                 ...) {
   layer(
-    a_stat = a_StatDensityCommon, data = data, mapping = mapping, geom = geom, 
+    a_stat = a_StatDensityCommon, data = data, mapping = mapping, a_geom = a_geom, 
     position = position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(bandwidth = bandwidth, na.rm = na.rm, ...)
   )
@@ -274,14 +274,14 @@ a_StatDensityCommon <- a_ggproto("a_StatDensity2", a_Stat,
 )
 
 a_plot(mpg, aes(displ, drv, colour = ..density..)) + 
-  a_stat_density_common(bandwidth = 1, geom = "point")
+  a_stat_density_common(bandwidth = 1, a_geom = "point")
 ```
 
-However, using this stat with the area geom doesn't work quite right. The areas don't stack on top of each other:
+However, using this stat with the area a_geom doesn't work quite right. The areas don't stack on top of each other:
 
 ```{r}
 a_plot(mpg, aes(displ, fill = drv)) + 
-  a_stat_density_common(bandwidth = 1, geom = "area", position = "stack")
+  a_stat_density_common(bandwidth = 1, a_geom = "area", position = "stack")
 ```
 
 This is because each density is computed independently, and the estimated `x`s don't line up. We can resolve that issue by computing the range of the data once in `setup_params()`.
@@ -310,9 +310,9 @@ a_StatDensityCommon <- a_ggproto("a_StatDensityCommon", a_Stat,
 )
 
 a_plot(mpg, aes(displ, fill = drv)) + 
-  a_stat_density_common(bandwidth = 1, geom = "area", position = "stack")
+  a_stat_density_common(bandwidth = 1, a_geom = "area", position = "stack")
 a_plot(mpg, aes(displ, drv, fill = ..density..)) + 
-  a_stat_density_common(bandwidth = 1, geom = "raster")
+  a_stat_density_common(bandwidth = 1, a_geom = "raster")
 ```
 
 ### Exercises
@@ -328,13 +328,13 @@ a_plot(mpg, aes(displ, drv, fill = ..density..)) +
 1.  Compare and contrast `a_StatLm` to `ggplot2Animint::a_StatSmooth`. What key
     differences make `a_StatSmooth` more complex than `a_StatLm`?
 
-## Creating a new geom
+## Creating a new a_geom
 
-It's harder to create a new geom than a new stat because you also need to know some grid. ggplot2 is built on top of grid, so you'll need to know the basics of drawing with grid. If you're serious about adding a new geom, I'd recommend buying [R graphics](http://amzn.com/B00I60M26G) by Paul Murrell. It tells you everything you need to know about drawing with grid.
+It's harder to create a new a_geom than a new stat because you also need to know some grid. ggplot2 is built on top of grid, so you'll need to know the basics of drawing with grid. If you're serious about adding a new a_geom, I'd recommend buying [R graphics](http://amzn.com/B00I60M26G) by Paul Murrell. It tells you everything you need to know about drawing with grid.
 
-### A simple geom
+### A simple a_geom
 
-It's easiest to start with a simple example. The code below is a simplified version of `geom_point()`:
+It's easiest to start with a simple example. The code below is a simplified version of `a_geom_point()`:
 
 ```{r GeomSimplePoint}
 a_GeomSimplePoint <- a_ggproto("a_GeomSimplePoint", a_Geom,
@@ -352,18 +352,18 @@ a_GeomSimplePoint <- a_ggproto("a_GeomSimplePoint", a_Geom,
   }
 )
 
-geom_simple_point <- function(mapping = NULL, data = NULL, a_stat = "identity",
+a_geom_simple_point <- function(mapping = NULL, data = NULL, a_stat = "identity",
                               position = "identity", na.rm = FALSE, show.legend = NA, 
                               inherit.aes = TRUE, ...) {
   layer(
-    geom = a_GeomSimplePoint, mapping = mapping,  data = data, a_stat = a_stat, 
+    a_geom = a_GeomSimplePoint, mapping = mapping,  data = data, a_stat = a_stat, 
     position = position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, ...)
   )
 }
 
 a_plot(mpg, aes(displ, hwy)) + 
-  geom_simple_point()
+  a_geom_simple_point()
 ```
 
 This is very similar to defining a new stat. You always need to provide fields/methods for the four pieces shown above:
@@ -395,7 +395,7 @@ Generally you won't use `panel_scales` and `a_coord` directly, but you will alwa
 
 Overriding `draw_panel()` is most appropriate if there is one graphic element per row. In other cases, you want graphic element per group. For example, take polygons: each row gives one vertex of a polygon. In this case, you should instead override `draw_group()`:
 
-The following code makes a simplified version of `GeomPolygon`:
+The following code makes a simplified version of `a_GeomPolygon`:
 
 ```{r}
 a_GeomSimplePolygon <- a_ggproto("a_GeomPolygon", a_Geom,
@@ -428,27 +428,27 @@ a_GeomSimplePolygon <- a_ggproto("a_GeomPolygon", a_Geom,
     )
   }
 )
-geom_simple_polygon <- function(mapping = NULL, data = NULL, a_stat = "chull",
+a_geom_simple_polygon <- function(mapping = NULL, data = NULL, a_stat = "chull",
                                 position = "identity", na.rm = FALSE, show.legend = NA, 
                                 inherit.aes = TRUE, ...) {
   layer(
-    geom = a_GeomSimplePolygon, mapping = mapping, data = data, a_stat = a_stat, 
+    a_geom = a_GeomSimplePolygon, mapping = mapping, data = data, a_stat = a_stat, 
     position = position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, ...)
   )
 }
 
 a_plot(mpg, aes(displ, hwy)) + 
-  geom_point() + 
-  geom_simple_polygon(aes(colour = class), fill = NA)
+  a_geom_point() + 
+  a_geom_simple_polygon(aes(colour = class), fill = NA)
 ```
 
 There are a few things to note here:
 
 * We override `draw_group()` instead of `draw_layer()` because we want
   one polygon per group, not one polygon per row. If you look at the source
-  code for the original `GeomPolygon` you'll see it actually overrides
-  `geom_layer()` because it uses some tricks to make `polygonGrob()` produce
+  code for the original `a_GeomPolygon` you'll see it actually overrides
+  `a_geom_layer()` because it uses some tricks to make `polygonGrob()` produce
   multiple polygons in one call. This is considerably more complicated, but 
   gives better performance.
   
@@ -464,35 +464,35 @@ There are a few things to note here:
 
 ### Inheriting from an existing Geom
 
-Sometimes you just want to make a small modification to an existing geom. In this case, rather than inheriting from `Geom` you can inherit from an existing subclass. For example, we might want to change the defaults for `GeomPolygon` to work better with `a_StatChull`:
+Sometimes you just want to make a small modification to an existing geom. In this case, rather than inheriting from `a_Geom` you can inherit from an existing subclass. For example, we might want to change the defaults for `a_GeomPolygon` to work better with `a_StatChull`:
 
 ```{r}
 a_GeomPolygonHollow <- a_ggproto("a_GeomPolygonHollow", a_GeomPolygon,
   default_aes = aes(colour = "black", fill = NA, size = 0.5, linetype = 1,
     alpha = NA)
   )
-geom_chull <- function(mapping = NULL, data = NULL, 
+a_geom_chull <- function(mapping = NULL, data = NULL, 
                        position = "identity", na.rm = FALSE, show.legend = NA, 
                        inherit.aes = TRUE, ...) {
   layer(
-    a_stat = a_StatChull, geom = a_GeomPolygonHollow, data = data, mapping = mapping,
+    a_stat = a_StatChull, a_geom = a_GeomPolygonHollow, data = data, mapping = mapping,
     position = position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, ...)
   )
 }
 
 a_plot(mpg, aes(displ, hwy)) + 
-  geom_point() + 
-  geom_chull()
+  a_geom_point() + 
+  a_geom_chull()
 ```
 
 This doesn't allow you to use different geoms with the stat, but that seems appropriate here since the convex hull is primarily a polygonal feature.
 
 ### Exercises
 
-1. Compare and contrast `GeomPoint` with `GeomSimplePoint`.
+1. Compare and contrast `a_GeomPoint` with `a_GeomSimplePoint`.
 
-1. Compare and contract `GeomPolygon` with `GeomSimplePolygon`.
+1. Compare and contract `a_GeomPolygon` with `a_GeomSimplePolygon`.
 
 ## Creating your own theme
 
@@ -536,7 +536,7 @@ These set default properties that are inherited by more specific settings. These
 ```{r axis-line-ex}
 df <- data.frame(x = 1:3, y = 1:3)
 base <- a_plot(df, aes(x, y)) + 
-  geom_point() + 
+  a_geom_point() + 
   a_theme_minimal()
 
 base
