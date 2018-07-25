@@ -8,7 +8,7 @@ test_that("Dodging works", {
     a_geom_dotplot(
       binwidth = 0.2,
       binaxis = "y",
-      position = "dodge",
+      a_position = "dodge",
       stackdir = "center"
     )
   df <- layer_data(p)

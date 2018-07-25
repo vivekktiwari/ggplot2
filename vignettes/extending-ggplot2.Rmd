@@ -83,11 +83,11 @@ All layer functions follow the same form - you specify defaults in the function 
 
 ```{r}
 a_stat_chull <- function(mapping = NULL, data = NULL, a_geom = "polygon",
-                       position = "identity", na.rm = FALSE, show.legend = NA, 
+                       a_position = "identity", na.rm = FALSE, show.legend = NA, 
                        inherit.aes = TRUE, ...) {
   layer(
     a_stat = a_StatChull, data = data, mapping = mapping, a_geom = a_geom, 
-    position = position, show.legend = show.legend, inherit.aes = inherit.aes,
+    a_position = a_position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, ...)
   )
 }
@@ -141,11 +141,11 @@ a_StatLm <- a_ggproto("a_StatLm", a_Stat,
 )
 
 a_stat_lm <- function(mapping = NULL, data = NULL, a_geom = "line",
-                    position = "identity", na.rm = FALSE, show.legend = NA, 
+                    a_position = "identity", na.rm = FALSE, show.legend = NA, 
                     inherit.aes = TRUE, ...) {
   layer(
     a_stat = a_StatLm, data = data, mapping = mapping, a_geom = a_geom, 
-    position = position, show.legend = show.legend, inherit.aes = inherit.aes,
+    a_position = a_position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, ...)
   )
 }
@@ -173,12 +173,12 @@ a_StatLm <- a_ggproto("a_StatLm", a_Stat,
 )
 
 a_stat_lm <- function(mapping = NULL, data = NULL, a_geom = "line",
-                    position = "identity", na.rm = FALSE, show.legend = NA, 
+                    a_position = "identity", na.rm = FALSE, show.legend = NA, 
                     inherit.aes = TRUE, n = 50, formula = y ~ x, 
                     ...) {
   layer(
     a_stat = a_StatLm, data = data, mapping = mapping, a_geom = a_geom, 
-    position = position, show.legend = show.legend, inherit.aes = inherit.aes,
+    a_position = a_position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(n = n, formula = formula, na.rm = na.rm, ...)
   )
 }
@@ -197,12 +197,12 @@ Note that we don't _have_ to explicitly include the new parameters in the argume
 #'   involve \code{y} and \code{x}
 #' @param n Number of points used for interpolation.
 a_stat_lm <- function(mapping = NULL, data = NULL, a_geom = "line",
-                    position = "identity", na.rm = FALSE, show.legend = NA, 
+                    a_position = "identity", na.rm = FALSE, show.legend = NA, 
                     inherit.aes = TRUE, n = 50, formula = y ~ x, 
                     ...) {
   layer(
     a_stat = a_StatLm, data = data, mapping = mapping, a_geom = a_geom, 
-    position = position, show.legend = show.legend, inherit.aes = inherit.aes,
+    a_position = a_position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(n = n, formula = formula, na.rm = na.rm, ...)
   )
 }
@@ -239,12 +239,12 @@ a_StatDensityCommon <- a_ggproto("a_StatDensityCommon", a_Stat,
 )
 
 a_stat_density_common <- function(mapping = NULL, data = NULL, a_geom = "line",
-                                position = "identity", na.rm = FALSE, show.legend = NA, 
+                                a_position = "identity", na.rm = FALSE, show.legend = NA, 
                                 inherit.aes = TRUE, bandwidth = NULL,
                                 ...) {
   layer(
     a_stat = a_StatDensityCommon, data = data, mapping = mapping, a_geom = a_geom, 
-    position = position, show.legend = show.legend, inherit.aes = inherit.aes,
+    a_position = a_position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(bandwidth = bandwidth, na.rm = na.rm, ...)
   )
 }
@@ -281,7 +281,7 @@ However, using this stat with the area a_geom doesn't work quite right. The area
 
 ```{r}
 a_plot(mpg, aes(displ, fill = drv)) + 
-  a_stat_density_common(bandwidth = 1, a_geom = "area", position = "stack")
+  a_stat_density_common(bandwidth = 1, a_geom = "area", a_position = "stack")
 ```
 
 This is because each density is computed independently, and the estimated `x`s don't line up. We can resolve that issue by computing the range of the data once in `setup_params()`.
@@ -310,7 +310,7 @@ a_StatDensityCommon <- a_ggproto("a_StatDensityCommon", a_Stat,
 )
 
 a_plot(mpg, aes(displ, fill = drv)) + 
-  a_stat_density_common(bandwidth = 1, a_geom = "area", position = "stack")
+  a_stat_density_common(bandwidth = 1, a_geom = "area", a_position = "stack")
 a_plot(mpg, aes(displ, drv, fill = ..density..)) + 
   a_stat_density_common(bandwidth = 1, a_geom = "raster")
 ```
@@ -353,11 +353,11 @@ a_GeomSimplePoint <- a_ggproto("a_GeomSimplePoint", a_Geom,
 )
 
 a_geom_simple_point <- function(mapping = NULL, data = NULL, a_stat = "identity",
-                              position = "identity", na.rm = FALSE, show.legend = NA, 
+                              a_position = "identity", na.rm = FALSE, show.legend = NA, 
                               inherit.aes = TRUE, ...) {
   layer(
     a_geom = a_GeomSimplePoint, mapping = mapping,  data = data, a_stat = a_stat, 
-    position = position, show.legend = show.legend, inherit.aes = inherit.aes,
+    a_position = a_position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, ...)
   )
 }
@@ -429,11 +429,11 @@ a_GeomSimplePolygon <- a_ggproto("a_GeomPolygon", a_Geom,
   }
 )
 a_geom_simple_polygon <- function(mapping = NULL, data = NULL, a_stat = "chull",
-                                position = "identity", na.rm = FALSE, show.legend = NA, 
+                                a_position = "identity", na.rm = FALSE, show.legend = NA, 
                                 inherit.aes = TRUE, ...) {
   layer(
     a_geom = a_GeomSimplePolygon, mapping = mapping, data = data, a_stat = a_stat, 
-    position = position, show.legend = show.legend, inherit.aes = inherit.aes,
+    a_position = a_position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, ...)
   )
 }
@@ -472,11 +472,11 @@ a_GeomPolygonHollow <- a_ggproto("a_GeomPolygonHollow", a_GeomPolygon,
     alpha = NA)
   )
 a_geom_chull <- function(mapping = NULL, data = NULL, 
-                       position = "identity", na.rm = FALSE, show.legend = NA, 
+                       a_position = "identity", na.rm = FALSE, show.legend = NA, 
                        inherit.aes = TRUE, ...) {
   layer(
     a_stat = a_StatChull, a_geom = a_GeomPolygonHollow, data = data, mapping = mapping,
-    position = position, show.legend = show.legend, inherit.aes = inherit.aes,
+    a_position = a_position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, ...)
   )
 }

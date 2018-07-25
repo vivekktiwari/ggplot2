@@ -16,7 +16,7 @@ a_Scale <- a_ggproto("a_Scale", NULL,
                  call = NULL,
 
                  aesthetics = aes(),
-                 scale_name = NULL,
+                 a_scale_name = NULL,
                  palette = function() {
                    stop("Not implemented", call. = FALSE)
                  },
@@ -517,7 +517,7 @@ a_ScaleDiscrete <- a_ggproto("a_ScaleDiscrete", a_Scale,
 #'   discrete variables.
 #' @param guide Name of guide object, or object itself.
 #' @export
-continuous_a_scale <- function(aesthetics, scale_name, palette, name = waiver(),
+continuous_a_scale <- function(aesthetics, a_scale_name, palette, name = waiver(),
                              breaks = waiver(), minor_breaks = waiver(),
                              labels = waiver(), limits = NULL,
                              rescaler = rescale, oob = censor,
@@ -539,7 +539,7 @@ continuous_a_scale <- function(aesthetics, scale_name, palette, name = waiver(),
           call = match.call(),
 
           aesthetics = aesthetics,
-          scale_name = scale_name,
+          a_scale_name = a_scale_name,
           palette = palette,
 
           range = continuous_range(),
@@ -563,7 +563,7 @@ continuous_a_scale <- function(aesthetics, scale_name, palette, name = waiver(),
 #'
 #' @export
 #' @param aesthetics the names of the aesthetics that this scale works with
-#' @param scale_name the name of the scale
+#' @param a_scale_name the name of the scale
 #' @param palette a palette function that when called with a single integer
 #'   argument (the number of levels in the scale) returns the values that
 #'   they should take
@@ -600,7 +600,7 @@ continuous_a_scale <- function(aesthetics, scale_name, palette, name = waiver(),
 #' @param guide the name of, or actual function, used to create the
 #'   guide. See \code{\link{guides}} for more info.
 #' @export
-discrete_a_scale <- function(aesthetics, scale_name, palette, name = waiver(), breaks = waiver(),
+discrete_a_scale <- function(aesthetics, a_scale_name, palette, name = waiver(), breaks = waiver(),
                            labels = waiver(), limits = NULL, expand = waiver(), na.value = NA, drop = TRUE,
                            guide = "legend") {
 
@@ -614,7 +614,7 @@ discrete_a_scale <- function(aesthetics, scale_name, palette, name = waiver(), b
           call = match.call(),
 
           aesthetics = aesthetics,
-          scale_name = scale_name,
+          a_scale_name = a_scale_name,
           palette = palette,
 
           range = discrete_range(),

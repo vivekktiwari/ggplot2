@@ -4,7 +4,7 @@
 \alias{continuous_a_scale}
 \title{Continuous scale constructor.}
 \usage{
-continuous_a_scale(aesthetics, scale_name, palette, name = waiver(),
+continuous_a_scale(aesthetics, a_scale_name, palette, name = waiver(),
   breaks = waiver(), minor_breaks = waiver(), labels = waiver(),
   limits = NULL, rescaler = rescale, oob = censor, expand = waiver(),
   na.value = NA_real_, trans = "identity", guide = "legend")
@@ -12,7 +12,7 @@ continuous_a_scale(aesthetics, scale_name, palette, name = waiver(),
 \arguments{
 \item{aesthetics}{the names of the aesthetics that this scale works with}
 
-\item{scale_name}{the name of the scale}
+\item{a_scale_name}{the name of the scale}
 
 \item{palette}{a palette function that when called with a single integer
 argument (the number of levels in the scale) returns the values that
