@@ -74,7 +74,7 @@
 #' # Add a text annotation
 #' p +
 #'   a_geom_text() +
-#'   ggplot2Animint:::annotate("text",
+#'   ggplot2Animint:::a_annotate("text",
 #'   label = "plot mpg vs. wt", x = 2, y = 15, size = 8, colour = "red")
 #'
 #' \donttest{
