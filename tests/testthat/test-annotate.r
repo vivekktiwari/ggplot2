@@ -1,4 +1,4 @@
-context("annotate")
+context("a_annotate")
 
 test_that("dates in segment annotation work", {
   dt <- structure(list(month = structure(c(1364774400, 1377993600),
@@ -8,7 +8,7 @@ test_that("dates in segment annotation work", {
 
   p <- a_plot(dt, aes(month, total)) +
     a_geom_point() +
-    annotate("segment",
+    a_annotate("segment",
       x = as.POSIXct("2013-04-01"),
       xend = as.POSIXct("2013-07-01"),
       y = -10,
@@ -23,6 +23,6 @@ test_that("segment annotations transform with scales", {
   # explain how to make one
   a_plot(mtcars, aes(wt, mpg)) +
     a_geom_point() +
-    annotate("segment", x = 2, y = 10, xend = 5, yend = 30, colour = "red") +
+    a_annotate("segment", x = 2, y = 10, xend = 5, yend = 30, colour = "red") +
     a_scale_y_reverse()
 })

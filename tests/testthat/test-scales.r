@@ -98,7 +98,7 @@ test_that("oob affects position values", {
   dat <- data.frame(x = c("a", "b", "c"), y = c(1, 5, 10))
   base <- a_plot(dat, aes(x, y)) +
     a_geom_bar(a_stat = "identity") +
-    annotate("point", x = "a", y = c(-Inf, Inf))
+    a_annotate("point", x = "a", y = c(-Inf, Inf))
 
   y_scale <- function(limits, oob = censor) {
     a_scale_y_continuous(limits = limits, oob = oob, expand = c(0, 0))
