@@ -5,7 +5,7 @@ test_that("Aesthetic parameters must match length of data", {
   p <- a_plot(df, aes(x, y))
 
   set_colours <- function(colours) {
-    layer_data(p + a_geom_point(colour = colours))
+    a_layer_data(p + a_geom_point(colour = colours))
   }
 
   set_colours("red")
@@ -26,11 +26,11 @@ test_that("alpha affects only fill colour of solid geoms", {
   ribb <- a_plot(df, aes(x = x, ymin = 1, ymax = y + 1)) +
     a_geom_ribbon(fill = "red", colour = "red", alpha = 0.5)
 
-  expect_equal(layer_grob(poly)[[1]]$gp$col[[1]], "red")
-  expect_equal(layer_grob(rect)[[1]]$gp$col[[1]], "red")
-  expect_equal(layer_grob(ribb)[[1]]$children[[1]]$gp$col[[1]], "red")
+  expect_equal(a_layer_grob(poly)[[1]]$gp$col[[1]], "red")
+  expect_equal(a_layer_grob(rect)[[1]]$gp$col[[1]], "red")
+  expect_equal(a_layer_grob(ribb)[[1]]$children[[1]]$gp$col[[1]], "red")
 
-  expect_equal(layer_grob(poly)[[1]]$gp$fill[[1]], "#FF000080")
-  expect_equal(layer_grob(rect)[[1]]$gp$fill[[1]], "#FF000080")
-  expect_equal(layer_grob(ribb)[[1]]$children[[1]]$gp$fill[[1]], "#FF000080")
+  expect_equal(a_layer_grob(poly)[[1]]$gp$fill[[1]], "#FF000080")
+  expect_equal(a_layer_grob(rect)[[1]]$gp$fill[[1]], "#FF000080")
+  expect_equal(a_layer_grob(ribb)[[1]]$children[[1]]$gp$fill[[1]], "#FF000080")
 })

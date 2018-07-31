@@ -17,13 +17,13 @@ test_that("there is one data frame for each layer", {
 
 test_that("position aesthetics coerced to correct type", {
   l1 <- a_plot(df, aes(x, y)) + a_geom_point()
-  d1 <- layer_data(l1, 1)
+  d1 <- a_layer_data(l1, 1)
 
   expect_is(d1$x, "numeric")
   expect_is(d1$y, "numeric")
 
   l2 <- a_plot(df, aes(x, z)) + a_geom_point() + a_scale_x_discrete()
-  d2 <- layer_data(l2, 1)
+  d2 <- a_layer_data(l2, 1)
 
   expect_is(d2$x, "integer")
   expect_is(d2$y, "integer")
@@ -32,13 +32,13 @@ test_that("position aesthetics coerced to correct type", {
 test_that("non-position aesthetics are mapped", {
   l1 <- a_plot(df, aes(x, y, fill = z, colour = z, shape = z, size = z)) +
     a_geom_point()
-  d1 <- layer_data(l1, 1)
+  d1 <- a_layer_data(l1, 1)
 
   expect_equal(sort(names(d1)), sort(c("x", "y", "fill", "group",
     "colour", "shape", "size", "PANEL", "alpha", "stroke")))
 
   l2 <- l1 + a_scale_colour_manual(values = c("blue", "red", "yellow"))
-  d2 <- layer_data(l2, 1)
+  d2 <- a_layer_data(l2, 1)
   expect_equal(d2$colour, c("blue", "red", "yellow"))
 })
 
@@ -47,5 +47,5 @@ test_that("strings are not converted to factors", {
   p <- a_plot(df, aes(x, y)) +
     a_geom_text(aes(label = label), parse = TRUE)
 
-  expect_is(layer_data(p)$label, "character")
+  expect_is(a_layer_data(p)$label, "character")
 })

@@ -33,7 +33,7 @@ test_that("missing values replaced with na.value", {
     a_geom_point() +
     ggplot2Animint:::a_scale_colour_manual(values = c("black", "black"), na.value = "red")
 
-  expect_equal(layer_data(p)$colour, c("black", "black", "red"))
+  expect_equal(a_layer_data(p)$colour, c("black", "black", "red"))
 })
 
 test_that("insufficient values raise an error", {

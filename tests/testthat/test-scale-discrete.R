@@ -8,7 +8,7 @@ test_that("discrete ranges also encompas continuous values", {
   base <- a_plot(df, aes(y = y)) + a_scale_x_discrete()
 
   x_range <- function(x) {
-    layer_scales(x)$x$dimension()
+    a_layer_scales(x)$x$dimension()
   }
 
   expect_equal(x_range(base + a_geom_point(aes(x1))), c(1, 3))

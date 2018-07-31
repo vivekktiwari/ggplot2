@@ -7,9 +7,9 @@ test_that("facets split up the data", {
   l2 <- a_plot(df, aes(x, y)) + a_geom_point() + a_facet_grid(. ~ z)
   l3 <- a_plot(df, aes(x, y)) + a_geom_point() + a_facet_grid(z ~ .)
 
-  d1 <- layer_data(l1)
-  d2 <- layer_data(l2)
-  d3 <- layer_data(l3)
+  d1 <- a_layer_data(l1)
+  d2 <- a_layer_data(l2)
+  d3 <- a_layer_data(l3)
 
   expect_equal(d1, d2)
   expect_equal(d1, d3)

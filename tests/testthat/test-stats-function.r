@@ -10,12 +10,12 @@ test_that("uses scale limits, not data limits", {
   full <- base +
     a_scale_x_continuous(limits = c(0.1, 100)) +
     a_scale_y_continuous()
-  ret <- layer_data(full)
+  ret <- a_layer_data(full)
 
   full_log <- base +
     a_scale_x_log10(limits = c(0.1, 100)) +
     a_scale_y_continuous()
-  ret_log <- layer_data(full_log)
+  ret_log <- a_layer_data(full_log)
 
   expect_equal(ret$y[c(1, 101)], ret_log$y[c(1, 101)])
   expect_equal(range(ret$x), c(0.1, 100))
@@ -29,7 +29,7 @@ test_that("works with discrete x", {
 
   base <- a_plot(dat, aes(x, group = 1)) +
     a_stat_function(fun = as.numeric, a_geom = "point", n = 2)
-  ret <- layer_data(base)
+  ret <- a_layer_data(base)
 
   expect_equal(ret$x, 1:2)
   expect_equal(ret$y, 1:2)

@@ -14,7 +14,7 @@ test_that("a_stat_bin throws error when y aesthetic present", {
 test_that("bins specifies the number of bins", {
   df <- data.frame(x = 1:10)
   out <- function(x, ...) {
-    layer_data(a_plot(df, aes(x)) + a_geom_histogram(...))
+    a_layer_data(a_plot(df, aes(x)) + a_geom_histogram(...))
   }
 
   expect_equal(nrow(out(bins = 2)), 2)
@@ -23,14 +23,14 @@ test_that("bins specifies the number of bins", {
 
 test_that("a_geom_histogram defaults to pad = FALSE", {
   df <- data.frame(x = 1:3)
-  out <- layer_data(a_plot(df, aes(x)) + a_geom_histogram(binwidth = 1))
+  out <- a_layer_data(a_plot(df, aes(x)) + a_geom_histogram(binwidth = 1))
 
   expect_equal(out$count, c(1, 1, 1))
 })
 
 test_that("a_geom_freqpoly defaults to pad = TRUE", {
   df <- data.frame(x = 1:3)
-  out <- layer_data(a_plot(df, aes(x)) + a_geom_freqpoly(binwidth = 1))
+  out <- a_layer_data(a_plot(df, aes(x)) + a_geom_freqpoly(binwidth = 1))
 
   expect_equal(out$count, c(0, 1, 1, 1, 0))
 })
@@ -40,7 +40,7 @@ test_that("a_geom_freqpoly defaults to pad = TRUE", {
 
 comp_bin <- function(df, ...) {
   plot <- a_plot(df, aes(x = x)) + a_stat_bin(...)
-  layer_data(plot)
+  a_layer_data(plot)
 }
 
 test_that("Closed left or right", {
@@ -87,7 +87,7 @@ test_that("Setting boundary and center", {
 test_that("weights are added", {
   df <- data.frame(x = 1:10, y = 1:10)
   p <- a_plot(df, aes(x = x, weight = y)) + a_geom_histogram(binwidth = 1)
-  out <- layer_data(p)
+  out <- a_layer_data(p)
 
   expect_equal(out$count, df$y)
 })

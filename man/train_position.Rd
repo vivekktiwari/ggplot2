@@ -9,7 +9,7 @@ train_position(panel, data, x_scale, y_scale)
 \arguments{
 \item{panel}{the panel object to train}
 
-\item{data}{a list of data frames (one for each layer)}
+\item{data}{a list of data frames (one for each a_layer)}
 
 \item{x_scale}{x scale for the plot}
 

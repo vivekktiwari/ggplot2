@@ -54,7 +54,7 @@ test_that("identity scale preserves input values", {
     a_scale_shape_identity() +
     a_scale_size_identity() +
     a_scale_alpha_identity()
-  d1 <- layer_data(p1)
+  d1 <- a_layer_data(p1)
 
   expect_equal(d1$colour, as.character(df$z))
   expect_equal(d1$fill, as.character(df$z))

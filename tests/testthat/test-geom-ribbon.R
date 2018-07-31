@@ -6,5 +6,5 @@ test_that("NAs are not dropped from the data", {
   p <- a_plot(df, aes(x))+
     a_geom_ribbon(aes(ymin = y - 1, ymax = y + 1))
 
-  expect_equal(layer_data(p)$ymin, c(0, 0, NA, 0, 0))
+  expect_equal(a_layer_data(p)$ymin, c(0, 0, NA, 0, 0))
 })

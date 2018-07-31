@@ -1,4 +1,4 @@
-context("Layer")
+context("a_layer")
 
 
 # Parameters --------------------------------------------------------------
@@ -53,13 +53,13 @@ test_that("strip_dots remove dots around calculated aesthetics", {
 
 # Data extraction ---------------------------------------------------------
 
-test_that("layer_data returns a data.frame", {
+test_that("a_layer_data returns a data.frame", {
   l <- a_geom_point()
-  expect_equal(l$layer_data(mtcars), mtcars)
+  expect_equal(l$a_layer_data(mtcars), mtcars)
   l <- a_geom_point(data = head(mtcars))
-  expect_equal(l$layer_data(mtcars), head(mtcars))
+  expect_equal(l$a_layer_data(mtcars), head(mtcars))
   l <- a_geom_point(data = head)
-  expect_equal(l$layer_data(mtcars), head(mtcars))
+  expect_equal(l$a_layer_data(mtcars), head(mtcars))
   l <- a_geom_point(data = nrow)
-  expect_error(l$layer_data(mtcars), "Data function must return a data.frame")
+  expect_error(l$a_layer_data(mtcars), "Data function must return a data.frame")
 })

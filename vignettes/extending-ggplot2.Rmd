@@ -77,15 +77,15 @@ a_StatChull <- a_ggproto("a_StatChull", a_Stat,
 
 The two most important components are the `compute_group()` method (which does the computation), and the `required_aes` field, which lists which aesthetics must be present in order to for the a_stat to work.
 
-Next we write a layer function. Unfortunately, due to an early design mistake I called these either `a_stat_()` or `a_geom_()`. A better decision would have been to call them `layer_()` functions: that's a more accurate description because every layer involves a a_stat _and_ a a_geom. 
+Next we write a layer function. Unfortunately, due to an early design mistake I called these either `a_stat_()` or `a_geom_()`. A better decision would have been to call them `a_layer_()` functions: that's a more accurate description because every layer involves a a_stat _and_ a a_geom. 
 
-All layer functions follow the same form - you specify defaults in the function arguments and then call the `layer()` function, sending `...` into the `params` argument. The arguments in `...` will either be arguments for the a_geom (if you're making a stat wrapper), arguments for the stat (if you're making a a_geom wrapper), or aesthetics to be set. `layer()` takes care of teasing the different parameters apart and making sure they're stored in the right place:
+All layer functions follow the same form - you specify defaults in the function arguments and then call the `a_layer()` function, sending `...` into the `params` argument. The arguments in `...` will either be arguments for the a_geom (if you're making a stat wrapper), arguments for the stat (if you're making a a_geom wrapper), or aesthetics to be set. `a_layer()` takes care of teasing the different parameters apart and making sure they're stored in the right place:
 
 ```{r}
 a_stat_chull <- function(mapping = NULL, data = NULL, a_geom = "polygon",
                        a_position = "identity", na.rm = FALSE, show.legend = NA, 
                        inherit.aes = TRUE, ...) {
-  layer(
+  a_layer(
     a_stat = a_StatChull, data = data, mapping = mapping, a_geom = a_geom, 
     a_position = a_position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, ...)
@@ -93,9 +93,9 @@ a_stat_chull <- function(mapping = NULL, data = NULL, a_geom = "polygon",
 }
 ```
 
-(Note that if you're writing this in your own package, you'll either need to call `ggplot2Animint::layer()` explicitly, or import the `layer()` function into your package namespace.)
+(Note that if you're writing this in your own package, you'll either need to call `ggplot2Animint::a_layer()` explicitly, or import the `a_layer()` function into your package namespace.)
 
-Once we have a layer function we can try our new stat:
+Once we have a a_layer function we can try our new stat:
 
 ```{r}
 a_plot(mpg, aes(displ, hwy)) +
@@ -123,7 +123,7 @@ a_plot(mpg, aes(displ, hwy)) +
 
 ### Stat parameters
 
-A more complex stat will do some computation. Let's implement a simple version of `a_geom_smooth()` that adds a line of best fit to a plot. We create a `a_StatLm` that inherits from `a_Stat` and a layer function, `a_stat_lm()`:
+A more complex stat will do some computation. Let's implement a simple version of `a_geom_smooth()` that adds a line of best fit to a plot. We create a `a_StatLm` that inherits from `a_Stat` and a a_layer function, `a_stat_lm()`:
 
 ```{r}
 a_StatLm <- a_ggproto("a_StatLm", a_Stat, 
@@ -143,7 +143,7 @@ a_StatLm <- a_ggproto("a_StatLm", a_Stat,
 a_stat_lm <- function(mapping = NULL, data = NULL, a_geom = "line",
                     a_position = "identity", na.rm = FALSE, show.legend = NA, 
                     inherit.aes = TRUE, ...) {
-  layer(
+  a_layer(
     a_stat = a_StatLm, data = data, mapping = mapping, a_geom = a_geom, 
     a_position = a_position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, ...)
@@ -176,7 +176,7 @@ a_stat_lm <- function(mapping = NULL, data = NULL, a_geom = "line",
                     a_position = "identity", na.rm = FALSE, show.legend = NA, 
                     inherit.aes = TRUE, n = 50, formula = y ~ x, 
                     ...) {
-  layer(
+  a_layer(
     a_stat = a_StatLm, data = data, mapping = mapping, a_geom = a_geom, 
     a_position = a_position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(n = n, formula = formula, na.rm = na.rm, ...)
@@ -189,7 +189,7 @@ a_plot(mpg, aes(displ, hwy)) +
   a_stat_lm(formula = y ~ poly(x, 10), a_geom = "point", colour = "red", n = 20)
 ```
 
-Note that we don't _have_ to explicitly include the new parameters in the arguments for the layer, `...` will get passed to the right place anyway. But you'll need to document them somewhere so the user knows about them. Here's a brief example. Note `@inheritParams ggplot2Animint::a_stat_identity`: that will automatically inherit documentation for all the parameters also defined for `a_stat_identity()`.
+Note that we don't _have_ to explicitly include the new parameters in the arguments for the a_layer, `...` will get passed to the right place anyway. But you'll need to document them somewhere so the user knows about them. Here's a brief example. Note `@inheritParams ggplot2Animint::a_stat_identity`: that will automatically inherit documentation for all the parameters also defined for `a_stat_identity()`.
 
 ```{r}
 #' @inheritParams ggplot2Animint::a_stat_identity
@@ -200,7 +200,7 @@ a_stat_lm <- function(mapping = NULL, data = NULL, a_geom = "line",
                     a_position = "identity", na.rm = FALSE, show.legend = NA, 
                     inherit.aes = TRUE, n = 50, formula = y ~ x, 
                     ...) {
-  layer(
+  a_layer(
     a_stat = a_StatLm, data = data, mapping = mapping, a_geom = a_geom, 
     a_position = a_position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(n = n, formula = formula, na.rm = na.rm, ...)
@@ -242,7 +242,7 @@ a_stat_density_common <- function(mapping = NULL, data = NULL, a_geom = "line",
                                 a_position = "identity", na.rm = FALSE, show.legend = NA, 
                                 inherit.aes = TRUE, bandwidth = NULL,
                                 ...) {
-  layer(
+  a_layer(
     a_stat = a_StatDensityCommon, data = data, mapping = mapping, a_geom = a_geom, 
     a_position = a_position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(bandwidth = bandwidth, na.rm = na.rm, ...)
@@ -355,7 +355,7 @@ a_GeomSimplePoint <- a_ggproto("a_GeomSimplePoint", a_Geom,
 a_geom_simple_point <- function(mapping = NULL, data = NULL, a_stat = "identity",
                               a_position = "identity", na.rm = FALSE, show.legend = NA, 
                               inherit.aes = TRUE, ...) {
-  layer(
+  a_layer(
     a_geom = a_GeomSimplePoint, mapping = mapping,  data = data, a_stat = a_stat, 
     a_position = a_position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, ...)
@@ -431,7 +431,7 @@ a_GeomSimplePolygon <- a_ggproto("a_GeomPolygon", a_Geom,
 a_geom_simple_polygon <- function(mapping = NULL, data = NULL, a_stat = "chull",
                                 a_position = "identity", na.rm = FALSE, show.legend = NA, 
                                 inherit.aes = TRUE, ...) {
-  layer(
+  a_layer(
     a_geom = a_GeomSimplePolygon, mapping = mapping, data = data, a_stat = a_stat, 
     a_position = a_position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, ...)
@@ -474,7 +474,7 @@ a_GeomPolygonHollow <- a_ggproto("a_GeomPolygonHollow", a_GeomPolygon,
 a_geom_chull <- function(mapping = NULL, data = NULL, 
                        a_position = "identity", na.rm = FALSE, show.legend = NA, 
                        inherit.aes = TRUE, ...) {
-  layer(
+  a_layer(
     a_stat = a_StatChull, a_geom = a_GeomPolygonHollow, data = data, mapping = mapping,
     a_position = a_position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, ...)

@@ -9,12 +9,12 @@ map_layout(panel, a_facet, data)
 \arguments{
 \item{panel}{a trained panel object}
 
-\item{data}{list of data frames (one for each layer)}
+\item{data}{list of data frames (one for each a_layer)}
 
 \item{the}{facetting specification}
 }
 \description{
-Layout map ensures that all layer data has extra copies of data for margins
+Layout map ensures that all a_layer data has extra copies of data for margins
 and missing facetting variables, and has a PANEL variable that tells that
 so it know what panel it belongs to. This is a change from the previous
 design which added facetting variables directly to the data frame and

@@ -45,16 +45,16 @@ test_that("aes evaluated in environment where plot created", {
   p <- a_plot(df, aes(foo, y)) + a_geom_point()
 
   # Accessing an undefined variable should result in error
-  expect_error(layer_data(p), "'foo' not found")
+  expect_error(a_layer_data(p), "'foo' not found")
 
   # Once it's defined we should get it back
   foo <- 0
-  expect_equal(layer_data(p)$x, 0)
+  expect_equal(a_layer_data(p)$x, 0)
 
   # And regular variable shadowing should work
   f <- function() {
     foo <- 10
     a_plot(df, aes(foo, y)) + a_geom_point()
   }
-  expect_equal(layer_data(f())$x, 10)
+  expect_equal(a_layer_data(f())$x, 10)
 })

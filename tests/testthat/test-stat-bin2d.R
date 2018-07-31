@@ -5,7 +5,7 @@ test_that("binwidth is respected", {
   base <- a_plot(df, aes(x, y)) +
     a_stat_bin2d(a_geom = "tile", binwidth = 0.25)
 
-  out <- layer_data(base)
+  out <- a_layer_data(base)
   expect_equal(nrow(out), 2)
 
   # Adjust tolerance to account for fuzzy breaks adjustment
@@ -26,7 +26,7 @@ test_that("breaks override binwidth", {
       binwidth = c(0.5, 0.5)
     )
 
-  out <- layer_data(base)
+  out <- a_layer_data(base)
   expect_equal(out$xbin, cut(df$x, adjust_breaks(integer_breaks), include.lowest = TRUE, labels = FALSE))
   expect_equal(out$ybin, cut(df$y, adjust_breaks(half_breaks), include.lowest = TRUE, labels = FALSE))
 })

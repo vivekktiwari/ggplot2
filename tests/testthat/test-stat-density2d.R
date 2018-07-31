@@ -6,7 +6,7 @@ test_that("uses scale limits, not data limits", {
     a_scale_x_continuous(limits = c(1, 6)) +
     a_scale_y_continuous(limits = c(5, 40))
 
-  ret <- layer_data(base)
+  ret <- a_layer_data(base)
   # Check that the contour data goes beyond data range.
   # The specific values below are sort of arbitrary; but they go beyond the range
   # of the data

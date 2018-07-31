@@ -15,7 +15,7 @@ test_that("dates in segment annotation work", {
       yend = 10
     )
 
-  expect_true(all(c("xend", "yend") %in% names(layer_data(p, 2))))
+  expect_true(all(c("xend", "yend") %in% names(a_layer_data(p, 2))))
 })
 
 test_that("segment annotations transform with scales", {

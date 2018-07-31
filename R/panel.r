@@ -23,7 +23,7 @@ new_panel <- function() {
 #'
 #' @param panel the panel object to train
 #' @param a_facet the facetting specification
-#' @param data a list of data frames (one for each layer), and one for the plot
+#' @param data a list of data frames (one for each a_layer), and one for the plot
 #' @param plot_data the default data frame
 #' @return an updated panel object
 #' @keywords internal
@@ -37,7 +37,7 @@ a_train_layout <- function(panel, a_facet, data, plot_data) {
 
 #' Map data to find out where it belongs in the plot.
 #'
-#' Layout map ensures that all layer data has extra copies of data for margins
+#' Layout map ensures that all a_layer data has extra copies of data for margins
 #' and missing facetting variables, and has a PANEL variable that tells that
 #' so it know what panel it belongs to. This is a change from the previous
 #' design which added facetting variables directly to the data frame and
@@ -45,7 +45,7 @@ a_train_layout <- function(panel, a_facet, data, plot_data) {
 #'
 #' @param panel a trained panel object
 #' @param the facetting specification
-#' @param data list of data frames (one for each layer)
+#' @param data list of data frames (one for each a_layer)
 #' @keywords internal
 map_layout <- function(panel, a_facet, data) {
   lapply(data, function(data) {
@@ -59,7 +59,7 @@ map_layout <- function(panel, a_facet, data) {
 #' the scales provided in the parameter
 #'
 #' @param panel the panel object to train
-#' @param data a list of data frames (one for each layer)
+#' @param data a list of data frames (one for each a_layer)
 #' @param x_scale x scale for the plot
 #' @param y_scale y scale for the plot
 #' @keywords internal
@@ -73,23 +73,23 @@ train_position <- function(panel, data, x_scale, y_scale) {
     panel$y_scales <- plyr::rlply(max(layout$SCALE_Y), y_scale$clone())
   }
 
-  # loop over each layer, training x and y scales in turn
-  for (layer_data in data) {
+  # loop over each a_layer, training x and y scales in turn
+  for (a_layer_data in data) {
 
-    match_id <- match(layer_data$PANEL, layout$PANEL)
+    match_id <- match(a_layer_data$PANEL, layout$PANEL)
 
     if (!is.null(x_scale)) {
-      x_vars <- intersect(x_scale$aesthetics, names(layer_data))
+      x_vars <- intersect(x_scale$aesthetics, names(a_layer_data))
       SCALE_X <- layout$SCALE_X[match_id]
 
-      scale_apply(layer_data, x_vars, "train", SCALE_X, panel$x_scales)
+      scale_apply(a_layer_data, x_vars, "train", SCALE_X, panel$x_scales)
     }
 
     if (!is.null(y_scale)) {
-      y_vars <- intersect(y_scale$aesthetics, names(layer_data))
+      y_vars <- intersect(y_scale$aesthetics, names(a_layer_data))
       SCALE_Y <- layout$SCALE_Y[match_id]
 
-      scale_apply(layer_data, y_vars, "train", SCALE_Y, panel$y_scales)
+      scale_apply(a_layer_data, y_vars, "train", SCALE_Y, panel$y_scales)
     }
   }
 
@@ -114,24 +114,24 @@ reset_scales <- function(panel) {
 map_position <- function(panel, data, x_scale, y_scale) {
   layout <- panel$layout
 
-  lapply(data, function(layer_data) {
-    match_id <- match(layer_data$PANEL, layout$PANEL)
+  lapply(data, function(a_layer_data) {
+    match_id <- match(a_layer_data$PANEL, layout$PANEL)
 
     # Loop through each variable, mapping across each scale, then joining
     # back together
-    x_vars <- intersect(x_scale$aesthetics, names(layer_data))
+    x_vars <- intersect(x_scale$aesthetics, names(a_layer_data))
     names(x_vars) <- x_vars
     SCALE_X <- layout$SCALE_X[match_id]
-    new_x <- scale_apply(layer_data, x_vars, "map", SCALE_X, panel$x_scales)
-    layer_data[, x_vars] <- new_x
+    new_x <- scale_apply(a_layer_data, x_vars, "map", SCALE_X, panel$x_scales)
+    a_layer_data[, x_vars] <- new_x
 
-    y_vars <- intersect(y_scale$aesthetics, names(layer_data))
+    y_vars <- intersect(y_scale$aesthetics, names(a_layer_data))
     names(y_vars) <- y_vars
     SCALE_Y <- layout$SCALE_Y[match_id]
-    new_y <- scale_apply(layer_data, y_vars, "map", SCALE_Y, panel$y_scales)
+    new_y <- scale_apply(a_layer_data, y_vars, "map", SCALE_Y, panel$y_scales)
 
-    layer_data[, y_vars] <- new_y
-    layer_data
+    a_layer_data[, y_vars] <- new_y
+    a_layer_data
   })
 }
 

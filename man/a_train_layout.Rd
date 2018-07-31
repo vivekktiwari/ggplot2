@@ -11,7 +11,7 @@ a_train_layout(panel, a_facet, data, plot_data)
 
 \item{a_facet}{the facetting specification}
 
-\item{data}{a list of data frames (one for each layer), and one for the plot}
+\item{data}{a list of data frames (one for each a_layer), and one for the plot}
 
 \item{plot_data}{the default data frame}
 }

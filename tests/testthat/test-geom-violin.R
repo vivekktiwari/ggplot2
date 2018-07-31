@@ -11,8 +11,8 @@ test_that("", {
     a_facet_grid(x ~ ., scales = "free") +
     ggplot2Animint:::a_coord_cartesian(expand = FALSE)
 
-  expect_equal(layer_scales(p, 1)$y$dimension(), c(0, 1))
-  expect_equal(layer_scales(p, 2)$y$dimension(), c(0, 2))
+  expect_equal(a_layer_scales(p, 1)$y$dimension(), c(0, 1))
+  expect_equal(a_layer_scales(p, 2)$y$dimension(), c(0, 2))
 })
 
 # create_quantile_segment_frame -------------------------------------------------
