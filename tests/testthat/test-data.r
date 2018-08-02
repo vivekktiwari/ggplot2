@@ -7,7 +7,7 @@ test_that("stringsAsFactors doesn't affect results", {
     dat.factor <- data.frame(x = letters[5:1], y = 1:5, stringsAsFactors = TRUE)
 
     base <- a_plot(mapping = aes(x, y)) + a_geom_point()
-    xlabels <- function(x) x$panel$ranges[[1]]$x.labels
+    xlabels <- function(x) x$panel$ranges[[1]]$x.a_labels
 
     options(stringsAsFactors = TRUE)
     char_true <- a_plot_build(base %+% dat.character)

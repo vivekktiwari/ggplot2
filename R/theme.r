@@ -94,7 +94,7 @@ print.a_theme <- function(x, ...) utils::str(x)
 #'                    (\code{a_element_text}; inherits from \code{text}) \cr
 #'   aspect.ratio     \tab aspect ratio of the panel \cr
 #'
-#'   axis.title       \tab label of axes
+#'   axis.title       \tab a_label of axes
 #'                    (\code{a_element_text}; inherits from \code{text}) \cr
 #'   axis.title.x     \tab x axis label
 #'                    (\code{a_element_text}; inherits from \code{axis.title}) \cr
@@ -246,7 +246,7 @@ print.a_theme <- function(x, ...) utils::str(x)
 #' with(mtcars, cor(wt, mpg, use = "everything", method = "pearson"))
 #' #annotate the plot
 #' p + a_geom_abline(intercept = 37, slope = -5) +
-#' a_geom_text(data = data.frame(), aes(4.5, 30, label = "Pearson-R = -.87"))
+#' a_geom_text(data = data.frame(), aes(4.5, 30, a_label = "Pearson-R = -.87"))
 #'
 #' # Change the axis labels
 #' # Original plot

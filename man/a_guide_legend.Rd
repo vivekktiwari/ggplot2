@@ -6,8 +6,8 @@
 \usage{
 a_guide_legend(title = waiver(), title.a_position = NULL,
   title.a_theme = NULL, title.hjust = NULL, title.vjust = NULL,
-  label = TRUE, label.a_position = NULL, label.a_theme = NULL,
-  label.hjust = NULL, label.vjust = NULL, keywidth = NULL,
+  a_label = TRUE, a_label.a_position = NULL, a_label.a_theme = NULL,
+  a_label.hjust = NULL, a_label.vjust = NULL, keywidth = NULL,
   keyheight = NULL, direction = NULL, default.unit = "line",
   override.aes = list(), nrow = NULL, ncol = NULL, byrow = FALSE,
   reverse = FALSE, order = 0, ...)
@@ -32,21 +32,21 @@ title text.}
 \item{title.vjust}{A number specifying vertical justification of the title
 text.}
 
-\item{label}{logical. If \code{TRUE} then the labels are drawn. If
+\item{a_label}{logical. If \code{TRUE} then the labels are drawn. If
 \code{FALSE} then the labels are invisible.}
 
-\item{label.a_position}{A character string indicating the a_position of a
+\item{a_label.a_position}{A character string indicating the a_position of a
 label. One of "top", "bottom" (default for horizontal a_guide), "left", or
 "right" (default for vertical a_guide).}
 
-\item{label.a_theme}{A theme object for rendering the label text. Usually the
+\item{a_label.a_theme}{A theme object for rendering the label text. Usually the
 object of \code{\link{a_element_text}} is expected. By default, the theme is
 specified by \code{legend.text} in \code{\link{a_theme}} or theme.}
 
-\item{label.hjust}{A numeric specifying horizontal justification of the
+\item{a_label.hjust}{A numeric specifying horizontal justification of the
 label text.}
 
-\item{label.vjust}{A numeric specifying vertical justification of the label
+\item{a_label.vjust}{A numeric specifying vertical justification of the label
 text.}
 
 \item{keywidth}{A numeric or a \code{\link[grid]{unit}} object specifying
@@ -132,18 +132,18 @@ p1 + a_guides(fill =
 )
 
 # label a_position
-p1 + a_guides(fill = a_guide_legend(label.a_position = "left", label.hjust = 1))
+p1 + a_guides(fill = a_guide_legend(a_label.a_position = "left", a_label.hjust = 1))
 
-# label styles
+# a_label styles
 p1 + a_scale_fill_continuous(breaks = c(5, 10, 15),
-  labels = paste("long", c(5, 10, 15)),
+  a_labels = paste("long", c(5, 10, 15)),
   a_guide = a_guide_legend(
     direction = "horizontal",
     title.a_position = "top",
-    label.a_position = "bottom",
-    label.hjust = 0.5,
-    label.vjust = 1,
-    label.a_theme = a_element_text(angle = 90)
+    a_label.a_position = "bottom",
+    a_label.hjust = 0.5,
+    a_label.vjust = 1,
+    a_label.a_theme = a_element_text(angle = 90)
   )
 )
 

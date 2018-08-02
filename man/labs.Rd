@@ -5,35 +5,35 @@
 \alias{xlab}
 \alias{ylab}
 \alias{ggtitle}
-\title{Change axis labels, legend titles, plot title/subtitle and below-plot
+\title{Change axis a_labels, legend titles, plot title/subtitle and below-plot
 caption.}
 \usage{
 labs(...)
 
-xlab(label)
+xlab(a_label)
 
-ylab(label)
+ylab(a_label)
 
-ggtitle(label, subtitle = NULL)
+ggtitle(a_label, subtitle = NULL)
 }
 \arguments{
 \item{...}{a list of new names in the form aesthetic = "new name"}
 
-\item{label}{The text for the axis, plot title or caption below the plot.}
+\item{a_label}{The text for the axis, plot title or caption below the plot.}
 
 \item{subtitle}{the text for the subtitle for the plot which will be
 displayed below the title. Leave \code{NULL} for no subtitle.}
 }
 \description{
-Change axis labels, legend titles, plot title/subtitle and below-plot
+Change axis a_labels, legend titles, plot title/subtitle and below-plot
 caption.
 }
 \examples{
 p <- a_plot(mtcars, aes(mpg, wt)) + a_geom_point()
 p + ggplot2Animint:::labs(title = "New plot title")
-p + ggplot2Animint:::labs(x = "New x label")
-p + xlab("New x label")
-p + ylab("New y label")
+p + ggplot2Animint:::labs(x = "New x a_label")
+p + xlab("New x a_label")
+p + ylab("New y a_label")
 p + ggtitle("New plot title")
 
 # Can add a subtitle to plots with either of the following
@@ -47,10 +47,10 @@ p + ggplot2Animint:::labs(caption = "(based on data from ...)")
 
 # This should work independently of other functions that modify the
 # the scale names
-p + ylab("New y label") + ylim(2, 4)
-p + ylim(2, 4) + ylab("New y label")
+p + ylab("New y a_label") + ylim(2, 4)
+p + ylim(2, 4) + ylab("New y a_label")
 
-# The labs function also modifies legend labels
+# The labs function also modifies legend a_labels
 p <- a_plot(mtcars, aes(mpg, wt, colour = cyl)) + a_geom_point()
 p + ggplot2Animint:::labs(colour = "Cylinders")
 

@@ -1,34 +1,34 @@
 context("Scales: breaks and labels")
 
 test_that("labels match breaks, even when outside limits", {
-  sc <- a_scale_y_continuous(breaks = 1:4, labels = 1:4, limits = c(1, 3))
+  sc <- a_scale_y_continuous(breaks = 1:4, a_labels = 1:4, limits = c(1, 3))
 
   expect_equal(sc$get_breaks(), c(1:3, NA))
   expect_equal(sc$get_labels(), 1:4)
   expect_equal(sc$get_breaks_minor(), c(1, 1.5, 2, 2.5, 3))
 })
 
-test_that("labels must match breaks", {
-  expect_error(a_scale_x_discrete(breaks = 1:3, labels = 1:2),
+test_that("a_labels must match breaks", {
+  expect_error(a_scale_x_discrete(breaks = 1:3, a_labels = 1:2),
     "must have the same length")
-  expect_error(a_scale_x_continuous(breaks = 1:3, labels = 1:2),
+  expect_error(a_scale_x_continuous(breaks = 1:3, a_labels = 1:2),
     "must have the same length")
 })
 
-test_that("labels don't have to match null breaks", {
-  expect_true(check_breaks_labels(breaks = 1:3, labels = NULL))
-  expect_true(check_breaks_labels(breaks = NULL, labels = 1:2))
+test_that("a_labels don't have to match null breaks", {
+  expect_true(check_breaks_labels(breaks = 1:3, a_labels = NULL))
+  expect_true(check_breaks_labels(breaks = NULL, a_labels = 1:2))
 })
 
 
 test_that("labels don't have extra spaces", {
-  labels <- c("a", "abc", "abcdef")
+  a_labels <- c("a", "abc", "abcdef")
 
-  sc1 <- a_scale_x_discrete(limits = labels)
-  sc2 <- a_scale_fill_discrete(limits = labels)
+  sc1 <- a_scale_x_discrete(limits = a_labels)
+  sc2 <- a_scale_fill_discrete(limits = a_labels)
 
-  expect_equal(sc1$get_labels(), labels)
-  expect_equal(sc2$get_labels(), labels)
+  expect_equal(sc1$get_labels(), a_labels)
+  expect_equal(sc2$get_labels(), a_labels)
 
 })
 
@@ -37,23 +37,23 @@ test_that("out-of-range breaks are dropped", {
   # Limits are explicitly specified, automatic labels
   sc <- a_scale_x_continuous(breaks = 1:5, limits = c(2, 4))
   bi <- sc$break_info()
-  expect_equal(bi$labels, as.character(2:4))
+  expect_equal(bi$a_labels, as.character(2:4))
   expect_equal(bi$major, c(0, 0.5, 1))
   expect_equal(bi$major_source, 2:4)
 
 
   # Limits and labels are explicitly specified
-  sc <- a_scale_x_continuous(breaks = 1:5, labels = letters[1:5], limits = c(2, 4))
+  sc <- a_scale_x_continuous(breaks = 1:5, a_labels = letters[1:5], limits = c(2, 4))
   bi <- sc$break_info()
-  expect_equal(bi$labels, letters[2:4])
+  expect_equal(bi$a_labels, letters[2:4])
   expect_equal(bi$major, c(0, 0.5, 1))
   expect_equal(bi$major_source, 2:4)
 
 
   # Limits are specified, and all breaks are out of range
-  sc <- a_scale_x_continuous(breaks = c(1,5), labels = letters[c(1,5)], limits = c(2, 4))
+  sc <- a_scale_x_continuous(breaks = c(1,5), a_labels = letters[c(1,5)], limits = c(2, 4))
   bi <- sc$break_info()
-  expect_equal(length(bi$labels), 0)
+  expect_equal(length(bi$a_labels), 0)
   expect_equal(length(bi$major), 0)
   expect_equal(length(bi$major_source), 0)
 
@@ -63,25 +63,25 @@ test_that("out-of-range breaks are dropped", {
   sc <- a_scale_x_continuous(breaks = 1:5)
   sc$train_df(data.frame(x = 2:4))
   bi <- sc$break_info()
-  expect_equal(bi$labels, as.character(2:4))
+  expect_equal(bi$a_labels, as.character(2:4))
   expect_equal(bi$major_source, 2:4)
   expect_equal(bi$major, c(0, 0.5, 1))
 
 
   # Limits and labels are specified
-  sc <- a_scale_x_continuous(breaks = 1:5, labels = letters[1:5])
+  sc <- a_scale_x_continuous(breaks = 1:5, a_labels = letters[1:5])
   sc$train_df(data.frame(x = 2:4))
   bi <- sc$break_info()
-  expect_equal(bi$labels, letters[2:4])
+  expect_equal(bi$a_labels, letters[2:4])
   expect_equal(bi$major_source, 2:4)
   expect_equal(bi$major, c(0, 0.5, 1))
 
 
   # Limits aren't specified, and all breaks are out of range of data
-  sc <- a_scale_x_continuous(breaks = c(1,5), labels = letters[c(1,5)])
+  sc <- a_scale_x_continuous(breaks = c(1,5), a_labels = letters[c(1,5)])
   sc$train_df(data.frame(x = 2:4))
   bi <- sc$break_info()
-  expect_equal(length(bi$labels), 0)
+  expect_equal(length(bi$a_labels), 0)
   expect_equal(length(bi$major), 0)
   expect_equal(length(bi$major_source), 0)
 })
@@ -110,12 +110,12 @@ test_that("discrete labels match breaks", {
   expect_equal(length(sc$get_labels()), 5)
   expect_equivalent(sc$get_labels(), sc$get_breaks())
 
-  sc <- init_scale(breaks = 0:5 * 10, labels = letters[1:6])
+  sc <- init_scale(breaks = 0:5 * 10, a_labels = letters[1:6])
   expect_equal(length(sc$get_breaks()), 5)
   expect_equal(length(sc$get_labels()), 5)
   expect_equal(sc$get_labels(), letters[2:6])
 
-  sc <- init_scale(breaks = 0:5 * 10, labels =
+  sc <- init_scale(breaks = 0:5 * 10, a_labels =
     function(x) paste(x, "-", sep = ""))
   expect_equal(sc$get_labels(), c("10-", "20-", "30-", "40-", "50-"))
 
@@ -155,16 +155,16 @@ test_that("suppressing breaks, minor_breask, and labels", {
   expect_equal(a_scale_x_discrete(breaks = NULL, limits = c(1, 3))$get_breaks(), NULL)
   expect_equal(a_scale_x_continuous(minor_breaks = NULL, limits = c(1, 3))$get_breaks_minor(), NULL)
 
-  expect_equal(a_scale_x_continuous(labels = NULL, limits = c(1, 3))$get_labels(), NULL)
-  expect_equal(a_scale_x_discrete(labels = NULL, limits = c(1, 3))$get_labels(), NULL)
+  expect_equal(a_scale_x_continuous(a_labels = NULL, limits = c(1, 3))$get_labels(), NULL)
+  expect_equal(a_scale_x_discrete(a_labels = NULL, limits = c(1, 3))$get_labels(), NULL)
 
   # date, datetime
   lims <- as.Date(c("2000/1/1", "2000/2/1"))
   expect_equal(a_scale_x_date(breaks = NULL, limits = lims)$get_breaks(), NULL)
   # NA is defunct, should throw error
   expect_error(a_scale_x_date(breaks = NA, limits = lims)$get_breaks())
-  expect_equal(a_scale_x_date(labels = NULL, limits = lims)$get_labels(), NULL)
-  expect_error(a_scale_x_date(labels = NA, limits = lims)$get_labels())
+  expect_equal(a_scale_x_date(a_labels = NULL, limits = lims)$get_labels(), NULL)
+  expect_error(a_scale_x_date(a_labels = NA, limits = lims)$get_labels())
   expect_equal(a_scale_x_date(minor_breaks = NULL, limits = lims)$get_breaks_minor(), NULL)
   expect_error(a_scale_x_date(minor_breaks = NA, limits = lims)$get_breaks_minor())
 
@@ -172,8 +172,8 @@ test_that("suppressing breaks, minor_breask, and labels", {
   lims <- as.POSIXct(c("2000/1/1 0:0:0", "2010/1/1 0:0:0"))
   expect_equal(a_scale_x_datetime(breaks = NULL, limits = lims)$get_breaks(), NULL)
   expect_error(a_scale_x_datetime(breaks = NA, limits = lims)$get_breaks())
-  expect_equal(a_scale_x_datetime(labels = NULL, limits = lims)$get_labels(), NULL)
-  expect_error(a_scale_x_datetime(labels = NA, limits = lims)$get_labels())
+  expect_equal(a_scale_x_datetime(a_labels = NULL, limits = lims)$get_labels(), NULL)
+  expect_error(a_scale_x_datetime(a_labels = NA, limits = lims)$get_labels())
   expect_equal(a_scale_x_datetime(minor_breaks = NULL, limits = lims)$get_breaks_minor(), NULL)
   expect_error(a_scale_x_datetime(minor_breaks = NA, limits = lims)$get_breaks_minor())
 
@@ -218,25 +218,25 @@ test_that("a_scale_breaks with explicit NA options (deprecated)", {
 
 
 test_that("breaks can be specified by names of labels", {
-  labels <- setNames(LETTERS[1:4], letters[1:4])
+  a_labels <- setNames(LETTERS[1:4], letters[1:4])
 
-  s <- a_scale_x_discrete(limits = letters[1:4], labels = labels)
+  s <- a_scale_x_discrete(limits = letters[1:4], a_labels = a_labels)
   expect_equal(as.vector(s$get_breaks()), letters[1:4])
   expect_equal(as.vector(s$get_labels()), LETTERS[1:4])
 
-  s <- a_scale_x_discrete(limits = letters[1:4], labels = rev(labels))
+  s <- a_scale_x_discrete(limits = letters[1:4], a_labels = rev(a_labels))
   expect_equal(as.vector(s$get_breaks()), letters[1:4])
   expect_equal(as.vector(s$get_labels()), LETTERS[1:4])
 
-  s <- a_scale_x_discrete(limits = letters[1:4], labels = labels[1:2])
+  s <- a_scale_x_discrete(limits = letters[1:4], a_labels = a_labels[1:2])
   expect_equal(as.vector(s$get_breaks()), letters[1:4])
   expect_equal(as.vector(s$get_labels()), c("A", "B", "c", "d"))
 
-  s <- a_scale_x_discrete(limits = letters[1:4], labels = labels[3:4])
+  s <- a_scale_x_discrete(limits = letters[1:4], a_labels = a_labels[3:4])
   expect_equal(as.vector(s$get_breaks()), letters[1:4])
   expect_equal(as.vector(s$get_labels()), c("a", "b", "C", "D"))
 
-  s <- a_scale_x_discrete(limits = letters[1:3], labels = labels)
+  s <- a_scale_x_discrete(limits = letters[1:3], a_labels = a_labels)
   expect_equal(as.vector(s$get_breaks()), letters[1:3])
   expect_equal(as.vector(s$get_labels()), LETTERS[1:3])
 

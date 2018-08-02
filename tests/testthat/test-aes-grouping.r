@@ -22,11 +22,11 @@ test_that("one group per combination of discrete vars", {
   expect_equal(groups(plot), 4)
 })
 
-test_that("label is not used as a grouping var", {
-  plot <- a_plot(df, aes(x, x, label = a)) + a_geom_point()
+test_that("a_label is not used as a grouping var", {
+  plot <- a_plot(df, aes(x, x, a_label = a)) + a_geom_point()
   expect_equal(group(plot), rep(NO_GROUP, 4))
 
-  plot <- a_plot(df, aes(x, x, colour = a, label = b)) + a_geom_point()
+  plot <- a_plot(df, aes(x, x, colour = a, a_label = b)) + a_geom_point()
   expect_equal(group(plot), c(1, 1, 2, 2))
 })
 

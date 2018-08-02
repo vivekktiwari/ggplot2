@@ -37,8 +37,8 @@ affect the legend.
 }
 \examples{
 p <- a_plot(mtcars, aes(x = wt, y = mpg)) + a_geom_point()
-p + ggplot2Animint:::a_annotate("text", x = 4, y = 25, label = "Some text")
-p + ggplot2Animint:::a_annotate("text", x = 2:5, y = 25, label = "Some text")
+p + ggplot2Animint:::a_annotate("text", x = 4, y = 25, a_label = "Some text")
+p + ggplot2Animint:::a_annotate("text", x = 2:5, y = 25, a_label = "Some text")
 p + ggplot2Animint:::a_annotate("rect", xmin = 3, xmax = 4.2, ymin = 12, ymax = 21,
   alpha = .2)
 p + ggplot2Animint:::a_annotate("segment", x = 2.5, xend = 4, y = 15, yend = 25,
@@ -46,6 +46,6 @@ p + ggplot2Animint:::a_annotate("segment", x = 2.5, xend = 4, y = 15, yend = 25,
 p + ggplot2Animint:::a_annotate("pointrange", x = 3.5, y = 20, ymin = 12, ymax = 28,
   colour = "red", size = 1.5)
 
-p + ggplot2Animint:::a_annotate("text", x = 2:3, y = 20:21, label = c("my label", "label 2"))
+p + ggplot2Animint:::a_annotate("text", x = 2:3, y = 20:21, a_label = c("my label", "label 2"))
 }
 \keyword{internal}

@@ -56,7 +56,7 @@ Line types can be specified with:
     a_plot(linetypes, aes(0, y)) + 
       a_geom_segment(aes(xend = 5, yend = y, linetype = lty)) + 
       a_scale_linetype_identity() + 
-      a_geom_text(aes(label = lty), hjust = 0, nudge_y = 0.2) +
+      a_geom_text(aes(a_label = lty), hjust = 0, nudge_y = 0.2) +
       a_scale_x_continuous(NULL, breaks = NULL) + 
       a_scale_y_continuous(NULL, breaks = NULL)
     ```
@@ -86,7 +86,7 @@ Shapes take four types of values:
     )
     a_plot(shapes, aes(x, y)) + 
       a_geom_point(aes(shape = shape), size = 5, fill = "red") +
-      a_geom_text(aes(label = shape), hjust = 0, nudge_x = 0.15) +
+      a_geom_text(aes(a_label = shape), hjust = 0, nudge_x = 0.15) +
       a_scale_shape_identity() +
       ggplot2Animint:::expand_limits(x = 4.1) +
       a_scale_x_continuous(NULL, breaks = NULL) + 
@@ -122,7 +122,7 @@ There are only three fonts that are guaranteed to work everywhere: "sans" (the d
 ```{r}
 df <- data.frame(x = 1, y = 3:1, family = c("sans", "serif", "mono"))
 a_plot(df, aes(x, y)) + 
-  a_geom_text(aes(label = family, family = family))
+  a_geom_text(aes(a_label = family, family = family))
 ```
 
 It's trickier to include a system font on a plot because text drawing is done differently by each graphics device (GD). There are five GDs in common use (`png()`, `pdf()`, on screen devices for Windows, Mac and Linux), so to have a font work everywhere you need to configure five devices in five different ways. Two packages simplify the quandary a bit: 
@@ -159,11 +159,11 @@ Horizontal and vertical justification have the same parameterisation, either a s
 
 ```{r}
 just <- expand.grid(hjust = c(0, 0.5, 1), vjust = c(0, 0.5, 1))
-just$label <- paste0(just$hjust, ", ", just$vjust)
+just$a_label <- paste0(just$hjust, ", ", just$vjust)
 
 a_plot(just, aes(hjust, vjust)) +
   a_geom_point(colour = "grey70", size = 5) + 
-  a_geom_text(aes(label = label, hjust = hjust, vjust = vjust))
+  a_geom_text(aes(a_label = a_label, hjust = hjust, vjust = vjust))
 ```
 
 Note that you can use numbers outside the range (0, 1), but it's not recommended. 
