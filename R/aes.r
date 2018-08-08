@@ -7,7 +7,7 @@ NULL
   "size", "srt", "upper", "vjust", "weight", "width", "x", "xend", "xmax",
   "xmin", "xintercept", "y", "yend", "ymax", "ymin", "yintercept", "z")
 
-.base_to_ggplot <- c(
+.base_to_a_plot <- c(
   "col"   = "colour",
   "color" = "colour",
   "pch"   = "shape",
@@ -89,7 +89,7 @@ rename_aes <- function(x) {
   full <- match(names(x), .all_aesthetics)
   names(x)[!is.na(full)] <- .all_aesthetics[full[!is.na(full)]]
 
-  plyr::rename(x, .base_to_ggplot, warn_missing = FALSE)
+  plyr::rename(x, .base_to_a_plot, warn_missing = FALSE)
 }
 
 # Look up the scale that should be used for a given aesthetic
