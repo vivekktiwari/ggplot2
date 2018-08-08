@@ -77,7 +77,7 @@ test_that("a_label_value() handles factors", {
 })
 
 test_that("labeller() dispatches labellers", {
-  p <- a_plot(mtcars, aes(wt, mpg)) + a_geom_point()
+  p <- a_plot(mtcars, a_aes(wt, mpg)) + a_geom_point()
   expected_cyl_both <- cbind(paste("cyl:", c(4, 6, 8)))
   expected_am_both <- cbind(paste("am:", 0:1))
 
@@ -122,7 +122,7 @@ test_that("labeller() dispatches labellers", {
 })
 
 test_that("as_labeller() deals with non-labellers", {
-  p <- a_plot(mtcars, aes(wt, mpg)) + a_geom_point()
+  p <- a_plot(mtcars, a_aes(wt, mpg)) + a_geom_point()
   lookup <- c(`0` = "zero", `1` = "one")
 
   # Lookup table
@@ -140,7 +140,7 @@ test_that("old school labellers still work", {
   }
 
   expect_warning(p <-
-    a_plot(mtcars, aes(disp, drat)) +
+    a_plot(mtcars, a_aes(disp, drat)) +
     a_geom_point() +
     a_facet_grid(~cyl, labeller = my_labeller))
 

@@ -79,7 +79,7 @@ a_Position <- a_ggproto("a_Position",
 #' @param ... Additional arguments passed to \code{trans_x} and \code{trans_y}.
 #' @export
 transform_position <- function(df, trans_x = NULL, trans_y = NULL, ...) {
-  scales <- aes_to_scale(names(df))
+  scales <- a_aes_to_scale(names(df))
 
   if (!is.null(trans_x)) {
     df[scales == "x"] <- lapply(df[scales == "x"], trans_x, ...)

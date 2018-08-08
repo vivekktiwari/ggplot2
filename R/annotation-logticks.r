@@ -31,7 +31,7 @@
 #'
 #' @examples
 #' # Make a log-log plot (without log ticks)
-#' a <- a_plot(msleep, aes(bodywt, brainwt)) +
+#' a <- a_plot(msleep, a_aes(bodywt, brainwt)) +
 #'  a_geom_point(na.rm = TRUE) +
 #'  a_scale_x_log10(
 #'    breaks = scales::trans_breaks("log10", function(x) 10^x),
@@ -53,7 +53,7 @@
 #'
 #' # Another way to get the same results as 'a' above: log-transform the data before
 #' # plotting it. Also hide the minor grid lines.
-#' b <- a_plot(msleep, aes(log10(bodywt), log10(brainwt))) +
+#' b <- a_plot(msleep, a_aes(log10(bodywt), log10(brainwt))) +
 #'  a_geom_point(na.rm = TRUE) +
 #'  a_scale_x_continuous(name = "body", a_labels = scales::math_format(10^.x)) +
 #'  a_scale_y_continuous(name = "brain", a_labels = scales::math_format(10^.x)) +
@@ -62,7 +62,7 @@
 #' b + ggplot2Animint:::a_annotation_logticks()
 #'
 #' # Using a coordinate transform requires scaled = FALSE
-#' t <- a_plot(msleep, aes(bodywt, brainwt)) +
+#' t <- a_plot(msleep, a_aes(bodywt, brainwt)) +
 #'   a_geom_point() +
 #'   ggplot2Animint:::a_coord_trans(x = "log10", y = "log10") +
 #'   a_theme_bw()
@@ -88,7 +88,7 @@ a_annotation_logticks <- function(base = 10, sides = "bl", scaled = TRUE,
     a_geom = a_GeomLogticks,
     a_position = a_PositionIdentity,
     show.legend = FALSE,
-    inherit.aes = FALSE,
+    inherit.a_aes = FALSE,
     params = list(
       base = base,
       sides = sides,
@@ -201,7 +201,7 @@ a_GeomLogticks <- a_ggproto("a_GeomLogticks", a_Geom,
     gTree(children = do.call("gList", ticks))
   },
 
-  default_aes = aes(colour = "black", size = 0.5, linetype = 1, alpha = 1)
+  default_aes = a_aes(colour = "black", size = 0.5, linetype = 1, alpha = 1)
 )
 
 

@@ -19,7 +19,7 @@ a_stat_boxplot <- function(mapping = NULL, data = NULL,
                          coef = 1.5,
                          na.rm = FALSE,
                          show.legend = NA,
-                         inherit.aes = TRUE) {
+                         inherit.a_aes = TRUE) {
   a_layer(
     data = data,
     mapping = mapping,
@@ -27,7 +27,7 @@ a_stat_boxplot <- function(mapping = NULL, data = NULL,
     a_geom = a_geom,
     a_position = a_position,
     show.legend = show.legend,
-    inherit.aes = inherit.aes,
+    inherit.a_aes = inherit.a_aes,
     params = list(
       na.rm = na.rm,
       coef = coef,
@@ -50,7 +50,7 @@ a_StatBoxplot <- a_ggproto("a_StatBoxplot", a_Stat,
 
     if (is.double(data$x) && !has_groups(data) && any(data$x != data$x[1L])) {
       warning(
-        "Continuous x aesthetic -- did you forget aes(group=...)?",
+        "Continuous x aesthetic -- did you forget a_aes(group=...)?",
         call. = FALSE)
     }
 

@@ -16,7 +16,7 @@ strip_layout <- function(p) {
   as.list(strip_layout)
 }
 
-p <- a_plot(mtcars, aes(disp, drat)) + a_geom_point()
+p <- a_plot(mtcars, a_aes(disp, drat)) + a_geom_point()
 
 
 test_that("a_facet_wrap() builds correct output", {

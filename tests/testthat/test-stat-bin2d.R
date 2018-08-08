@@ -2,7 +2,7 @@ context("a_stat_bin2d")
 
 test_that("binwidth is respected", {
   df <- data.frame(x = c(1, 1, 1, 2), y = c(1, 1, 1, 2))
-  base <- a_plot(df, aes(x, y)) +
+  base <- a_plot(df, a_aes(x, y)) +
     a_stat_bin2d(a_geom = "tile", binwidth = 0.25)
 
   out <- a_layer_data(base)
@@ -20,7 +20,7 @@ test_that("breaks override binwidth", {
   half_breaks <- seq(0, 3.5, 0.5)  # Will test against this for y
 
   df <- data.frame(x = 0:3, y = 0:3)
-  base <- a_plot(df, aes(x, y)) +
+  base <- a_plot(df, a_aes(x, y)) +
     a_stat_bin2d(
       breaks = list(x = integer_breaks, y = NULL),
       binwidth = c(0.5, 0.5)

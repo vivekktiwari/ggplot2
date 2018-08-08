@@ -2,7 +2,7 @@ context("ggplot2Compatibility")
 
 test_that("animint2 works fine with ggplot2", {
 
-  aa <- a_plot(mpg, aes(displ, hwy))
+  aa <- a_plot(mpg, a_aes(displ, hwy))
   gg <- ggplot2::ggplot(mpg, aes(displ, hwy))
 
   expect_identical(aa$data, gg$data)

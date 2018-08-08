@@ -3,9 +3,9 @@ context("a_layer")
 
 # Parameters --------------------------------------------------------------
 
-test_that("aesthetics go in aes_params", {
+test_that("a_aesthetics go in a_aes_params", {
   l <- a_geom_point(size = "red")
-  expect_equal(l$aes_params, list(size = "red"))
+  expect_equal(l$a_aes_params, list(size = "red"))
 })
 
 test_that("unknown params create error", {
@@ -22,32 +22,32 @@ test_that("Unknown params don't create error with validate_params = FALSE", {
   expect_silent(a_geom_point(blah = "red", validate_params = FALSE))
 })
 
-test_that("Unknown params go in extra_params, not aes_params", {
+test_that("Unknown params go in extra_params, not a_aes_params", {
   l <- a_geom_point(some_param = "value1",
                   size = "big",
                   validate_params = FALSE)
   expect_equal(l$extra_params, list(some_param = "value1"))
-  expect_equal(l$aes_params, list(size = "big"))
+  expect_equal(l$a_aes_params, list(size = "big"))
 })
 
 # Calculated aesthetics ---------------------------------------------------
 
 test_that("Bare name surround by .. is calculated", {
-  expect_true(is_calculated_aes(aes(..density..)))
-  expect_true(is_calculated_aes(aes(..DENSITY..)))
-  expect_false(is_calculated_aes(aes(a..x..b)))
+  expect_true(is_calculated_aes(a_aes(..density..)))
+  expect_true(is_calculated_aes(a_aes(..DENSITY..)))
+  expect_false(is_calculated_aes(a_aes(a..x..b)))
 })
 
 test_that("Calling using variable surround by .. is calculated", {
-  expect_true(is_calculated_aes(aes(mean(..density..))))
-  expect_true(is_calculated_aes(aes(mean(..DENSITY..))))
-  expect_false(is_calculated_aes(aes(mean(a..x..b))))
+  expect_true(is_calculated_aes(a_aes(mean(..density..))))
+  expect_true(is_calculated_aes(a_aes(mean(..DENSITY..))))
+  expect_false(is_calculated_aes(a_aes(mean(a..x..b))))
 })
 
 test_that("strip_dots remove dots around calculated aesthetics", {
-  expect_equal(strip_dots(aes(..density..))$x, quote(density))
-  expect_equal(strip_dots(aes(mean(..density..)))$x, quote(mean(density)))
-  expect_equal(strip_dots(aes(sapply(..density.., function(x) mean(x)))$x),
+  expect_equal(strip_dots(a_aes(..density..))$x, quote(density))
+  expect_equal(strip_dots(a_aes(mean(..density..)))$x, quote(mean(density)))
+  expect_equal(strip_dots(a_aes(sapply(..density.., function(x) mean(x)))$x),
                quote(sapply(density, function(x) mean(x))))
 })
 

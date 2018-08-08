@@ -3,14 +3,14 @@ context("a_Scales")
 test_that("buidling a plot does not affect its scales", {
   dat <- data.frame(x = rnorm(20), y = rnorm(20))
 
-  p <- a_plot(dat, aes(x, y)) + a_geom_point()
+  p <- a_plot(dat, a_aes(x, y)) + a_geom_point()
   expect_equal(length(p$scales$scales), 0)
 
   a_plot_build(p)
   expect_equal(length(p$scales$scales), 0)
 })
 
-test_that("ranges update only for variables listed in aesthetics", {
+test_that("ranges update only for variables listed in a_aesthetics", {
   sc <- a_scale_alpha()
 
   sc$train_df(data.frame(alpha = 1:10))
@@ -47,7 +47,7 @@ test_that("identity scale preserves input values", {
   df <- data.frame(x = 1:3, z = letters[1:3])
 
   p1 <- a_plot(df,
-    aes(x, z, colour = z, fill = z, shape = z, size = x, alpha = x)) +
+    a_aes(x, z, colour = z, fill = z, shape = z, size = x, alpha = x)) +
     a_geom_point() +
     a_scale_colour_identity() +
     a_scale_fill_identity() +
@@ -63,18 +63,18 @@ test_that("identity scale preserves input values", {
   expect_equal(d1$alpha, as.numeric(df$z))
 })
 
-test_that("position scales updated by all position aesthetics", {
+test_that("position scales updated by all position a_aesthetics", {
   df <- data.frame(x = 1:3, y = 1:3)
 
-  aesthetics <- list(
-    aes(xend = x, yend = x),
-    aes(xmin = x, ymin = x),
-    aes(xmax = x, ymax = x),
-    aes(xintercept = x, yintercept = y)
+  a_aesthetics <- list(
+    a_aes(xend = x, yend = x),
+    a_aes(xmin = x, ymin = x),
+    a_aes(xmax = x, ymax = x),
+    a_aes(xintercept = x, yintercept = y)
   )
 
-  base <- a_plot(df, aes(x = 1, y = 1)) + a_geom_point()
-  plots <- lapply(aesthetics, function(x) base %+% x)
+  base <- a_plot(df, a_aes(x = 1, y = 1)) + a_geom_point()
+  plots <- lapply(a_aesthetics, function(x) base %+% x)
   ranges <- lapply(plots, pranges)
 
   lapply(ranges, function(range) {
@@ -86,7 +86,7 @@ test_that("position scales updated by all position aesthetics", {
 
 test_that("position scales generate after stats", {
   df <- data.frame(x = factor(c(1, 1, 1)))
-  plot <- a_plot(df, aes(x)) + a_geom_bar()
+  plot <- a_plot(df, a_aes(x)) + a_geom_bar()
   ranges <- pranges(plot)
 
   expect_equal(ranges$x[[1]], c("1"))
@@ -96,7 +96,7 @@ test_that("position scales generate after stats", {
 
 test_that("oob affects position values", {
   dat <- data.frame(x = c("a", "b", "c"), y = c(1, 5, 10))
-  base <- a_plot(dat, aes(x, y)) +
+  base <- a_plot(dat, a_aes(x, y)) +
     a_geom_bar(a_stat = "identity") +
     a_annotate("point", x = "a", y = c(-Inf, Inf))
 

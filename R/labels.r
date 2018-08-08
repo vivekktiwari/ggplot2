@@ -4,7 +4,7 @@
 #' @param a_labels named list of new labels
 #' @export
 #' @examples
-#' p <- a_plot(mtcars, aes(mpg, wt)) + a_geom_point()
+#' p <- a_plot(mtcars, a_aes(mpg, wt)) + a_geom_point()
 #' update_a_labels(p, list(x = "New x"))
 #' update_a_labels(p, list(x = expression(x / y ^ 2)))
 #' update_a_labels(p, list(x = "New x", y = "New Y"))
@@ -21,10 +21,10 @@ update_a_labels <- function(p, a_labels) {
 #' @param a_label The text for the axis, plot title or caption below the plot.
 #' @param subtitle the text for the subtitle for the plot which will be
 #'        displayed below the title. Leave \code{NULL} for no subtitle.
-#' @param ... a list of new names in the form aesthetic = "new name"
+#' @param ... a list of new names in the form a_aesthetic = "new name"
 #' @keywords internal
 #' @examples
-#' p <- a_plot(mtcars, aes(mpg, wt)) + a_geom_point()
+#' p <- a_plot(mtcars, a_aes(mpg, wt)) + a_geom_point()
 #' p + ggplot2Animint:::labs(title = "New plot title")
 #' p + ggplot2Animint:::labs(x = "New x a_label")
 #' p + xlab("New x a_label")
@@ -46,7 +46,7 @@ update_a_labels <- function(p, a_labels) {
 #' p + ylim(2, 4) + ylab("New y a_label")
 #'
 #' # The labs function also modifies legend a_labels
-#' p <- a_plot(mtcars, aes(mpg, wt, colour = cyl)) + a_geom_point()
+#' p <- a_plot(mtcars, a_aes(mpg, wt, colour = cyl)) + a_geom_point()
 #' p + ggplot2Animint:::labs(colour = "Cylinders")
 #'
 #' # Can also pass in a list, if that is more convenient
@@ -82,10 +82,10 @@ make_labels <- function(mapping) {
     gsub(match_calculated_aes, "\\1", x)
   }
 
-  default_label <- function(aesthetic, mapping) {
-    # e.g., a_geom_smooth(aes(colour = "loess"))
+  default_label <- function(a_aesthetic, mapping) {
+    # e.g., a_geom_smooth(a_aes(colour = "loess"))
     if (is.character(mapping)) {
-      aesthetic
+      a_aesthetic
     } else {
       remove_dots(deparse(mapping))
     }

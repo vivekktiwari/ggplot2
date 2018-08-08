@@ -17,7 +17,7 @@ ylab(a_label)
 ggtitle(a_label, subtitle = NULL)
 }
 \arguments{
-\item{...}{a list of new names in the form aesthetic = "new name"}
+\item{...}{a list of new names in the form a_aesthetic = "new name"}
 
 \item{a_label}{The text for the axis, plot title or caption below the plot.}
 
@@ -29,7 +29,7 @@ Change axis a_labels, legend titles, plot title/subtitle and below-plot
 caption.
 }
 \examples{
-p <- a_plot(mtcars, aes(mpg, wt)) + a_geom_point()
+p <- a_plot(mtcars, a_aes(mpg, wt)) + a_geom_point()
 p + ggplot2Animint:::labs(title = "New plot title")
 p + ggplot2Animint:::labs(x = "New x a_label")
 p + xlab("New x a_label")
@@ -51,7 +51,7 @@ p + ylab("New y a_label") + ylim(2, 4)
 p + ylim(2, 4) + ylab("New y a_label")
 
 # The labs function also modifies legend a_labels
-p <- a_plot(mtcars, aes(mpg, wt, colour = cyl)) + a_geom_point()
+p <- a_plot(mtcars, a_aes(mpg, wt, colour = cyl)) + a_geom_point()
 p + ggplot2Animint:::labs(colour = "Cylinders")
 
 # Can also pass in a list, if that is more convenient

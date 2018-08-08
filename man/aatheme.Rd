@@ -76,7 +76,7 @@ A completely empty theme.}
 }
 }
 \examples{
-p <- a_plot(mtcars) + a_geom_point(aes(x = wt, y = mpg,
+p <- a_plot(mtcars) + a_geom_point(a_aes(x = wt, y = mpg,
      colour = factor(gear))) + ggplot2Animint:::a_facet_wrap(~am)
 
 p

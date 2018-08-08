@@ -4,7 +4,7 @@ set.seed(111)
 dat <- data.frame(x = LETTERS[1:2], y = rnorm(30), g = LETTERS[3:5])
 
 test_that("Dodging works", {
-  p <- a_plot(dat, aes(x = x, y = y, fill = g)) +
+  p <- a_plot(dat, a_aes(x = x, y = y, fill = g)) +
     a_geom_dotplot(
       binwidth = 0.2,
       binaxis = "y",
@@ -36,7 +36,7 @@ test_that("Dodging works", {
 
 
 test_that("Binning works", {
-  bp <- a_plot(dat, aes(y)) +
+  bp <- a_plot(dat, a_aes(y)) +
     a_geom_dotplot(binwidth = .4, method = "histodot")
   x <- a_layer_data(bp)$x
 
@@ -44,7 +44,7 @@ test_that("Binning works", {
   # due to floating point error
   expect_true(all(abs((x - min(x) + 1e-7) %% .4) < 1e-6))
 
-  bp <- a_plot(dat, aes(x = y)) +
+  bp <- a_plot(dat, a_aes(x = y)) +
     a_geom_dotplot(binwidth = .4, method = "dotdensity")
   x <- a_layer_data(bp)$x
 
@@ -60,6 +60,6 @@ test_that("NA's result in warning from stat_bindot", {
   dat$x[c(2,10)] <- NA
 
   # Need to assign it to a var here so that it doesn't automatically print
-  expect_warning(a_plot_build(a_plot(dat, aes(x)) + a_geom_dotplot(binwidth = .2)),
+  expect_warning(a_plot_build(a_plot(dat, a_aes(x)) + a_geom_dotplot(binwidth = .2)),
     "Removed 2 rows.*stat_bindot")
 })

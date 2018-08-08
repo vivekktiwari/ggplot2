@@ -106,14 +106,14 @@ test_that("grid: facet order follows default data frame order", {
   # Facets should be in order:
   # CBA for rows 1:3
   # cba for cols 1:3
-  lay <- get_layout(a_plot(d, aes(x, y)) + a_facet_grid(fy ~ fx) + a_geom_point())
+  lay <- get_layout(a_plot(d, a_aes(x, y)) + a_facet_grid(fy ~ fx) + a_geom_point())
   expect_equal(as.character(lay$fy), c("C","B","A")[lay$ROW])
   expect_equal(as.character(lay$fx), c("c","b","a")[lay$COL])
 
   # When adding d2, facets should still be in order:
   # CBA for rows 1:3
   # cba for cols 1:3
-  lay <- get_layout(a_plot(d, aes(x, y)) + a_facet_grid(fy ~ fx) +
+  lay <- get_layout(a_plot(d, a_aes(x, y)) + a_facet_grid(fy ~ fx) +
     a_geom_blank(data = d2) + a_geom_point())
   expect_equal(as.character(lay$fy), c("C","B","A")[lay$ROW])
   expect_equal(as.character(lay$fx), c("c","b","a")[lay$COL])
@@ -121,7 +121,7 @@ test_that("grid: facet order follows default data frame order", {
   # With no default data: should search each layer in order
   # BCA for rows 1:3
   # acb for cols 1:3
-  lay <- get_layout(a_plot(mapping = aes(x, y)) + a_facet_grid(fy ~ fx) +
+  lay <- get_layout(a_plot(mapping = a_aes(x, y)) + a_facet_grid(fy ~ fx) +
     a_geom_blank(data = d2) + a_geom_point(data = d))
   expect_equal(as.character(lay$fy), c("B","C","A")[lay$ROW])
   expect_equal(as.character(lay$fx), c("a","c","b")[lay$COL])
@@ -129,7 +129,7 @@ test_that("grid: facet order follows default data frame order", {
   # Same as previous, but different layer order.
   # CBA for rows 1:3
   # cba for cols 1:3
-  lay <- get_layout(a_plot(mapping = aes(x, y)) + a_facet_grid(fy ~ fx) +
+  lay <- get_layout(a_plot(mapping = a_aes(x, y)) + a_facet_grid(fy ~ fx) +
     a_geom_point(data = d) + a_geom_blank(data = d2))
   expect_equal(as.character(lay$fy), c("C","B","A")[lay$ROW])
   expect_equal(as.character(lay$fx), c("c","b","a")[lay$COL])
@@ -138,24 +138,24 @@ test_that("grid: facet order follows default data frame order", {
 test_that("wrap: facet order follows default data frame order", {
   # Facets should be in order:
   # cba for panels 1:3
-  lay <- get_layout(a_plot(d, aes(x, y)) + a_facet_wrap(~fx) + a_geom_point())
+  lay <- get_layout(a_plot(d, a_aes(x, y)) + a_facet_wrap(~fx) + a_geom_point())
   expect_equal(as.character(lay$fx), c("c","b","a")[lay$PANEL])
 
   # When adding d2, facets should still be in order:
   # cba for panels 1:3
-  lay <- get_layout(a_plot(d, aes(x, y)) + a_facet_wrap(~fx) +
+  lay <- get_layout(a_plot(d, a_aes(x, y)) + a_facet_wrap(~fx) +
     a_geom_blank(data = d2) + a_geom_point())
   expect_equal(as.character(lay$fx), c("c","b","a")[lay$PANEL])
 
   # With no default data: should search each layer in order
   # acb for panels 1:3
-  lay <- get_layout(a_plot(mapping = aes(x, y)) + a_facet_wrap(~fx) +
+  lay <- get_layout(a_plot(mapping = a_aes(x, y)) + a_facet_wrap(~fx) +
     a_geom_blank(data = d2) + a_geom_point(data = d))
   expect_equal(as.character(lay$fx), c("a","c","b")[lay$PANEL])
 
   # Same as previous, but different layer order.
   # cba for panels 1:3
-  lay <- get_layout(a_plot(mapping = aes(x, y)) + a_facet_wrap(~fx) +
+  lay <- get_layout(a_plot(mapping = a_aes(x, y)) + a_facet_wrap(~fx) +
     a_geom_point(data = d) + a_geom_blank(data = d2))
   expect_equal(as.character(lay$fx), c("c","b","a")[lay$PANEL])
 

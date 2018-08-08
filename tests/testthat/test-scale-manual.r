@@ -9,7 +9,7 @@ test_that("names of values used in manual scales", {
 
 
 dat <- data.frame(g = c("B","A","A"))
-p <- a_plot(dat, aes(g, fill = g)) + a_geom_bar()
+p <- a_plot(dat, a_aes(g, fill = g)) + a_geom_bar()
 col <- c("A" = "red", "B" = "green", "C" = "blue")
 
 cols <- function(x) a_plot_build(x)$data[[1]][, "fill"]
@@ -29,7 +29,7 @@ test_that("named values work regardless of order", {
 
 test_that("missing values replaced with na.value", {
   df <- data.frame(x = 1, y = 1:3, z = factor(c(1:2, NA), exclude = NULL))
-  p <- a_plot(df, aes(x, y, colour = z)) +
+  p <- a_plot(df, a_aes(x, y, colour = z)) +
     a_geom_point() +
     ggplot2Animint:::a_scale_colour_manual(values = c("black", "black"), na.value = "red")
 

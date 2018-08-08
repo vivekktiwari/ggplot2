@@ -21,7 +21,7 @@ test_that("Polar distance calculation", {
     c(0, -1.225737494, -2, -0.5, -5, -0.25, -0.6736885011) / maxlen)
 
   # The picture can be visualized with:
-  # a_plot(dat, aes(x=theta, y=r)) + geom_path() +
+  # a_plot(dat, a_aes(x=theta, y=r)) + geom_path() +
   #   geom_point(alpha=0.3) + a_coord_polar()
 })
 
